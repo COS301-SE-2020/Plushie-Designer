@@ -20,7 +20,7 @@ Plushie-Designer is a website that allows users to create and share their plushi
 ## Short Profile Descriptions
 **Anton Smith**
 *u18112405*
-- ...
+- https://antonsmith99.github.io/
 ...
 
 **Aiden Diederiks**
@@ -35,10 +35,10 @@ Plushie-Designer is a website that allows users to create and share their plushi
 
 **Pierre du Plessis**
 *u18113941*
-- ...
+- https://endlessprogrammer.github.io/pierregduplessis.github.io/
 ...
 
 **Stefan du Toit**
 *u17012806*
-- ...
+- https://hawkeye865.github.io/
 ...
