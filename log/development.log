@@ -1227,3 +1227,33 @@ Processing by PagesController#index as HTML
 Completed 200 OK in 2118ms (Views: 2117.0ms | ActiveRecord: 0.0ms | Allocations: 380210)
 
 
+Started GET "/" for ::1 at 2020-06-05 13:12:15 +0200
+  [1m[35m (6.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 8.5ms | Allocations: 312)
+Completed 500 Internal Server Error in 1631ms (ActiveRecord: 0.0ms | Allocations: 355799)
+
+
+  
+ActionView::Template::Error (Multiple files with the same output path cannot be linked ("application.css")
+In "C:/Users/anton/Documents/github_repos/Plushie-Designer/app/assets/config/manifest.js" these files were linked:
+  - C:/Users/anton/Documents/github_repos/Plushie-Designer/app/assets/stylesheets/application.css
+  - C:/Users/anton/Documents/github_repos/Plushie-Designer/app/assets/stylesheets/application.css.scss
+):
+  
+sprockets (4.0.0) lib/sprockets/base.rb:100:in `find_all_linked_assets'
+sprockets (4.0.0) lib/sprockets/manifest.rb:125:in `block (2 levels) in find'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:24:in `block in execute'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:41:in `block in synchronize'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:41:in `synchronize'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:41:in `synchronize'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:19:in `execute'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/promise.rb:563:in `block in realize'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:353:in `run_task'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:342:in `block (3 levels) in create_worker'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:325:in `loop'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:325:in `block (2 levels) in create_worker'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:324:in `catch'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:324:in `block in create_worker'
