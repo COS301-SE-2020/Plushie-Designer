@@ -11,9 +11,13 @@
   </head>
 
   <body>
+    <%= render 'layouts/header' %>
+    <%= bootstrap_flash %>
+
     <div class='container'>
       <%= yield %>
     </div>
-    <%= yield %>
+
+    <%= render 'layouts/footer' %>
   </body>
 </html>
