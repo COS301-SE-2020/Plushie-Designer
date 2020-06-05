@@ -9,6 +9,16 @@
       "js.map": [
         "/packs/js/application-9afcbb5693aa87623e69.js.map"
       ]
+    },
+    "indexEditor": {
+      "js": [
+        "/packs/js/indexEditor-3e7a1c7a683a7bd6d22c.js"
+      ],
+      "js.map": [
+        "/packs/js/indexEditor-3e7a1c7a683a7bd6d22c.js.map"
+      ]
     }
-  }
+  },
+  "indexEditor.js": "/packs/js/indexEditor-3e7a1c7a683a7bd6d22c.js",
+  "indexEditor.js.map": "/packs/js/indexEditor-3e7a1c7a683a7bd6d22c.js.map"
 }
