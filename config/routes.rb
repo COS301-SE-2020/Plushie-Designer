@@ -1,6 +1,8 @@
 
 Rails.application.routes.draw do 
-  devise_for :users
+  
+  devise_for :users, :controllers => {registrations: 'registrations'}
+  resources :toys
   root to: 'pages#index'
   get 'pages/contact'
   get 'pages/about'

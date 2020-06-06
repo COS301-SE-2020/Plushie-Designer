@@ -1,0 +1,62 @@
+<div class="editor">
+    <%= javascript_pack_tag 'indexEditor' %>
+</div>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%
+=begin%>
+ <strong>Name:</strong>
+  <%= @toy.name %> 
+<%
+=end%>
+</p>
+
+<p>
+  <%= content_tag :div, class: "head", data: {head: @toy.head} do %>
+  <% end %>
+  <%
+=begin%>
+ <strong>Head:</strong>
+  <%= @toy.head %> 
+<%
+=end%>
+</p>
+
+<p>
+  <%= content_tag :div, class: "arms", data: {arms: @toy.arms} do %>
+  <% end %>
+  <%
+=begin%>
+ <strong>Arms:</strong>
+  <%= @toy.arms %> 
+<%
+=end%>
+</p>
+
+<p>
+  <%= content_tag :div, class: "torso", data: {torso: @toy.torso} do %>
+  <% end %>
+  <%
+=begin%>
+ <strong>Torso:</strong>
+  <%= @toy.torso %> 
+<%
+=end%>
+</p>
+
+<p>
+  <%= content_tag :div, class: "legs", data: {legs: @toy.legs} do %>
+  <% end %>
+  <%
+=begin%>
+ <strong>Legs:</strong>
+  <%= @toy.legs %> 
+<%
+=end%>
+</p>
+
+<div class="options">
+  <%= button_to 'Edit', edit_toy_path(@toy) %> <br>
+  <%= button_to 'Back', toys_path %>
+</div>
