@@ -1,37 +1,4 @@
-<%
-=begin%>
- <p id="notice"><%= notice %></p>
-
-<h1>Toys</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Rating</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @toys.each do |toy| %>
-      <tr>
-        <td><%= toy.name %></td>
-        <td><%= toy.rating %></td>
-        <td><%= link_to 'Show', toy %></td>
-        <td><%= link_to 'Edit', edit_toy_path(toy) %></td>
-        <td><%= link_to 'Destroy', toy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Toy', new_toy_path %> 
-<%
-=end%>
-
+<h1>Plushies</h1>
 <div class="row">
     <!-- Blog toy Content Column -->
     <div class="col-lg-8">
@@ -45,7 +12,7 @@
 
         <!-- Author -->
         <p>
-            Plushie By:<strong> <%= toy.user.username %></strong>
+          Plushie By:<strong> <%= toy.user.username %></strong> 
         </p>
         <p>
             Rating:<strong> <%= toy.rating %>/5</strong>

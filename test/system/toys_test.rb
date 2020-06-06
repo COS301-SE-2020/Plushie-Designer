@@ -1,53 +1,45 @@
 require "application_system_test_case"
 
 class ToysTest < ApplicationSystemTestCase
-  setup do
-    @toy = toys(:one)
-  end
+  test "doing everything" do
+    visit new_user_registration_path
+    fill_in "Username", with: "HawkEye865"
+    fill_in "Email", with: "test5@test.com"
+    fill_in "Password", with: "123456"
 
-  test "visiting the index" do
+    click_on "Sign up"
+    assert_text "Welcome! You have signed up successfully."
+
     visit toys_url
-    assert_selector "h1", text: "Toys"
-  end
 
-  test "creating a Toy" do
-    visit toys_url
-    click_on "New Toy"
+    click_on "Create Plushie"
 
-    fill_in "Arms", with: @toy.arms
-    fill_in "Head", with: @toy.head
-    fill_in "Legs", with: @toy.legs
-    fill_in "Name", with: @toy.name
-    fill_in "Rating", with: @toy.rating
-    fill_in "Torso", with: @toy.torso
-    click_on "Create Toy"
+    fill_in "Arms", with: 1
+    fill_in "Head", with: 1
+    fill_in "Legs", with: 1
+    fill_in "Name", with: "Test"
+    fill_in "Rating", with: 1.5
+    fill_in "Torso", with: 1
+    click_on "Share"
 
     assert_text "Toy was successfully created"
-    click_on "Back"
-  end
 
-  test "updating a Toy" do
-    visit toys_url
-    click_on "Edit", match: :first
+    click_on "Edit"
 
-    fill_in "Arms", with: @toy.arms
-    fill_in "Head", with: @toy.head
-    fill_in "Legs", with: @toy.legs
-    fill_in "Name", with: @toy.name
-    fill_in "Rating", with: @toy.rating
-    fill_in "Torso", with: @toy.torso
-    click_on "Update Toy"
+    fill_in "Arms", with: 0
+    fill_in "Head", with: 0
+    fill_in "Legs", with: 0
+    fill_in "Name", with: "Test"
+    fill_in "Rating", with: 0.5
+    fill_in "Torso", with: 0
+    click_on "Share"
 
-    assert_text "Toy was successfully updated"
-    click_on "Back"
-  end
+    assert_text "Toy was successfully updated."
 
-  test "destroying a Toy" do
-    visit toys_url
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on "Delete"
     end
-
-    assert_text "Toy was successfully destroyed"
+    
+    assert_text "Toy was successfully destroyed."
   end
 end
