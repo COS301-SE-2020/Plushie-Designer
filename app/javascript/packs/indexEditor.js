@@ -9,7 +9,7 @@ scene.fog = new THREE.FogExp2(0xbfd1e5, 0.002);
 
 var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight-100);
+renderer.setSize(window.innerWidth, window.innerHeight-90);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);

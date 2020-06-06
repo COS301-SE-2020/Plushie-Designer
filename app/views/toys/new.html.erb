@@ -1,0 +1,9 @@
+<div class="editor">
+    <%= javascript_pack_tag 'indexEditor' %>
+</div>
+
+<div class="options">
+    <%= render 'form', toy: @toy %>
+    <br>
+    <%= button_to 'Back', toys_path, method: "get" %>
+</div>
