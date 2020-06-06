@@ -57,6 +57,8 @@
 </p>
 
 <div class="options">
-  <%= button_to 'Edit', edit_toy_path(@toy) %> <br>
-  <%= button_to 'Back', toys_path %>
+  <% if current_user == @toy.user%>
+    <%= button_to 'Edit', edit_toy_path(@toy), method: "get" %> <br>
+  <% end %>
+  <%= button_to 'Back', toys_path, method: "get" %>
 </div>
