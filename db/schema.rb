@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_06_07_133916) do
     t.integer "arms"
     t.integer "torso"
     t.integer "legs"
-    t.float "rating"
+    t.decimal "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"

@@ -14,5 +14,6 @@
 
     </div>
 </div>
-<%= link_to "Edit", edit_toy_rating_path(rating.toy, rating) %>
-<%= link_to "Delete", [rating.toy, rating], method: :delete, data: { confirm: "Are you sure?" } %>
+<% if current_user == rating.user%>
+    <%= link_to "Edit", edit_toy_rating_path(rating.toy, rating) %>
+<% end %>

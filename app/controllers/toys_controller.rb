@@ -5,6 +5,7 @@ class ToysController < ApplicationController
   # GET /toys.json
   def index
     @toys = Toy.all
+    @num = 0
   end
 
   # GET /toys/1
