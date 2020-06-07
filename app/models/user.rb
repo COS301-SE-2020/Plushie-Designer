@@ -6,4 +6,5 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :username, presence: true
   has_many :toys
+  has_many :ratings
 end

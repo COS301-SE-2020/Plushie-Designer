@@ -1,0 +1,7 @@
+<%= simple_form_for ([@toy, @toy.ratings.build]) do |f| %>
+
+<%= f.input :description %>
+<%= f.input :value %>
+<%= f.submit "leave a rating" %>
+
+<% end %>
