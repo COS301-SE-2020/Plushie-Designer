@@ -1,0 +1,15 @@
+<div class="editor">
+    <%= javascript_pack_tag 'Editor' %>
+</div>
+
+<div class="options">
+    <%= render 'form', toy: @toy %>
+
+    <br>
+    <%
+=begin%>
+ <%= button_to 'Show', @toy %>  
+<%
+=end%>
+    <%= button_to 'Back', toys_path, method: "get" %>
+</div>

@@ -1,0 +1,28 @@
+<h1>Plushies</h1>
+<div class="row">
+    <!-- Blog toy Content Column -->
+    <div class="col-lg-8">
+        <% @toys.each do |toy| %>
+        <!-- Blog toy -->
+        <!-- Title -->
+        <h4 style="font-size: 20px;"><%= link_to toy.name, toy %></h4>
+        <!-- Date/Time -->
+       <p><span class="glyphicon glyphicon-time"></span> Was created: <%= time_ago_in_words(toy.created_at) %>
+        </p>
+
+        <!-- Author -->
+        <p>
+          Plushie By:<strong> <%= toy.user.username %></strong> 
+        </p>
+        <p>
+            Rating:<strong> <%= toy.rating %>/5</strong>
+        </p>
+        <hr>
+        <!-- toyed Comments -->
+        <!-- Comment -->
+        <% end %>
+        <%= link_to "Create Plushie", new_toy_path, class: "btn btn-default btn-xs" %>
+    </div>
+    <!-- Blog Sidebar Widgets Column -->
+</div>
+<br>

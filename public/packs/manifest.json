@@ -1,4 +1,6 @@
 {
+  "Editor.js": "/packs/js/Editor-890a7d76a7621f988f6f.js",
+  "Editor.js.map": "/packs/js/Editor-890a7d76a7621f988f6f.js.map",
   "application.js": "/packs/js/application-9afcbb5693aa87623e69.js",
   "application.js.map": "/packs/js/application-9afcbb5693aa87623e69.js.map",
   "entrypoints": {
@@ -9,6 +11,24 @@
       "js.map": [
         "/packs/js/application-9afcbb5693aa87623e69.js.map"
       ]
+    },
+    "Editor": {
+      "js": [
+        "/packs/js/Editor-890a7d76a7621f988f6f.js"
+      ],
+      "js.map": [
+        "/packs/js/Editor-890a7d76a7621f988f6f.js.map"
+      ]
+    },
+    "indexEditor": {
+      "js": [
+        "/packs/js/indexEditor-a30b0956e12f5f939926.js"
+      ],
+      "js.map": [
+        "/packs/js/indexEditor-a30b0956e12f5f939926.js.map"
+      ]
     }
-  }
+  },
+  "indexEditor.js": "/packs/js/indexEditor-a30b0956e12f5f939926.js",
+  "indexEditor.js.map": "/packs/js/indexEditor-a30b0956e12f5f939926.js.map"
 }

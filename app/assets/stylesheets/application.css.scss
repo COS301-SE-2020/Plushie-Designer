@@ -18,3 +18,29 @@
  @import "bootstrap";
  @import "font-awesome-sprockets";
  @import "font-awesome";
+
+ .editor{
+    position: absolute;
+ }
+
+ .navbar{
+     margin-bottom: 0;
+ }
+
+ .options{
+    position: absolute;
+    top: 6em;
+    left: 2em;
+    background-color: gray;
+    padding: 2em;
+    border-style: ridge;
+}
+
+.hinput{
+    display: none;
+}
+
+.buttons{
+    margin-left: 4em;
+    margin-right: 4em;
+}
