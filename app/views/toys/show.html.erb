@@ -1,8 +1,6 @@
 <div class="editor">
     <%= javascript_pack_tag 'indexEditor' %>
 </div>
-<p id="notice"><%= notice %></p>
-
 <p>
   <%
 =begin%>
@@ -59,6 +57,7 @@
 <div class="options">
   <% if current_user == @toy.user%>
     <%= button_to 'Edit', edit_toy_path(@toy), method: "get" %> <br>
+    <%= button_to 'Delete', @toy, method: :delete, data: { confirm: 'Are you sure?' } %><br>
   <% end %>
   <%= button_to 'Back', toys_path, method: "get" %>
 </div>
