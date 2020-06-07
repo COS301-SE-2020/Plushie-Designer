@@ -2,7 +2,9 @@
 Rails.application.routes.draw do 
   
   devise_for :users, :controllers => {registrations: 'registrations'}
-  resources :toys
+  resources :toys do
+    resources :ratings
+  end
   root to: 'pages#index'
   get 'pages/contact'
   get 'pages/about'

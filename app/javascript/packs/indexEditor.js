@@ -1,6 +1,6 @@
 var THREE = require('three');
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 
 var scene = new THREE.Scene();
@@ -37,27 +37,82 @@ controls.maxPolarAngle = Math.PI / 2;
 // helper = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial());
 // scene.add(helper);
 
-// var loader = new GLTFLoader();
+var loader = new GLTFLoader();
 
-// loader.load( 'https://stefanswebgl.herokuapp.com/scifigirl/scene.gltf', function ( gltf ) {
-// 	gltf.scene.position.setY(1.5);
-// 	gltf.scene.castShadow = true;
-// 	scene.add( gltf.scene );
+loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_head.gltf', function ( gltf ) {
+	gltf.scene.position.setY(1.5);
+	gltf.scene.castShadow = true;
+	scene.add( gltf.scene );
 
-// }, undefined, function ( error ) {
+}, undefined, function ( error ) {
 
-// 	console.error( error );
+	console.error( error );
 
-// } );
+} );
 
-var geometry = new THREE.BoxBufferGeometry(5, 5, 5);
-var material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
-var cube = new THREE.Mesh(geometry, material);
-cube.castShadow = true;
-cube.receiveShadow = true;
-cube.position.setY(3);
-// cube.position.setZ(5);
-scene.add(cube);
+loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_Body.gltf', function ( gltf ) {
+	gltf.scene.position.setY(1.5);
+	gltf.scene.castShadow = true;
+	scene.add( gltf.scene );
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+
+loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_LeftArm.gltf', function ( gltf ) {
+	gltf.scene.position.setY(1.5);
+	gltf.scene.castShadow = true;
+	scene.add( gltf.scene );
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+
+loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_RightArm.gltf', function ( gltf ) {
+	gltf.scene.position.setY(1.5);
+	gltf.scene.castShadow = true;
+	scene.add( gltf.scene );
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+
+loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_LeftLeg.gltf', function ( gltf ) {
+	gltf.scene.position.setY(1.5);
+	gltf.scene.castShadow = true;
+	scene.add( gltf.scene );
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+
+loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_RightLeg.gltf', function ( gltf ) {
+	gltf.scene.position.setY(1.5);
+	gltf.scene.castShadow = true;
+	scene.add( gltf.scene );
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+
+// var geometry = new THREE.BoxBufferGeometry(5, 5, 5);
+// var material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+// var cube = new THREE.Mesh(geometry, material);
+// cube.castShadow = true;
+// cube.receiveShadow = true;
+// cube.position.setY(3);
+// // cube.position.setZ(5);
+// scene.add(cube);
 
 // camera.lookAt(0, 20, 0);
 
@@ -67,7 +122,7 @@ var material = new THREE.MeshPhongMaterial({ color: 0xA9A9A9 });
 var plane = new THREE.Mesh(geometry, material);
 plane.castShadow = false;
 plane.receiveShadow = true;
-plane.position.setY(-0.23);
+plane.position.setY(-4);
 // plane.position.setZ(5);
 scene.add(plane);
 
