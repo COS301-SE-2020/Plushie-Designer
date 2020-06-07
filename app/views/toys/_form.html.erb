@@ -1,16 +1,22 @@
-
 <%= simple_form_for(@toy) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :head %>
-    <%= f.input :arms %>
-    <%= f.input :torso %>
-    <%= f.input :legs %>
-    <%= f.input :rating %>
+    <%= f.input :name %><hr>
+    <div class="hinput">
+      <%= f.input :head, input_html: {value: 0} %>
+      <%= f.input :arms, input_html: {value: 0} %>
+      <%= f.input :torso, input_html: {value: 0} %>
+      <%= f.input :legs, input_html: {value: 0} %>
+      <%= f.input :rating, input_html: {value: 0} %>
+    </div>
   </div>
+
+  <div class="buttons"><button id="headl" type="button"><</button> Head <button id="headr" type="button">></button></div><hr>
+  <div class="buttons"><button id="armsl" type="button"><</button> Arms <button id="armsr" type="button">></button></div><hr>
+  <div class="buttons"><button id="torsol" type="button"><</button> Torso <button id="torsor" type="button">></button></div><hr>
+  <div class="buttons"><button id="legsl" type="button"><</button> Legs <button id="legsr" type="button">></button></div><hr>
 
   <div class="form-actions">
     <%= f.button :submit, "Share" %>

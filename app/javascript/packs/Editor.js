@@ -162,3 +162,58 @@ var animate = function () {
 };
 
 animate();
+
+$(document).ready(function(){
+	$('#headl').click(function () {
+		if($("#toy_head")[0].value > 0){
+			$("#toy_head")[0].value -= 1;
+		}
+	});
+	$('#headr').click(function () {
+		var tmp = $("#toy_head")[0].value;
+		if(tmp < 1){
+			tmp = +tmp + +1;
+			$("#toy_head")[0].value = tmp;
+		}
+	});
+
+	$('#armsl').click(function () {
+		if($("#toy_arms")[0].value > 0){
+			$("#toy_arms")[0].value -= 1;
+		}
+	});
+	$('#armsr').click(function () {
+		var tmp = $("#toy_arms")[0].value;
+		if(tmp < 1){
+			tmp = +tmp + +1;
+			$("#toy_arms")[0].value = tmp;
+		}
+	});
+
+	$('#torsol').click(function () {
+		if($("#toy_torso")[0].value > 0){
+			$("#toy_torso")[0].value -= 1;
+		}
+	});
+	$('#torsor').click(function () {
+		var tmp = $("#toy_torso")[0].value;
+		if(tmp < 1){
+			tmp = +tmp + +1;
+			$("#toy_torso")[0].value = tmp;
+		}
+	});
+
+	$('#legsl').click(function () {
+		if($("#toy_legs")[0].value > 0){
+			$("#toy_legs")[0].value -= 1;
+		}
+	});
+	$('#legsr').click(function () {
+		var tmp = $("#toy_legs")[0].value;
+		if(tmp < 1){
+			tmp = +tmp + +1;
+			$("#toy_legs")[0].value = tmp;
+		}
+	});
+
+})
