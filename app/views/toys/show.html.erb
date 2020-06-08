@@ -97,9 +97,9 @@
     <%= button_to 'Edit', edit_toy_path(@toy), method: "get" %> <br>
     <%= button_to 'Delete', @toy, method: :delete, data: { confirm: 'Are you sure?' } %><br>
   <% end %>
-  <%= button_to 'Back', toys_path, method: "get" %>
+  <%= link_to 'Back', toys_path %>
 </div>
 
 <div class="editor">
-    <%= javascript_pack_tag 'Editor' %>
+    <%= javascript_pack_tag 'showEditor' %>
 </div>
