@@ -6,7 +6,7 @@ class CreateToys < ActiveRecord::Migration[6.0]
       t.integer :arms
       t.integer :torso
       t.integer :legs
-      t.float :rating
+      t.decimal :rating
 
       t.timestamps
     end

@@ -15,13 +15,19 @@
           Plushie By:<strong> <%= toy.user.username %></strong> 
         </p>
         <p>
-            Rating:<strong> <%= toy.rating %>/5</strong>
+            <% toy.rating = 0 %>
+            <% toy.ratings.each do |r| %>
+                <% toy.rating = toy.rating + r.value %>
+                <% @num = @num + 1 %>
+            <% end %>
+            Rating:<strong> <%= toy.rating/@num %>/5</strong>
+            <% @num = 0 %>
         </p>
         <hr>
         <!-- toyed Comments -->
         <!-- Comment -->
         <% end %>
-        <%= link_to "Create Plushie", new_toy_path, class: "btn btn-default btn-xs" %>
+            <%= link_to "Create Plushie", root_path, class: "btn btn-default btn-xs" %>
     </div>
     <!-- Blog Sidebar Widgets Column -->
 </div>

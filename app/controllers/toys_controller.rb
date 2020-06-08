@@ -1,10 +1,11 @@
 class ToysController < ApplicationController
   before_action :set_toy, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new]
   # GET /toys
   # GET /toys.json
   def index
     @toys = Toy.all
+    @num = 0
   end
 
   # GET /toys/1
