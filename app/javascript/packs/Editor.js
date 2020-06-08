@@ -2,6 +2,21 @@ var THREE = require('three');
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
+var headchange = false;
+var torsochange = false;
+var armschange = false; 
+var legschange = false;
+var head = $("#toy_head")[0].value;
+var torso = $("#toy_torso")[0].value;
+var arms = $("#toy_arms")[0].value;
+var legs = $("#toy_legs")[0].value;
+var ihead = 7;
+var itorso = 8;
+var ilarm = 3;
+var irarm = 4;
+var illeg = 5;
+var irleg = 6;
+var ihair = 99;
 
 var scene = new THREE.Scene();
 scene.background = new THREE.Color(0xbfd1e5);
@@ -39,9 +54,27 @@ controls.maxPolarAngle = Math.PI / 2;
 
 var loader = new GLTFLoader();
 
-loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_head.gltf', function ( gltf ) {
+var hurl = '';
+if(head==0){
+	hurl = 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_head.gltf';
+}else if(head==1){
+	hurl = 'http://127.0.0.1:3000/model/chibi/chibi_head.gltf';
+	loader.load( 'http://127.0.0.1:3000/model/chibi/chibi_hair.gltf', function ( gltf ) {
+		gltf.scene.position.setY(1.5);
+		gltf.scene.castShadow = true;
+		gltf.scene.name = "hair";
+		scene.add( gltf.scene );
+
+	}, undefined, function ( error ) {
+
+		console.error( error );
+
+	} );
+}
+loader.load( hurl, function ( gltf ) {
 	gltf.scene.position.setY(1.5);
 	gltf.scene.castShadow = true;
+	gltf.scene.name = "head";
 	scene.add( gltf.scene );
 
 }, undefined, function ( error ) {
@@ -50,9 +83,16 @@ loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_head.gltf', 
 
 } );
 
-loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_Body.gltf', function ( gltf ) {
+var hurl = '';
+if(torso==0){
+	hurl = 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_Body.gltf';
+}else if(torso==1){
+	hurl = 'http://127.0.0.1:3000/model/chibi/chibi_body.gltf';
+}
+loader.load( hurl, function ( gltf ) {
 	gltf.scene.position.setY(1.5);
 	gltf.scene.castShadow = true;
+	gltf.scene.name = "torso";
 	scene.add( gltf.scene );
 
 }, undefined, function ( error ) {
@@ -61,9 +101,30 @@ loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_Body.gltf', 
 
 } );
 
-loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_LeftArm.gltf', function ( gltf ) {
+var hurl = '';
+var hurl1 = '';
+if(arms==0){
+	hurl = 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_LeftArm.gltf';
+	hurl1 = 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_RightArm.gltf';
+}else if(arms==1){
+	hurl = 'http://127.0.0.1:3000/model/chibi/chibi_leftArm.gltf';
+	hurl1 = 'http://127.0.0.1:3000/model/chibi/chibi_rightArm.gltf';
+}
+loader.load( hurl, function ( gltf ) {
 	gltf.scene.position.setY(1.5);
 	gltf.scene.castShadow = true;
+	gltf.scene.name = "leftarm";
+	scene.add( gltf.scene );
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+loader.load( hurl1, function ( gltf ) {
+	gltf.scene.position.setY(1.5);
+	gltf.scene.castShadow = true;
+	gltf.scene.name = "rightarm";
 	scene.add( gltf.scene );
 
 }, undefined, function ( error ) {
@@ -72,9 +133,19 @@ loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_LeftArm.gltf
 
 } );
 
-loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_RightArm.gltf', function ( gltf ) {
+var hurl = '';
+var hurl1 = '';
+if(legs==0){
+	hurl = 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_LeftLeg.gltf';
+	hurl1 = 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_RightLeg.gltf';
+}else if(legs==1){
+	hurl = 'http://127.0.0.1:3000/model/chibi/chibi_leftLeg.gltf';
+	hurl1 = 'http://127.0.0.1:3000/model/chibi/chibi_righyLeg.gltf';
+}
+loader.load( hurl, function ( gltf ) {
 	gltf.scene.position.setY(1.5);
 	gltf.scene.castShadow = true;
+	gltf.scene.name = "leftleg";
 	scene.add( gltf.scene );
 
 }, undefined, function ( error ) {
@@ -82,21 +153,10 @@ loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_RightArm.glt
 	console.error( error );
 
 } );
-
-loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_LeftLeg.gltf', function ( gltf ) {
+loader.load( hurl1, function ( gltf ) {
 	gltf.scene.position.setY(1.5);
 	gltf.scene.castShadow = true;
-	scene.add( gltf.scene );
-
-}, undefined, function ( error ) {
-
-	console.error( error );
-
-} );
-
-loader.load( 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_RightLeg.gltf', function ( gltf ) {
-	gltf.scene.position.setY(1.5);
-	gltf.scene.castShadow = true;
+	gltf.scene.name = "rightleg";
 	scene.add( gltf.scene );
 
 }, undefined, function ( error ) {
@@ -151,8 +211,172 @@ var divisions = 1000;
 // controls.update();
 
 // camera.position.z = 5;
-
+function updateIndexes(){
+	for(var i=0;i< scene.children.length;++i){
+		if(scene.children[i].name=="head"){
+			ihead = i;
+		}else if(scene.children[i].name=="torso"){
+			itorso = i;
+		}else if(scene.children[i].name=="leftarm"){
+			ilarm = i;
+		}else if(scene.children[i].name=="rightarm"){
+			irarm = i;
+		}else if(scene.children[i].name=="leftleg"){
+			illeg = i;
+		}else if(scene.children[i].name=="rightleg"){
+			irleg = i;
+		}else if(scene.children[i].name=="hair"){
+			ihair = i;
+		}
+	}
+}
 var animate = function () {
+	if(headchange){
+		updateIndexes();
+		var temp = scene.getObjectByName(scene.children[ihead].name);
+		scene.remove(temp);
+		var hurl = '';
+		if(head==0){
+			hurl = 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_head.gltf';
+			updateIndexes();
+			if(ihair!=99){
+				var temp = scene.getObjectByName(scene.children[ihair].name);
+				scene.remove(temp);
+			}
+		}else if(head==1){
+			hurl = 'http://127.0.0.1:3000/model/chibi/chibi_head.gltf';
+			loader.load( 'http://127.0.0.1:3000/model/chibi/chibi_hair.gltf', function ( gltf ) {
+				gltf.scene.position.setY(1.5);
+				gltf.scene.castShadow = true;
+				gltf.scene.name = "hair";
+				scene.add( gltf.scene );
+	
+			}, undefined, function ( error ) {
+	
+				console.error( error );
+	
+			} );
+		}
+		loader.load( hurl, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "head";
+			scene.add( gltf.scene );
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
+		headchange = false;
+	}
+
+	if(torsochange){
+		updateIndexes();
+		var temp = scene.getObjectByName(scene.children[itorso].name);
+		scene.remove(temp);
+		var hurl = '';
+		if(torso==0){
+			hurl = 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_Body.gltf';
+		}else if(torso==1){
+			hurl = 'http://127.0.0.1:3000/model/chibi/chibi_body.gltf';
+		}
+		loader.load( hurl, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "torso";
+			scene.add( gltf.scene );
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
+		torsochange = false;
+	}
+
+	if(armschange){
+		updateIndexes();
+		var temp = scene.getObjectByName(scene.children[ilarm].name);
+		scene.remove(temp);
+		updateIndexes();
+		var temp1 = scene.getObjectByName(scene.children[irarm].name);
+		scene.remove(temp1);
+		var hurl = '';
+		var hurl1 = '';
+		if(arms==0){
+			hurl = 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_LeftArm.gltf';
+			hurl1 = 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_RightArm.gltf';
+		}else if(arms==1){
+			hurl = 'http://127.0.0.1:3000/model/chibi/chibi_leftArm.gltf';
+			hurl1 = 'http://127.0.0.1:3000/model/chibi/chibi_rightArm.gltf';
+		}
+		loader.load( hurl, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "leftarm";
+			scene.add( gltf.scene );
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
+		loader.load( hurl1, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "rightarm";
+			scene.add( gltf.scene );
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
+		armschange = false;
+	}
+
+	if(legschange){
+		updateIndexes();
+		var temp = scene.getObjectByName(scene.children[illeg].name);
+		scene.remove(temp);
+		updateIndexes();
+		var temp1 = scene.getObjectByName(scene.children[irleg].name);
+		scene.remove(temp1);
+		var hurl = '';
+		var hurl1 = '';
+		if(legs==0){
+			hurl = 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_LeftLeg.gltf';
+			hurl1 = 'http://127.0.0.1:3000/model/minecraft/minecraft_steve_RightLeg.gltf';
+		}else if(legs==1){
+			hurl = 'http://127.0.0.1:3000/model/chibi/chibi_leftLeg.gltf';
+			hurl1 = 'http://127.0.0.1:3000/model/chibi/chibi_righyLeg.gltf';
+		}
+		loader.load( hurl, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "leftleg";
+			scene.add( gltf.scene );
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
+		loader.load( hurl1, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "rightleg";
+			scene.add( gltf.scene );
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
+		legschange = false;
+	}
+
 	requestAnimationFrame(animate);
 
 	// cube.rotation.x += 0.01;
@@ -166,53 +390,69 @@ animate();
 $(document).ready(function(){
 	$('#headl').click(function () {
 		if($("#toy_head")[0].value > 0){
+			headchange = true;
 			$("#toy_head")[0].value -= 1;
+			head = $("#toy_head")[0].value;
 		}
 	});
 	$('#headr').click(function () {
 		var tmp = $("#toy_head")[0].value;
 		if(tmp < 1){
+			headchange = true;
 			tmp = +tmp + +1;
 			$("#toy_head")[0].value = tmp;
+			head = $("#toy_head")[0].value;
 		}
 	});
 
 	$('#armsl').click(function () {
 		if($("#toy_arms")[0].value > 0){
+			armschange = true;
 			$("#toy_arms")[0].value -= 1;
+			arms = $("#toy_arms")[0].value;
 		}
 	});
 	$('#armsr').click(function () {
 		var tmp = $("#toy_arms")[0].value;
 		if(tmp < 1){
+			armschange = true;
 			tmp = +tmp + +1;
 			$("#toy_arms")[0].value = tmp;
+			arms = $("#toy_arms")[0].value;
 		}
 	});
 
 	$('#torsol').click(function () {
 		if($("#toy_torso")[0].value > 0){
+			torsochange = true;
 			$("#toy_torso")[0].value -= 1;
+			torso = $("#toy_torso")[0].value;
 		}
 	});
 	$('#torsor').click(function () {
 		var tmp = $("#toy_torso")[0].value;
 		if(tmp < 1){
+			torsochange =  true;
 			tmp = +tmp + +1;
 			$("#toy_torso")[0].value = tmp;
+			torso = $("#toy_torso")[0].value;
 		}
 	});
 
 	$('#legsl').click(function () {
 		if($("#toy_legs")[0].value > 0){
+			legschange = true;
 			$("#toy_legs")[0].value -= 1;
+			legs = $("#toy_legs")[0].value;
 		}
 	});
 	$('#legsr').click(function () {
 		var tmp = $("#toy_legs")[0].value;
 		if(tmp < 1){
+			legschange = true;
 			tmp = +tmp + +1;
 			$("#toy_legs")[0].value = tmp;
+			legs = $("#toy_legs")[0].value;
 		}
 	});
 

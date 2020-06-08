@@ -1,6 +1,3 @@
-<div class="editor">
-    <%= javascript_pack_tag 'Editor' %>
-</div>
 <p>
   <%
 =begin%>
@@ -101,4 +98,8 @@
     <%= button_to 'Delete', @toy, method: :delete, data: { confirm: 'Are you sure?' } %><br>
   <% end %>
   <%= button_to 'Back', toys_path, method: "get" %>
+</div>
+
+<div class="editor">
+    <%= javascript_pack_tag 'Editor' %>
 </div>
