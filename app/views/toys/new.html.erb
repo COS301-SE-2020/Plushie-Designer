@@ -1,9 +1,9 @@
-<div class="editor">
-    <%= javascript_pack_tag 'Editor' %>
+<div class="options">
+    <%= render 'form_new', toy: @toy %>
+
+    <%= link_to 'Back', toys_path %>
 </div>
 
-<div class="options">
-    <%= render 'form', toy: @toy %>
-    <br>
-    <%= button_to 'Back', toys_path, method: "get" %>
+<div class="editor">
+    <%= javascript_pack_tag 'Editor' %>
 </div>
