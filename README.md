@@ -10,7 +10,7 @@ Plushie-Designer is a website that allows users to create and share their plushi
 - SRS Document: https://www.overleaf.com/read/hckdrnmzwdwm
 ### Project Management Tool
 - Trello: https://trello.com/b/Fb6EqN0r/plushiedesigner
-### Members' LinkedIn Profile Links
+### Members' LinkIn Profile Links
 - Anton Smith: https://www.linkedin.com/in/anton-smith-a276b8180/
 - Aiden Diederiks: https://www.linkedin.com/in/aiden-diederiks-3045801a5/
 - Estienne du Toit: https://www.linkedin.com/in/estienne-du-toit-b654391a8/

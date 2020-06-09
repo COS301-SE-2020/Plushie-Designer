@@ -1,0 +1,1259 @@
+Started GET "/" for ::1 at 2020-06-03 14:17:41 +0200
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/railties-6.0.3.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/railties-6.0.3.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 9.0ms | Allocations: 416)
+Completed 200 OK in 34ms (Views: 18.6ms | ActiveRecord: 0.0ms | Allocations: 2329)
+
+
+Started GET "/" for ::1 at 2020-06-03 14:21:12 +0200
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 309)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in C:/Users/anton/Documents/github_repos/Plushie-Designer/public/packs
+[Webpacker] Hash: 15d1bb7b54cf6326b9ba
+Version: webpack 4.43.0
+Time: 1829ms
+Built at: 06/03/2020 14:21:17
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-9afcbb5693aa87623e69.js    124 KiB  application  [emitted] [immutable]  application
+js/application-9afcbb5693aa87623e69.js.map    139 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-9afcbb5693aa87623e69.js js/application-9afcbb5693aa87623e69.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 749 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 3 hidden modules
+
+Completed 200 OK in 4696ms (Views: 4682.5ms | ActiveRecord: 0.0ms | Allocations: 22282)
+
+
+Started GET "/users/sign_up" for ::1 at 2020-06-03 14:46:26 +0200
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/users/sign_up"):
+  
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.2) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.2) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/" for ::1 at 2020-06-03 15:03:26 +0200
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (6.0.3.1) lib/active_record/migration.rb:586:in `check_pending!'
+activerecord (6.0.3.1) lib/active_record/migration.rb:564:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.2) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.2) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (13.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (17.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateUsers (20200603125312)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "username" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "confirmation_token" varchar, "confirmed_at" datetime, "confirmation_sent_at" datetime, "unconfirmed_email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_confirmation_token" ON "users" ("confirmation_token")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200603125312"]]
+  [1m[35m (15.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddDeviseToUsers (20200603130227)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "email" varchar DEFAULT '' NOT NULL[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-06-03 13:24:54.845133"], ["updated_at", "2020-06-03 13:24:54.845133"]]
+  [1m[35m (14.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2020-06-03 15:40:52 +0200
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 4.1ms | Allocations: 312)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 1.7ms | Allocations: 308)
+  Rendered layouts/_footer.html.erb (Duration: 6.7ms | Allocations: 113)
+Completed 200 OK in 778ms (Views: 761.5ms | ActiveRecord: 0.0ms | Allocations: 44078)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:40:59 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 101)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 39ms (Views: 38.6ms | ActiveRecord: 0.0ms | Allocations: 4564)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:41:00 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 49ms (Views: 48.8ms | ActiveRecord: 0.0ms | Allocations: 4781)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:41:00 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 47ms (Views: 46.4ms | ActiveRecord: 0.0ms | Allocations: 4817)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:41:00 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 39ms (Views: 38.2ms | ActiveRecord: 0.0ms | Allocations: 4765)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:41:01 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 44ms (Views: 43.4ms | ActiveRecord: 0.0ms | Allocations: 4761)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:41:01 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 42ms (Views: 41.1ms | ActiveRecord: 0.0ms | Allocations: 4771)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:41:01 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.4ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 5)
+Completed 200 OK in 55ms (Views: 54.9ms | ActiveRecord: 0.0ms | Allocations: 4768)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:41:01 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 52ms (Views: 51.2ms | ActiveRecord: 0.0ms | Allocations: 4759)
+
+
+Started GET "/" for 127.0.0.1 at 2020-06-03 15:46:16 +0200
+  [1m[35m (4.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 5.1ms | Allocations: 313)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.8ms | Allocations: 308)
+  Rendered layouts/_footer.html.erb (Duration: 0.5ms | Allocations: 113)
+Completed 200 OK in 167ms (Views: 147.4ms | ActiveRecord: 0.0ms | Allocations: 32945)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:49:35 +0200
+  [1m[35m (4.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 312)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 308)
+  Rendered layouts/_footer.html.erb (Duration: 1.4ms | Allocations: 113)
+Completed 200 OK in 146ms (Views: 133.0ms | ActiveRecord: 0.0ms | Allocations: 32936)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:49:38 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 101)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 55ms (Views: 54.0ms | ActiveRecord: 0.0ms | Allocations: 4799)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:49:40 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 39ms (Views: 38.5ms | ActiveRecord: 0.0ms | Allocations: 4766)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:49:40 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 38ms (Views: 37.0ms | ActiveRecord: 0.0ms | Allocations: 4773)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:49:41 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+Started GET "/" for ::1 at 2020-06-03 15:49:41 +0200
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 61ms (Views: 60.4ms | ActiveRecord: 0.0ms | Allocations: 5704)
+
+
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 5)
+Completed 200 OK in 48ms (Views: 47.3ms | ActiveRecord: 0.0ms | Allocations: 4767)
+
+
+Started GET "/users/sign_up" for ::1 at 2020-06-03 15:56:59 +0200
+  [1m[35m (4.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.1ms | Allocations: 531)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 156.9ms | Allocations: 22688)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 286)
+  Rendered layouts/_footer.html.erb (Duration: 0.7ms | Allocations: 113)
+Completed 200 OK in 3282ms (Views: 3255.6ms | ActiveRecord: 1.9ms | Allocations: 324784)
+
+
+Started POST "/users" for ::1 at 2020-06-03 15:58:02 +0200
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"/6AJIQC8L9oMAZCIForHxACYn3nFmkGSL9AY4Nll3DpHxFKBt34pyfglzcNWDbiTglYIRngVaLI+QeaGic6Wew==", "user"=>{"email"=>"antonsmith0299@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "antonsmith0299@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (3.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "antonsmith0299@gmail.com"], ["encrypted_password", "$2a$11$x46tR9PU7YVbf0Oj1h95Q.Aj37T4CUpe7Mye1dDRFD1rFUG5u3w12"], ["created_at", "2020-06-03 13:58:02.850867"], ["updated_at", "2020-06-03 13:58:02.850867"]]
+  [1m[35m (19.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 354ms (ActiveRecord: 22.8ms | Allocations: 11385)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:58:02 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 87)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 102)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 116ms (Views: 113.5ms | ActiveRecord: 0.0ms | Allocations: 32933)
+
+
+Started GET "/users/sign_in" for ::1 at 2020-06-03 15:58:07 +0200
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms | Allocations: 2086)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:58:07 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 85ms (Views: 84.4ms | ActiveRecord: 0.0ms | Allocations: 32022)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2020-06-03 15:58:09 +0200
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"axBjlH8U96Is21BgsWT5+vlx+IGcn6udTd/jCLvsJnDTdDg0yNbxsdj/DSvx44ate79vviEQgr1cTh1u60dsMQ=="}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 34ms (ActiveRecord: 0.2ms | Allocations: 2800)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:58:09 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 89ms (Views: 88.5ms | ActiveRecord: 0.0ms | Allocations: 32054)
+
+
+Started GET "/users/sign_in" for ::1 at 2020-06-03 15:58:11 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 214)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 42.1ms | Allocations: 8470)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.1ms | Allocations: 90)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 140ms (Views: 138.1ms | ActiveRecord: 0.0ms | Allocations: 41299)
+
+
+Started POST "/users/sign_in" for ::1 at 2020-06-03 15:58:23 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"tgqzHrERGZM6Hk+jEYqzyKZv7QjK8ryUxR0YDQeZ62hscSNmJCQ1VnvJnx+vlilVnGJuNVGbof3byZoFoM7fJg==", "user"=>{"email"=>"antonsmith0299@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "antonsmith0299@gmail.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 135ms (ActiveRecord: 0.4ms | Allocations: 3473)
+
+
+Started GET "/" for ::1 at 2020-06-03 15:58:23 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 101)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 83ms (Views: 82.5ms | ActiveRecord: 0.0ms | Allocations: 32075)
+
+
+Started GET "/" for ::1 at 2020-06-03 18:22:20 +0200
+  [1m[35m (11.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 19.2ms | Allocations: 315)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 27.0ms | Allocations: 313)
+  Rendered layouts/_footer.html.erb (Duration: 7.8ms | Allocations: 113)
+Completed 200 OK in 1485ms (Views: 1437.3ms | ActiveRecord: 0.0ms | Allocations: 106657)
+
+
+Started GET "/" for ::1 at 2020-06-03 18:22:27 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 101)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 91ms (Views: 90.3ms | ActiveRecord: 0.0ms | Allocations: 31992)
+
+
+Started GET "/users/sign_in" for ::1 at 2020-06-03 18:22:31 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 68.1ms | Allocations: 619)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 675.5ms | Allocations: 24200)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 90)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 814ms (Views: 782.1ms | ActiveRecord: 0.9ms | Allocations: 67367)
+
+
+Started GET "/" for ::1 at 2020-06-03 18:41:48 +0200
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 5.5ms | Allocations: 312)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.8ms | Allocations: 313)
+  Rendered layouts/_footer.html.erb (Duration: 0.5ms | Allocations: 113)
+Completed 200 OK in 347ms (Views: 334.6ms | ActiveRecord: 0.0ms | Allocations: 104947)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:50:21 +0200
+  [1m[35m (34.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 34.0ms | Allocations: 312)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 313)
+  Rendered layouts/_footer.html.erb (Duration: 0.7ms | Allocations: 113)
+Completed 200 OK in 8637ms (Views: 8549.0ms | ActiveRecord: 0.0ms | Allocations: 330352)
+
+
+Started GET "/users/sign_up" for ::1 at 2020-06-04 09:51:39 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.2ms | Allocations: 527)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 1459.3ms | Allocations: 22461)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 90)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 1629ms (Views: 1578.9ms | ActiveRecord: 1.5ms | Allocations: 68097)
+
+
+Started POST "/users" for ::1 at 2020-06-04 09:54:19 +0200
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"8RPgIEu/P2CLnTXUTBCOwLtf1tg7qpuGLn7cClKfYqGBsQd9qpGJNGMDQz2Pyl4pwPsJ4tfuPHB8WBjz9KLHqw==", "user"=>{"email"=>"stefan@edutoit.net", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "stefan@edutoit.net"], ["LIMIT", 1]]
+  [1m[36mUser Create (36.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "stefan@edutoit.net"], ["encrypted_password", "$2a$11$VhgTnzSXSz3aIKRCtKQJ1ujOraDMGqJRDZ7w9HckQC22ueJyV.Us6"], ["created_at", "2020-06-04 07:54:20.058513"], ["updated_at", "2020-06-04 07:54:20.058513"]]
+  [1m[35m (135.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 695ms (ActiveRecord: 172.2ms | Allocations: 11531)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:54:20 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 101)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 175ms (Views: 174.3ms | ActiveRecord: 0.0ms | Allocations: 35060)
+
+
+Started GET "/users/sign_in" for ::1 at 2020-06-04 09:54:24 +0200
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 22ms (ActiveRecord: 1.2ms | Allocations: 2211)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:54:25 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 167ms (Views: 165.6ms | ActiveRecord: 0.0ms | Allocations: 34993)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2020-06-04 09:54:52 +0200
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"zfTdQ3xfgpmlTilHqSFHr8fINOd2OYnHxquCl4irqE8CmnGEuLj+/TuFU4dVkvNVYaQYny1naBL9OgNDlZQ2kQ=="}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 77ms (ActiveRecord: 0.5ms | Allocations: 2906)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:54:52 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 143ms (Views: 142.2ms | ActiveRecord: 0.0ms | Allocations: 35021)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:54:56 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 135ms (Views: 134.4ms | ActiveRecord: 0.0ms | Allocations: 34898)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:54:57 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 141ms (Views: 140.2ms | ActiveRecord: 0.0ms | Allocations: 34947)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:55:00 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 123ms (Views: 122.4ms | ActiveRecord: 0.0ms | Allocations: 34893)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:55:04 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 138ms (Views: 136.7ms | ActiveRecord: 0.0ms | Allocations: 34957)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:57:04 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 88)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 278)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 107)
+Completed 200 OK in 149ms (Views: 144.5ms | ActiveRecord: 0.0ms | Allocations: 36760)
+
+
+Started GET "/users/sign_in" for ::1 at 2020-06-04 09:57:32 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 2.2ms | Allocations: 608)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 118.3ms | Allocations: 9023)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 90)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 309ms (Views: 307.0ms | ActiveRecord: 0.0ms | Allocations: 45350)
+
+
+Started POST "/users/sign_in" for ::1 at 2020-06-04 09:57:41 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"rgIav1GZ8S9x+Dv20BdYIEnNbvc56UD37QoGvld+C6GRi8XxGjwQfXRVE0jYsHbMpBtzIGNIhi5jQi7pBpYQQg==", "user"=>{"email"=>"stefan@edutoit.net", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "stefan@edutoit.net"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Update (34.7ms)[0m  [1m[33mUPDATE "users" SET "remember_created_at" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["remember_created_at", "2020-06-04 07:57:41.539649"], ["updated_at", "2020-06-04 07:57:41.539990"], ["id", 2]]
+  [1m[35m (183.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 570ms (ActiveRecord: 219.6ms | Allocations: 9041)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:57:41 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 101)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 302ms (Views: 301.4ms | ActiveRecord: 0.0ms | Allocations: 35014)
+
+
+Started GET "/users/sign_up" for ::1 at 2020-06-04 09:57:50 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 17ms (ActiveRecord: 0.4ms | Allocations: 1992)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:57:50 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 5)
+Completed 200 OK in 135ms (Views: 134.2ms | ActiveRecord: 0.0ms | Allocations: 35030)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:58:07 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 159ms (Views: 158.5ms | ActiveRecord: 0.0ms | Allocations: 34938)
+
+
+Started GET "/users/sign_up" for ::1 at 2020-06-04 09:58:11 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 16ms (ActiveRecord: 0.3ms | Allocations: 2014)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:58:11 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 147ms (Views: 146.5ms | ActiveRecord: 0.0ms | Allocations: 35016)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2020-06-04 09:58:13 +0200
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"H3hlEXWjvlmfZ82gxV7kLUb5ZnZeQkNCauY2YkD+CGUr3fGhqhtwi+8QxHQ1CVnk/vg3HQfkY+9sPQbgluHIDg=="}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Update (38.2ms)[0m  [1m[33mUPDATE "users" SET "remember_created_at" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["remember_created_at", nil], ["updated_at", "2020-06-04 07:58:14.123901"], ["id", 2]]
+  [1m[35m (356.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 443ms (ActiveRecord: 394.5ms | Allocations: 6593)
+
+
+Started GET "/" for ::1 at 2020-06-04 09:58:14 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 155ms (Views: 153.7ms | ActiveRecord: 0.0ms | Allocations: 35028)
+
+
+Started GET "/" for ::1 at 2020-06-04 08:28:43 +0200
+  [1m[35m (10.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 13.3ms | Allocations: 312)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 23.4ms | Allocations: 313)
+  Rendered layouts/_footer.html.erb (Duration: 8.0ms | Allocations: 113)
+Completed 200 OK in 2030ms (Views: 1979.9ms | ActiveRecord: 0.0ms | Allocations: 106679)
+
+
+Started GET "/" for ::1 at 2020-06-04 08:28:54 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 101)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 82ms (Views: 81.0ms | ActiveRecord: 0.0ms | Allocations: 31982)
+
+
+Started GET "/" for 127.0.0.1 at 2020-06-04 08:31:32 +0200
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 5.3ms | Allocations: 312)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 2.1ms | Allocations: 313)
+  Rendered layouts/_footer.html.erb (Duration: 1.0ms | Allocations: 113)
+Completed 200 OK in 3580ms (Views: 3569.0ms | ActiveRecord: 0.0ms | Allocations: 342339)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2020-06-04 08:31:40 +0200
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Rl+s5Z9K3UnIDmxn9tKxCG/D7Vl19usVfXkzVSP/xmqzC9hUYpFSzcljfFpoHqllIAV/jp8nxTruYJyl4Siw5w=="}
+Redirected to http://localhost:3000/
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 302 Found in 254ms (ActiveRecord: 0.0ms | Allocations: 5081)
+
+
+Started GET "/" for 127.0.0.1 at 2020-06-04 08:31:40 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 101)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 125ms (Views: 124.2ms | ActiveRecord: 0.0ms | Allocations: 32396)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2020-06-04 08:31:43 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 52.3ms | Allocations: 623)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 596.5ms | Allocations: 19742)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.4ms | Allocations: 90)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 5)
+Completed 200 OK in 726ms (Views: 701.6ms | ActiveRecord: 0.8ms | Allocations: 63065)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2020-06-04 08:31:50 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"M/6ounl93QDwRti8fuXFCZVyzkaBfU2L2tZOrBkLJjdUyMkZWDm8P+SMlyu3yDU0QyItje2I5ADW+3qGB18vPg==", "user"=>{"email"=>"antonsmith0299@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "antonsmith0299@gmail.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 347ms (ActiveRecord: 0.3ms | Allocations: 6548)
+
+
+Started GET "/" for 127.0.0.1 at 2020-06-04 08:31:50 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 101)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 80ms (Views: 79.6ms | ActiveRecord: 0.0ms | Allocations: 32377)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2020-06-04 08:31:54 +0200
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 0.2ms | Allocations: 1838)
+
+
+Started GET "/" for 127.0.0.1 at 2020-06-04 08:31:54 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.4ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 5)
+Completed 200 OK in 79ms (Views: 78.1ms | ActiveRecord: 0.0ms | Allocations: 32387)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2020-06-04 08:31:55 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms | Allocations: 1926)
+
+
+Started GET "/" for 127.0.0.1 at 2020-06-04 08:31:55 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.5ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 5)
+Completed 200 OK in 142ms (Views: 141.5ms | ActiveRecord: 0.0ms | Allocations: 32387)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2020-06-04 08:31:57 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.1ms | Allocations: 1822)
+
+
+Started GET "/" for 127.0.0.1 at 2020-06-04 08:31:57 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 86ms (Views: 85.2ms | ActiveRecord: 0.0ms | Allocations: 32372)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2020-06-04 08:31:58 +0200
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"n/fIFQHpRdgC/znurntimtAbOK00NpMX1OTOz7/5TvhX4KDb0Qmp7+jexvsG4xP4ohlxqAdf0BPLRldR0sFO1g=="}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 31ms (ActiveRecord: 0.2ms | Allocations: 2809)
+
+
+Started GET "/" for 127.0.0.1 at 2020-06-04 08:31:58 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 5)
+Completed 200 OK in 133ms (Views: 132.3ms | ActiveRecord: 0.0ms | Allocations: 32356)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2020-06-04 08:31:59 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 124)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 50.1ms | Allocations: 6693)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.4ms | Allocations: 90)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 5)
+Completed 200 OK in 183ms (Views: 182.4ms | ActiveRecord: 0.0ms | Allocations: 39806)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2020-06-04 08:32:03 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 79)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 14.0ms | Allocations: 5880)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 84)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 108ms (Views: 107.0ms | ActiveRecord: 0.0ms | Allocations: 38251)
+
+
+Started GET "/" for ::1 at 2020-06-04 08:32:41 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 101)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 76ms (Views: 75.0ms | ActiveRecord: 0.0ms | Allocations: 32191)
+
+
+Started GET "/" for ::1 at 2020-06-04 08:32:50 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 84ms (Views: 83.4ms | ActiveRecord: 0.0ms | Allocations: 32265)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:29:30 +0200
+  [1m[35m (11.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 18.1ms | Allocations: 312)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 1.1ms | Allocations: 313)
+  Rendered layouts/_footer.html.erb (Duration: 8.2ms | Allocations: 113)
+Completed 200 OK in 3476ms (Views: 3430.6ms | ActiveRecord: 0.0ms | Allocations: 401038)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:31:45 +0200
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 312)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 24.5ms | Allocations: 311)
+  Rendered layouts/_footer.html.erb (Duration: 0.4ms | Allocations: 113)
+Completed 200 OK in 334ms (Views: 320.2ms | ActiveRecord: 0.0ms | Allocations: 106499)
+
+
+Started GET "/" for 127.0.0.1 at 2020-06-05 12:32:42 +0200
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 312)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 24.7ms | Allocations: 305)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 113)
+Completed 200 OK in 330ms (Views: 314.1ms | ActiveRecord: 0.0ms | Allocations: 106598)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:34:56 +0200
+  [1m[35m (4.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 312)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 1.6ms | Allocations: 312)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 113)
+Completed 200 OK in 295ms (Views: 280.7ms | ActiveRecord: 0.0ms | Allocations: 106627)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:35:41 +0200
+  [1m[35m (4.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 312)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 25.0ms | Allocations: 312)
+  Rendered layouts/_footer.html.erb (Duration: 0.4ms | Allocations: 113)
+Completed 200 OK in 304ms (Views: 291.7ms | ActiveRecord: 0.0ms | Allocations: 106631)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:36:38 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.4ms | Allocations: 89)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 28.8ms | Allocations: 278)
+  Rendered layouts/_footer.html.erb (Duration: 0.5ms | Allocations: 107)
+Completed 200 OK in 120ms (Views: 118.7ms | ActiveRecord: 0.0ms | Allocations: 34685)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:36:41 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 101)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 82ms (Views: 80.9ms | ActiveRecord: 0.0ms | Allocations: 32783)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:37:15 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.4ms | Allocations: 84)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 1.4ms | Allocations: 324)
+  Rendered layouts/_footer.html.erb (Duration: 0.4ms | Allocations: 107)
+Completed 200 OK in 104ms (Views: 101.3ms | ActiveRecord: 0.0ms | Allocations: 34720)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:37:17 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 101)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 82ms (Views: 81.6ms | ActiveRecord: 0.0ms | Allocations: 32767)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:37:19 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 86ms (Views: 85.3ms | ActiveRecord: 0.0ms | Allocations: 32772)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:41:12 +0200
+  [1m[35m (7.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 312)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 352)
+  Rendered layouts/_footer.html.erb (Duration: 0.8ms | Allocations: 113)
+Completed 200 OK in 556ms (Views: 530.8ms | ActiveRecord: 0.0ms | Allocations: 117537)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:41:40 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 18.0ms | Allocations: 86)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 1.1ms | Allocations: 277)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 107)
+Completed 200 OK in 220ms (Views: 209.4ms | ActiveRecord: 0.0ms | Allocations: 37318)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:44:28 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 84)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 1.3ms | Allocations: 276)
+  Rendered layouts/_footer.html.erb (Duration: 0.8ms | Allocations: 217)
+Completed 200 OK in 146ms (Views: 141.8ms | ActiveRecord: 0.0ms | Allocations: 37350)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:45:03 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 88)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 1.1ms | Allocations: 276)
+  Rendered layouts/_footer.html.erb (Duration: 1.2ms | Allocations: 210)
+Completed 200 OK in 174ms (Views: 153.3ms | ActiveRecord: 0.0ms | Allocations: 37408)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:45:26 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+Completed 500 Internal Server Error in 320ms (ActiveRecord: 0.0ms | Allocations: 18324)
+
+
+  
+ActionView::Template::Error (Permission denied @ apply2files - C:/Users/Stefan Du Toit/Dropbox/Universiteit/2020/COS 301/Capstone/Project/Plushie-Designer/tmp/cache/assets/sprockets/v4.0.0/qZ/qZsZfURt9pIDo8TOoqoUgvySEpDfma7_VF08JsOpDDs.cache.86966400.15676.336114):
+     6:     <%= csp_meta_tag %>
+     7:     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     8:     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     9:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    10:     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    11:   </head>
+    12: 
+  
+app/views/layouts/application.html.erb:9
+Started GET "/" for ::1 at 2020-06-05 12:45:53 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 5)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 97)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 65)
+Completed 200 OK in 126ms (Views: 125.2ms | ActiveRecord: 0.0ms | Allocations: 35581)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:46:13 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 65)
+Completed 200 OK in 2184ms (Views: 2182.7ms | ActiveRecord: 0.0ms | Allocations: 325979)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:46:26 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.6ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 65)
+Completed 200 OK in 2355ms (Views: 2353.9ms | ActiveRecord: 0.0ms | Allocations: 378881)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:46:39 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.5ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 65)
+Completed 200 OK in 2098ms (Views: 2096.2ms | ActiveRecord: 0.0ms | Allocations: 378546)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:46:59 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.3ms | Allocations: 65)
+Completed 200 OK in 2121ms (Views: 2120.0ms | ActiveRecord: 0.0ms | Allocations: 380653)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:47:08 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.3ms | Allocations: 65)
+Completed 200 OK in 141ms (Views: 140.4ms | ActiveRecord: 0.0ms | Allocations: 35786)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:47:14 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 65)
+Completed 200 OK in 2272ms (Views: 2270.8ms | ActiveRecord: 0.0ms | Allocations: 378522)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:47:20 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.4ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 65)
+Completed 200 OK in 230ms (Views: 229.3ms | ActiveRecord: 0.0ms | Allocations: 35760)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:47:26 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.3ms | Allocations: 65)
+Completed 200 OK in 2237ms (Views: 2235.9ms | ActiveRecord: 0.0ms | Allocations: 379289)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:47:39 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 65)
+Completed 200 OK in 2081ms (Views: 2080.3ms | ActiveRecord: 0.0ms | Allocations: 379362)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:48:04 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 65)
+Completed 200 OK in 2143ms (Views: 2142.3ms | ActiveRecord: 0.0ms | Allocations: 378936)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:48:12 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.5ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 65)
+Completed 200 OK in 2306ms (Views: 2304.9ms | ActiveRecord: 0.0ms | Allocations: 379778)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:48:36 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 65)
+Completed 200 OK in 2099ms (Views: 2098.3ms | ActiveRecord: 0.0ms | Allocations: 378963)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:48:53 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 65)
+Completed 200 OK in 2306ms (Views: 2304.8ms | ActiveRecord: 0.0ms | Allocations: 378503)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:49:04 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 65)
+Completed 200 OK in 2333ms (Views: 2328.9ms | ActiveRecord: 0.0ms | Allocations: 379790)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:49:15 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 65)
+Completed 200 OK in 2330ms (Views: 2329.3ms | ActiveRecord: 0.0ms | Allocations: 380634)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:49:44 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.3ms | Allocations: 65)
+Completed 200 OK in 2241ms (Views: 2240.0ms | ActiveRecord: 0.0ms | Allocations: 378032)
+
+
+Started GET "/" for ::1 at 2020-06-05 12:50:00 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 94)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 65)
+Completed 200 OK in 2118ms (Views: 2117.0ms | ActiveRecord: 0.0ms | Allocations: 380210)
+
+
+Started GET "/" for ::1 at 2020-06-05 13:12:15 +0200
+  [1m[35m (6.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 8.5ms | Allocations: 312)
+Completed 500 Internal Server Error in 1631ms (ActiveRecord: 0.0ms | Allocations: 355799)
+
+
+  
+ActionView::Template::Error (Multiple files with the same output path cannot be linked ("application.css")
+In "C:/Users/anton/Documents/github_repos/Plushie-Designer/app/assets/config/manifest.js" these files were linked:
+  - C:/Users/anton/Documents/github_repos/Plushie-Designer/app/assets/stylesheets/application.css
+  - C:/Users/anton/Documents/github_repos/Plushie-Designer/app/assets/stylesheets/application.css.scss
+):
+  
+sprockets (4.0.0) lib/sprockets/base.rb:100:in `find_all_linked_assets'
+sprockets (4.0.0) lib/sprockets/manifest.rb:125:in `block (2 levels) in find'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:24:in `block in execute'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:41:in `block in synchronize'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:41:in `synchronize'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:41:in `synchronize'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:19:in `execute'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/promise.rb:563:in `block in realize'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:353:in `run_task'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:342:in `block (3 levels) in create_worker'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:325:in `loop'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:325:in `block (2 levels) in create_worker'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:324:in `catch'
+concurrent-ruby (1.1.6) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:324:in `block in create_worker'

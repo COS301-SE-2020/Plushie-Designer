@@ -1,0 +1,24 @@
+<%= simple_form_for(@toy) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name %><hr>
+    <div class="hinput">
+      <%= f.input :head%>
+      <%= f.input :arms%>
+      <%= f.input :torso%>
+      <%= f.input :legs%>
+      <%= f.input :rating%>
+    </div>
+  </div>
+
+  <div class="buttons"><button class="btn" id="headl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> Head <button class="btn" id="headr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button></div><hr>
+  <div class="buttons"><button class="btn" id="armsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> Arms <button class="btn" id="armsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button></div><hr>
+  <div class="buttons"><button class="btn" id="torsol" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> Torso <button class="btn" id="torsor" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button></div><hr>
+  <div class="buttons"><button class="btn" id="legsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> Legs <button class="btn" id="legsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button></div><hr>
+  <div class="buttons"><button class="btn" id="generate-pattern" type="button">Generate Pattern</button><hr>
+  <div class="form-actions buttons">
+    <%= f.button :submit, "Share", :id => "share-btn" %>
+  </div>
+<% end %>
