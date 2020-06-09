@@ -13,21 +13,21 @@ scene.fog = new THREE.FogExp2(0xbfd1e5, 0.002);
 
 var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight-90);
+renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
 
 var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 10, 10);
+camera.position.set(0, 1, 10);
 
 var controls = new OrbitControls(camera, renderer.domElement);
 
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 
-controls.minDistance = 20;
-controls.maxDistance = 40;
+controls.minDistance = 13;
+controls.maxDistance = 13;
 
 controls.maxPolarAngle = Math.PI / 2;
 
@@ -164,6 +164,17 @@ light.shadow.mapSize.width = 512;  // default
 light.shadow.mapSize.height = 512; // default
 light.shadow.camera.near = 0.5;    // default
 light.shadow.camera.far = 500;
+
+window.addEventListener( 'resize', onWindowResize, false );
+
+function onWindowResize() {
+
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize( window.innerWidth, window.innerHeight );
+
+}
 
 var animate = function () {
 	requestAnimationFrame(animate);

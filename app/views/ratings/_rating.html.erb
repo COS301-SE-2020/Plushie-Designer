@@ -5,12 +5,13 @@
 
     <div class="media-body">
         <p class="media-heading pull-right">
-        <%= time_ago_in_words(rating.created_at) %>
-    </p>
-    <br />
-    <%= rating.description if rating %>
-    <b><%= rating.value  if rating %></b>
-
+            <%= time_ago_in_words(rating.created_at) %> ago
+        </p>
+    <!-- <br /> -->
+        <div class="row">
+            <%= rating.description if rating %>
+            <b><%= rating.value  if rating %></b> /5
+        </div>    
 
     </div>
 </div>

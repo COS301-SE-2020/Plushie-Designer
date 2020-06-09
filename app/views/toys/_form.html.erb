@@ -13,12 +13,12 @@
     </div>
   </div>
 
-  <div class="buttons"><button id="headl" type="button">headl</button> Head <button id="headr" type="button">headr</button></div><hr>
-  <div class="buttons"><button id="armsl" type="button">armsl</button> Arms <button id="armsr" type="button">armsr</button></div><hr>
-  <div class="buttons"><button id="torsol" type="button">torsol</button> Torso <button id="torsor" type="button">torsor</button></div><hr>
-  <div class="buttons"><button id="legsl" type="button">legsl</button> Legs <button id="legsr" type="button">legsr</button></div><hr>
-  <div class="buttons"><button type="button">Generate Pattern</button><hr>
-  <div class="form-actions">
-    <%= f.button :submit, "Share" %>
+  <div class="buttons"><button class="btn" id="headl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> Head <button class="btn" id="headr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button></div><hr>
+  <div class="buttons"><button class="btn" id="armsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> Arms <button class="btn" id="armsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button></div><hr>
+  <div class="buttons"><button class="btn" id="torsol" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> Torso <button class="btn" id="torsor" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button></div><hr>
+  <div class="buttons"><button class="btn" id="legsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> Legs <button class="btn" id="legsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button></div><hr>
+  <div class="buttons"><button class="btn" id="generate-pattern" type="button">Generate Pattern</button><hr>
+  <div class="form-actions buttons">
+    <%= f.button :submit, "Share", :id => "share-btn" %>
   </div>
 <% end %>
