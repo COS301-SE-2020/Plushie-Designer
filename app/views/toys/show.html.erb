@@ -35,7 +35,12 @@
           <hr>
           <p><span class="glyphicon glyphicon-time"></span> Was Posted:
               <hr>
-              <%= render @toy.ratings %>
+              <div class="Ratings">
+              <h4>
+                Ratings:
+                </h4>
+                <%= render @toy.ratings %>
+              </div>
               <%= render 'ratings/form' %>
               <hr>
               <br><br><br><br><br>
