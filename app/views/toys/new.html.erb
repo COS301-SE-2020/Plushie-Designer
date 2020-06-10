@@ -1,7 +1,9 @@
 <div class="options">
-    <%= render 'form_new', toy: @toy %>
-
-    <%= link_to 'Back', toys_path %>
+    <div class="index-page">
+        <%= render 'form_new', toy: @toy %>
+        <hr>
+        <%= button_to 'Back', toys_path, method: :get, :id => "back-btn" %>
+    </div>
 </div>
 
 <div class="editor">

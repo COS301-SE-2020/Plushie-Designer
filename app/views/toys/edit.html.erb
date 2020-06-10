@@ -1,13 +1,10 @@
 <div class="options">
-    <%= render 'form', toy: @toy %>
+    <div class="index-page">
+        <%= render 'form', toy: @toy %>
 
-    <br>
-    <%
-=begin%>
- <%= button_to 'Show', @toy %>  
-<%
-=end%>
-    <%= link_to 'Back', toys_path %>
+        <hr>
+        <%= button_to 'Back', toys_path, method: :get, :id => "back-btn" %>
+    </div>
 </div>
 
 <div class="editor">

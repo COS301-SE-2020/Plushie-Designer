@@ -1,7 +1,16 @@
 <%= simple_form_for ([@toy, @toy.ratings.build]) do |f| %>
 
-<%= f.input :description %>
-<%= f.input :value %>
-<%= f.submit "leave a rating" %>
+
+<div class="row rating-form">
+    <div class="col">
+        <%= f.input :description, :id => "rate-desc", :class => "rating-description" %>        
+    </div>
+    <div class="col">
+        <%= f.input :value, :class => "rating-value", :placeholder => "0/5" %>
+    </div>
+    <%= f.submit "leave a rating", :id => "rating-btn", :class => "btn submit-button" %>
+</div>
+
+
 
 <% end %>
