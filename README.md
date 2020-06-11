@@ -31,7 +31,7 @@ Always punctual and really good at meeting deadlines.
 *u17306312*
 - https://le-ginger.github.io/
 
-...
+I'm a third year university student at the University of Pretoria. I am studying information and knowledge systems.
 
 **Estienne du Toit**
 *u17011796*
@@ -44,7 +44,7 @@ Flexible when need to change planning in projects and add new features.
 *u18113941*
 - https://endlessprogrammer.github.io/pierregduplessis.github.io/
 
-...
+I am a hardworking and ambitious individual with a great passion for solving problems. I am currently in my 3rd year of studying BSc Computer science at the University of Pretoria. I have excellent communication skills, enabling me to effectively communicate with a wide range of people.
 
 **Stefan du Toit**
 *u17012806*
