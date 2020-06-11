@@ -25,7 +25,6 @@ Hard working, reliable student that is eager to work and learn new skills.
 Ability to think logically and can easily adapt to perform different tasks.
 Possess excellent communication skills and able to communicate professionally with people on all levels.
 Always punctual and really good at meeting deadlines.
-...
 
 **Aiden Diederiks**
 *u17306312*
