@@ -21,29 +21,32 @@ Plushie-Designer is a website that allows users to create and share their plushi
 **Anton Smith**
 *u18112405*
 - https://antonsmith99.github.io/
-...
+Hard working, reliable student that is eager to work and learn new skills.
+Ability to think logically and can easily adapt to perform different tasks.
+Possess excellent communication skills and able to communicate professionally with people on all levels.
+Always punctual and really good at meeting deadlines.
 
 **Aiden Diederiks**
 *u17306312*
 - https://le-ginger.github.io/
-
 ...
 
 **Estienne du Toit**
 *u17011796*
 - https://semirelic.github.io/
-
-Reliable, Hard working and Trustworthy. Good communication skills and can manage time accordingly.
+...
 
 **Pierre du Plessis**
 *u18113941*
 - https://endlessprogrammer.github.io/pierregduplessis.github.io/
-
 ...
 
 **Stefan du Toit**
 *u17012806*
 - https://hawkeye865.github.io/
-*Description*
-Is a hard working individual. If he doesn't know something he can do good enough research to figure it out.
+
+Persevering, solid student that is eager to learn new aptitudes. 
+Capacity to think intelligently and can without much of a stretch adjust to perform various undertakings. 
+Have brilliant relational abilities and ready to discuss expertly with individuals on all levels. 
+Continuously dependable and great at fulfilling time constraints.
 ...
