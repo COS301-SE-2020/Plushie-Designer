@@ -21,6 +21,7 @@ Plushie-Designer is a website that allows users to create and share their plushi
 **Anton Smith**
 *u18112405*
 - https://antonsmith99.github.io/
+
 Hard working, reliable student that is eager to work and learn new skills.
 Ability to think logically and can easily adapt to perform different tasks.
 Possess excellent communication skills and able to communicate professionally with people on all levels.
