@@ -24,6 +24,7 @@ position: absolute;
 }
 
 body{
+    background-color:  #252525; 
     overflow-x: hidden;
 }
 
@@ -203,37 +204,45 @@ ul.nav {
     width: 60em;
     padding-left: 1em;
     border-radius: 2em;
-    color: black;
 }
 
 .media {
     background-color: rgb(175, 175, 175);
     border-radius: 5px;
     margin-bottom: 1em;
-    .pull-left {
+    // max-width: 80em;
+    .username {
         font-size: 1.4em;
+        height: 0.1em;
         font-weight: 700;
         padding: 1vh;
         margin-left: 0;
-        float: left;
+        // float: left;
         color: rgb(0, 0, 0);
     }
 
-    .pull-right {
-        margin-right: 0.5em;
-        margin-top: 5px;
+    .time{
+        padding: 1vh;
     }
 
-    .row {
-        margin-left: 2em;
-        padding-top: 0.8em;
-        font-size: 1.2em;
-        b {
-            margin-left: 1em;
-        }
+    .desc{
+        padding-top: 0.5em;
     }
 }
 
+
+p{
+    overflow-wrap: break-word;
+    max-width: 18em;
+    min-width: 10em;
+}
+
+.rate-buttons{
+    // margin-top: 2em;
+    margin-right: 1em;
+    margin-left:1em;
+    // width: 5em;
+}
 .Ratings{
     position: absolute;
     top: 36em;
@@ -283,12 +292,44 @@ ul.nav {
 // 	// top:1px;
 // }
 
+.edit-btn{
+    margin-right: 0.5em;
+}
+
+.rate-button {
+    // display: inline-block;
+    margin-bottom: 1em;
+    // margin-right: -5em;
+	// box-shadow: 5px 5px 20px -5px #4b7e44;
+	background-color:#55b65a;
+	// border-radius:10px;
+	// display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:1em;
+	// padding:11px 43px;
+    text-decoration:none;
+    // margin-bottom:5em;
+    // position: absolute;
+    // right: 1em;
+    float: right;
+    // margin-top: 5em;
+}
+.rate-button:hover {
+	background-color:#50a754;
+}
+.rate-button:active {
+	position:relative;
+	top:1px;
+}
+
 .ed-button {
     // display: inline-block;
     margin-bottom: 1em;
 	// box-shadow: 5px 5px 20px -5px #4b7e44;
 	background-color:#55b65a;
-	border-radius:10px;
+	// border-radius:10px;
 	// display:inline-block;
 	cursor:pointer;
 	color:#000000;
@@ -338,8 +379,23 @@ ul.nav {
 
 .create-plushie-button:hover {
     text-decoration: none;
-    color: #000;
+    color: #0000;
     background-color: rgb(95, 179, 69);
     box-shadow: none;
     transition: linear 0.2s;
+}
+
+.test{
+    color: white;
+    mix-blend-mode: difference;
+}
+
+label{
+    color: white;
+    mix-blend-mode: difference;
+}
+
+hr{
+    color: white;
+    mix-blend-mode: difference;
 }
