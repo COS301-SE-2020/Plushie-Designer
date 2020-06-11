@@ -41,4 +41,6 @@ Plushie-Designer is a website that allows users to create and share their plushi
 **Stefan du Toit**
 *u17012806*
 - https://hawkeye865.github.io/
+*Description*
+Is a hard working individual. If he doesn't know something he can do good enough research to figure it out.
 ...
