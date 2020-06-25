@@ -29,13 +29,21 @@
           </h1>
           <!-- Author -->
           <hr>
-          <p>
+          <p class="test">
               Created by: <%= @toy.user.username %>
           </p>
           <hr>
-          <p><span class="glyphicon glyphicon-time"></span> Was Posted:
+          <div class="test">
+            <span class="glyphicon glyphicon-time"></span> Was Posted: <%= time_ago_in_words(@toy.created_at) %> ago
+          </div>
               <hr>
-              <%= render @toy.ratings %>
+              <div class="Ratings">
+                <br><br>
+                <h4 class="test">
+                  Ratings:
+                </h4>
+                <%= render @toy.ratings %>
+              </div>
               <%= render 'ratings/form' %>
               <hr>
               <br><br><br><br><br>

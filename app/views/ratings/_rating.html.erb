@@ -1,20 +1,29 @@
 <div class="media">
-    <div class="pull-left">
+    <div class=" username pull-left">
         <%= rating.user.username if rating %>
     </div>
 
     <div class="media-body">
-        <p class="media-heading pull-right">
-            <%= time_ago_in_words(rating.created_at) %> ago
-        </p>
-    <!-- <br /> -->
-        <div class="row">
-            <%= rating.description if rating %>
+        <div>
+            <p class="time media-heading pull-right">
+                <%= time_ago_in_words(rating.created_at) %> ago
+            
+            </p>
+        </div>
+    <br />
+        <div class="desc pull-left">
+            <p>
+                <%= rating.description if rating %>
+            </p>
             <b><%= rating.value  if rating %></b> /5
         </div>    
-
+        <div class="rate-buttons pull-right">
+            <p>
+                <% if current_user == rating.user%>
+                    <%= link_to "Delete", [rating.toy, rating], method: :delete, data: { confirm: "Are you sure?" }, :class => "delete-btn btn rate-button" %>
+                    <%= link_to "Edit", edit_toy_rating_path(rating.toy, rating), :class => "edit-btn btn rate-button" %>
+                <% end %>
+            </p>
+        </div>
     </div>
 </div>
-<% if current_user == rating.user%>
-    <%= link_to "Edit", edit_toy_rating_path(rating.toy, rating) %>
-<% end %>
