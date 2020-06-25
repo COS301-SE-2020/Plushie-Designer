@@ -20,6 +20,14 @@ var illeg = 5;
 var irleg = 6;
 var ihair = 99;
 
+var htemp;
+var ttemp;
+var latemp;
+var ratemp;
+var lltemp;
+var rltemp;
+var hhtemp = null;
+
 var scene = new THREE.Scene();
 scene.background = new THREE.Color(0xbfd1e5);
 scene.fog = new THREE.FogExp2(0xbfd1e5, 0.002);
@@ -56,6 +64,7 @@ if(head==0){
 		gltf.scene.castShadow = true;
 		gltf.scene.name = "hair";
 		scene.add( gltf.scene );
+		hhtemp = gltf.scene;
 
 	}, undefined, function ( error ) {
 
@@ -68,6 +77,7 @@ loader.load( hurl, function ( gltf ) {
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "head";
 	scene.add( gltf.scene );
+	htemp = gltf.scene;
 
 }, undefined, function ( error ) {
 
@@ -86,6 +96,7 @@ loader.load( hurl, function ( gltf ) {
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "torso";
 	scene.add( gltf.scene );
+	ttemp = gltf.scene;
 
 }, undefined, function ( error ) {
 
@@ -107,6 +118,7 @@ loader.load( hurl, function ( gltf ) {
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "leftarm";
 	scene.add( gltf.scene );
+	latemp = gltf.scene;
 
 }, undefined, function ( error ) {
 
@@ -118,6 +130,7 @@ loader.load( hurl1, function ( gltf ) {
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "rightarm";
 	scene.add( gltf.scene );
+	ratemp = gltf.scene;
 
 }, undefined, function ( error ) {
 
@@ -139,6 +152,7 @@ loader.load( hurl, function ( gltf ) {
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "leftleg";
 	scene.add( gltf.scene );
+	lltemp = gltf.scene;
 
 }, undefined, function ( error ) {
 
@@ -150,6 +164,7 @@ loader.load( hurl1, function ( gltf ) {
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "rightleg";
 	scene.add( gltf.scene );
+	rltemp = gltf.scene;
 
 }, undefined, function ( error ) {
 
@@ -221,6 +236,7 @@ var animate = function () {
 			if(ihair!=99){
 				var temp = scene.getObjectByName(scene.children[ihair].name);
 				scene.remove(temp);
+				hhtemp = null;
 			}
 		}else if(head==1){
 			hurl = '/model/chibi/chibi_head.gltf';
@@ -229,6 +245,7 @@ var animate = function () {
 				gltf.scene.castShadow = true;
 				gltf.scene.name = "hair";
 				scene.add( gltf.scene );
+				hhtemp = gltf.scene;
 	
 			}, undefined, function ( error ) {
 	
@@ -241,6 +258,7 @@ var animate = function () {
 			gltf.scene.castShadow = true;
 			gltf.scene.name = "head";
 			scene.add( gltf.scene );
+			htemp = gltf.scene;
 
 		}, undefined, function ( error ) {
 
@@ -265,6 +283,7 @@ var animate = function () {
 			gltf.scene.castShadow = true;
 			gltf.scene.name = "torso";
 			scene.add( gltf.scene );
+			ttemp = gltf.scene;
 
 		}, undefined, function ( error ) {
 
@@ -295,6 +314,7 @@ var animate = function () {
 			gltf.scene.castShadow = true;
 			gltf.scene.name = "leftarm";
 			scene.add( gltf.scene );
+			latemp = gltf.scene;
 
 		}, undefined, function ( error ) {
 
@@ -306,6 +326,7 @@ var animate = function () {
 			gltf.scene.castShadow = true;
 			gltf.scene.name = "rightarm";
 			scene.add( gltf.scene );
+			ratemp = gltf.scene;
 
 		}, undefined, function ( error ) {
 
@@ -336,6 +357,7 @@ var animate = function () {
 			gltf.scene.castShadow = true;
 			gltf.scene.name = "leftleg";
 			scene.add( gltf.scene );
+			lltemp = gltf.scene;
 
 		}, undefined, function ( error ) {
 
@@ -347,6 +369,7 @@ var animate = function () {
 			gltf.scene.castShadow = true;
 			gltf.scene.name = "rightleg";
 			scene.add( gltf.scene );
+			rltemp = gltf.scene;
 
 		}, undefined, function ( error ) {
 
@@ -380,6 +403,26 @@ $(document).ready(function(){
 			head = head;
 		}
 	});
+	var hslideru = document.getElementById("headup");
+	var hsliderl = document.getElementById("headleft");
+	hslideru.oninput = function() {
+		//var temp = scene.getObjectByName(scene.children[ihead].name);
+		var t = this.value;
+		htemp.position.setY(t);
+		// console.log(t);
+		if(hhtemp!=null){
+			hhtemp.position.setY(t);
+		}
+	}
+	hsliderl.oninput = function() {
+		//var temp = scene.getObjectByName(scene.children[ihead].name);
+		var t = this.value;
+		htemp.position.setX(t);
+		// console.log(t);
+		if(hhtemp!=null){
+			hhtemp.position.setX(t);
+		}
+	}
 
 	$('#armsl').click(function () {
 		if(arms > 0){
@@ -397,6 +440,34 @@ $(document).ready(function(){
 			arms = arms;
 		}
 	});
+	var laslideru = document.getElementById("larmup");
+	var lasliderl = document.getElementById("larmleft");
+	var raslideru = document.getElementById("rarmup");
+	var rasliderl = document.getElementById("rarmleft");
+	laslideru.oninput = function() {
+		// var temp = scene.getObjectByName(scene.children[ilarm].name);
+		var t = this.value;
+		latemp.position.setY(t);
+		// console.log(t);
+	}
+	lasliderl.oninput = function() {
+		// var latemp = scene.getObjectByName(scene.children[ilarm].name);
+		var t = this.value;
+		latemp.position.setX(t);
+		// console.log(t);
+	}
+	raslideru.oninput = function() {
+		// var temp = scene.getObjectByName(scene.children[irarm].name);
+		var t = this.value;
+		ratemp.position.setY(t);
+		// console.log(t);
+	}
+	rasliderl.oninput = function() {
+		// var ratemp = scene.getObjectByName(scene.children[irarm].name);
+		var t = this.value;
+		ratemp.position.setX(t);
+		// console.log(t);
+	}
 
 	$('#torsol').click(function () {
 		if(torso > 0){
@@ -414,6 +485,20 @@ $(document).ready(function(){
 			torso = torso;
 		}
 	});
+	var tslideru = document.getElementById("torsoup");
+	var tsliderl = document.getElementById("torsoleft");
+	tslideru.oninput = function() {
+		// var temp = scene.getObjectByName(scene.children[itorso].name);
+		var t = this.value;
+		ttemp.position.setY(t);
+		// console.log(t);
+	}
+	tsliderl.oninput = function() {
+		// var ttemp = scene.getObjectByName(scene.children[itorso].name);
+		var t = this.value;
+		ttemp.position.setX(t);
+		// console.log(t);
+	}
 
 	$('#legsl').click(function () {
 		if(legs > 0){
@@ -431,5 +516,33 @@ $(document).ready(function(){
 			legs = legs;
 		}
 	});
+	var llslideru = document.getElementById("llegup");
+	var llsliderl = document.getElementById("llegleft");
+	var rlslideru = document.getElementById("rlegup");
+	var rlsliderl = document.getElementById("rlegleft");
+	llslideru.oninput = function() {
+		// var temp = scene.getObjectByName(scene.children[illeg].name);
+		var t = this.value;
+		lltemp.position.setY(t);
+		// console.log(t);
+	}
+	llsliderl.oninput = function() {
+		// var lltemp = scene.getObjectByName(scene.children[illeg].name);
+		var t = this.value;
+		lltemp.position.setX(t);
+		// console.log(t);
+	}
+	rlslideru.oninput = function() {
+		// var temp = scene.getObjectByName(scene.children[irleg].name);
+		var t = this.value;
+		rltemp.position.setY(t);
+		// console.log(t);
+	}
+	rlsliderl.oninput = function() {
+		// var rltemp = scene.getObjectByName(scene.children[irleg].name);
+		var t = this.value;
+		rltemp.position.setX(t);
+		// console.log(t);
+	}
 
 })
