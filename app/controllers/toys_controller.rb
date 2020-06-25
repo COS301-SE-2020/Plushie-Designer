@@ -70,6 +70,6 @@ class ToysController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def toy_params
-      params.require(:toy).permit(:name, :head, :arms, :torso, :legs, :rating)
+      params.require(:toy).permit(:name, :head, :arms, :torso, :legs, :rating, :head_pos, :head_posx, :torso_posy, :torso_posx, :larm_posy, :larm_posx, :rarm_posy, :rarm_posx, :lleg_posy, :lleg_posx, :rleg_posy, :rleg_posx)
     end
 end
