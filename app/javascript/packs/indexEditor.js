@@ -195,7 +195,26 @@ var models = new Array();
 		// update the picking ray with the camera and mouse position
 		raycaster.setFromCamera( mouse, camera );
 		var selected_a_part = true;
+		var intersects = [];
 		// calculate objects intersecting the picking ray
+
+		//TODO improve intersect such that it always picks front object
+		if(hhtemp != null)
+		{
+			intersects = raycaster.intersectObjects( hhtemp.children );
+			if(intersects.length > 0)
+			{
+				if(currentSelection != hhtemp)
+				{
+					chooseBodyPart(hhtemp, intersects[ 0 ].object);
+				}
+				else{
+					selected_a_part = false;
+					currentSelection = null;
+				}
+			}
+		}
+
 		var intersects = raycaster.intersectObjects( htemp.children );
 			if(intersects.length > 0)
 			{
