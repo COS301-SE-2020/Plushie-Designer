@@ -129,8 +129,8 @@ models.push([ "",
 '/model/minecraft/steve_l_leg.gltf',
 '/model/minecraft/steve_r_leg.gltf'
 	]);
-models.push(['/model/chibi/chibi_head.gltf',
-'/model/chibi/chibi_hair.gltf',
+models.push(['/model/chibi/chibi_hair.gltf',
+'/model/chibi/chibi_head.gltf',
 '/model/chibi/chibi_body.gltf',
 '/model/chibi/chibi_l_arm.gltf',
 '/model/chibi/chibi_r_arm.gltf',
