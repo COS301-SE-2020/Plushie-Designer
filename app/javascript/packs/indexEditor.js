@@ -154,26 +154,34 @@ var models = new Array();
 	outlinePass.visibleEdgeColor.set( "#ffffff" );
 	outlinePass.hiddenEdgeColor.set( "#000000" );
 
-	composer = new EffectComposer( renderer );
+	//-------------------------TAA + FXAA SETUP---------------------------
+	var renderPass, taaRenderPass;
+	ConfigureCanvas();
 
-	var renderPass = new RenderPass( scene, camera );
-	composer.addPass( renderPass );
+	function ConfigureCanvas()
+	{
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
 
-	var taaRenderPass = new TAARenderPass( scene, camera );
-	taaRenderPass.unbiased = true;
-	taaRenderPass.enabled = true;
-	taaRenderPass.sampleLevel = 3;
-	composer.addPass( taaRenderPass );
-	outlinePass = new OutlinePass( new THREE.Vector2( window.innerWidth, window.innerHeight ), scene, camera );
-	composer.addPass( outlinePass );
-	/*effectFXAA = new ShaderPass( FXAAShader );
-	effectFXAA.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
-	composer.addPass( effectFXAA );*/
-	
-	copyshader = new ShaderPass( FXAAShader );
-	copyshader.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
-	composer.addPass( copyshader );
+		renderer.setSize( window.innerWidth, window.innerHeight );
 
+		composer = new EffectComposer( renderer );
+		renderPass = new RenderPass( scene, camera );
+		composer.addPass( renderPass );
+
+		taaRenderPass = new TAARenderPass( scene, camera );
+		taaRenderPass.unbiased = true;
+		taaRenderPass.enabled = true;
+		taaRenderPass.sampleLevel = 3;
+		composer.addPass( taaRenderPass );
+		outlinePass = new OutlinePass( new THREE.Vector2( window.innerWidth, window.innerHeight ), scene, camera );
+		composer.addPass( outlinePass );
+		
+		copyshader = new ShaderPass( FXAAShader );
+		copyshader.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
+		composer.addPass( copyshader );
+		//---------------------------------------------------------------------
+	}
 	//----------------------------------------------------------------------------------------------
 
 	function chooseBodyPart(temp, obj)
@@ -427,10 +435,7 @@ window.addEventListener( 'resize', onWindowResize, false );
 
 function onWindowResize() {
 
-	camera.aspect = window.innerWidth / window.innerHeight;
-	camera.updateProjectionMatrix();
-
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	ConfigureCanvas();
 
 }
 
