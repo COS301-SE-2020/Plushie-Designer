@@ -8,6 +8,7 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
 import { CopyShader } from 'three/examples/jsm/shaders/CopyShader.js';
+import { AlphaFormat } from 'three';
 
 
 var headchange = false;
@@ -180,13 +181,22 @@ var models = new Array();
 		copyshader = new ShaderPass( FXAAShader );
 		copyshader.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
 		composer.addPass( copyshader );
-		//---------------------------------------------------------------------
 	}
 	//----------------------------------------------------------------------------------------------
 
-	function chooseBodyPart(temp, obj)
-	{
-		currentSelection = temp;
+	function chooseBodyPart(obj)//TODO
+	{	
+		switch(obj.name)
+		{
+			case "hair" : currentSelection = hhtemp; break;
+			case "head" : currentSelection = htemp; break;
+			case "body" : currentSelection = ttemp; break;
+			case "l_leg" : currentSelection = lltemp; break;
+			case "r_leg" : currentSelection = rltemp; break;
+			case "l_arm" : currentSelection = latemp; break;
+			case "r_arm" : currentSelection = ratemp; break;
+			default : return;
+		}
 		var selectedObject = obj;
 		addSelectedObject( selectedObject );
 		outlinePass.selectedObjects = selectedObjects;
@@ -202,108 +212,17 @@ var models = new Array();
 		//---------------------PICK BODY PART----------------------
 		// update the picking ray with the camera and mouse position
 		raycaster.setFromCamera( mouse, camera );
-		var selected_a_part = true;
 		var intersects = [];
 		// calculate objects intersecting the picking ray
-
-		//TODO improve intersect such that it always picks front object
-		if(hhtemp != null)
+		intersects = raycaster.intersectObjects( scene.children , true );
+		if(intersects.length > 0)
 		{
-			intersects = raycaster.intersectObjects( hhtemp.children );
-			if(intersects.length > 0)
-			{
-				if(currentSelection != hhtemp)
-				{
-					chooseBodyPart(hhtemp, intersects[ 0 ].object);
-				}
-				else{
-					selected_a_part = false;
-					currentSelection = null;
-				}
-			}
+			chooseBodyPart(intersects[ 0 ].object);
+		}
+		else{
+			outlinePass.selectedObjects = [];
 		}
 
-		var intersects = raycaster.intersectObjects( htemp.children );
-			if(intersects.length > 0)
-			{
-				if(currentSelection != htemp)
-				{
-					chooseBodyPart(htemp, intersects[ 0 ].object);
-				}
-				else{
-					selected_a_part = false;
-					currentSelection = null;
-				}
-			}
-
-		intersects = raycaster.intersectObjects( ttemp.children );
-			if(intersects.length > 0) 
-			{
-				if(currentSelection != ttemp)
-				{
-					chooseBodyPart(ttemp, intersects[ 0 ].object);
-				}
-				else{
-					selected_a_part = false;
-					currentSelection = null;
-				}
-				
-			}
-
-		intersects = raycaster.intersectObjects( latemp.children );
-			if(intersects.length > 0)
-			{
-				if(currentSelection != latemp)
-				{
-					chooseBodyPart(latemp, intersects[ 0 ].object);
-				}
-				else{
-					selected_a_part = false;
-					currentSelection = null;
-				}
-			} 
-
-		intersects = raycaster.intersectObjects( ratemp.children );
-			if(intersects.length > 0)
-			{
-				if(currentSelection != ratemp)
-				{
-					chooseBodyPart(ratemp, intersects[ 0 ].object);
-				}
-				else{
-					selected_a_part = false;
-					currentSelection = null;
-				}
-			} 
-
-		intersects = raycaster.intersectObjects( lltemp.children );
-			if(intersects.length > 0) 
-			{
-				if(currentSelection != lltemp)
-				{
-					chooseBodyPart(lltemp, intersects[ 0 ].object);
-				}
-				else{
-					selected_a_part = false;
-					currentSelection = null;
-				}
-			}
-			
-		intersects = raycaster.intersectObjects( rltemp.children );
-			if(intersects.length > 0)
-			{
-				if(currentSelection != rltemp)
-				{
-					chooseBodyPart(rltemp, intersects[ 0 ].object);
-				}
-				else{
-					selected_a_part = false;
-					currentSelection = null;
-				}
-			}
-		if(!selected_a_part) outlinePass.selectedObjects = [];
-		//-------------------------------------------------------
-		
 	}
 //---------------------------------------------------------------------------------
 

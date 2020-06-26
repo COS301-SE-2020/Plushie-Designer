@@ -15,7 +15,7 @@
     "nodes" : [
         {
             "mesh" : 0,
-            "name" : "Body_old.002",
+            "name" : "body",
             "scale" : [
                 1,
                 1.1664917469024658,

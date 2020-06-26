@@ -15,7 +15,7 @@
     "nodes" : [
         {
             "mesh" : 0,
-            "name" : "RightArm_old.002",
+            "name" : "r_arm",
             "rotation" : [
                 0.006021525710821152,
                 -0.0006063590990379453,

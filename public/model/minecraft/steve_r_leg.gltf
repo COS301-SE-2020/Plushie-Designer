@@ -15,7 +15,7 @@
     "nodes" : [
         {
             "mesh" : 0,
-            "name" : "RightLeg_old.002",
+            "name" : "r_leg",
             "rotation" : [
                 -0.008271501399576664,
                 0.0017958366079255939,
