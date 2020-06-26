@@ -1,6 +1,14 @@
 var THREE = require('three');
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
+import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
+import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
+import { CopyShader } from 'three/examples/jsm/shaders/CopyShader.js';
+
 
 var headchange = false;
 var torsochange = false;
@@ -60,64 +68,216 @@ var hurl1 = '';
 
 var models = new Array();
 
-//--------------------------------TEX---------------------------------------------
-const colors = [
-	{
-		color: '66533C'
-	},
-	{
-		color: '173A2F'
-	},
-	{
-		color: '153944'
-	},
-	{
-		color: '27548D'
-	},
-	{
-		color: '438AAC'
-	}  
-	];
-const TRAY = document.getElementById('js-tray-slide');
+//--------------------------------TEXTURE CHANGES---------------------------------------------
+	const colors = [
+		{
+			color: '66533C'
+		},
+		{
+			color: '173A2F'
+		},
+		{
+			color: '153944'
+		},
+		{
+			color: '27548D'
+		},
+		{
+			color: '438AAC'
+		}  
+		];
 
-// Function - Build Colors
-function buildColors(colors) {
-	for (let [i, color] of colors.entries()) {
-	  let swatch = document.createElement('div');
-	  swatch.classList.add('tray__swatch');
-  
-	  swatch.style.background = "#" + color.color;
-  
-	  swatch.setAttribute('data-key', i);
-	  TRAY.append(swatch);
+	const TRAY = document.getElementById('js-tray-slide');
+
+	//---------------------------------TO CHANGE TO JPG--------------------
+	// Function - Build Colors
+	function buildColors(colors) {
+		for (let [i, color] of colors.entries()) {
+		let swatch = document.createElement('div');
+		swatch.classList.add('tray__swatch');
+	
+		swatch.style.background = "#" + color.color;
+	
+		swatch.setAttribute('data-key', i);
+		TRAY.append(swatch);
+		}
 	}
-  }
-  
-  buildColors(colors);
+	
+	buildColors(colors);
+	//----------------------------------------------------------------------
 
-  // Swatches
-const swatches = document.querySelectorAll(".tray__swatch");
+	//--------------------SETUP SWATCHES-------------------------------------
+	const swatches = document.querySelectorAll(".tray__swatch");
 
-for (const swatch of swatches) {
-  swatch.addEventListener('click', selectSwatch);
-}
+	for (const swatch of swatches) {
+	swatch.addEventListener('click', selectSwatch);
+	}
+	var currentSelection;
+	function selectSwatch(e) {
+		let color = colors[parseInt(e.target.dataset.key)];
+		let new_mtl;
 
-function selectSwatch(e) {
-	let color = colors[parseInt(e.target.dataset.key)];
-	let new_mtl;
+		new_mtl = new THREE.MeshPhongMaterial({
+			color: parseInt('0x' + color.color),
+			shininess: color.shininess ? color.shininess : 10
+			
+		});
+	
+	setMaterial(currentSelection, new_mtl);
+	}
 
-	 new_mtl = new THREE.MeshPhongMaterial({
-		 color: parseInt('0x' + color.color),
-		 shininess: color.shininess ? color.shininess : 10
-		 
-	   });
-   
-   setMaterial(htemp, new_mtl);
-}
+	function setMaterial(parent, mtl) {
+		parent.children[0].material = mtl;
+	}
+	//------------------------------------------------------------------------
 
-function setMaterial(parent, mtl) {
-	parent.children[0].material = mtl;
-  }
+
+	document.addEventListener("click", onMouseClick, false);
+	var mouse = new THREE.Vector2();
+	var raycaster = new THREE.Raycaster();
+
+	//------------------------------OUTLINE PASS SETUP------------------------------------------------
+	var selectedObjects = [];
+
+	var composer, copyshader, outlinePass;
+	function addSelectedObject( object ) {
+
+		selectedObjects = [];
+		selectedObjects.push( object );
+
+	}
+	var outlinePass = new OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), scene, camera);
+	outlinePass.edgeStrength = Number( 10 );
+	outlinePass.edgeGlow = Number( 0);
+	outlinePass.edgeThickness = Number( 1 );
+	outlinePass.pulsePeriod = Number( 0 );
+	outlinePass.visibleEdgeColor.set( "#ffffff" );
+	outlinePass.hiddenEdgeColor.set( "#000000" );
+
+	composer = new EffectComposer( renderer );
+
+	var renderPass = new RenderPass( scene, camera );
+	composer.addPass( renderPass );
+
+	var taaRenderPass = new TAARenderPass( scene, camera );
+	taaRenderPass.unbiased = true;
+	taaRenderPass.enabled = true;
+	taaRenderPass.sampleLevel = 3;
+	composer.addPass( taaRenderPass );
+	outlinePass = new OutlinePass( new THREE.Vector2( window.innerWidth, window.innerHeight ), scene, camera );
+	composer.addPass( outlinePass );
+	/*effectFXAA = new ShaderPass( FXAAShader );
+	effectFXAA.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
+	composer.addPass( effectFXAA );*/
+	
+	copyshader = new ShaderPass( FXAAShader );
+	copyshader.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
+	composer.addPass( copyshader );
+
+	//----------------------------------------------------------------------------------------------
+
+	function chooseBodyPart(temp, obj)
+	{
+		currentSelection = temp;
+		var selectedObject = obj;
+		addSelectedObject( selectedObject );
+		outlinePass.selectedObjects = selectedObjects;
+	}
+
+	function onMouseClick(event)
+	{
+		event.preventDefault();
+
+		mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+		mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+		//---------------------PICK BODY PART----------------------
+		// update the picking ray with the camera and mouse position
+		raycaster.setFromCamera( mouse, camera );
+		var selected_a_part = true;
+		// calculate objects intersecting the picking ray
+		var intersects = raycaster.intersectObjects( htemp.children );
+			if(intersects.length > 0)
+			{
+				if(currentSelection != htemp)
+				{
+					chooseBodyPart(htemp, intersects[ 0 ].object);
+				}
+				else{
+					selected_a_part = false;
+					currentSelection = null;
+				}
+			}
+
+		intersects = raycaster.intersectObjects( ttemp.children );
+			if(intersects.length > 0) 
+			{
+				if(currentSelection != ttemp)
+				{
+					chooseBodyPart(ttemp, intersects[ 0 ].object);
+				}
+				else{
+					selected_a_part = false;
+					currentSelection = null;
+				}
+				
+			}
+
+		intersects = raycaster.intersectObjects( latemp.children );
+			if(intersects.length > 0)
+			{
+				if(currentSelection != latemp)
+				{
+					chooseBodyPart(latemp, intersects[ 0 ].object);
+				}
+				else{
+					selected_a_part = false;
+					currentSelection = null;
+				}
+			} 
+
+		intersects = raycaster.intersectObjects( ratemp.children );
+			if(intersects.length > 0)
+			{
+				if(currentSelection != ratemp)
+				{
+					chooseBodyPart(ratemp, intersects[ 0 ].object);
+				}
+				else{
+					selected_a_part = false;
+					currentSelection = null;
+				}
+			} 
+
+		intersects = raycaster.intersectObjects( lltemp.children );
+			if(intersects.length > 0) 
+			{
+				if(currentSelection != lltemp)
+				{
+					chooseBodyPart(lltemp, intersects[ 0 ].object);
+				}
+				else{
+					selected_a_part = false;
+					currentSelection = null;
+				}
+			}
+			
+		intersects = raycaster.intersectObjects( rltemp.children );
+			if(intersects.length > 0)
+			{
+				if(currentSelection != rltemp)
+				{
+					chooseBodyPart(rltemp, intersects[ 0 ].object);
+				}
+				else{
+					selected_a_part = false;
+					currentSelection = null;
+				}
+			}
+		if(!selected_a_part) outlinePass.selectedObjects = [];
+		//-------------------------------------------------------
+		
+	}
 //---------------------------------------------------------------------------------
 
 //-----------------------------MODELS TO LOAD SETUP------------------------------
@@ -257,6 +417,7 @@ function onWindowResize() {
 
 //-------------------------------ANIMATE---------------------------------
 var animate = function () {
+	
 	if(headchange){
 		updateIndexes();
 		var temp = scene.getObjectByName(scene.children[ihead].name);
@@ -324,7 +485,8 @@ var animate = function () {
 	requestAnimationFrame(animate);
 
 	controls.update();
-	renderer.render(scene, camera);
+	//renderer.render(scene, camera);
+	composer.render();
 };
 //--------------------------------------------------------------
 
