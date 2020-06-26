@@ -20,12 +20,12 @@
         "/packs/js/Editor-270129fe2e65b6e4a7a3.js.map"
       ]
     },
-    "indexEditor1": {
+    "indexEditor": {
       "js": [
-        "/packs/js/indexEditor1-b9ec8062ed0951d2ba0c.js"
+        "/packs/js/indexEditor-c1e5a01e0d2244b963cc.js"
       ],
       "js.map": [
-        "/packs/js/indexEditor1-b9ec8062ed0951d2ba0c.js.map"
+        "/packs/js/indexEditor-c1e5a01e0d2244b963cc.js.map"
       ]
     },
     "showEditor": {
@@ -37,8 +37,8 @@
       ]
     }
   },
-  "indexEditor1.js": "/packs/js/indexEditor1-b9ec8062ed0951d2ba0c.js",
-  "indexEditor1.js.map": "/packs/js/indexEditor1-b9ec8062ed0951d2ba0c.js.map",
+  "indexEditor.js": "/packs/js/indexEditor-c1e5a01e0d2244b963cc.js",
+  "indexEditor.js.map": "/packs/js/indexEditor-c1e5a01e0d2244b963cc.js.map",
   "showEditor.js": "/packs/js/showEditor-d7a525bffab3b83c9911.js",
   "showEditor.js.map": "/packs/js/showEditor-d7a525bffab3b83c9911.js.map"
 }
