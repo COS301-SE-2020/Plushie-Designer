@@ -7,9 +7,6 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
-import { CopyShader } from 'three/examples/jsm/shaders/CopyShader.js';
-import { AlphaFormat } from 'three';
-
 
 var headchange = false;
 var torsochange = false;
@@ -72,10 +69,14 @@ var models = new Array();
 //--------------------------------TEXTURE CHANGES---------------------------------------------
 	const colors = [
 		{
-			color: '66533C'
+			texture: '/images/box.jpg',
+			size: [1,1,1],
+			shininess: 60
 		},
 		{
-			color: '173A2F'
+			texture: '/images/head.png',
+			size: [3, 3, 3],
+			shininess: 0
 		},
 		{
 			color: '153944'
@@ -97,7 +98,13 @@ var models = new Array();
 		let swatch = document.createElement('div');
 		swatch.classList.add('tray__swatch');
 	
-		swatch.style.background = "#" + color.color;
+		if (color.texture)
+		{
+		  swatch.style.backgroundImage = "url(" + color.texture + ")";   
+		} else
+		{
+		  swatch.style.background = "#" + color.color;
+		}
 	
 		swatch.setAttribute('data-key', i);
 		TRAY.append(swatch);
@@ -118,11 +125,27 @@ var models = new Array();
 		let color = colors[parseInt(e.target.dataset.key)];
 		let new_mtl;
 
-		new_mtl = new THREE.MeshPhongMaterial({
-			color: parseInt('0x' + color.color),
-			shininess: color.shininess ? color.shininess : 10
+		if (color.texture) {
+      
+			let txt = new THREE.TextureLoader().load(color.texture);
 			
-		});
+			txt.repeat.set( color.size[0], color.size[1], color.size[2]);
+			txt.wrapS = THREE.RepeatWrapping;
+			txt.wrapT = THREE.RepeatWrapping;
+			
+			new_mtl = new THREE.MeshPhongMaterial( {
+			  map: txt,
+			  shininess: color.shininess ? color.shininess : 10
+			});    
+		  } 
+		  else
+		  {
+			new_mtl = new THREE.MeshPhongMaterial({
+				color: parseInt('0x' + color.color),
+				shininess: color.shininess ? color.shininess : 10
+				
+			  });
+		  }
 	
 	setMaterial(currentSelection, new_mtl);
 	}
@@ -307,6 +330,7 @@ loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
 	, undefined, function ( error ) { console.error( error );} );
 loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
 	, undefined, function ( error ) { console.error( error );} );
+//---------------------------------------------------------------------
 
 //---------------------------PLANE--------------------------------
 var geometry = new THREE.BoxBufferGeometry(1000, 0, 1000);
