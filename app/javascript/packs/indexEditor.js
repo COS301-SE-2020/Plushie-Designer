@@ -386,7 +386,22 @@ var animate = function () {
 
 animate();
 
+function screensh(){
+	var w = window.open('', '');
+    w.document.title = "Screenshot";
+    var img = new Image();
+    renderer.render(scene, camera);
+    img.src = renderer.domElement.toDataURL();
+	w.document.body.appendChild(img);
+	console.log(img.src);
+}
+
+
 $(document).ready(function(){
+	$('#scrsh').click(function () {
+		screensh();
+	});
+
 	$('#headl').click(function () {
 		if(head > 0){
 			headchange = true;
