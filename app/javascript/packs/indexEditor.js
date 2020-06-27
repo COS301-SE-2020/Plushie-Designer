@@ -124,6 +124,11 @@ var models = new Array();
 	function selectSwatch(e) {
 		let color = colors[parseInt(e.target.dataset.key)];
 		let new_mtl;
+		let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
+			bmp.repeat.set( 3, 3, 3);
+			bmp.wrapS = THREE.RepeatWrapping;
+			bmp.wrapT = THREE.RepeatWrapping;
+
 
 		if (color.texture) {
       
@@ -135,15 +140,18 @@ var models = new Array();
 			
 			new_mtl = new THREE.MeshPhongMaterial( {
 			  map: txt,
-			  shininess: color.shininess ? color.shininess : 10
+			  shininess: color.shininess ? color.shininess : 10,
+			  bumpMap: bmp,
+			  bumpScale: 0.45
 			});    
 		  } 
 		  else
 		  {
 			new_mtl = new THREE.MeshPhongMaterial({
 				color: parseInt('0x' + color.color),
-				shininess: color.shininess ? color.shininess : 10
-				
+				shininess: color.shininess ? color.shininess : 10,
+				bumpMap: bmp,
+			 	bumpScale: 0.45
 			  });
 		  }
 	
