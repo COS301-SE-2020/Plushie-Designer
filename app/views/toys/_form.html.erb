@@ -4,6 +4,7 @@
 
   <div class="form-inputs">
     <%= f.input :name %><hr>
+    <%= f.input :shared, label: "Share"%><hr>
     <div class="hinput">
       <%= f.input :head%>
       <%= f.input :arms%>
@@ -59,6 +60,6 @@
   <input type="range" min="-4" max="4" value="0" class="slider" id="rlegleft" step="0.1">
   <div class="buttons"><button class="btn" id="generate-pattern" type="button">Generate Pattern</button><hr>
   <div class="form-actions buttons">
-    <%= f.button :submit, "Share", :id => "share-btn" %>
+    <%= f.button :submit, :id => "share-btn" %>
   </div>
 <% end %>
