@@ -3,6 +3,8 @@
   "Editor.js.map": "/packs/js/Editor-270129fe2e65b6e4a7a3.js.map",
   "application.js": "/packs/js/application-9afcbb5693aa87623e69.js",
   "application.js.map": "/packs/js/application-9afcbb5693aa87623e69.js.map",
+  "customize_menu.js": "/packs/js/customize_menu-0fd461f3c2d9890da119.js",
+  "customize_menu.js.map": "/packs/js/customize_menu-0fd461f3c2d9890da119.js.map",
   "entrypoints": {
     "application": {
       "js": [
@@ -10,6 +12,14 @@
       ],
       "js.map": [
         "/packs/js/application-9afcbb5693aa87623e69.js.map"
+      ]
+    },
+    "customize_menu": {
+      "js": [
+        "/packs/js/customize_menu-0fd461f3c2d9890da119.js"
+      ],
+      "js.map": [
+        "/packs/js/customize_menu-0fd461f3c2d9890da119.js.map"
       ]
     },
     "Editor": {
@@ -22,10 +32,18 @@
     },
     "indexEditor": {
       "js": [
-        "/packs/js/indexEditor-1246e8d23ab2a00d5c9c.js"
+        "/packs/js/indexEditor-967dd5f701c9365d28f5.js"
       ],
       "js.map": [
-        "/packs/js/indexEditor-1246e8d23ab2a00d5c9c.js.map"
+        "/packs/js/indexEditor-967dd5f701c9365d28f5.js.map"
+      ]
+    },
+    "selection": {
+      "js": [
+        "/packs/js/selection-06ea5bcfe2718faa3158.js"
+      ],
+      "js.map": [
+        "/packs/js/selection-06ea5bcfe2718faa3158.js.map"
       ]
     },
     "showEditor": {
@@ -35,10 +53,22 @@
       "js.map": [
         "/packs/js/showEditor-d7a525bffab3b83c9911.js.map"
       ]
+    },
+    "textures": {
+      "js": [
+        "/packs/js/textures-9d39456164a3ecd2d2db.js"
+      ],
+      "js.map": [
+        "/packs/js/textures-9d39456164a3ecd2d2db.js.map"
+      ]
     }
   },
-  "indexEditor.js": "/packs/js/indexEditor-1246e8d23ab2a00d5c9c.js",
-  "indexEditor.js.map": "/packs/js/indexEditor-1246e8d23ab2a00d5c9c.js.map",
+  "indexEditor.js": "/packs/js/indexEditor-967dd5f701c9365d28f5.js",
+  "indexEditor.js.map": "/packs/js/indexEditor-967dd5f701c9365d28f5.js.map",
+  "selection.js": "/packs/js/selection-06ea5bcfe2718faa3158.js",
+  "selection.js.map": "/packs/js/selection-06ea5bcfe2718faa3158.js.map",
   "showEditor.js": "/packs/js/showEditor-d7a525bffab3b83c9911.js",
-  "showEditor.js.map": "/packs/js/showEditor-d7a525bffab3b83c9911.js.map"
+  "showEditor.js.map": "/packs/js/showEditor-d7a525bffab3b83c9911.js.map",
+  "textures.js": "/packs/js/textures-9d39456164a3ecd2d2db.js",
+  "textures.js.map": "/packs/js/textures-9d39456164a3ecd2d2db.js.map"
 }

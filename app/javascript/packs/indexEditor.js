@@ -159,6 +159,12 @@ var models = new Array();
 	}
 
 	function setMaterial(parent, mtl) {
+		if(parent == null)
+		{
+			alert("Select a body part before selecting a texture.");
+			return;
+		}
+
 		parent.children[0].material = mtl;
 	}
 	//------------------------------------------------------------------------
