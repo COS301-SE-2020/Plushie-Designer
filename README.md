@@ -7,8 +7,8 @@ Plushie-Designer is a website that allows users to create and share their plushi
 ### Recorded Demos
 - Fellowship of the Git-Demo1: https://drive.google.com/file/d/1JpnnY9vtae2aD1KbY4ggvWpKldu4WIaB/view?usp=sharing
 ### Documentation
-- SRS Document: https://www.overleaf.com/read/hckdrnmzwdwm
-- Architectural Design Document: https://www.overleaf.com/read/pyyxfxtkxmxm
+- SRS Document Version 1: https://www.overleaf.com/read/hckdrnmzwdwm
+- SRS Document Version 2: https://www.overleaf.com/read/pyyxfxtkxmxm
 - User Manual: https://www.overleaf.com/read/hrcmtbyzxbsh
 - Coding Standards Document: https://www.overleaf.com/read/djbvggfdgrrb
 ### Project Management Tool
