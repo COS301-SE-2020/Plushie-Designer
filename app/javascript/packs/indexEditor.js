@@ -1,19 +1,12 @@
 var THREE = require('three');
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
-import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
-import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
 
 var headchange = false;
 var torsochange = false;
 var armschange = false; 
 var legschange = false;
 
-var hair = 0;
 var head = 0;
 var torso = 0;
 var arms = 0;
@@ -62,291 +55,123 @@ controls.maxPolarAngle = Math.PI / 2;
 var loader = new GLTFLoader();
 
 var hurl = '';
-var hurl1 = '';
+if(head==0){
+	hurl = '/model/minecraft/minecraft_steve_head.gltf';
+}else if(head==1){
+	hurl = '/model/chibi/chibi_head.gltf';
+	loader.load( '/model/chibi/chibi_hair.gltf', function ( gltf ) {
+		gltf.scene.position.setY(1.5);
+		gltf.scene.castShadow = true;
+		gltf.scene.name = "hair";
+		scene.add( gltf.scene );
+		hhtemp = gltf.scene;
 
-var models = new Array();
+	}, undefined, function ( error ) {
 
-//--------------------------------TEXTURE CHANGES---------------------------------------------
-	const colors = [
-		{
-			texture: '/images/box.jpg',
-			size: [1,1,1],
-			shininess: 60
-		},
-		{
-			texture: '/images/head.png',
-			size: [3, 3, 3],
-			shininess: 0
-		},
-		{
-			color: '153944'
-		},
-		{
-			color: '27548D'
-		},
-		{
-			color: '438AAC'
-		}  
-		];
+		console.error( error );
 
-	const TRAY = document.getElementById('js-tray-slide');
-
-	//---------------------------------TO CHANGE TO JPG--------------------
-	// Function - Build Colors
-	function buildColors(colors) {
-		for (let [i, color] of colors.entries()) {
-		let swatch = document.createElement('div');
-		swatch.classList.add('tray__swatch');
-	
-		if (color.texture)
-		{
-		  swatch.style.backgroundImage = "url(" + color.texture + ")";   
-		} else
-		{
-		  swatch.style.background = "#" + color.color;
-		}
-	
-		swatch.setAttribute('data-key', i);
-		TRAY.append(swatch);
-		}
-	}
-	
-	buildColors(colors);
-	//----------------------------------------------------------------------
-
-	//--------------------SETUP SWATCHES-------------------------------------
-	const swatches = document.querySelectorAll(".tray__swatch");
-
-	for (const swatch of swatches) {
-	swatch.addEventListener('click', selectSwatch);
-	}
-	var currentSelection;
-	function selectSwatch(e) {
-		let color = colors[parseInt(e.target.dataset.key)];
-		let new_mtl;
-		let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
-			bmp.repeat.set( 3, 3, 3);
-			bmp.wrapS = THREE.RepeatWrapping;
-			bmp.wrapT = THREE.RepeatWrapping;
-
-
-		if (color.texture) {
-      
-			let txt = new THREE.TextureLoader().load(color.texture);
-			
-			txt.repeat.set( color.size[0], color.size[1], color.size[2]);
-			txt.wrapS = THREE.RepeatWrapping;
-			txt.wrapT = THREE.RepeatWrapping;
-			
-			new_mtl = new THREE.MeshPhongMaterial( {
-			  map: txt,
-			  shininess: color.shininess ? color.shininess : 10,
-			  bumpMap: bmp,
-			  bumpScale: 0.45
-			});    
-		  } 
-		  else
-		  {
-			new_mtl = new THREE.MeshPhongMaterial({
-				color: parseInt('0x' + color.color),
-				shininess: color.shininess ? color.shininess : 10,
-				bumpMap: bmp,
-			 	bumpScale: 0.45
-			  });
-		  }
-	
-	setMaterial(currentSelection, new_mtl);
-	}
-
-	function setMaterial(parent, mtl) {
-		if(parent == null)
-		{
-			alert("Select a body part before selecting a texture.");
-			return;
-		}
-
-		parent.children[0].material = mtl;
-	}
-	//------------------------------------------------------------------------
-
-
-	document.addEventListener("click", onMouseClick, false);
-	var mouse = new THREE.Vector2();
-	var raycaster = new THREE.Raycaster();
-
-	//------------------------------OUTLINE PASS SETUP------------------------------------------------
-	var selectedObjects = [];
-
-	var composer, copyshader, outlinePass;
-	function addSelectedObject( object ) {
-
-		selectedObjects = [];
-		selectedObjects.push( object );
-
-	}
-	var outlinePass = new OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), scene, camera);
-	outlinePass.edgeStrength = Number( 10 );
-	outlinePass.edgeGlow = Number( 0);
-	outlinePass.edgeThickness = Number( 1 );
-	outlinePass.pulsePeriod = Number( 0 );
-	outlinePass.visibleEdgeColor.set( "#ffffff" );
-	outlinePass.hiddenEdgeColor.set( "#000000" );
-
-	//-------------------------TAA + FXAA SETUP---------------------------
-	var renderPass, taaRenderPass;
-	ConfigureCanvas();
-
-	function ConfigureCanvas()
-	{
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
-
-		renderer.setSize( window.innerWidth, window.innerHeight );
-
-		composer = new EffectComposer( renderer );
-		renderPass = new RenderPass( scene, camera );
-		composer.addPass( renderPass );
-
-		taaRenderPass = new TAARenderPass( scene, camera );
-		taaRenderPass.unbiased = true;
-		taaRenderPass.enabled = true;
-		taaRenderPass.sampleLevel = 3;
-		composer.addPass( taaRenderPass );
-		outlinePass = new OutlinePass( new THREE.Vector2( window.innerWidth, window.innerHeight ), scene, camera );
-		composer.addPass( outlinePass );
-		
-		copyshader = new ShaderPass( FXAAShader );
-		copyshader.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
-		composer.addPass( copyshader );
-	}
-	//----------------------------------------------------------------------------------------------
-
-	function chooseBodyPart(obj)//TODO
-	{	
-		switch(obj.name)
-		{
-			case "hair" : currentSelection = hhtemp; break;
-			case "head" : currentSelection = htemp; break;
-			case "body" : currentSelection = ttemp; break;
-			case "l_leg" : currentSelection = lltemp; break;
-			case "r_leg" : currentSelection = rltemp; break;
-			case "l_arm" : currentSelection = latemp; break;
-			case "r_arm" : currentSelection = ratemp; break;
-			default : return;
-		}
-		var selectedObject = obj;
-		addSelectedObject( selectedObject );
-		outlinePass.selectedObjects = selectedObjects;
-	}
-
-	function onMouseClick(event)
-	{
-		event.preventDefault();
-
-		mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-		mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-
-		//---------------------PICK BODY PART----------------------
-		// update the picking ray with the camera and mouse position
-		raycaster.setFromCamera( mouse, camera );
-		var intersects = [];
-		// calculate objects intersecting the picking ray
-		intersects = raycaster.intersectObjects( scene.children , true );
-		if(intersects.length > 0)
-		{
-			chooseBodyPart(intersects[ 0 ].object);
-		}
-		else{
-			outlinePass.selectedObjects = [];
-		}
-
-	}
-//---------------------------------------------------------------------------------
-
-//-----------------------------MODELS TO LOAD SETUP------------------------------
-models.push([ "",
-'/model/minecraft/steve_head.gltf',
-'/model/minecraft/steve_body.gltf',
-'/model/minecraft/steve_l_arm.gltf',
-'/model/minecraft/steve_r_arm.gltf',
-'/model/minecraft/steve_l_leg.gltf',
-'/model/minecraft/steve_r_leg.gltf'
-	]);
-models.push(['/model/chibi/chibi_hair.gltf',
-'/model/chibi/chibi_head.gltf',
-'/model/chibi/chibi_body.gltf',
-'/model/chibi/chibi_l_arm.gltf',
-'/model/chibi/chibi_r_arm.gltf',
-'/model/chibi/chibi_l_leg.gltf',
-'/model/chibi/chibi_r_leg.gltf'
-]);
-//--------------------------------------------------------------------------------
-//----------------------------------ADD MODEL----------------------------------------
-function add_model_to_scene(gltf, name)
-{
+	} );
+}
+loader.load( hurl, function ( gltf ) {
 	gltf.scene.position.setY(1.5);
 	gltf.scene.castShadow = true;
-	gltf.scene.name = name;
+	gltf.scene.name = "head";
 	scene.add( gltf.scene );
-	switch(name)
-	{
-		case "hair" : hhtemp = gltf.scene; break;
-		case "head" : htemp = gltf.scene; break;
-		case "torso" : ttemp = gltf.scene; break;
-		case "leftarm" : latemp = gltf.scene; break;
-		case "rightarm" : ratemp = gltf.scene; break;
-		case "leftleg" : lltemp = gltf.scene; break;
-		case "rightleg" : rltemp = gltf.scene; break;	
-	}
-	
+	htemp = gltf.scene;
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+
+var hurl = '';
+if(torso==0){
+	hurl = '/model/minecraft/minecraft_steve_Body.gltf';
+}else if(torso==1){
+	hurl = '/model/chibi/chibi_body.gltf';
 }
-//---------------------------------------------------------------------------------
+loader.load( hurl, function ( gltf ) {
+	gltf.scene.position.setY(1.5);
+	gltf.scene.castShadow = true;
+	gltf.scene.name = "torso";
+	scene.add( gltf.scene );
+	ttemp = gltf.scene;
 
-//---------------------------------HAIR-------------------------------------------
-hurl = models[hair][0];
-if(hurl != "")// model has hair
-loader.load( hurl,  (gltf) => add_model_to_scene(gltf , "hair")
-	, undefined, function ( error ) { console.error( error );} );
-//--------------------------------------------------------------------------------
+}, undefined, function ( error ) {
 
-//---------------------------------HEAD-------------------------------------------
-hurl = models[head][1];
-loader.load( hurl, (gltf) => add_model_to_scene(gltf , "head")
-	, undefined, function ( error ) { console.error( error );} );
+	console.error( error );
 
-//--------------------------------------------------------------------
+} );
 
-//-------------------------------BODY---------------------------------
-hurl = models[torso][2];
-loader.load( hurl, (gltf) => add_model_to_scene(gltf , "torso")
-	, undefined, function ( error ) { console.error( error );} );
-//-----------------------------------------------------------------
+var hurl = '';
+var hurl1 = '';
+if(arms==0){
+	hurl = '/model/minecraft/minecraft_steve_LeftArm.gltf';
+	hurl1 = '/model/minecraft/minecraft_steve_RightArm.gltf';
+}else if(arms==1){
+	hurl = '/model/chibi/chibi_leftArm.gltf';
+	hurl1 = '/model/chibi/chibi_rightArm.gltf';
+}
+loader.load( hurl, function ( gltf ) {
+	gltf.scene.position.setY(1.5);
+	gltf.scene.castShadow = true;
+	gltf.scene.name = "leftarm";
+	scene.add( gltf.scene );
+	latemp = gltf.scene;
 
-/*var textureLoader = new THREE.TextureLoader();
-var map =  textureLoader.load("/model/test.jpg");
-gltf.scene.children[0].material = new THREE.MeshPhongMaterial({
-	map: map,
-});*/ //TODO 
+}, undefined, function ( error ) {
 
-//------------------------------ARMS---------------------------------
-hurl = models[arms][3];
-hurl1 = models[arms][4];
-loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftarm")
-	, undefined, function ( error ) { console.error( error );} );
-loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightarm")
-	, undefined, function ( error ) { console.error( error );} );
-//---------------------------------------------------------------------
+	console.error( error );
 
-//---------------------------LEGS--------------------------------------
-hurl = models[legs][5];
-hurl1 = models[legs][6];
-loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
-	, undefined, function ( error ) { console.error( error );} );
-loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
-	, undefined, function ( error ) { console.error( error );} );
-//---------------------------------------------------------------------
+} );
+loader.load( hurl1, function ( gltf ) {
+	gltf.scene.position.setY(1.5);
+	gltf.scene.castShadow = true;
+	gltf.scene.name = "rightarm";
+	scene.add( gltf.scene );
+	ratemp = gltf.scene;
 
-//---------------------------PLANE--------------------------------
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+
+var hurl = '';
+var hurl1 = '';
+if(legs==0){
+	hurl = '/model/minecraft/minecraft_steve_LeftLeg.gltf';
+	hurl1 = '/model/minecraft/minecraft_steve_RightLeg.gltf';
+}else if(legs==1){
+	hurl = '/model/chibi/chibi_leftLeg.gltf';
+	hurl1 = '/model/chibi/chibi_righyLeg.gltf';
+}
+loader.load( hurl, function ( gltf ) {
+	gltf.scene.position.setY(1.5);
+	gltf.scene.castShadow = true;
+	gltf.scene.name = "leftleg";
+	scene.add( gltf.scene );
+	lltemp = gltf.scene;
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+loader.load( hurl1, function ( gltf ) {
+	gltf.scene.position.setY(1.5);
+	gltf.scene.castShadow = true;
+	gltf.scene.name = "rightleg";
+	scene.add( gltf.scene );
+	rltemp = gltf.scene;
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+
 var geometry = new THREE.BoxBufferGeometry(1000, 0, 1000);
 var material = new THREE.MeshPhongMaterial({ color: 0xA9A9A9 });
 var plane = new THREE.Mesh(geometry, material);
@@ -354,9 +179,7 @@ plane.castShadow = false;
 plane.receiveShadow = true;
 plane.position.setY(-4);
 scene.add(plane);
-//-----------------------------------------------------------------
 
-//---------------------------LIGHTING-----------------------------
 var light = new THREE.AmbientLight(0x222222);
 scene.add(light);
 
@@ -369,41 +192,46 @@ light.shadow.mapSize.width = 512;  // default
 light.shadow.mapSize.height = 512; // default
 light.shadow.camera.near = 0.5;    // default
 light.shadow.camera.far = 500;
-//----------------------------------------------------------------
 
-//------------------------------INDEX UPDATER----------------------------
 function updateIndexes(){
 	for(var i=0;i< scene.children.length;++i){
-		switch(scene.children[i].name)
-		{
-			case "head" : ihead = i; break;
-			case "torso" : itorso = i; break;
-			case "leftarm" : ilarm = i; break;
-			case "rightarm" : irarm = i; break;
-			case "leftleg" : illeg = i; break;
-			case "rightleg" : irleg = i; break;
-			case "hair" : ihair = i; break;
+		if(scene.children[i].name=="head"){
+			ihead = i;
+		}else if(scene.children[i].name=="torso"){
+			itorso = i;
+		}else if(scene.children[i].name=="leftarm"){
+			ilarm = i;
+		}else if(scene.children[i].name=="rightarm"){
+			irarm = i;
+		}else if(scene.children[i].name=="leftleg"){
+			illeg = i;
+		}else if(scene.children[i].name=="rightleg"){
+			irleg = i;
+		}else if(scene.children[i].name=="hair"){
+			ihair = i;
 		}
 	}
 }
-//--------------------------------------------------------
 
 window.addEventListener( 'resize', onWindowResize, false );
 
 function onWindowResize() {
 
-	ConfigureCanvas();
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize( window.innerWidth, window.innerHeight );
 
 }
 
-//-------------------------------ANIMATE---------------------------------
 var animate = function () {
-	
 	if(headchange){
 		updateIndexes();
 		var temp = scene.getObjectByName(scene.children[ihead].name);
 		scene.remove(temp);
+		var hurl = '';
 		if(head==0){
+			hurl = '/model/minecraft/minecraft_steve_head.gltf';
 			updateIndexes();
 			if(ihair!=99){
 				var temp = scene.getObjectByName(scene.children[ihair].name);
@@ -411,12 +239,32 @@ var animate = function () {
 				hhtemp = null;
 			}
 		}else if(head==1){
-			loader.load( '/model/chibi/chibi_hair.gltf', (gltf) => add_model_to_scene(gltf , "hair")
-			, undefined, function ( error ) { console.error( error );} );
+			hurl = '/model/chibi/chibi_head.gltf';
+			loader.load( '/model/chibi/chibi_hair.gltf', function ( gltf ) {
+				gltf.scene.position.setY(1.5);
+				gltf.scene.castShadow = true;
+				gltf.scene.name = "hair";
+				scene.add( gltf.scene );
+				hhtemp = gltf.scene;
+	
+			}, undefined, function ( error ) {
+	
+				console.error( error );
+	
+			} );
 		}
-		hurl = models[head][1];
-		loader.load( hurl, (gltf) => add_model_to_scene(gltf , "head")
-			, undefined, function ( error ) { console.error( error );} );
+		loader.load( hurl, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "head";
+			scene.add( gltf.scene );
+			htemp = gltf.scene;
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
 		headchange = false;
 	}
 
@@ -424,9 +272,24 @@ var animate = function () {
 		updateIndexes();
 		var temp = scene.getObjectByName(scene.children[itorso].name);
 		scene.remove(temp);
-		hurl = models[torso][2];
-		loader.load( hurl, (gltf) => add_model_to_scene(gltf , "torso")
-		, undefined, function ( error ) { console.error( error );} );
+		var hurl = '';
+		if(torso==0){
+			hurl = '/model/minecraft/minecraft_steve_Body.gltf';
+		}else if(torso==1){
+			hurl = '/model/chibi/chibi_body.gltf';
+		}
+		loader.load( hurl, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "torso";
+			scene.add( gltf.scene );
+			ttemp = gltf.scene;
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
 		torsochange = false;
 	}
 
@@ -437,13 +300,39 @@ var animate = function () {
 		updateIndexes();
 		var temp1 = scene.getObjectByName(scene.children[irarm].name);
 		scene.remove(temp1);
-		
-		hurl = models[arms][3];
-		hurl1 = models[arms][4];
-		loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftarm")
-			, undefined, function ( error ) { console.error( error );} );
-		loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightarm")
-			, undefined, function ( error ) { console.error( error );} );
+		var hurl = '';
+		var hurl1 = '';
+		if(arms==0){
+			hurl = '/model/minecraft/minecraft_steve_LeftArm.gltf';
+			hurl1 = '/model/minecraft/minecraft_steve_RightArm.gltf';
+		}else if(arms==1){
+			hurl = '/model/chibi/chibi_leftArm.gltf';
+			hurl1 = '/model/chibi/chibi_rightArm.gltf';
+		}
+		loader.load( hurl, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "leftarm";
+			scene.add( gltf.scene );
+			latemp = gltf.scene;
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
+		loader.load( hurl1, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "rightarm";
+			scene.add( gltf.scene );
+			ratemp = gltf.scene;
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
 		armschange = false;
 	}
 
@@ -454,42 +343,50 @@ var animate = function () {
 		updateIndexes();
 		var temp1 = scene.getObjectByName(scene.children[irleg].name);
 		scene.remove(temp1);
+		var hurl = '';
+		var hurl1 = '';
+		if(legs==0){
+			hurl = '/model/minecraft/minecraft_steve_LeftLeg.gltf';
+			hurl1 = '/model/minecraft/minecraft_steve_RightLeg.gltf';
+		}else if(legs==1){
+			hurl = '/model/chibi/chibi_leftLeg.gltf';
+			hurl1 = '/model/chibi/chibi_righyLeg.gltf';
+		}
+		loader.load( hurl, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "leftleg";
+			scene.add( gltf.scene );
+			lltemp = gltf.scene;
 
-		hurl = models[legs][5];
-		hurl1 = models[legs][6];
-		loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
-			, undefined, function ( error ) { console.error( error );} );
-		loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
-			, undefined, function ( error ) { console.error( error );} );
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
+		loader.load( hurl1, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "rightleg";
+			scene.add( gltf.scene );
+			rltemp = gltf.scene;
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
 		legschange = false;
 	}
 	requestAnimationFrame(animate);
 
 	controls.update();
-	//renderer.render(scene, camera);
-	composer.render();
+	renderer.render(scene, camera);
 };
-//--------------------------------------------------------------
 
 animate();
 
-function screensh(){
-	// var w = window.open('', '');
-    // // w.document.title = "Screenshot";
-    // var img = new Image();
-    // renderer.render(scene, camera);
-    // img.src = renderer.domElement.toDataURL();
-	// w.document.body.appendChild(img);
-	// console.log(img.src);
-}
-
-
-//---------------------------HTML CUSTOMIZE PLUSH-----------------------
 $(document).ready(function(){
-	$('#scrsh').click(function () {
-		screensh();
-	});
-
 	$('#headl').click(function () {
 		if(head > 0){
 			headchange = true;
@@ -649,4 +546,3 @@ $(document).ready(function(){
 	}
 
 })
-//----------------------------------------------------------------------------------------

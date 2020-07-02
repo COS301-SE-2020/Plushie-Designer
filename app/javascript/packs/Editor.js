@@ -405,22 +405,7 @@ var animate = function () {
 
 animate();
 
-function screensh(){
-	controls.reset();
-	// var w = window.open('', '');
-	// w.document.title = "Screenshot";
-    var img = new Image();
-    renderer.render(scene, camera);
-    img.src = renderer.domElement.toDataURL();
-	// w.document.body.appendChild(img);
-	$("#toy_image")[0].value = img.src;
-}
-
 $(document).ready(function(){
-	$('#share-btn').click(function () {
-		screensh();
-	});
-
 	$('#headl').click(function () {
 		if($("#toy_head")[0].value > 0){
 			headchange = true;
