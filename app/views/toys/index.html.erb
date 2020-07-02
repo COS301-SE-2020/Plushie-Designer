@@ -3,25 +3,41 @@
     <!-- Blog toy Content Column -->
     <div class="col-lg-8">
         <% @toys.each do |toy| %>
-        <!-- Blog toy -->
-        <!-- Title -->
-        <h4 style="font-size: 20px;"><%= link_to toy.name, toy %></h4>
-        <!-- Date/Time -->
-       <p><span class="glyphicon glyphicon-time"></span> Was created: <%= time_ago_in_words(toy.created_at) %>
-        </p>
+            <!-- Blog toy -->
+            <!-- Title -->
+            <% if toy.shared || current_user == toy.user%>
+                <div class="toy-card">
+                    <img class="PlushImg" src=<%= toy.image %>>
+                    <h4 style="font-size: 20px;"><%= link_to toy.name, toy %></h4>
+                    <!-- Date/Time -->
+                    <p>
+                        <span class="glyphicon glyphicon-time"></span> Was created: <%= time_ago_in_words(toy.created_at) %>
+                    </p>
 
-        <!-- Author -->
-        <p>
-          Plushie By:<strong> <%= toy.user.username %></strong> 
-        </p>
-        <p>
-            Rating:<strong> <%= toy.rating %>/5</strong>
-        </p>
-        <hr>
-        <!-- toyed Comments -->
-        <!-- Comment -->
+                    <!-- Author -->
+                    <p>
+                        Plushie By:<strong> <%= toy.user.username %></strong>
+                    </p>
+                    <p>
+                        <% toy.rating = 0 %>
+                        <% toy.ratings.each do |r| %>
+                            <% toy.rating = toy.rating + r.value %>
+                            <% @num = @num + 1 %>
+                        <% end %>
+                        Rating:<strong> <%= toy.rating/@num %>/5</strong>
+                        <% @num = 0 %>
+                    </p>
+                </div>
+                <!-- <hr> -->
+                <!-- toyed Comments -->
+                <!-- Comment -->
+            <% end %>
         <% end %>
-        <%= link_to "Create Plushie", new_toy_path, class: "btn btn-default btn-xs" %>
+        <div class="row">
+            <!-- <div class="create-plushie-button"> -->
+                <%= link_to "Create Plushie", root_path, :class => "create-plushie-button" %>
+            <!-- </div> -->
+        </div>
     </div>
     <!-- Blog Sidebar Widgets Column -->
 </div>

@@ -1,9 +1,11 @@
-<div class="editor">
-    <%= javascript_pack_tag 'indexEditor' %>
+<div class="options">
+    <div class="index-page">
+        <%= render 'form_new', toy: @toy %>
+        <hr>
+        <%= button_to 'Back', toys_path, method: :get, :id => "back-btn" %>
+    </div>
 </div>
 
-<div class="options">
-    <%= render 'form', toy: @toy %>
-    <br>
-    <%= button_to 'Back', toys_path, method: "get" %>
+<div class="editor">
+    <%= javascript_pack_tag 'Editor' %>
 </div>

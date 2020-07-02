@@ -12,7 +12,7 @@ Plushie-Designer is a website that allows users to create and share their plushi
 - Trello: https://trello.com/b/Fb6EqN0r/plushiedesigner
 ### Members' LinkIn Profile Links
 - Anton Smith: https://www.linkedin.com/in/anton-smith-a276b8180/
-- Aiden Diederiks: ...
+- Aiden Diederiks: https://www.linkedin.com/in/aiden-diederiks-3045801a5/
 - Estienne du Toit: https://www.linkedin.com/in/estienne-du-toit-b654391a8/
 - Pierre du Plessis: https://www.linkedin.com/in/pierre-du-plessis-90ba5b17b/
 - Stefan du Toit: https://www.linkedin.com/in/stefan-du-toit-b0152a1ab/
@@ -25,7 +25,7 @@ Plushie-Designer is a website that allows users to create and share their plushi
 
 **Aiden Diederiks**
 *u17306312*
-- ...
+- https://le-ginger.github.io/
 ...
 
 **Estienne du Toit**

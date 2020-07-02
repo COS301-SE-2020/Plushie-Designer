@@ -1,18 +1,66 @@
-
 <%= simple_form_for(@toy) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :head %>
-    <%= f.input :arms %>
-    <%= f.input :torso %>
-    <%= f.input :legs %>
-    <%= f.input :rating %>
+    <%= f.input :name %><hr>
+    <%= f.input :shared, label: "Share"%><hr>
+    <div class="hinput">
+      <%= f.input :head%>
+      <%= f.input :arms%>
+      <%= f.input :torso%>
+      <%= f.input :legs%>
+      <%= f.input :rating%>
+      <%= f.input :head_pos %>
+      <%= f.input :head_posx %>
+      <%= f.input :torso_posy %>
+      <%= f.input :torso_posx %>
+      <%= f.input :larm_posy %>
+      <%= f.input :larm_posx %>
+      <%= f.input :rarm_posy %>
+      <%= f.input :rarm_posx %>
+      <%= f.input :lleg_posy %>
+      <%= f.input :lleg_posx %>
+      <%= f.input :rleg_posy %>
+      <%= f.input :rleg_posx %>
+      <%= f.input :image %>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Share" %>
+  <div class="buttons"><button class="btn" id="headl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> Head <button class="btn" id="headr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button></div><hr>
+  Up / Down
+  <input type="range" min="-4" max="3" value="1.5" class="slider" id="headup" step="0.1">
+  Left / Right
+  <input type="range" min="-4" max="4" value="0" class="slider" id="headleft" step="0.1">
+  <div class="buttons"><button class="btn" id="armsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> Arms <button class="btn" id="armsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button></div><hr>
+  Left Arm<br>
+  Up / Down
+  <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="larmup" step="0.1">
+  Left / Right
+  <input type="range" min="-4" max="4" value="0" class="slider" id="larmleft" step="0.1">
+  Right Arm<br>
+  Up / Down
+  <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="rarmup" step="0.1">
+  Left / Right
+  <input type="range" min="-4" max="4" value="0" class="slider" id="rarmleft" step="0.1">
+  <div class="buttons"><button class="btn" id="torsol" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> Torso <button class="btn" id="torsor" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button></div><hr>
+  Up / Down
+  <input type="range" min="-4" max="3" value="1.5" class="slider" id="torsoup" step="0.1">
+  Left / Right
+  <input type="range" min="-4" max="4" value="0" class="slider" id="torsoleft" step="0.1">
+  <div class="buttons"><button class="btn" id="legsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> Legs <button class="btn" id="legsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button></div><hr>
+  Left Leg<br>
+  Up / Down
+  <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="llegup" step="0.1">
+  Left / Right
+  <input type="range" min="-4" max="4" value="0" class="slider" id="llegleft" step="0.1">
+  Right Leg<br>
+  Up / Down
+  <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="rlegup" step="0.1">
+  Left / Right
+  <input type="range" min="-4" max="4" value="0" class="slider" id="rlegleft" step="0.1">
+  <div class="buttons"><button class="btn" id="generate-pattern" type="button">Generate Pattern</button><hr>
+  <div class="form-actions buttons">
+    <%= f.button :submit, :id => "share-btn" %>
   </div>
 <% end %>

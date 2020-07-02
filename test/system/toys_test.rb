@@ -14,27 +14,33 @@ class ToysTest < ApplicationSystemTestCase
 
     click_on "Create Plushie"
 
-    fill_in "Arms", with: 1
-    fill_in "Head", with: 1
-    fill_in "Legs", with: 1
+    click_on "headr"
+    click_on "armsr"
+    click_on "torsor"
+    click_on "legsr"
     fill_in "Name", with: "Test"
-    fill_in "Rating", with: 1.5
-    fill_in "Torso", with: 1
+
     click_on "Share"
 
     assert_text "Toy was successfully created"
 
     click_on "Edit"
 
-    fill_in "Arms", with: 0
-    fill_in "Head", with: 0
-    fill_in "Legs", with: 0
+    click_on "headl"
+    click_on "armsl"
+    click_on "torsol"
+    click_on "legsl"
     fill_in "Name", with: "Test"
-    fill_in "Rating", with: 0.5
-    fill_in "Torso", with: 0
     click_on "Share"
 
     assert_text "Toy was successfully updated."
+
+    fill_in "Description", with: "Gundam is the best. Screw Transformers!!!!!!!!!!!!!"
+    fill_in "Value", with: 5
+
+    click_on "leave a rating"
+    
+    assert_text  "Your rating has been saved."
 
     page.accept_confirm do
       click_on "Delete"
