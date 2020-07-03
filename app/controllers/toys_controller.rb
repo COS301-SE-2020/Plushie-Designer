@@ -11,6 +11,39 @@ class ToysController < ApplicationController
   # GET /toys/1
   # GET /toys/1.json
   def show
+    @toy = scope.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Invoice No. #{@toy.id}",
+               page_size: 'A4',
+               template: "toys/displayPDF.html.erb",
+               layout: "pdf.html",
+               orientation: "Landscape",
+               lowquality: true,
+               zoom: 1,
+               dpi: 75
+      end
+    end
+  end
+
+  def displayPDF
+    @toy = scope.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Invoice No. #{@toy.id}",
+               page_size: 'A4',
+               template: "toys/displayPDF.html.erb",
+               layout: "pdf.html",
+               orientation: "Landscape",
+               lowquality: true,
+               zoom: 1,
+               dpi: 75
+      end
+    end
   end
 
   # GET /toys/new
@@ -72,4 +105,8 @@ class ToysController < ApplicationController
     def toy_params
       params.require(:toy).permit(:name, :head, :arms, :torso, :legs, :rating, :head_pos, :head_posx, :torso_posy, :torso_posx, :larm_posy, :larm_posx, :rarm_posy, :rarm_posx, :lleg_posy, :lleg_posx, :rleg_posy, :rleg_posx, :shared, :image)
     end
+
+  def scope
+    ::Toy.all
+  end
 end
