@@ -21,10 +21,6 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'bootstrap-sass-extras', '~> 0.0.2'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
-gem 'jquery-rails'
-gem 'bootstrap', '~> 4.1.3'
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
