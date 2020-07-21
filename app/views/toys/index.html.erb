@@ -27,20 +27,20 @@
                             Rating:<strong> <%= toy.rating/@num %>/5</strong>
                             <% @num = 0 %>
                         </p>
+                      <%= link_to 'DOWNLOAD PDF', displayPDF_path(toy.id, format: :pdf) %>
                     </div>
                     <!-- <hr> -->
                     <!-- toyed Comments -->
                     <!-- Comment -->
                 <% end %>
             <% end %>
+        <% end %>
+        <div class="row">
+            <!-- <div class="create-plushie-button"> -->
+                <%= link_to "Create Plushie", root_path, :class => "create-plushie-button" %>
+            <!-- </div> -->
         </div>
-        <!-- Blog Sidebar Widgets Column -->
     </div>
-    <div class="row">
-        <div class="create-plushie-button-container">
-            <%= link_to "Create Plushie", root_path, :class => "create-plushie-button" %>
-        </div>
-    </div>
-    <br>
-
+    <!-- Blog Sidebar Widgets Column -->
 </div>
+<br>
