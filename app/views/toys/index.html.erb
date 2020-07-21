@@ -1,37 +1,37 @@
-<h1>Plushies</h1>
-<div class="row">
-    <!-- Blog toy Content Column -->
-    <div class="col-lg-8">
-        <% @toys.each do |toy| %>
-            <!-- Blog toy -->
-            <!-- Title -->
-            <% if toy.shared || current_user == toy.user%>
-                <div class="toy-card">
-                    <img class="PlushImg" src=<%= toy.image %>>
-                    <h4 style="font-size: 20px;"><%= link_to toy.name, toy %></h4>
-                    <!-- Date/Time -->
-                    <p>
-                        <span class="glyphicon glyphicon-time"></span> Was created: <%= time_ago_in_words(toy.created_at) %>
-                    </p>
-
-                    <!-- Author -->
-                    <p>
-                        Plushie By:<strong> <%= toy.user.username %></strong>
-                    </p>
-                    <p>
-                        <% toy.rating = 0 %>
-                        <% toy.ratings.each do |r| %>
-                            <% toy.rating = toy.rating + r.value %>
-                            <% @num = @num + 1 %>
-                        <% end %>
-                        Rating:<strong> <%= toy.rating/@num %>/5</strong>
-                        <% @num = 0 %>
-                    </p>
-                  <%= link_to 'DOWNLOAD PDF', displayPDF_path(toy.id, format: :pdf) %>
-                </div>
-                <!-- <hr> -->
-                <!-- toyed Comments -->
-                <!-- Comment -->
+<div class="toy-index">
+    <h1>Plushies</h1>
+    <div class="row">
+        <!-- Blog toy Content Column -->
+        <div class="col-lg-8">
+            <% @toys.each do |toy| %>
+                <!-- Blog toy -->
+                <!-- Title -->
+                <% if toy.shared || current_user == toy.user%>
+                    <div class="toy-card">
+                        <img class="PlushImg" src=<%= toy.image %>>
+                        <h4 style="font-size: 20px;"><%= link_to toy.name, toy %></h4>
+                        <!-- Date/Time -->
+                        <p>
+                            <span class="glyphicon glyphicon-time"></span> Was created: <%= time_ago_in_words(toy.created_at) %>
+                        </p>
+                        <!-- Author -->
+                        <p>
+                            Plushie By:<strong> <%= toy.user.username %></strong>
+                        </p>
+                        <p>
+                            <% toy.rating = 0 %>
+                            <% toy.ratings.each do |r| %>
+                                <% toy.rating = toy.rating + r.value %>
+                                <% @num = @num + 1 %>
+                            <% end %>
+                            Rating:<strong> <%= toy.rating/@num %>/5</strong>
+                            <% @num = 0 %>
+                        </p>
+                    </div>
+                    <!-- <hr> -->
+                    <!-- toyed Comments -->
+                    <!-- Comment -->
+                <% end %>
             <% end %>
         </div>
         <!-- Blog Sidebar Widgets Column -->
