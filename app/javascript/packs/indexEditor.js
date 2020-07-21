@@ -241,7 +241,7 @@ var models = new Array();
 
 	function onMouseClick(event)
 	{
-		// event.preventDefault();
+		event.preventDefault();
 
 		mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 		mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
@@ -259,6 +259,7 @@ var models = new Array();
 		else{
 			outlinePass.selectedObjects = [];
 		}
+
 	}
 //---------------------------------------------------------------------------------
 
