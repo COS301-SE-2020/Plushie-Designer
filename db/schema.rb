@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 2020_06_27_133038) do
     t.float "lleg_posx"
     t.float "rleg_posy"
     t.float "rleg_posx"
-    t.boolean "shared"
     t.text "image"
   end
 
