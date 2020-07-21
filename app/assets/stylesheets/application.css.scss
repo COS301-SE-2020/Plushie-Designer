@@ -19,14 +19,8 @@
  @import "font-awesome-sprockets";
  @import "font-awesome";
 
-:root {
-    --primary-colour: #2C2A4A;
-    --secondary-colour: #7FDEFF;
-    --tertiary-colour: rgb(42, 154, 173);
-}
-
 .editor{
-    position: absolute;
+position: absolute;
 }
 
 body{
@@ -40,37 +34,35 @@ body{
 }
 
 .navbar {
-    z-index: 999;
-    padding: 10px;
-    background-color: var(--primary-colour);
-    color: var(--secondary-colour);
-    position: fixed;
-    width: 100%;
-    margin-bottom: 1em;
-    border-color: var(--secondary-colour);
-    a.navbar-brand {
-        color: var(--secondary-colour);
-    }
-    a.navbar-brand:hover {
-        color: var(--tertiary-colour)
-    }
-    ul.nav {
-        li {
-            a {
-                color: var(--secondary-colour);
-                background-color: var(--primary-colour);
-                border-radius: 10px;
-                margin-left: 1em;
-                transition: background-color 0.3s ease;
-            }
+z-index: 999;
+padding: 10px;
+background-color: rgb(61, 61, 61);
+position: fixed;
+width: 100%;
+margin-bottom: 1em;
+a.navbar-brand {
+    color: #fff;
+}
+a.navbar-brand:hover {
+    color: rgb(161, 161, 161);
+}
+ul.nav {
+    li {
+        a {
+            color: #fff;
+            margin-left: 1em;
+            transition: linear 0.1s;
+        }
 
-            a:hover {
-                color: var(--primary-colour);
-                background-color: var(--secondary-colour);
-                transition: background-color 0.3s ease;
-            }
+        a:hover {
+            color: rgb(177, 177, 177);
+            background-color: rgb(46, 46, 46);
+            border-radius: 10px;
+            box-shadow: inset 5px 5px 2px -2px rgb(0, 0, 0);
+            transition: linear 0.1s;
         }
     }
+}
 }
 
 .buttons {
@@ -102,20 +94,6 @@ body{
     }
 }
 .index-page {
-    #scrsh {
-        color: var(--secondary-colour);
-        background-color: var(--primary-colour);
-        width: 40%;
-        margin-left: 30%;
-        margin-right: 30%;
-        margin-bottom: 10%;
-        transition: background-color 0.3s ease;
-    }
-    #scrsh:hover {
-        background-color: var(--secondary-colour);
-        color: var(--primary-colour);
-        transition: background-color 0.3s ease;
-    }
     background: rgba($color: #000000, $alpha: 0.5);
     border-radius: 1em;
     width: 21em;
@@ -127,37 +105,53 @@ body{
             background: rgba($color: #e2e2e2, $alpha: 1.0);
             text-decoration: none;
             margin-right: 1em;
-            color: var(--secondary-colour);
-            background-color: var(--primary-colour);
-            transition: background-color 0.3s ease;
+            color: #000;
         }
         #headr, #armsr, #torsor, #legsr {
             width: 7em;
             background: rgba($color: #e2e2e2, $alpha: 1.0);
             text-decoration: none;
             margin-left: 1em;
-            color: var(--secondary-colour);
-            background-color: var(--primary-colour);
-            transition: background-color 0.3s ease;
+            color: #000;
         }
         #generate-pattern {
             width: 19em;
-            color: var(--secondary-colour);
-            background-color: var(--primary-colour);
-            transition: background-color 0.3s ease;
-        }
-        #headl:hover, #armsl:hover, #torsol:hover, #legsl:hover,
-        #headr:hover, #armsr:hover, #torsor:hover, #legsr:hover, 
-        #generate-pattern:hover {
-            background-color: var(--secondary-colour);
-            color: var(--primary-colour);
-            transition: background-color 0.3s ease;
+            color: #000;
         }
     }
-    .slider {
-        background: var(--secondary-colour);
-        // color: var(--primary-colour);
-        transition: background-color 0.3s ease;
+}
+
+.sign-up-buttons {
+    input {
+        background-color: rgb(228, 228, 228);
+        padding: 1em 2em 1em 2em;
+        box-shadow: 5px 5px 15px -2px rgb(100, 100, 100);
+        transition: linear 0.1s;
+    }
+
+    input:hover {
+        background-color: rgb(202, 202, 202);
+        box-shadow: 5px 5px 10px -2px rgb(100, 100, 100);
+        transition: linear 0.2s;
+    }
+
+    a {
+        text-decoration: none;
+        border: 1px solid black;
+        margin-left: 2em;
+        padding: 1em 2em 1em 2em;
+        background-color: rgb(53, 53, 53);
+        box-shadow: 5px 5px 15px -2px rgb(100, 100, 100);
+        transition: linear 0.1s;
+        color: #fff;
+        border-radius: 0.5em;
+    }
+
+    a:hover {
+        text-decoration: none;
+        background-color: rgb(88, 88, 88);
+        box-shadow: 5px 5px 10px -2px rgb(100, 100, 100);
+        transition: linear 0.2s;
     }
 }
 
@@ -284,10 +278,10 @@ p{
 	font-size:20px;
 	padding:11px 43px;
     text-decoration:none;
-    float: right;
+    // float: right;
     position: absolute;
-    // right: 41%;
-    width: 100%;
+    right: 1.5em;
+    width: 90%;
     margin-top: 5em;
 }
 .submit-button:hover {
@@ -356,55 +350,40 @@ p{
 	position:relative;
 	top:1px;
 }
+.toy-card {
+    // border: 1px solid black;
+    background-color: rgb(221, 221, 221);
+    border-radius: 2em;
+    padding: 20px;
+    width: 28%;
+    display: inline-block;
+    margin: 1em;
+    text-align: center;
+    box-shadow: 10px 10px 15px -10px rgb(139, 139, 139);
 
-.toy-index {
-    padding-top: 2rem;
-    a {
-        text-decoration: none;
-        // color: var(--secondary-colour);
-    }
-    a:hover {
-        color: var(--secondary-colour);
-    }
-    .toy-card {
-        background-color: var(--primary-colour);
-        color: var(--secondary-colour);
-        border-radius: 2em;
-        padding: 20px;
-        width: 28%;
-        display: inline-block;
-        margin: 1em;
-        text-align: center;
-    }
-
-    .create-plushie-button-container {
-        width: 100%;
-        height: 5em;
-        margin: auto;
-        text-align: center;
-    }
-    
-    .create-plushie-button {
-        text-decoration: none;
-        color: var(--secondary-colour);
-        background-color: var(--primary-colour);
-        transition: background-color 0.3s ease;
-        padding: 1em;
-        font-size: 20px;
-        position: absolute;
-        border-radius: 1em;
-        margin: auto;
-    }
-    
-    .create-plushie-button:hover {
-        text-decoration: none;
-        color: var(--primary-colour);
-        background-color: var(--secondary-colour);
-        transition: background-color 0.3s ease;
-        box-shadow: none;
-    }    
 }
 
+.create-plushie-button {
+    text-decoration: none;
+    color: #000;
+    background-color: rgb(106, 201, 77);
+    padding: 1em;
+    font-size: 20px;
+    position: absolute;
+    margin-top: 1em;
+    border-radius: 1em;
+    left: 39%;
+    transition: linear 0.1s;
+    box-shadow: 10px 10px 25px -5px rgb(56, 133, 53);
+}
+
+.create-plushie-button:hover {
+    text-decoration: none;
+    color: #0000;
+    background-color: rgb(95, 179, 69);
+    box-shadow: none;
+    transition: linear 0.2s;
+}
 
 .test{
     color: white;
@@ -430,15 +409,15 @@ hr{
     height: 50px;
     position: relative;
     overflow-x: hidden;
-}
-.tray__slide {
+  }
+  .tray__slide {
     position: fixed;
     display: flex;
     left: 0;
   /*   transform: translateX(-50%);
     animation: wheelin 1s 2s ease-in-out forwards; */
-}
-.tray__swatch {
+  }
+  .tray__swatch {
     transition: 0.1s ease-in;
     height: 50px;
     min-width: 50px;
@@ -446,19 +425,18 @@ hr{
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     background-size: cover;
     background-position: center;
-}
-.tray__swatch:nth-child(5n+5) {
+  }
+  .tray__swatch:nth-child(5n+5) {
     margin-right: 20px;
-}
+  }
 
 .controls {
     position: fixed;
     bottom: 40px;
     width: 100%;
-<<<<<<< HEAD
-}
+  }
 
-.edit_ratings{
+  .edit_ratings{
     background-color: rgba(0,0,0,0.7);
     top: 35%;
     bottom: 35%;
@@ -472,88 +450,4 @@ hr{
     padding-top: 1.5em;
     border-radius: 2em;
     border-width: 5em;
-}
-
-.user-form {
-    h2 {
-        color: var(--secondary-colour);
-    }
-    .sign-up-buttons {
-        display: inline-block;
-        input {
-            background-color: var(--secondary-colour);
-            color: var(--primary-colour);
-            border-color: var(--primary-colour);
-            padding: 1em 2em 1em 2em;
-            border-radius: 0.5em;
-            transition: background-color 0.3s ease;
-        }
-    
-        input:hover {
-            background-color: var(--primary-colour);
-            color: var(--secondary-colour);
-            border-color: var(--secondary-colour);
-            transition: background-color 0.3s ease;
-        }
-        
-        .right {
-            display: inline-block;
-        }
-
-        .log-in-btn a {
-            text-decoration: none;
-            border: 1px solid var(--secondary-colour);
-            margin-left: 2em;
-            padding: 1em 2em 1em 2em;
-            background-color: var(--primary-colour);
-            color: var(--secondary-colour);
-            border-radius: 0.5em;
-            transition: background-color 0.3s ease;
-        }
-    
-        .log-in-btn a:hover {
-            text-decoration: none;
-            background-color: var(--secondary-colour);
-            border-color: var(--primary-colour);
-            color: var(--primary-colour);
-            transition: background-color 0.3s ease;
-        }
-    }
-}
-
-.sign-up-btn, .forgot-password-btn {
-    display: inline-block;
-    // margin-left: auto;
-    // right: 0;
-    a {
-        color: var(--secondary-colour);
-        text-decoration: none;
-        text-align: center;
-        border: 1px solid var(--secondary-colour);
-        margin-left: 2em;
-        padding: 1em 2em 1em 2em;
-        background-color: var(--primary-colour);
-        color: var(--secondary-colour);
-        border-radius: 0.5em;
-        transition: background-color 0.3s ease;
-        width: 9em;
-    }
-    a:hover {
-        color: var(--primary-colour);
-        text-decoration: none;
-        text-decoration: none;
-        background-color: var(--secondary-colour);
-        border-color: var(--primary-colour);
-        color: var(--primary-colour);
-        transition: background-color 0.3s ease;
-    }
-}
-
-.forgot-password-btn {
-    a {
-        width: 15em;
-    }
-}
-=======
   }
->>>>>>> parent of 6e807098... Merge pull request #45 from COS301-SE-2020/Development

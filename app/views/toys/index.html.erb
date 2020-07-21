@@ -1,4 +1,3 @@
-<div class="toy-index">
 <h1>Plushies</h1>
 <div class="row">
     <!-- Blog toy Content Column -->
@@ -34,14 +33,13 @@
                 <!-- toyed Comments -->
                 <!-- Comment -->
             <% end %>
+        <% end %>
+        <div class="row">
+            <!-- <div class="create-plushie-button"> -->
+                <%= link_to "Create Plushie", root_path, :class => "create-plushie-button" %>
+            <!-- </div> -->
         </div>
-        <!-- Blog Sidebar Widgets Column -->
     </div>
-    <div class="row">
-        <div class="create-plushie-button-container">
-            <%= link_to "Create Plushie", root_path, :class => "create-plushie-button" %>
-        </div>
-    </div>
-    <br>
-
+    <!-- Blog Sidebar Widgets Column -->
 </div>
+<br>
