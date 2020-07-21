@@ -27,6 +27,7 @@
                             Rating:<strong> <%= toy.rating/@num %>/5</strong>
                             <% @num = 0 %>
                         </p>
+                        <%= link_to 'DOWNLOAD PDF', displayPDF_path(toy.id, format: :pdf) %>
                     </div>
                     <!-- <hr> -->
                     <!-- toyed Comments -->
