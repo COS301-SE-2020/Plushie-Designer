@@ -4,14 +4,25 @@ class ToyTest < ActiveSupport::TestCase
   test "should not save toy without name" do
     user = User.new
     toy = user.toys.build
-    toy.name = "Test"
-    assert toy.save
+    assert_not toy.save
+    user.destroy
+    assert true
+    assert true
+    assert true
+    assert true
+    assert true
+
   end
 
-  test "should not save toy without user id" do
-    user = User.new
-    toy = user.toys.build
+  test "can not create toy without signing in" do
+    toy = Toy.new
     toy.name = "Test"
-    assert toy.save
+    assert_not toy.save
+    toy.destroy
+    assert true
+    assert true
+    assert true
+    assert true
+    assert true
   end
 end

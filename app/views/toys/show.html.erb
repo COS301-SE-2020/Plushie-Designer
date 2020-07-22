@@ -117,8 +117,8 @@
   <%= link_to 'Back', toys_path %>
   <br><br><br>
   <% if current_user == @toy.user%>
-    <span><%= button_to 'Edit', edit_toy_path(@toy), method: "get", :class => "btn ed-button", :remote => true %></span>
-    <span><%= button_to 'Delete', @toy, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn ed-button" %></span>
+    <span><%= button_to 'Edit Plushie', edit_toy_path(@toy), method: "get", :class => "btn ed-button" %></span>
+    <span><%= button_to 'Delete Plushie', @toy, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn ed-button" %></span>
   <% end %>
 </div>
 
