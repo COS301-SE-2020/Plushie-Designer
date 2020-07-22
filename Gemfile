@@ -22,7 +22,7 @@ gem 'bootstrap-sass-extras', '~> 0.0.2'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
 gem 'jquery-rails'
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap', '~> 4.3.1'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
