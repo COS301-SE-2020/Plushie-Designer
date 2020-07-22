@@ -1,21 +1,15 @@
 require 'test_helper'
 
 class ToyTest < ActiveSupport::TestCase
-  test "should not save toy without name" do
+  test "Unit Testing for Plushies" do
     user1 = User.new
     toy1 = user1.toys.build
     assert_not toy1.save
-    # user1.destroy
-  end
 
-  test "can not create toy without signing in" do
     toy2 = Toy.new
     toy2.name = "Test"
     assert_not toy2.save
-    # toy2.destroy
-  end
 
-  test "Can move pieces of model" do
     user3 = User.new
     toy3 = user3.toys.build
     toy3.name = "Test"
@@ -33,4 +27,23 @@ class ToyTest < ActiveSupport::TestCase
     toy3.rleg_posx = 0
     assert toy3.save
   end
+  test "Unit testing for Ratings" do
+    rating = Rating.new
+    rating.description = "Test"
+    rating.value = 2
+    assert_not rating.save
+
+    user = User.new
+    toy = user.toys.build
+    rating = toy.ratings.build
+    rating.description = "Test"
+    rating.value = 2
+    assert_not rating.save
+
+    rating.description = "Test2"
+    rating.value = 3
+
+    assert_not rating.save
+  end
+
 end
