@@ -8,7 +8,21 @@ one:
   rating: 0
   legs: 1
   user: one
-
+  head_pos: 1.5
+  head_posx: 0
+  torso_posy: 1.5
+  torso_posx:  0
+  larm_posy: 1.5
+  larm_posx:  0
+  rarm_posy: 1.5
+  rarm_posx:  0
+  lleg_posy: 1.5
+  lleg_posx:  0
+  rleg_posy: 1.5
+  rleg_posx:  0
+  image: null
+  shared: true
+  
 two:
   name: Mystring
   head: 0
@@ -17,3 +31,17 @@ two:
   rating: 0
   legs: 0
   user: two
+  head_pos: 1.5
+  head_posx: 0
+  torso_posy: 1.5
+  torso_posx:  0
+  larm_posy: 1.5
+  larm_posx:  0
+  rarm_posy: 1.5
+  rarm_posx:  0
+  lleg_posy: 1.5
+  lleg_posx:  0
+  rleg_posy: 1.5
+  rleg_posx:  0
+  image: null
+  shared: true
