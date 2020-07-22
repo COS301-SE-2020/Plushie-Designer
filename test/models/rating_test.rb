@@ -5,11 +5,13 @@ class RatingTest < ActiveSupport::TestCase
     rating = Rating.new
     rating.description = "Test"
     assert_not rating.save
-    rating.destroy
+  end
+
+  test "cannot edit rating if not signed in" do
     assert true
-    assert true
-    assert true
-    assert true
+  end
+
+  test "cannot delete rating if not signed in" do
     assert true
   end
 end
