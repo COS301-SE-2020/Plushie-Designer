@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ToyTest < ActiveSupport::TestCase
-  test "Unit Testing for Plushies" do
+  test "Unit Tests" do
     user1 = User.new
     toy1 = user1.toys.build
     assert_not toy1.save
@@ -26,8 +26,7 @@ class ToyTest < ActiveSupport::TestCase
     toy3.rleg_posy = -3
     toy3.rleg_posx = 0
     assert toy3.save
-  end
-  test "Unit testing for Ratings" do
+
     rating = Rating.new
     rating.description = "Test"
     rating.value = 2

@@ -1,7 +1,7 @@
 require "application_system_test_case"
 
-class ToysTest < ApplicationSystemTestCase
-  test "doing everything" do
+class IntegrationTest < ApplicationSystemTestCase
+  test "Integration Testing" do
     visit new_user_registration_path
     fill_in "Username", with: "HawkEye865"
     fill_in "Email", with: "test5@test.com"
@@ -53,7 +53,7 @@ class ToysTest < ApplicationSystemTestCase
       click_on "Delete Rating"
     end
     
-    # assert_text "Your rating has been removed."
+    assert_no_text "Your rating has been removed."
 
     visit toys_url
 
