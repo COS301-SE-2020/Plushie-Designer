@@ -2,34 +2,112 @@
 
 <html>
     <head>
-
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.slim.js"
+            integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+            crossorigin="anonymous"></script>
     </head>
     <body>
+    
+        <div class="controls">
+            <div id="js-tray" class="tray">
+                <div id="js-tray-slide" class="tray__slide"></div>
+            </div>
+        </div>
+
         <div class="options">
             <div class="index-page">
                 <hr>
                 <div class="buttons">
-                    <button class="btn" id="headl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-                    Head 
-                    <button class="btn" id="headr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+                    <button class="btn" id="scrsh" type="button">Screenshot</button><br>
+
+                    <div class="head-div">
+                        <div class="head-controls">
+                            <button style="display: none;" id="hc-btn" type="hidden" data-toggle="collapse" data-target="#collapse-head-controls"></button>
+                            <button class="btn" id="headl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+                            <span>Head</span>
+                            <button class="btn" id="headr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button><br>
+                        </div>
+
+                        <div class="collapse" id="collapse-head-controls">
+                            <div class="slider-row">
+                                <div class="col-10">
+                                    <label class="ml-3" for="headup">Up / Down</label>
+                                    <input type="range" min="-4" max="3" value="1.5" class="slider" id="headup" step="0.1">
+                                </div>
+                            </div>
+
+                            <div class="slider-row">
+                                <div class="col-10">
+                                    <label for="headleft">Left / Right</label>
+                                    <input type="range" min="-4" max="4" value="0" class="slider" id="headleft" step="0.1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+
                 </div>
                 <hr>
                 <div class="buttons">
-                    <button class="btn" id="armsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-                    Arms 
-                    <button class="btn" id="armsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+                    <div class="arms-div">
+                        <button style="display: none;" id="ac-btn" type="hidden" data-toggle="collapse" data-target="#arms-collapse"></button>
+                        <button class="btn" id="armsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+                        <span>Arms</span>
+                        <button class="btn" id="armsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+                    </div>
+
+                    <div class="collapse" id="arms-collapse">
+                        <span class="refined-control-label">Left Arm</span><br/>
+                        <label for="larmup">Up / Down</label>
+                        <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="larmup" step="0.1">
+                        <label for="larmleft">Left / Right</label>
+                        <input type="range" min="-4" max="4" value="0" class="slider" id="larmleft" step="0.1">
+                        <span class="refined-control-label">Right Arm</span><br/>
+                        <label for="rarmup">Up / Down</label>
+                        <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="rarmup" step="0.1">
+                        <label for="rarmleft">Left / Right</label>
+                        <input type="range" min="-4" max="4" value="0" class="slider" id="rarmleft" step="0.1">
+                    </div>
                 </div>
                 <hr>
                 <div class="buttons">
-                    <button class="btn" id="torsol" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-                    Torso 
-                    <button class="btn" id="torsor" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+                    <div class="torso-div">
+                        <button style="display: none;" id="tc-btn" type="hidden" data-toggle="collapse" data-target="#torso-collapse"></button>
+                        <button class="btn" id="torsol" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+                        Torso 
+                        <button class="btn" id="torsor" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+                    </div>
+
+                    <div class="collapse" id="torso-collapse">
+                        <label for="torsoup">Up / Down</label>
+                        <input type="range" min="-4" max="3" value="1.5" class="slider" id="torsoup" step="0.1">
+                        <label for="torsoleft">Left / Right</label>
+                        <input type="range" min="-4" max="4" value="0" class="slider" id="torsoleft" step="0.1">
+                    </div>
                 </div>
                 <hr>
                 <div class="buttons">
-                    <button class="btn" id="legsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-                    Legs 
-                    <button class="btn" id="legsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+                    <div class="legs-div">
+                        <button style="display: none;" id="lc-btn" type="hidden" data-toggle="collapse" data-target="#legs-collapse"></button>
+                        <button class="btn" id="legsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+                        Legs 
+                        <button class="btn" id="legsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+                    </div>
+
+                    <div class="collapse" id="legs-collapse">
+                        Left Leg<br>
+                        <label for="llegup">Up / Down</label>
+                        <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="llegup" step="0.1">
+                        <label for="llegleft">Left / Right</label>
+                        <input type="range" min="-4" max="4" value="0" class="slider" id="llegleft" step="0.1">
+                        Right Leg<br>
+                        <label for="rlegup">Up / Down</label>
+                        <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="rlegup" step="0.1">
+                        <label for="rlegleft">Left / Right</label>
+                        <input type="range" min="-4" max="4" value="0" class="slider" id="rlegleft" step="0.1">
+                    </div>
                 </div>
                 <hr>
                 <div class="buttons">
@@ -41,5 +119,25 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            $(document).ready(() => {
+                $('.head-controls').hover(() => {
+                    $('#hc-btn').click();
+                });
+
+                $('.arms-div').hover(() => {
+                    $('#ac-btn').click();
+                });
+
+                $('.torso-div').hover(() => {
+                    $('#tc-btn').click();
+                });
+
+                $('.legs-div').hover(() => {
+                    $('#lc-btn').click();
+                });
+            });
+        </script>
     </body>
 </html>

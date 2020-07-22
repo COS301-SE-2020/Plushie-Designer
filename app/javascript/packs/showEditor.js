@@ -6,6 +6,18 @@ var head = $(".head").data("head");
 var torso = $(".torso").data("torso");
 var arms = $(".arms").data("arms");
 var legs = $(".legs").data("legs");
+var headposy = $(".headposy").data("headposy");
+var headposx = $(".headposx").data("headposx");
+var torsoposy = $(".torsoposy").data("torsoposy");
+var torsoposx = $(".torsoposx").data("torsoposx");
+var larmposy = $(".larmposy").data("larmposy");
+var larmposx = $(".larmposx").data("larmposx");
+var rarmposy = $(".rarmposy").data("rarmposy");
+var rarmposx = $(".rarmposx").data("rarmposx");
+var llegposy = $(".llegposy").data("llegposy");
+var llegposx = $(".llegposx").data("llegposx");
+var rlegposy = $(".rlegposy").data("rlegposy");
+var rlegposx = $(".rlegposx").data("rlegposx");
 
 var scene = new THREE.Scene();
 scene.background = new THREE.Color(0xbfd1e5);
@@ -35,11 +47,12 @@ var loader = new GLTFLoader();
 
 var hurl = '';
 if(head==0){
-	hurl = 'https://plushiedesigner.herokuapp.com/model/minecraft/minecraft_steve_head.gltf';
+	hurl = '/model/minecraft/steve_head.gltf';
 }else if(head==1){
-	hurl = 'https://plushiedesigner.herokuapp.com/model/chibi/chibi_head.gltf';
-	loader.load( 'https://plushiedesigner.herokuapp.com/model/chibi/chibi_hair.gltf', function ( gltf ) {
-		gltf.scene.position.setY(1.5);
+	hurl = '/model/chibi/chibi_head.gltf';
+	loader.load( '/model/chibi/chibi_hair.gltf', function ( gltf ) {
+		gltf.scene.position.setY(headposy);
+		gltf.scene.position.setX(headposx);
 		gltf.scene.castShadow = true;
 		gltf.scene.name = "hair";
 		scene.add( gltf.scene );
@@ -51,7 +64,8 @@ if(head==0){
 	} );
 }
 loader.load( hurl, function ( gltf ) {
-	gltf.scene.position.setY(1.5);
+	gltf.scene.position.setY(headposy);
+	gltf.scene.position.setX(headposx);
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "head";
 	scene.add( gltf.scene );
@@ -64,12 +78,13 @@ loader.load( hurl, function ( gltf ) {
 
 var hurl = '';
 if(torso==0){
-	hurl = 'https://plushiedesigner.herokuapp.com/model/minecraft/minecraft_steve_Body.gltf';
+	hurl = '/model/minecraft/steve_body.gltf';
 }else if(torso==1){
-	hurl = 'https://plushiedesigner.herokuapp.com/model/chibi/chibi_body.gltf';
+	hurl = '/model/chibi/chibi_body.gltf';
 }
 loader.load( hurl, function ( gltf ) {
-	gltf.scene.position.setY(1.5);
+	gltf.scene.position.setY(torsoposy);
+	gltf.scene.position.setX(torsoposx);
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "torso";
 	scene.add( gltf.scene );
@@ -83,14 +98,15 @@ loader.load( hurl, function ( gltf ) {
 var hurl = '';
 var hurl1 = '';
 if(arms==0){
-	hurl = 'https://plushiedesigner.herokuapp.com/model/minecraft/minecraft_steve_LeftArm.gltf';
-	hurl1 = 'https://plushiedesigner.herokuapp.com/model/minecraft/minecraft_steve_RightArm.gltf';
+	hurl = '/model/minecraft/steve_l_arm.gltf';
+	hurl1 = '/model/minecraft/steve_r_arm.gltf';
 }else if(arms==1){
-	hurl = 'https://plushiedesigner.herokuapp.com/model/chibi/chibi_leftArm.gltf';
-	hurl1 = 'https://plushiedesigner.herokuapp.com/model/chibi/chibi_rightArm.gltf';
+	hurl = '/model/chibi/chibi_l_arm.gltf';
+	hurl1 = '/model/chibi/chibi_r_arm.gltf';
 }
 loader.load( hurl, function ( gltf ) {
-	gltf.scene.position.setY(1.5);
+	gltf.scene.position.setY(larmposy);
+	gltf.scene.position.setX(larmposx);
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "leftarm";
 	scene.add( gltf.scene );
@@ -101,7 +117,8 @@ loader.load( hurl, function ( gltf ) {
 
 } );
 loader.load( hurl1, function ( gltf ) {
-	gltf.scene.position.setY(1.5);
+	gltf.scene.position.setY(rarmposy);
+	gltf.scene.position.setX(rarmposx);
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "rightarm";
 	scene.add( gltf.scene );
@@ -115,14 +132,15 @@ loader.load( hurl1, function ( gltf ) {
 var hurl = '';
 var hurl1 = '';
 if(legs==0){
-	hurl = 'https://plushiedesigner.herokuapp.com/model/minecraft/minecraft_steve_LeftLeg.gltf';
-	hurl1 = 'https://plushiedesigner.herokuapp.com/model/minecraft/minecraft_steve_RightLeg.gltf';
+	hurl = '/model/minecraft/steve_l_leg.gltf';
+	hurl1 = '/model/minecraft/steve_r_leg.gltf';
 }else if(legs==1){
-	hurl = 'https://plushiedesigner.herokuapp.com/model/chibi/chibi_leftLeg.gltf';
-	hurl1 = 'https://plushiedesigner.herokuapp.com/model/chibi/chibi_righyLeg.gltf';
+	hurl = '/model/chibi/chibi_l_leg.gltf';
+	hurl1 = '/model/chibi/chibi_r_leg.gltf';
 }
 loader.load( hurl, function ( gltf ) {
-	gltf.scene.position.setY(1.5);
+	gltf.scene.position.setY(llegposy);
+	gltf.scene.position.setX(llegposx);
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "leftleg";
 	scene.add( gltf.scene );
@@ -133,7 +151,8 @@ loader.load( hurl, function ( gltf ) {
 
 } );
 loader.load( hurl1, function ( gltf ) {
-	gltf.scene.position.setY(1.5);
+	gltf.scene.position.setY(rlegposy);
+	gltf.scene.position.setX(rlegposx);
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "rightleg";
 	scene.add( gltf.scene );
