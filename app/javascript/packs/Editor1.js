@@ -300,12 +300,36 @@ function add_model_to_scene(gltf, name)
 	switch(name)
 	{
 		case "hair" : hhtemp = gltf.scene; break;
-		case "head" : htemp = gltf.scene; break;
-		case "torso" : ttemp = gltf.scene; break;
-		case "leftarm" : latemp = gltf.scene; break;
-		case "rightarm" : ratemp = gltf.scene; break;
-		case "leftleg" : lltemp = gltf.scene; break;
-		case "rightleg" : rltemp = gltf.scene; break;	
+		case "head" :
+			 htemp = gltf.scene;
+			 gltf.scene.position.setY(headposy); 
+			 gltf.scene.position.setX(headposx); 
+			break;
+		case "torso" : 
+			ttemp = gltf.scene;
+			gltf.scene.position.setY(torsoposy); 
+			gltf.scene.position.setX(torsoposx);  
+		break;
+		case "leftarm" : 
+			latemp = gltf.scene; 
+			gltf.scene.position.setY(larmposy); 
+			gltf.scene.position.setX(larmposx); 
+		break;
+		case "rightarm" : 
+			ratemp = gltf.scene;
+			gltf.scene.position.setY(rarmposy); 
+			gltf.scene.position.setX(rarmposx);  
+		break;
+		case "leftleg" : 
+			lltemp = gltf.scene;
+			gltf.scene.position.setY(llegposy); 
+			gltf.scene.position.setX(llegposx);  
+		break;
+		case "rightleg" : 
+			rltemp = gltf.scene;
+			gltf.scene.position.setY(rlegposy); 
+			gltf.scene.position.setX(rlegposx);  
+		break;	
 	}
 	
 }
