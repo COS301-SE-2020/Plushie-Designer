@@ -7,6 +7,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
+import { UVsDebug } from 'three/examples/jsm/utils/UVsDebug.js';
 
 var headchange = false;
 var torsochange = false;
@@ -65,6 +66,20 @@ var hurl = '';
 var hurl1 = '';
 
 var models = new Array();
+
+
+//mew
+function test( name, mesh ) {
+
+	var d = document.createElement( 'div' );
+
+	d.innerHTML = '<h3>' + name + '</h3>';
+
+	d.appendChild( UVsDebug( mesh ) );
+
+	document.body.appendChild( d );
+
+}
 
 //--------------------------------TEXTURE CHANGES---------------------------------------------
 	const colors = [
