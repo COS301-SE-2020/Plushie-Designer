@@ -60,6 +60,16 @@ document.body.appendChild(renderer.domElement);
 var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 1, 10);
 
+const loadingManager = new THREE.LoadingManager( () => {
+	
+	const loadingScreen = document.getElementById( 'loading-screen' );
+	loadingScreen.classList.add( 'fade-out' );
+	
+	// optional: remove loader from DOM via event listener
+	loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
+	
+} );
+
 var controls = new OrbitControls(camera, renderer.domElement);
 
 controls.enableDamping = true;
@@ -70,7 +80,7 @@ controls.maxDistance = 13;
 
 controls.maxPolarAngle = Math.PI / 2;
 
-var loader = new GLTFLoader();
+var loader = new GLTFLoader(loadingManager);
 var hurl = '';
 var hurl1 = '';
 
@@ -705,3 +715,9 @@ $(document).ready(function(){
 	}
 
 })
+
+function onTransitionEnd( event ) {
+
+	event.target.remove();
+	
+}
