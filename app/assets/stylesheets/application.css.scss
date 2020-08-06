@@ -104,9 +104,9 @@ body{
         margin-left: 1em;
         color: #000;
     }
-    #generate-pattern {
-        width: 8em;
-    }
+    // #generate-pattern {
+    //     width: 8em;
+    // }
     #share-btn {
         width: 9em;
         background-color: var(--primary-colour);
@@ -188,20 +188,20 @@ body{
             background-color: var(--primary-colour);
             transition: background-color 0.3s ease;
         }
-        #generate-pattern {
-            padding: 6px 9px !important;
-            width: 9em;
-            text-align: center;
-            color: var(--secondary-colour);
-            background-color: var(--primary-colour);
-            transition: background-color 0.3s ease;
-        }
+        // #generate-pattern {
+        //     padding: 6px 9px !important;
+        //     width: 9em;
+        //     text-align: center;
+        //     color: var(--secondary-colour);
+        //     background-color: var(--primary-colour);
+        //     transition: background-color 0.3s ease;
+        // }
 
-        .generate-pattern-left {
-            margin-left: 15px;
-            width: 10em !important;
-            float: left;
-        }
+        // .generate-pattern-left {
+        //     margin-left: 15px;
+        //     width: 10em !important;
+        //     float: left;
+        // }
 
         .share-btn-right {
             // margin-left: 10px;

@@ -20,16 +20,22 @@ var legs = $("#toy_legs")[0].value;
 
 var headposy = $("#toy_head_pos")[0].value;
 var headposx = $("#toy_head_posx")[0].value;
+var headposz = $("#toy_head_posz")[0].value;
 var torsoposy = $("#toy_torso_posy")[0].value;
 var torsoposx = $("#toy_torso_posx")[0].value;
+var torsoposz = $("#toy_torso_posz")[0].value;
 var larmposy = $("#toy_larm_posy")[0].value;
 var larmposx = $("#toy_larm_posx")[0].value;
+var larmposz = $("#toy_larm_posz")[0].value;
 var rarmposy = $("#toy_rarm_posy")[0].value;
 var rarmposx = $("#toy_rarm_posx")[0].value;
+var rarmposz = $("#toy_rarm_posz")[0].value;
 var llegposy = $("#toy_lleg_posy")[0].value;
 var llegposx = $("#toy_lleg_posx")[0].value;
+var llegposz = $("#toy_lleg_posz")[0].value;
 var rlegposy = $("#toy_rleg_posy")[0].value;
 var rlegposx = $("#toy_rleg_posx")[0].value;
+var rlegposz = $("#toy_rleg_posz")[0].value;
 var ihead = 7;
 var itorso = 8;
 var ilarm = 3;
@@ -311,37 +317,44 @@ function add_model_to_scene(gltf, name)
 		case "hair" : 
 			hhtemp = gltf.scene; 
 			gltf.scene.position.setY(headposy); 
-			gltf.scene.position.setX(headposx); 
+			gltf.scene.position.setX(headposx);
+			gltf.scene.position.setZ(headposz);  
 			break;
 		case "head" :
 			htemp = gltf.scene;
 			gltf.scene.position.setY(headposy); 
-			gltf.scene.position.setX(headposx); 
+			gltf.scene.position.setX(headposx);
+			gltf.scene.position.setZ(headposz);  
 			break;
 		case "torso" : 
 			ttemp = gltf.scene;
 			gltf.scene.position.setY(torsoposy); 
 			gltf.scene.position.setX(torsoposx);  
+			gltf.scene.position.setZ(torsoposz); 
 		break;
 		case "leftarm" : 
 			latemp = gltf.scene; 
 			gltf.scene.position.setY(larmposy); 
-			gltf.scene.position.setX(larmposx); 
+			gltf.scene.position.setX(larmposx);
+			gltf.scene.position.setZ(larmposz);
 		break;
 		case "rightarm" : 
 			ratemp = gltf.scene;
 			gltf.scene.position.setY(rarmposy); 
-			gltf.scene.position.setX(rarmposx);  
+			gltf.scene.position.setX(rarmposx); 
+			gltf.scene.position.setZ(rarmposz);
 		break;
 		case "leftleg" : 
 			lltemp = gltf.scene;
 			gltf.scene.position.setY(llegposy); 
 			gltf.scene.position.setX(llegposx);  
+			gltf.scene.position.setZ(llegposz); 
 		break;
 		case "rightleg" : 
 			rltemp = gltf.scene;
 			gltf.scene.position.setY(rlegposy); 
 			gltf.scene.position.setX(rlegposx);  
+			gltf.scene.position.setZ(rlegposz);
 		break;	
 	}
 	
@@ -591,6 +604,7 @@ $(document).ready(function(){
 		if(hhtemp!=null){
 			hhtemp.position.setZ(-t);
 		}
+		$("#toy_head_posz")[0].value = -t;
 	}
 
 	$('#armsl').click(function () {
@@ -633,6 +647,7 @@ $(document).ready(function(){
 		// var latemp = scene.getObjectByName(scene.children[ilarm].name);
 		var t = this.value;
 		latemp.position.setZ(-t);
+		$("#toy_larm_posz")[0].value = -t;
 		// console.log(t);
 	}
 	raslideru.oninput = function() {
@@ -653,6 +668,7 @@ $(document).ready(function(){
 		// var ratemp = scene.getObjectByName(scene.children[irarm].name);
 		var t = this.value;
 		ratemp.position.setZ(-t);
+		$("#toy_rarm_posz")[0].value = -t;
 		// console.log(t);
 	}
 
@@ -693,6 +709,7 @@ $(document).ready(function(){
 		// var ttemp = scene.getObjectByName(scene.children[itorso].name);
 		var t = this.value;
 		ttemp.position.setZ(-t);
+		$("#toy_torso_posz")[0].value = -t;
 		// console.log(t);
 	}
 
@@ -736,6 +753,7 @@ $(document).ready(function(){
 		// var lltemp = scene.getObjectByName(scene.children[illeg].name);
 		var t = this.value;
 		lltemp.position.setZ(-t);
+		$("#toy_lleg_posz")[0].value = -t;
 		// console.log(t);
 	}
 	rlslideru.oninput = function() {
@@ -756,6 +774,7 @@ $(document).ready(function(){
 		// var rltemp = scene.getObjectByName(scene.children[irleg].name);
 		var t = this.value;
 		rltemp.position.setZ(-t);
+		$("#toy_rleg_posz")[0].value = -t;
 		// console.log(t);
 	}
 
