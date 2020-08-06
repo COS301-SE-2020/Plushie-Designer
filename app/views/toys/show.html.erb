@@ -122,3 +122,12 @@
 <div class="editor">
     <%= javascript_pack_tag 'showEditor1' %>
 </div>
+
+<script>
+    function reloadIt() {
+        if (window.location.href.substr(-2) !== "?r") {
+            window.location = window.location.href + "?r";
+        }
+    }
+    setTimeout('reloadIt()', 1)();
+</script>
