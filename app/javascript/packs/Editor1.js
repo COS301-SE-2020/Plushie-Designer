@@ -298,11 +298,27 @@ function add_model_to_scene(gltf, name)
 	scene.add( gltf.scene );
 	switch(name)
 	{
-		case "hair" : hhtemp = gltf.scene; break;
+		case "hair" : 
+			hhtemp = gltf.scene; 
+			gltf.scene.position.setY(headposy); 
+			gltf.scene.position.setX(headposx); 
+			break;
 		case "head" :
-			 htemp = gltf.scene;
-			 gltf.scene.position.setY(headposy); 
-			 gltf.scene.position.setX(headposx); 
+			if(head==1){
+				loader.load( '/model/chibi/chibi_hair.gltf', function ( gltf ) {
+					gltf.scene.position.setY(headposy);
+					gltf.scene.position.setX(headposx);
+					gltf.scene.castShadow = true;
+					gltf.scene.name = "hair";
+					scene.add( gltf.scene );
+					hhtemp = gltf.scene;
+				}, undefined, function ( error ) {
+					console.error( error );
+				} );
+			}
+			htemp = gltf.scene;
+			gltf.scene.position.setY(headposy); 
+			gltf.scene.position.setX(headposx); 
 			break;
 		case "torso" : 
 			ttemp = gltf.scene;
