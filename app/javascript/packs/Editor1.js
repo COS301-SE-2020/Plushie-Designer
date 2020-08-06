@@ -12,7 +12,7 @@ var headchange = false;
 var torsochange = false;
 var armschange = false; 
 var legschange = false;
-var hair = 0;
+var hair = $("#toy_head")[0].value;
 var head = $("#toy_head")[0].value;
 var torso = $("#toy_torso")[0].value;
 var arms = $("#toy_arms")[0].value;
@@ -304,18 +304,6 @@ function add_model_to_scene(gltf, name)
 			gltf.scene.position.setX(headposx); 
 			break;
 		case "head" :
-			if(head==1){
-				loader.load( '/model/chibi/chibi_hair.gltf', function ( gltf ) {
-					gltf.scene.position.setY(headposy);
-					gltf.scene.position.setX(headposx);
-					gltf.scene.castShadow = true;
-					gltf.scene.name = "hair";
-					scene.add( gltf.scene );
-					hhtemp = gltf.scene;
-				}, undefined, function ( error ) {
-					console.error( error );
-				} );
-			}
 			htemp = gltf.scene;
 			gltf.scene.position.setY(headposy); 
 			gltf.scene.position.setX(headposx); 
