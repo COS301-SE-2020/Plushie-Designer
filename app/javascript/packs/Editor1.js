@@ -562,6 +562,7 @@ $(document).ready(function(){
 	});
 	var hslideru = document.getElementById("headup");
 	var hsliderl = document.getElementById("headleft");
+	var hsliderf = document.getElementById("headfront");
 	hslideru.oninput = function() {
 		//var temp = scene.getObjectByName(scene.children[ihead].name);
 		var t = this.value;
@@ -582,6 +583,15 @@ $(document).ready(function(){
 		}
 		$("#toy_head_posx")[0].value = t;
 	}
+	hsliderf.oninput = function() {
+		//var temp = scene.getObjectByName(scene.children[ihead].name);
+		var t = this.value;
+		htemp.position.setZ(-t);
+		// console.log(t);
+		if(hhtemp!=null){
+			hhtemp.position.setZ(-t);
+		}
+	}
 
 	$('#armsl').click(function () {
 		if($("#toy_arms")[0].value > 0){
@@ -601,8 +611,10 @@ $(document).ready(function(){
 	});
 	var laslideru = document.getElementById("larmup");
 	var lasliderl = document.getElementById("larmleft");
+	var lasliderf = document.getElementById("larmfront");
 	var raslideru = document.getElementById("rarmup");
 	var rasliderl = document.getElementById("rarmleft");
+	var rasliderf = document.getElementById("rarmfront");
 	laslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[ilarm].name);
 		var t = this.value;
@@ -617,6 +629,12 @@ $(document).ready(function(){
 		// console.log(t);
 		$("#toy_larm_posx")[0].value = t;
 	}
+	lasliderf.oninput = function() {
+		// var latemp = scene.getObjectByName(scene.children[ilarm].name);
+		var t = this.value;
+		latemp.position.setZ(-t);
+		// console.log(t);
+	}
 	raslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[irarm].name);
 		var t = this.value;
@@ -630,6 +648,12 @@ $(document).ready(function(){
 		ratemp.position.setX(t);
 		// console.log(t);
 		$("#toy_rarm_posx")[0].value = t;
+	}
+	rasliderf.oninput = function() {
+		// var ratemp = scene.getObjectByName(scene.children[irarm].name);
+		var t = this.value;
+		ratemp.position.setZ(-t);
+		// console.log(t);
 	}
 
 	$('#torsol').click(function () {
@@ -650,6 +674,7 @@ $(document).ready(function(){
 	});
 	var tslideru = document.getElementById("torsoup");
 	var tsliderl = document.getElementById("torsoleft");
+	var tsliderf = document.getElementById("torsofront");
 	tslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[itorso].name);
 		var t = this.value;
@@ -663,6 +688,12 @@ $(document).ready(function(){
 		ttemp.position.setX(t);
 		// console.log(t);
 		$("#toy_torso_posx")[0].value = t;
+	}
+	tsliderf.oninput = function() {
+		// var ttemp = scene.getObjectByName(scene.children[itorso].name);
+		var t = this.value;
+		ttemp.position.setZ(-t);
+		// console.log(t);
 	}
 
 	$('#legsl').click(function () {
@@ -683,8 +714,10 @@ $(document).ready(function(){
 	});
 	var llslideru = document.getElementById("llegup");
 	var llsliderl = document.getElementById("llegleft");
+	var llsliderf = document.getElementById("llegfront");
 	var rlslideru = document.getElementById("rlegup");
 	var rlsliderl = document.getElementById("rlegleft");
+	var rlsliderf = document.getElementById("rlegfront");
 	llslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[illeg].name);
 		var t = this.value;
@@ -699,6 +732,12 @@ $(document).ready(function(){
 		// console.log(t);
 		$("#toy_lleg_posx")[0].value = t;
 	}
+	llsliderf.oninput = function() {
+		// var lltemp = scene.getObjectByName(scene.children[illeg].name);
+		var t = this.value;
+		lltemp.position.setZ(-t);
+		// console.log(t);
+	}
 	rlslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[irleg].name);
 		var t = this.value;
@@ -712,6 +751,12 @@ $(document).ready(function(){
 		rltemp.position.setX(t);
 		// console.log(t);
 		$("#toy_rleg_posx")[0].value = t;
+	}
+	rlsliderf.oninput = function() {
+		// var rltemp = scene.getObjectByName(scene.children[irleg].name);
+		var t = this.value;
+		rltemp.position.setZ(-t);
+		// console.log(t);
 	}
 
 })
