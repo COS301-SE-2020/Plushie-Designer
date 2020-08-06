@@ -79,7 +79,7 @@ function test( name, mesh ) {
 	var image = new Image();
         image.src =  Uvimg;
 
-        var w = window.open("");
+		var w = window.open("", "");
         w.document.write(image.outerHTML);
 
 }
