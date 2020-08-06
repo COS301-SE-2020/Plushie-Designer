@@ -8,16 +8,22 @@ var arms = $(".arms").data("arms");
 var legs = $(".legs").data("legs");
 var headposy = $(".headposy").data("headposy");
 var headposx = $(".headposx").data("headposx");
+var headposz = $(".headposz").data("headposz");
 var torsoposy = $(".torsoposy").data("torsoposy");
 var torsoposx = $(".torsoposx").data("torsoposx");
+var torsoposz = $(".torsoposz").data("torsoposz");
 var larmposy = $(".larmposy").data("larmposy");
 var larmposx = $(".larmposx").data("larmposx");
+var larmposz = $(".larmposz").data("larmposz");
 var rarmposy = $(".rarmposy").data("rarmposy");
 var rarmposx = $(".rarmposx").data("rarmposx");
+var rarmposz = $(".rarmposz").data("rarmposz");
 var llegposy = $(".llegposy").data("llegposy");
 var llegposx = $(".llegposx").data("llegposx");
+var llegposz = $(".llegposz").data("llegposz");
 var rlegposy = $(".rlegposy").data("rlegposy");
 var rlegposx = $(".rlegposx").data("rlegposx");
+var rlegposz = $(".rlegposz").data("rlegposz");
 
 var scene = new THREE.Scene();
 scene.background = new THREE.Color(0xbfd1e5);
@@ -63,6 +69,7 @@ if(head==0){
 	loader.load( '/model/chibi/chibi_hair.gltf', function ( gltf ) {
 		gltf.scene.position.setY(headposy);
 		gltf.scene.position.setX(headposx);
+		gltf.scene.position.setZ(headposz);
 		gltf.scene.castShadow = true;
 		gltf.scene.name = "hair";
 		scene.add( gltf.scene );
@@ -76,6 +83,7 @@ if(head==0){
 loader.load( hurl, function ( gltf ) {
 	gltf.scene.position.setY(headposy);
 	gltf.scene.position.setX(headposx);
+	gltf.scene.position.setZ(headposz);
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "head";
 	scene.add( gltf.scene );
@@ -95,6 +103,7 @@ if(torso==0){
 loader.load( hurl, function ( gltf ) {
 	gltf.scene.position.setY(torsoposy);
 	gltf.scene.position.setX(torsoposx);
+	gltf.scene.position.setZ(torsoposz);
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "torso";
 	scene.add( gltf.scene );
@@ -117,6 +126,7 @@ if(arms==0){
 loader.load( hurl, function ( gltf ) {
 	gltf.scene.position.setY(larmposy);
 	gltf.scene.position.setX(larmposx);
+	gltf.scene.position.setZ(larmposz);
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "leftarm";
 	scene.add( gltf.scene );
@@ -129,6 +139,7 @@ loader.load( hurl, function ( gltf ) {
 loader.load( hurl1, function ( gltf ) {
 	gltf.scene.position.setY(rarmposy);
 	gltf.scene.position.setX(rarmposx);
+	gltf.scene.position.setZ(rarmposz);
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "rightarm";
 	scene.add( gltf.scene );
@@ -151,6 +162,7 @@ if(legs==0){
 loader.load( hurl, function ( gltf ) {
 	gltf.scene.position.setY(llegposy);
 	gltf.scene.position.setX(llegposx);
+	gltf.scene.position.setZ(llegposz);
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "leftleg";
 	scene.add( gltf.scene );
@@ -163,6 +175,7 @@ loader.load( hurl, function ( gltf ) {
 loader.load( hurl1, function ( gltf ) {
 	gltf.scene.position.setY(rlegposy);
 	gltf.scene.position.setX(rlegposx);
+	gltf.scene.position.setZ(rlegposz);
 	gltf.scene.castShadow = true;
 	gltf.scene.name = "rightleg";
 	scene.add( gltf.scene );

@@ -24,6 +24,12 @@
       <%= f.input :rleg_posy, input_html: {value: 0.0} %>
       <%= f.input :rleg_posx, input_html: {value: 0.0} %>
       <%= f.input :image %>
+      <%= f.input :head_posz, input_html: {value: 0.0} %>
+      <%= f.input :torso_posz, input_html: {value: 0.0} %>
+      <%= f.input :larm_posz, input_html: {value: 0.0} %>
+      <%= f.input :rarm_posz, input_html: {value: 0.0} %>
+      <%= f.input :lleg_posz, input_html: {value: 0.0} %>
+      <%= f.input :rleg_posz, input_html: {value: 0.0} %>
     </div>
   </div>
 
@@ -143,9 +149,6 @@
 
     <div class="buttons">
       <div class="row">
-        <div class="generate-pattern-left">
-          <button class="btn" id="generate-pattern" type="button">Generate Pattern</button>
-        </div>
         <div class="share-btn-right">
           <div class="form-actions buttons">
             <%= f.button :submit, :id => "share-btn" %>
