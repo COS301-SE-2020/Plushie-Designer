@@ -29,12 +29,22 @@
 </p>
 
 <p>
+  <%= content_tag :div, class: "headposz", data: {headposz: @toy.head_posz} do %>
+  <% end %>
+</p>
+
+<p>
   <%= content_tag :div, class: "torsoposy", data: {torsoposy: @toy.torso_posy} do %>
   <% end %>
 </p>
 
 <p>
   <%= content_tag :div, class: "torsoposx", data: {torsoposx: @toy.torso_posx} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "torsoposz", data: {torsoposz: @toy.torso_posz} do %>
   <% end %>
 </p>
 
@@ -49,12 +59,22 @@
 </p>
 
 <p>
+  <%= content_tag :div, class: "larmposz", data: {larmposz: @toy.larm_posz} do %>
+  <% end %>
+</p>
+
+<p>
   <%= content_tag :div, class: "rarmposy", data: {rarmposy: @toy.rarm_posy} do %>
   <% end %>
 </p>
 
 <p>
   <%= content_tag :div, class: "rarmposx", data: {rarmposx: @toy.rarm_posx} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "rarmposz", data: {rarmposz: @toy.rarm_posz} do %>
   <% end %>
 </p>
 
@@ -69,12 +89,22 @@
 </p>
 
 <p>
+  <%= content_tag :div, class: "llegposz", data: {llegposz: @toy.lleg_posz} do %>
+  <% end %>
+</p>
+
+<p>
   <%= content_tag :div, class: "rlegposy", data: {rlegposy: @toy.rleg_posy} do %>
   <% end %>
 </p>
 
 <p>
   <%= content_tag :div, class: "rlegposx", data: {rlegposx: @toy.rleg_posx} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "rlegposz", data: {rlegposz: @toy.rleg_posz} do %>
   <% end %>
 </p>
 
@@ -122,3 +152,8 @@
 <div class="editor">
     <%= javascript_pack_tag 'showEditor1' %>
 </div>
+
+<section id="loading-screen">
+    <div id="loader"></div>
+    <div id="loadingtext">Loading</div>
+</section>
