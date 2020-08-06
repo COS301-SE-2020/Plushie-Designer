@@ -1,44 +1,44 @@
 {
-  "Editor.js": "/packs/js/Editor-161a43cc6ee5e36f299e.js",
-  "Editor.js.map": "/packs/js/Editor-161a43cc6ee5e36f299e.js.map",
-  "application.js": "/packs/js/application-1fe3660b8e4142ea4b99.js",
-  "application.js.map": "/packs/js/application-1fe3660b8e4142ea4b99.js.map",
+  "Editor1.js": "/packs/js/Editor1-4aa8b45226ea0aeef27d.js",
+  "Editor1.js.map": "/packs/js/Editor1-4aa8b45226ea0aeef27d.js.map",
+  "application.js": "/packs/js/application-9afcbb5693aa87623e69.js",
+  "application.js.map": "/packs/js/application-9afcbb5693aa87623e69.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-1fe3660b8e4142ea4b99.js"
+        "/packs/js/application-9afcbb5693aa87623e69.js"
       ],
       "js.map": [
-        "/packs/js/application-1fe3660b8e4142ea4b99.js.map"
+        "/packs/js/application-9afcbb5693aa87623e69.js.map"
       ]
     },
     "Editor": {
       "js": [
-        "/packs/js/Editor-161a43cc6ee5e36f299e.js"
+        "/packs/js/Editor1-4aa8b45226ea0aeef27d.js"
       ],
       "js.map": [
-        "/packs/js/Editor-161a43cc6ee5e36f299e.js.map"
+        "/packs/js/Editor1-4aa8b45226ea0aeef27d.js.map"
       ]
     },
     "indexEditor": {
       "js": [
-        "/packs/js/indexEditor-a4c5f127afbede127cec.js"
+        "/packs/js/indexEditor-d9f04ad2095ba9968b31.js"
       ],
       "js.map": [
-        "/packs/js/indexEditor-a4c5f127afbede127cec.js.map"
+        "/packs/js/indexEditor-d9f04ad2095ba9968b31.js.map"
       ]
     },
     "showEditor": {
       "js": [
-        "/packs/js/showEditor-d7a525bffab3b83c9911.js"
+        "/packs/js/showEditor-48d8ec9d04c9fb61efda.js"
       ],
       "js.map": [
-        "/packs/js/showEditor-d7a525bffab3b83c9911.js.map"
+        "/packs/js/showEditor-48d8ec9d04c9fb61efda.js.map"
       ]
     }
   },
-  "indexEditor.js": "/packs/js/indexEditor-a4c5f127afbede127cec.js",
-  "indexEditor.js.map": "/packs/js/indexEditor-a4c5f127afbede127cec.js.map",
-  "showEditor.js": "/packs/js/showEditor-d7a525bffab3b83c9911.js",
-  "showEditor.js.map": "/packs/js/showEditor-d7a525bffab3b83c9911.js.map"
+  "indexEditor.js": "/packs/js/indexEditor-d9f04ad2095ba9968b31.js",
+  "indexEditor.js.map": "/packs/js/indexEditor-d9f04ad2095ba9968b31.js.map",
+  "showEditor.js": "/packs/js/showEditor-48d8ec9d04c9fb61efda.js",
+  "showEditor.js.map": "/packs/js/showEditor-48d8ec9d04c9fb61efda.js.map"
 }

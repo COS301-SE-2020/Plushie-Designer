@@ -78,10 +78,10 @@
   <% end %>
 </p>
 
-<div class="details">
+<div class="show-toy-container">
   <div class="row">
       <!-- Blog Post Content Column -->
-      <div class="col-lg-8">
+      <div class="info">
           <!-- Blog Post -->
           <!-- Title -->
           <h1 style="font-size: 30.5px;">
@@ -98,28 +98,36 @@
           </div>
               <hr>
               <div class="Ratings">
-                <br><br>
                 <h4 class="test">
                   Ratings:
                 </h4>
                 <%= render @toy.ratings %>
               </div>
               <%= render 'ratings/form' %>
-              <hr>
-              <br><br><br><br><br>
       </div>
   </div>
 </div>
+<div id="edit_rating" >
 
+</div> 
 <div class="options">
   <%= link_to 'Back', toys_path %>
   <br><br><br>
   <% if current_user == @toy.user%>
-    <span><%= button_to 'Edit', edit_toy_path(@toy), method: "get", :class => "btn ed-button" %></span>
+    <span><%= button_to 'Edit', edit_toy_path(@toy), method: "get", :class => "btn ed-button"%></span>
     <span><%= button_to 'Delete', @toy, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn ed-button" %></span>
   <% end %>
 </div>
 
 <div class="editor">
-    <%= javascript_pack_tag 'showEditor' %>
+    <%= javascript_pack_tag 'showEditor1' %>
 </div>
+
+<script>
+    function reloadIt() {
+        if (window.location.href.substr(-2) !== "?r") {
+            window.location = window.location.href + "?r";
+        }
+    }
+    setTimeout('reloadIt()', 1)();
+</script>

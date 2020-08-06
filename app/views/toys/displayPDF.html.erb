@@ -1,0 +1,123 @@
+<p>
+  <%= content_tag :div, class: "head", data: {head: @toy.head} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "arms", data: {arms: @toy.arms} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "torso", data: {torso: @toy.torso} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "legs", data: {legs: @toy.legs} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "headposy", data: {headposy: @toy.head_pos} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "headposx", data: {headposx: @toy.head_posx} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "torsoposy", data: {torsoposy: @toy.torso_posy} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "torsoposx", data: {torsoposx: @toy.torso_posx} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "larmposy", data: {larmposy: @toy.larm_posy} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "larmposx", data: {larmposx: @toy.larm_posx} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "rarmposy", data: {rarmposy: @toy.rarm_posy} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "rarmposx", data: {rarmposx: @toy.rarm_posx} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "llegposy", data: {llegposy: @toy.lleg_posy} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "llegposx", data: {llegposx: @toy.lleg_posx} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "rlegposy", data: {rlegposy: @toy.rleg_posy} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "rlegposx", data: {rlegposx: @toy.rleg_posx} do %>
+  <% end %>
+</p>
+
+<div class="details">
+  <div class="row">
+    <!-- Blog Post Content Column -->
+    <div class="col-lg-8">
+      <!-- Blog Post -->
+      <!-- Title -->
+      <h1 style="font-size: 30.5px;">
+        <%= @toy.name %>
+      </h1>
+      <!-- Author -->
+      <hr>
+      <p class="test">
+        Created by: <%= @toy.user.username %>
+      </p>
+      <hr>
+      <div class="test">
+        <span class="glyphicon glyphicon-time"></span> Was Posted: <%= time_ago_in_words(@toy.created_at) %> ago
+      </div>
+      <hr>
+      <img class="PlushImg" src=<%= @toy.image %>>
+      <div class="Ratings">
+        <br><br>
+        <h4 class="test">
+          Ratings:
+        </h4>
+        <%= render @toy.ratings %>
+      </div>
+      <hr>
+      <br><br><br>
+      <br><br>
+    </div>
+  </div>
+</div>
+
+<div class="options">
+  <br><br><br>
+  <% if current_user == @toy.user%>
+  <% end %>
+</div>
+
+<div class="editor">
+  <%= javascript_pack_tag 'showEditor1' %>
+</div>

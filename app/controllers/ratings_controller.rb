@@ -26,6 +26,10 @@ class RatingsController < ApplicationController
     def edit
         @toy = Toy.find(params[:toy_id])
         @rating = @toy.ratings.find(params[:id])
+
+        respond_to do |format|
+            format.js {}
+         end
     end
 
     def destroy
