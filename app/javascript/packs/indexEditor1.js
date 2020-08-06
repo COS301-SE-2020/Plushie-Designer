@@ -7,6 +7,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
+import { UVsDebug } from './dynamicUV';
 
 var headchange = false;
 var torsochange = false;
@@ -75,6 +76,22 @@ var hurl = '';
 var hurl1 = '';
 
 var models = new Array();
+
+//TEst UV image generation
+function test( name, mesh ) {
+
+	var d = document.createElement( 'div' );
+
+	d.innerHTML = '<h3>' + name + '</h3>';
+	var Uvimg = UVsDebug( mesh ).toDataURL("image/png") ;
+
+	var image = new Image();
+        image.src =  Uvimg;
+
+		var w = window.open("", "");
+        w.document.write(image.outerHTML);
+
+}
 
 //--------------------------------TEXTURE CHANGES---------------------------------------------
 	const colors = [
@@ -300,7 +317,10 @@ function add_model_to_scene(gltf, name)
 	switch(name)
 	{
 		case "hair" : hhtemp = gltf.scene; break;
-		case "head" : htemp = gltf.scene; break;
+		case "head" : 
+		htemp = gltf.scene;
+		test("head", gltf.scene.children[0].geometry);
+		break;
 		case "torso" : ttemp = gltf.scene; break;
 		case "leftarm" : latemp = gltf.scene; break;
 		case "rightarm" : ratemp = gltf.scene; break;
@@ -329,13 +349,7 @@ loader.load( hurl, (gltf) => add_model_to_scene(gltf , "head")
 hurl = models[torso][2];
 loader.load( hurl, (gltf) => add_model_to_scene(gltf , "torso")
 	, undefined, function ( error ) { console.error( error );} );
-//-----------------------------------------------------------------
-
-/*var textureLoader = new THREE.TextureLoader();
-var map =  textureLoader.load("/model/test.jpg");
-gltf.scene.children[0].material = new THREE.MeshPhongMaterial({
-	map: map,
-});*/ //TODO 
+//----------------------------------------------------------------
 
 //------------------------------ARMS---------------------------------
 hurl = models[arms][3];

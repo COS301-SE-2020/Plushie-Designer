@@ -3,6 +3,8 @@
   "Editor1.js.map": "/packs/js/Editor1-664cb22f73a353209564.js.map",
   "application.js": "/packs/js/application-9afcbb5693aa87623e69.js",
   "application.js.map": "/packs/js/application-9afcbb5693aa87623e69.js.map",
+  "dynamicUV.js": "/packs/js/dynamicUV-4603c776db22f67d5584.js",
+  "dynamicUV.js.map": "/packs/js/dynamicUV-4603c776db22f67d5584.js.map",
   "entrypoints": {
     "application": {
       "js": [
@@ -10,6 +12,14 @@
       ],
       "js.map": [
         "/packs/js/application-9afcbb5693aa87623e69.js.map"
+      ]
+    },
+    "dynamicUV": {
+      "js": [
+        "/packs/js/dynamicUV-4603c776db22f67d5584.js"
+      ],
+      "js.map": [
+        "/packs/js/dynamicUV-4603c776db22f67d5584.js.map"
       ]
     },
     "Editor1": {
