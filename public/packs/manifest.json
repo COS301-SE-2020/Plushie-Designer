@@ -3,6 +3,8 @@
   "Editor1.js.map": "/packs/js/Editor1-dec6445eeb72ebf13245.js.map",
   "application.js": "/packs/js/application-9afcbb5693aa87623e69.js",
   "application.js.map": "/packs/js/application-9afcbb5693aa87623e69.js.map",
+  "dynamicUV.js": "/packs/js/dynamicUV-954491a4dcb9823c42a3.js",
+  "dynamicUV.js.map": "/packs/js/dynamicUV-954491a4dcb9823c42a3.js.map",
   "entrypoints": {
     "application": {
       "js": [
@@ -10,6 +12,14 @@
       ],
       "js.map": [
         "/packs/js/application-9afcbb5693aa87623e69.js.map"
+      ]
+    },
+    "dynamicUV": {
+      "js": [
+        "/packs/js/dynamicUV-954491a4dcb9823c42a3.js"
+      ],
+      "js.map": [
+        "/packs/js/dynamicUV-954491a4dcb9823c42a3.js.map"
       ]
     },
     "Editor1": {
@@ -22,10 +32,10 @@
     },
     "indexEditor": {
       "js": [
-        "/packs/js/indexEditor-aa3f380a7d9561528de6.js"
+        "/packs/js/indexEditor-a4232b1209d0d32c943e.js"
       ],
       "js.map": [
-        "/packs/js/indexEditor-aa3f380a7d9561528de6.js.map"
+        "/packs/js/indexEditor-a4232b1209d0d32c943e.js.map"
       ]
     },
     "showEditor1": {
@@ -37,8 +47,8 @@
       ]
     }
   },
-  "indexEditor.js": "/packs/js/indexEditor-aa3f380a7d9561528de6.js",
-  "indexEditor.js.map": "/packs/js/indexEditor-aa3f380a7d9561528de6.js.map",
+  "indexEditor.js": "/packs/js/indexEditor-a4232b1209d0d32c943e.js",
+  "indexEditor.js.map": "/packs/js/indexEditor-a4232b1209d0d32c943e.js.map",
   "showEditor1.js": "/packs/js/showEditor1-8144a583cf77fac392a2.js",
   "showEditor1.js.map": "/packs/js/showEditor1-8144a583cf77fac392a2.js.map"
 }
