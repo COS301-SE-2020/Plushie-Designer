@@ -513,11 +513,13 @@ function screensh(){
 	var img = new Image();
 	renderer.setSize(500, 500);
 	camera.aspect = 500 / 500;
+	camera.position.set(0, 0.32, 8.5);
 	camera.updateProjectionMatrix();
     renderer.render(scene, camera);
 	img.src = renderer.domElement.toDataURL();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.position.set(0, 1, 10);
 	camera.updateProjectionMatrix();
 	// w.document.body.appendChild(img);
 	$("#toy_image")[0].value = img.src;
