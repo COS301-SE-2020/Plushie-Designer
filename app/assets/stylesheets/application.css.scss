@@ -25,6 +25,13 @@
     --tertiary-colour: rgb(42, 154, 173);
 }
 
+.alert{
+    position: absolute;
+    top: 5em;
+    width: 100%;
+    z-index: 999;
+}
+
 .editor{
     position: absolute;
 }
