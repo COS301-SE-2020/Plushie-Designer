@@ -136,7 +136,6 @@ var UVsDebug = function ( geometry, size ) {
 				ctx.moveTo( uv.x * width, ( 1 - uv.y ) * height );
 
 			} else {
-                if(prev.x == uv.x)
 				ctx.lineTo( uv.x * width, ( 1 - uv.y ) * height );
             }
 
