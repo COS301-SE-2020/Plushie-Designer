@@ -483,6 +483,7 @@ var animate = function () {
 animate();
 
 function screensh(){
+	controls.reset();
 	var w = window.open('', '');
     w.document.title = "Screenshot";
 	var img = new Image();
@@ -525,6 +526,7 @@ $(document).ready(function(){
 	});
 	var hslideru = document.getElementById("headup");
 	var hsliderl = document.getElementById("headleft");
+	var hsliderf = document.getElementById("headfront");
 	hslideru.oninput = function() {
 		//var temp = scene.getObjectByName(scene.children[ihead].name);
 		var t = this.value;
@@ -541,6 +543,15 @@ $(document).ready(function(){
 		// console.log(t);
 		if(hhtemp!=null){
 			hhtemp.position.setX(t);
+		}
+	}
+	hsliderf.oninput = function() {
+		//var temp = scene.getObjectByName(scene.children[ihead].name);
+		var t = this.value;
+		htemp.position.setZ(-t);
+		// console.log(t);
+		if(hhtemp!=null){
+			hhtemp.position.setZ(-t);
 		}
 	}
 
@@ -562,8 +573,10 @@ $(document).ready(function(){
 	});
 	var laslideru = document.getElementById("larmup");
 	var lasliderl = document.getElementById("larmleft");
+	var lasliderf = document.getElementById("larmfront");
 	var raslideru = document.getElementById("rarmup");
 	var rasliderl = document.getElementById("rarmleft");
+	var rasliderf = document.getElementById("rarmfront");
 	laslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[ilarm].name);
 		var t = this.value;
@@ -576,6 +589,12 @@ $(document).ready(function(){
 		latemp.position.setX(t);
 		// console.log(t);
 	}
+	lasliderf.oninput = function() {
+		// var latemp = scene.getObjectByName(scene.children[ilarm].name);
+		var t = this.value;
+		latemp.position.setZ(-t);
+		// console.log(t);
+	}
 	raslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[irarm].name);
 		var t = this.value;
@@ -586,6 +605,12 @@ $(document).ready(function(){
 		// var ratemp = scene.getObjectByName(scene.children[irarm].name);
 		var t = this.value;
 		ratemp.position.setX(t);
+		// console.log(t);
+	}
+	rasliderf.oninput = function() {
+		// var ratemp = scene.getObjectByName(scene.children[irarm].name);
+		var t = this.value;
+		ratemp.position.setZ(-t);
 		// console.log(t);
 	}
 
@@ -607,6 +632,7 @@ $(document).ready(function(){
 	});
 	var tslideru = document.getElementById("torsoup");
 	var tsliderl = document.getElementById("torsoleft");
+	var tsliderf = document.getElementById("torsofront");
 	tslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[itorso].name);
 		var t = this.value;
@@ -617,6 +643,12 @@ $(document).ready(function(){
 		// var ttemp = scene.getObjectByName(scene.children[itorso].name);
 		var t = this.value;
 		ttemp.position.setX(t);
+		// console.log(t);
+	}
+	tsliderf.oninput = function() {
+		// var ttemp = scene.getObjectByName(scene.children[itorso].name);
+		var t = this.value;
+		ttemp.position.setZ(-t);
 		// console.log(t);
 	}
 
@@ -638,8 +670,10 @@ $(document).ready(function(){
 	});
 	var llslideru = document.getElementById("llegup");
 	var llsliderl = document.getElementById("llegleft");
+	var llsliderf = document.getElementById("llegfront");
 	var rlslideru = document.getElementById("rlegup");
 	var rlsliderl = document.getElementById("rlegleft");
+	var rlsliderf = document.getElementById("rlegfront");
 	llslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[illeg].name);
 		var t = this.value;
@@ -652,6 +686,12 @@ $(document).ready(function(){
 		lltemp.position.setX(t);
 		// console.log(t);
 	}
+	llsliderf.oninput = function() {
+		// var lltemp = scene.getObjectByName(scene.children[illeg].name);
+		var t = this.value;
+		lltemp.position.setZ(-t);
+		// console.log(t);
+	}
 	rlslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[irleg].name);
 		var t = this.value;
@@ -662,6 +702,12 @@ $(document).ready(function(){
 		// var rltemp = scene.getObjectByName(scene.children[irleg].name);
 		var t = this.value;
 		rltemp.position.setX(t);
+		// console.log(t);
+	}
+	rlsliderf.oninput = function() {
+		// var rltemp = scene.getObjectByName(scene.children[irleg].name);
+		var t = this.value;
+		rltemp.position.setZ(-t);
 		// console.log(t);
 	}
 
