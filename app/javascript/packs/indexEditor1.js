@@ -7,7 +7,6 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
-import { UVsDebug } from './dynamicUV';
 
 var headchange = false;
 var torsochange = false;
@@ -78,20 +77,20 @@ var hurl1 = '';
 var models = new Array();
 
 //TEst UV image generation
-function test( name, mesh ) {
+// function test( name, mesh ) {
 
-	var d = document.createElement( 'div' );
+// 	var d = document.createElement( 'div' );
 
-	d.innerHTML = '<h3>' + name + '</h3>';
-	var Uvimg = UVsDebug( mesh ).toDataURL("image/png") ;
+// 	d.innerHTML = '<h3>' + name + '</h3>';
+// 	var Uvimg = UVsDebug( mesh ).toDataURL("image/png") ;
 
-	var image = new Image();
-        image.src =  Uvimg;
+// 	var image = new Image();
+//         image.src =  Uvimg;
 
-		var w = window.open("", "");
-        w.document.write(image.outerHTML);
+// 		var w = window.open("", "");
+//         w.document.write(image.outerHTML);
 
-}
+// }
 
 //--------------------------------TEXTURE CHANGES---------------------------------------------
 	const colors = [
@@ -319,7 +318,7 @@ function add_model_to_scene(gltf, name)
 		case "hair" : hhtemp = gltf.scene; break;
 		case "head" : 
 		htemp = gltf.scene;
-		test("head", gltf.scene.children[0].geometry);
+		// test("head", gltf.scene.children[0].geometry);
 		break;
 		case "torso" : ttemp = gltf.scene; break;
 		case "leftarm" : latemp = gltf.scene; break;

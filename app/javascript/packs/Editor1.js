@@ -7,6 +7,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
+import { UVsDebug } from './dynamicUV';
 
 var headchange = false;
 var torsochange = false;
@@ -325,36 +326,42 @@ function add_model_to_scene(gltf, name)
 			gltf.scene.position.setY(headposy); 
 			gltf.scene.position.setX(headposx);
 			gltf.scene.position.setZ(headposz);  
+			$("#toy_head_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry).toDataURL("image/png");
 			break;
 		case "torso" : 
 			ttemp = gltf.scene;
 			gltf.scene.position.setY(torsoposy); 
 			gltf.scene.position.setX(torsoposx);  
-			gltf.scene.position.setZ(torsoposz); 
+			gltf.scene.position.setZ(torsoposz);
+			$("#toy_torso_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry).toDataURL("image/png");
 		break;
 		case "leftarm" : 
 			latemp = gltf.scene; 
 			gltf.scene.position.setY(larmposy); 
 			gltf.scene.position.setX(larmposx);
 			gltf.scene.position.setZ(larmposz);
+			$("#toy_larm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry).toDataURL("image/png");
 		break;
 		case "rightarm" : 
 			ratemp = gltf.scene;
 			gltf.scene.position.setY(rarmposy); 
 			gltf.scene.position.setX(rarmposx); 
 			gltf.scene.position.setZ(rarmposz);
+			$("#toy_rarm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry).toDataURL("image/png");
 		break;
 		case "leftleg" : 
 			lltemp = gltf.scene;
 			gltf.scene.position.setY(llegposy); 
 			gltf.scene.position.setX(llegposx);  
-			gltf.scene.position.setZ(llegposz); 
+			gltf.scene.position.setZ(llegposz);
+			$("#toy_lleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry).toDataURL("image/png");
 		break;
 		case "rightleg" : 
 			rltemp = gltf.scene;
 			gltf.scene.position.setY(rlegposy); 
 			gltf.scene.position.setX(rlegposx);  
 			gltf.scene.position.setZ(rlegposz);
+			$("#toy_rleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry).toDataURL("image/png");
 		break;	
 	}
 	
@@ -454,8 +461,6 @@ function onWindowResize() {
 	ConfigureCanvas();
 
 }
-
-
 //-------------------------------ANIMATE---------------------------------
 var animate = function () {
 	
