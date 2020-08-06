@@ -12,7 +12,7 @@ var headchange = false;
 var torsochange = false;
 var armschange = false; 
 var legschange = false;
-var hair = 0;
+var hair = $("#toy_head")[0].value;
 var head = $("#toy_head")[0].value;
 var torso = $("#toy_torso")[0].value;
 var arms = $("#toy_arms")[0].value;
@@ -308,11 +308,15 @@ function add_model_to_scene(gltf, name)
 	scene.add( gltf.scene );
 	switch(name)
 	{
-		case "hair" : hhtemp = gltf.scene; break;
+		case "hair" : 
+			hhtemp = gltf.scene; 
+			gltf.scene.position.setY(headposy); 
+			gltf.scene.position.setX(headposx); 
+			break;
 		case "head" :
-			 htemp = gltf.scene;
-			 gltf.scene.position.setY(headposy); 
-			 gltf.scene.position.setX(headposx); 
+			htemp = gltf.scene;
+			gltf.scene.position.setY(headposy); 
+			gltf.scene.position.setX(headposx); 
 			break;
 		case "torso" : 
 			ttemp = gltf.scene;
@@ -520,9 +524,17 @@ function screensh(){
 	controls.reset();
 	// var w = window.open('', '');
 	// w.document.title = "Screenshot";
-    var img = new Image();
+	var img = new Image();
+	renderer.setSize(500, 500);
+	camera.aspect = 500 / 500;
+	camera.position.set(0, 0.32, 8.5);
+	camera.updateProjectionMatrix();
     renderer.render(scene, camera);
-    img.src = renderer.domElement.toDataURL();
+	img.src = renderer.domElement.toDataURL();
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.position.set(0, 1, 10);
+	camera.updateProjectionMatrix();
 	// w.document.body.appendChild(img);
 	$("#toy_image")[0].value = img.src;
 }
