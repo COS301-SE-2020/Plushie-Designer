@@ -168,7 +168,7 @@ var material = new THREE.MeshPhongMaterial({ color: 0xA9A9A9 });
 var plane = new THREE.Mesh(geometry, material);
 plane.castShadow = false;
 plane.receiveShadow = true;
-plane.position.setY(-4);
+plane.position.setY(-5);
 scene.add(plane);
 
 var light = new THREE.AmbientLight(0x222222);

@@ -12,13 +12,24 @@ var headchange = false;
 var torsochange = false;
 var armschange = false; 
 var legschange = false;
-
 var hair = 0;
-var head = 0;
-var torso = 0;
-var arms = 0;
-var legs = 0;
+var head = $("#toy_head")[0].value;
+var torso = $("#toy_torso")[0].value;
+var arms = $("#toy_arms")[0].value;
+var legs = $("#toy_legs")[0].value;
 
+var headposy = $("#toy_head_pos")[0].value;
+var headposx = $("#toy_head_posx")[0].value;
+var torsoposy = $("#toy_torso_posy")[0].value;
+var torsoposx = $("#toy_torso_posx")[0].value;
+var larmposy = $("#toy_larm_posy")[0].value;
+var larmposx = $("#toy_larm_posx")[0].value;
+var rarmposy = $("#toy_rarm_posy")[0].value;
+var rarmposx = $("#toy_rarm_posx")[0].value;
+var llegposy = $("#toy_lleg_posy")[0].value;
+var llegposx = $("#toy_lleg_posx")[0].value;
+var rlegposy = $("#toy_rleg_posy")[0].value;
+var rlegposx = $("#toy_rleg_posx")[0].value;
 var ihead = 7;
 var itorso = 8;
 var ilarm = 3;
@@ -60,7 +71,6 @@ controls.maxDistance = 13;
 controls.maxPolarAngle = Math.PI / 2;
 
 var loader = new GLTFLoader();
-
 var hurl = '';
 var hurl1 = '';
 
@@ -290,12 +300,36 @@ function add_model_to_scene(gltf, name)
 	switch(name)
 	{
 		case "hair" : hhtemp = gltf.scene; break;
-		case "head" : htemp = gltf.scene; break;
-		case "torso" : ttemp = gltf.scene; break;
-		case "leftarm" : latemp = gltf.scene; break;
-		case "rightarm" : ratemp = gltf.scene; break;
-		case "leftleg" : lltemp = gltf.scene; break;
-		case "rightleg" : rltemp = gltf.scene; break;	
+		case "head" :
+			 htemp = gltf.scene;
+			 gltf.scene.position.setY(headposy); 
+			 gltf.scene.position.setX(headposx); 
+			break;
+		case "torso" : 
+			ttemp = gltf.scene;
+			gltf.scene.position.setY(torsoposy); 
+			gltf.scene.position.setX(torsoposx);  
+		break;
+		case "leftarm" : 
+			latemp = gltf.scene; 
+			gltf.scene.position.setY(larmposy); 
+			gltf.scene.position.setX(larmposx); 
+		break;
+		case "rightarm" : 
+			ratemp = gltf.scene;
+			gltf.scene.position.setY(rarmposy); 
+			gltf.scene.position.setX(rarmposx);  
+		break;
+		case "leftleg" : 
+			lltemp = gltf.scene;
+			gltf.scene.position.setY(llegposy); 
+			gltf.scene.position.setX(llegposx);  
+		break;
+		case "rightleg" : 
+			rltemp = gltf.scene;
+			gltf.scene.position.setY(rlegposy); 
+			gltf.scene.position.setX(rlegposx);  
+		break;	
 	}
 	
 }
@@ -351,7 +385,7 @@ var material = new THREE.MeshPhongMaterial({ color: 0xA9A9A9 });
 var plane = new THREE.Mesh(geometry, material);
 plane.castShadow = false;
 plane.receiveShadow = true;
-plane.position.setY(-4);
+plane.position.setY(-5);
 scene.add(plane);
 //-----------------------------------------------------------------
 
@@ -394,6 +428,7 @@ function onWindowResize() {
 	ConfigureCanvas();
 
 }
+
 
 //-------------------------------ANIMATE---------------------------------
 var animate = function () {
@@ -473,36 +508,35 @@ var animate = function () {
 animate();
 
 function screensh(){
-	var w = window.open('', '');
-    w.document.title = "Screenshot";
+	controls.reset();
+	// var w = window.open('', '');
+	// w.document.title = "Screenshot";
     var img = new Image();
     renderer.render(scene, camera);
     img.src = renderer.domElement.toDataURL();
-	w.document.body.appendChild(img);
-	console.log(img.src);
+	// w.document.body.appendChild(img);
+	$("#toy_image")[0].value = img.src;
 }
 
-
-//---------------------------HTML CUSTOMIZE PLUSH-----------------------
 $(document).ready(function(){
-	$('#scrsh').click(function () {
+	$('#share-btn').click(function () {
 		screensh();
 	});
 
 	$('#headl').click(function () {
-		if(head > 0){
+		if($("#toy_head")[0].value > 0){
 			headchange = true;
-			head -= 1;
-			head = head;
+			$("#toy_head")[0].value -= 1;
+			head = $("#toy_head")[0].value;
 		}
 	});
 	$('#headr').click(function () {
-		var tmp = head;
+		var tmp = $("#toy_head")[0].value;
 		if(tmp < 1){
 			headchange = true;
 			tmp = +tmp + +1;
-			head = tmp;
-			head = head;
+			$("#toy_head")[0].value = tmp;
+			head = $("#toy_head")[0].value;
 		}
 	});
 	var hslideru = document.getElementById("headup");
@@ -515,6 +549,7 @@ $(document).ready(function(){
 		if(hhtemp!=null){
 			hhtemp.position.setY(t);
 		}
+		$("#toy_head_pos")[0].value = t;
 	}
 	hsliderl.oninput = function() {
 		//var temp = scene.getObjectByName(scene.children[ihead].name);
@@ -524,22 +559,23 @@ $(document).ready(function(){
 		if(hhtemp!=null){
 			hhtemp.position.setX(t);
 		}
+		$("#toy_head_posx")[0].value = t;
 	}
 
 	$('#armsl').click(function () {
-		if(arms > 0){
+		if($("#toy_arms")[0].value > 0){
 			armschange = true;
-			arms -= 1;
-			arms = arms;
+			$("#toy_arms")[0].value -= 1;
+			arms = $("#toy_arms")[0].value;
 		}
 	});
 	$('#armsr').click(function () {
-		var tmp = arms;
+		var tmp = $("#toy_arms")[0].value;
 		if(tmp < 1){
 			armschange = true;
 			tmp = +tmp + +1;
-			arms = tmp;
-			arms = arms;
+			$("#toy_arms")[0].value = tmp;
+			arms = $("#toy_arms")[0].value;
 		}
 	});
 	var laslideru = document.getElementById("larmup");
@@ -551,40 +587,44 @@ $(document).ready(function(){
 		var t = this.value;
 		latemp.position.setY(t);
 		// console.log(t);
+		$("#toy_larm_posy")[0].value = t;
 	}
 	lasliderl.oninput = function() {
 		// var latemp = scene.getObjectByName(scene.children[ilarm].name);
 		var t = this.value;
 		latemp.position.setX(t);
 		// console.log(t);
+		$("#toy_larm_posx")[0].value = t;
 	}
 	raslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[irarm].name);
 		var t = this.value;
 		ratemp.position.setY(t);
 		// console.log(t);
+		$("#toy_rarm_posy")[0].value = t;
 	}
 	rasliderl.oninput = function() {
 		// var ratemp = scene.getObjectByName(scene.children[irarm].name);
 		var t = this.value;
 		ratemp.position.setX(t);
 		// console.log(t);
+		$("#toy_rarm_posx")[0].value = t;
 	}
 
 	$('#torsol').click(function () {
-		if(torso > 0){
+		if($("#toy_torso")[0].value > 0){
 			torsochange = true;
-			torso -= 1;
-			torso = torso;
+			$("#toy_torso")[0].value -= 1;
+			torso = $("#toy_torso")[0].value;
 		}
 	});
 	$('#torsor').click(function () {
-		var tmp = torso;
+		var tmp = $("#toy_torso")[0].value;
 		if(tmp < 1){
 			torsochange =  true;
 			tmp = +tmp + +1;
-			torso = tmp;
-			torso = torso;
+			$("#toy_torso")[0].value = tmp;
+			torso = $("#toy_torso")[0].value;
 		}
 	});
 	var tslideru = document.getElementById("torsoup");
@@ -594,28 +634,30 @@ $(document).ready(function(){
 		var t = this.value;
 		ttemp.position.setY(t);
 		// console.log(t);
+		$("#toy_torso_posy")[0].value = t;
 	}
 	tsliderl.oninput = function() {
 		// var ttemp = scene.getObjectByName(scene.children[itorso].name);
 		var t = this.value;
 		ttemp.position.setX(t);
 		// console.log(t);
+		$("#toy_torso_posx")[0].value = t;
 	}
 
 	$('#legsl').click(function () {
-		if(legs > 0){
+		if($("#toy_legs")[0].value > 0){
 			legschange = true;
-			legs -= 1;
-			legs = legs;
+			$("#toy_legs")[0].value -= 1;
+			legs = $("#toy_legs")[0].value;
 		}
 	});
 	$('#legsr').click(function () {
-		var tmp = legs;
+		var tmp = $("#toy_legs")[0].value;
 		if(tmp < 1){
 			legschange = true;
 			tmp = +tmp + +1;
-			legs = tmp;
-			legs = legs;
+			$("#toy_legs")[0].value = tmp;
+			legs = $("#toy_legs")[0].value;
 		}
 	});
 	var llslideru = document.getElementById("llegup");
@@ -627,25 +669,28 @@ $(document).ready(function(){
 		var t = this.value;
 		lltemp.position.setY(t);
 		// console.log(t);
+		$("#toy_lleg_posy")[0].value = t;
 	}
 	llsliderl.oninput = function() {
 		// var lltemp = scene.getObjectByName(scene.children[illeg].name);
 		var t = this.value;
 		lltemp.position.setX(t);
 		// console.log(t);
+		$("#toy_lleg_posx")[0].value = t;
 	}
 	rlslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[irleg].name);
 		var t = this.value;
 		rltemp.position.setY(t);
 		// console.log(t);
+		$("#toy_rleg_posy")[0].value = t;
 	}
 	rlsliderl.oninput = function() {
 		// var rltemp = scene.getObjectByName(scene.children[irleg].name);
 		var t = this.value;
 		rltemp.position.setX(t);
 		// console.log(t);
+		$("#toy_rleg_posx")[0].value = t;
 	}
 
 })
-//----------------------------------------------------------------------------------------
