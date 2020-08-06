@@ -120,9 +120,8 @@ var models = new Array();
 		TRAY.append(swatch);
 		}
 	}
-	
-	buildColors(colors);
 	//----------------------------------------------------------------------
+	buildColors(colors);
 
 	//--------------------SETUP SWATCHES-------------------------------------
 	const swatches = document.querySelectorAll(".tray__swatch");
