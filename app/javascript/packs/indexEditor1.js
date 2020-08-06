@@ -475,11 +475,17 @@ animate();
 function screensh(){
 	var w = window.open('', '');
     w.document.title = "Screenshot";
-    var img = new Image();
+	var img = new Image();
+	renderer.setSize(500, 500);
+	camera.aspect = 500 / 500;
+	camera.updateProjectionMatrix();
     renderer.render(scene, camera);
-    img.src = renderer.domElement.toDataURL();
+	img.src = renderer.domElement.toDataURL();
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
 	w.document.body.appendChild(img);
-	console.log(img.src);
+	//console.log(img.src);
 }
 
 
