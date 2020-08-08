@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :ratings
   end
   root to: 'pages#index'
+  get 'my_plushies/index' 
   get 'pages/contact'
   get 'pages/about'
   get '/toys/:id', to: "toys#displayPDF", as: :displayPDF
