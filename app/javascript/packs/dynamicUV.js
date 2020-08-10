@@ -14,7 +14,7 @@ import {
 	Vector2
 } from "three/build/three.module.js";
 
-var UVsDebug = function ( geometry, size ) {
+var UVsDebug = function ( geometry, w, h) {
 
 	// handles wrapping of uv.x > 1 only
 
@@ -31,8 +31,8 @@ var UVsDebug = function ( geometry, size ) {
 	var face = [];
 
 	var canvas = document.createElement( 'canvas' );
-	var width = size || 1024; // power of 2 required for wrapping
-	var height = size || 1024;
+	var width = 1024*w; // power of 2 required for wrapping
+	var height = 1024*h;
 	canvas.width = width;
 	canvas.height = height;
 
