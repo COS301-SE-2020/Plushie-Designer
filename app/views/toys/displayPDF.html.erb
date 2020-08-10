@@ -1,52 +1,46 @@
-<style>
-  .shapeHeading{
-    text-align: center;
-    page-break-before: always;
-  }
-  
-</style>
+
 <div class="details">
   <div class="row">
     <!-- Blog Post Content Column -->
     <div class="col-lg-8">
       <!-- Blog Post -->
       <!-- Title -->
-      <h1 style="font-size: 50px; color: darkblue;" align="center">
-        <%= @toy.name %>
+      <h1 class="toyname">
+        Sewing Pattern: <%= @toy.name %>
       </h1>
       <!-- Author -->
       <br>
-      <h2 class="test" align="right">
-        Created by: <%= @toy.user.username %>
+      <h2 class="created-by">
+        Created by: <%= @toy.user.username %> 
       </h2>
       <br><br><br>
 
-      <div style="text-align: center;">  
-        <img class="PlushImg" style="border-style: solid;" src=<%= @toy.image %>>
+      <div class="center-image">  
+        <img class="PlushImg" src=<%= @toy.image %>>
       </div>
       <h2 class="shapeHeading">Head</h2>
-      <div style="text-align: center;">
-        <img class="PlushImg" style="border-style: solid;" src=<%= @toy.head_uv %>>
+      <div class="center-image">
+        <img class="PatternImg" src=<%= @toy.head_uv %>>
       </div>
       <h2 class="shapeHeading">Torso</h2>
-      <div style="text-align: center;"> 
-        <img class="PlushImg" style="border-style: solid;" src=<%= @toy.torso_uv %>>
+      <div class="center-image"> 
+        <img class="PatternImg" src=<%= @toy.torso_uv %>>
       </div>
       <h2 class="shapeHeading">Left Arm</h2>
-      <div style="text-align: center;"> 
-        <img class="PlushImg" style="border-style: solid;" src=<%= @toy.larm_uv %>>
+      <div class="center-image"> 
+        <img class="PatternImg" src=<%= @toy.larm_uv %>>
       </div>
       <h2 class="shapeHeading">Right Arm</h2>
-      <div style="text-align: center;"> 
-        <img class="PlushImg" style="border-style: solid;" src=<%= @toy.rarm_uv %>>
+      <div class="center-image"> 
+        <img class="PatternImg" src=<%= @toy.rarm_uv %>>
       </div>
       <h2 class="shapeHeading">Left Leg</h2>
-      <div style="text-align: center;"> 
-        <img class="PlushImg" style="border-style: solid;" src=<%= @toy.lleg_uv %>>
+      <div class="center-image"> 
+        <img class="PatternImg" src=<%= @toy.lleg_uv %>>
       </div>
       <h2 class="shapeHeading">Right Leg</h2>
-      <div style="text-align: center;"> 
-        <img class="PlushImg" style="border-style: solid;" src=<%= @toy.rleg_uv %>>
+      <div class="center-image"> 
+        <img class="PatternImg" src=<%= @toy.rleg_uv %>>
       </div>
     </div>
   </div>
