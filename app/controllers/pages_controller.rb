@@ -10,4 +10,9 @@ class PagesController < ApplicationController
 
   def about
   end
+
+  def myToys
+    @toys = Toy.all
+    @num = 0 
+  end
 end
