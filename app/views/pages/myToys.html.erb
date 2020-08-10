@@ -7,17 +7,15 @@
                 <!-- Blog toy -->
                 <!-- Title -->
                 <% if current_user == toy.user%>
-                    <div class="toy-card">
-                        <img class="PlushImg" src=<%= toy.image %>>
+                    <div class="my-toy-card">
+                        <img class="myPlushImg" src=<%= toy.image %>>
+                        <div class="card-text">
                         <h4 style="font-size: 20px;"><%= link_to toy.name, toy %></h4>
                         <!-- Date/Time -->
                         <p>
                             <span class="glyphicon glyphicon-time"></span> Was created: <%= time_ago_in_words(toy.created_at) %>
                         </p>
                         <!-- Author -->
-                        <p>
-                            Plushie By:<strong> <%= toy.user.username %></strong>
-                        </p>
                         <p>
                             <% toy.rating = 0 %>
                             <% toy.ratings.each do |r| %>
@@ -28,6 +26,7 @@
                             <% @num = 0 %>
                         </p>
                         <%= link_to 'DOWNLOAD PDF', displayPDF_path(toy.id, format: :pdf) %>
+                        </div>
                     </div>
                     <!-- <hr> -->
                     <!-- toyed Comments -->
