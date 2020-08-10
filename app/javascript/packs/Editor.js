@@ -100,7 +100,7 @@ loader.load( hurl, function ( gltf ) {
 
 var hurl = '';
 if(torso==0){
-	hurl = '/model/minecraft/steve_body.gltf';
+	hurl = '/model/minecraft/steve_Body.gltf';
 }else if(torso==1){
 	hurl = '/model/chibi/chibi_body.gltf';
 }
