@@ -1,6 +1,6 @@
 {
-  "Editor.js": "/packs/js/Editor-9d5c346aaa3ec6539358.js",
-  "Editor.js.map": "/packs/js/Editor-9d5c346aaa3ec6539358.js.map",
+  "Editor.js": "/packs/js/Editor-e1c3e8dc20adf6bf1c40.js",
+  "Editor.js.map": "/packs/js/Editor-e1c3e8dc20adf6bf1c40.js.map",
   "application.js": "/packs/js/application-9afcbb5693aa87623e69.js",
   "application.js.map": "/packs/js/application-9afcbb5693aa87623e69.js.map",
   "entrypoints": {
@@ -14,10 +14,10 @@
     },
     "Editor": {
       "js": [
-        "/packs/js/Editor-9d5c346aaa3ec6539358.js"
+        "/packs/js/Editor-e1c3e8dc20adf6bf1c40.js"
       ],
       "js.map": [
-        "/packs/js/Editor-9d5c346aaa3ec6539358.js.map"
+        "/packs/js/Editor-e1c3e8dc20adf6bf1c40.js.map"
       ]
     },
     "indexEditor": {
