@@ -9,5 +9,5 @@
 # https://github.com/mileszs/wicked_pdf/blob/master/README.md
 
 WickedPdf.config = {
-  :exe_path => Rails.root.join('bin', 'wkhtmltox\bin\wkhtmltox_0.12.6-1.bionic_amd64.deb').to_s,
+  :exe_path => Rails.root.join('bin', 'wkhtmltox/bin/wkhtmltopdf-i386').to_s,
 }
