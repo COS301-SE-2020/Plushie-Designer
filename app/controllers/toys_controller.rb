@@ -16,14 +16,12 @@ class ToysController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "Invoice No. #{@toy.id}",
+        render pdf: "Toy id: #{@toy.id}",
                page_size: 'A4',
                template: "toys/displayPDF.html.erb",
                layout: "pdf.html",
-               orientation: "Landscape",
-               lowquality: true,
-               zoom: 1,
-               dpi: 75
+               orientation: "Portrait",
+               zoom: 1
       end
     end
   end
@@ -34,14 +32,12 @@ class ToysController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "Invoice No. #{@toy.id}",
+        render pdf: "Toy id: #{@toy.id}",
                page_size: 'A4',
                template: "toys/displayPDF.html.erb",
                layout: "pdf.html",
-               orientation: "Landscape",
-               lowquality: true,
-               zoom: 1,
-               dpi: 75
+               orientation: "Portrait",
+               zoom: 1
       end
     end
   end
