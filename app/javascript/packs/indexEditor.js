@@ -49,6 +49,16 @@ document.body.appendChild(renderer.domElement);
 var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 1, 10);
 
+const loadingManager = new THREE.LoadingManager( () => {
+	
+	const loadingScreen = document.getElementById( 'loading-screen' );
+	loadingScreen.classList.add( 'fade-out' );
+	
+	// optional: remove loader from DOM via event listener
+	loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
+	
+} );
+
 var controls = new OrbitControls(camera, renderer.domElement);
 
 controls.enableDamping = true;
@@ -59,12 +69,28 @@ controls.maxDistance = 13;
 
 controls.maxPolarAngle = Math.PI / 2;
 
-var loader = new GLTFLoader();
+var loader = new GLTFLoader(loadingManager);
 
 var hurl = '';
 var hurl1 = '';
 
 var models = new Array();
+
+//TEst UV image generation
+// function test( name, mesh ) {
+
+// 	var d = document.createElement( 'div' );
+
+// 	d.innerHTML = '<h3>' + name + '</h3>';
+// 	var Uvimg = UVsDebug( mesh ).toDataURL("image/png") ;
+
+// 	var image = new Image();
+//         image.src =  Uvimg;
+
+// 		var w = window.open("", "");
+//         w.document.write(image.outerHTML);
+
+// }
 
 //--------------------------------TEXTURE CHANGES---------------------------------------------
 	const colors = [
@@ -290,7 +316,10 @@ function add_model_to_scene(gltf, name)
 	switch(name)
 	{
 		case "hair" : hhtemp = gltf.scene; break;
-		case "head" : htemp = gltf.scene; break;
+		case "head" : 
+		htemp = gltf.scene;
+		// test("head", gltf.scene.children[0].geometry);
+		break;
 		case "torso" : ttemp = gltf.scene; break;
 		case "leftarm" : latemp = gltf.scene; break;
 		case "rightarm" : ratemp = gltf.scene; break;
@@ -319,13 +348,7 @@ loader.load( hurl, (gltf) => add_model_to_scene(gltf , "head")
 hurl = models[torso][2];
 loader.load( hurl, (gltf) => add_model_to_scene(gltf , "torso")
 	, undefined, function ( error ) { console.error( error );} );
-//-----------------------------------------------------------------
-
-/*var textureLoader = new THREE.TextureLoader();
-var map =  textureLoader.load("/model/test.jpg");
-gltf.scene.children[0].material = new THREE.MeshPhongMaterial({
-	map: map,
-});*/ //TODO 
+//----------------------------------------------------------------
 
 //------------------------------ARMS---------------------------------
 hurl = models[arms][3];
@@ -351,7 +374,7 @@ var material = new THREE.MeshPhongMaterial({ color: 0xA9A9A9 });
 var plane = new THREE.Mesh(geometry, material);
 plane.castShadow = false;
 plane.receiveShadow = true;
-plane.position.setY(-4);
+plane.position.setY(-5);
 scene.add(plane);
 //-----------------------------------------------------------------
 
@@ -473,13 +496,22 @@ var animate = function () {
 animate();
 
 function screensh(){
+	controls.reset();
 	var w = window.open('', '');
     w.document.title = "Screenshot";
-    var img = new Image();
+	var img = new Image();
+	renderer.setSize(500, 500);
+	camera.aspect = 500 / 500;
+	camera.position.set(0, 1.5, 8.5);
+	camera.updateProjectionMatrix();
     renderer.render(scene, camera);
-    img.src = renderer.domElement.toDataURL();
+	img.src = renderer.domElement.toDataURL();
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.position.set(0, 1, 10);
+	camera.updateProjectionMatrix();
 	w.document.body.appendChild(img);
-	console.log(img.src);
+	//console.log(img.src);
 }
 
 
@@ -507,6 +539,7 @@ $(document).ready(function(){
 	});
 	var hslideru = document.getElementById("headup");
 	var hsliderl = document.getElementById("headleft");
+	var hsliderf = document.getElementById("headfront");
 	hslideru.oninput = function() {
 		//var temp = scene.getObjectByName(scene.children[ihead].name);
 		var t = this.value;
@@ -523,6 +556,15 @@ $(document).ready(function(){
 		// console.log(t);
 		if(hhtemp!=null){
 			hhtemp.position.setX(t);
+		}
+	}
+	hsliderf.oninput = function() {
+		//var temp = scene.getObjectByName(scene.children[ihead].name);
+		var t = this.value;
+		htemp.position.setZ(-t);
+		// console.log(t);
+		if(hhtemp!=null){
+			hhtemp.position.setZ(-t);
 		}
 	}
 
@@ -544,8 +586,10 @@ $(document).ready(function(){
 	});
 	var laslideru = document.getElementById("larmup");
 	var lasliderl = document.getElementById("larmleft");
+	var lasliderf = document.getElementById("larmfront");
 	var raslideru = document.getElementById("rarmup");
 	var rasliderl = document.getElementById("rarmleft");
+	var rasliderf = document.getElementById("rarmfront");
 	laslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[ilarm].name);
 		var t = this.value;
@@ -558,6 +602,12 @@ $(document).ready(function(){
 		latemp.position.setX(t);
 		// console.log(t);
 	}
+	lasliderf.oninput = function() {
+		// var latemp = scene.getObjectByName(scene.children[ilarm].name);
+		var t = this.value;
+		latemp.position.setZ(-t);
+		// console.log(t);
+	}
 	raslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[irarm].name);
 		var t = this.value;
@@ -568,6 +618,12 @@ $(document).ready(function(){
 		// var ratemp = scene.getObjectByName(scene.children[irarm].name);
 		var t = this.value;
 		ratemp.position.setX(t);
+		// console.log(t);
+	}
+	rasliderf.oninput = function() {
+		// var ratemp = scene.getObjectByName(scene.children[irarm].name);
+		var t = this.value;
+		ratemp.position.setZ(-t);
 		// console.log(t);
 	}
 
@@ -589,6 +645,7 @@ $(document).ready(function(){
 	});
 	var tslideru = document.getElementById("torsoup");
 	var tsliderl = document.getElementById("torsoleft");
+	var tsliderf = document.getElementById("torsofront");
 	tslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[itorso].name);
 		var t = this.value;
@@ -599,6 +656,12 @@ $(document).ready(function(){
 		// var ttemp = scene.getObjectByName(scene.children[itorso].name);
 		var t = this.value;
 		ttemp.position.setX(t);
+		// console.log(t);
+	}
+	tsliderf.oninput = function() {
+		// var ttemp = scene.getObjectByName(scene.children[itorso].name);
+		var t = this.value;
+		ttemp.position.setZ(-t);
 		// console.log(t);
 	}
 
@@ -620,8 +683,10 @@ $(document).ready(function(){
 	});
 	var llslideru = document.getElementById("llegup");
 	var llsliderl = document.getElementById("llegleft");
+	var llsliderf = document.getElementById("llegfront");
 	var rlslideru = document.getElementById("rlegup");
 	var rlsliderl = document.getElementById("rlegleft");
+	var rlsliderf = document.getElementById("rlegfront");
 	llslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[illeg].name);
 		var t = this.value;
@@ -632,6 +697,12 @@ $(document).ready(function(){
 		// var lltemp = scene.getObjectByName(scene.children[illeg].name);
 		var t = this.value;
 		lltemp.position.setX(t);
+		// console.log(t);
+	}
+	llsliderf.oninput = function() {
+		// var lltemp = scene.getObjectByName(scene.children[illeg].name);
+		var t = this.value;
+		lltemp.position.setZ(-t);
 		// console.log(t);
 	}
 	rlslideru.oninput = function() {
@@ -646,6 +717,18 @@ $(document).ready(function(){
 		rltemp.position.setX(t);
 		// console.log(t);
 	}
+	rlsliderf.oninput = function() {
+		// var rltemp = scene.getObjectByName(scene.children[irleg].name);
+		var t = this.value;
+		rltemp.position.setZ(-t);
+		// console.log(t);
+	}
 
 })
 //----------------------------------------------------------------------------------------
+
+function onTransitionEnd( event ) {
+
+	event.target.remove();
+	
+}

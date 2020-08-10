@@ -1,8 +1,10 @@
 {
-  "Editor.js": "/packs/js/Editor-9d5c346aaa3ec6539358.js",
-  "Editor.js.map": "/packs/js/Editor-9d5c346aaa3ec6539358.js.map",
+  "Editor.js": "/packs/js/Editor-0af9f3b36f59f0d75b07.js",
+  "Editor.js.map": "/packs/js/Editor-0af9f3b36f59f0d75b07.js.map",
   "application.js": "/packs/js/application-9afcbb5693aa87623e69.js",
   "application.js.map": "/packs/js/application-9afcbb5693aa87623e69.js.map",
+  "dynamicUV.js": "/packs/js/dynamicUV-76704bcdf39dc9ed5cd3.js",
+  "dynamicUV.js.map": "/packs/js/dynamicUV-76704bcdf39dc9ed5cd3.js.map",
   "entrypoints": {
     "application": {
       "js": [
@@ -12,33 +14,41 @@
         "/packs/js/application-9afcbb5693aa87623e69.js.map"
       ]
     },
-    "Editor": {
+    "dynamicUV": {
       "js": [
-        "/packs/js/Editor-9d5c346aaa3ec6539358.js"
+        "/packs/js/dynamicUV-76704bcdf39dc9ed5cd3.js"
       ],
       "js.map": [
-        "/packs/js/Editor-9d5c346aaa3ec6539358.js.map"
+        "/packs/js/dynamicUV-76704bcdf39dc9ed5cd3.js.map"
+      ]
+    },
+    "Editor": {
+      "js": [
+        "/packs/js/Editor-0af9f3b36f59f0d75b07.js"
+      ],
+      "js.map": [
+        "/packs/js/Editor-0af9f3b36f59f0d75b07.js.map"
       ]
     },
     "indexEditor": {
       "js": [
-        "/packs/js/indexEditor-aa3f380a7d9561528de6.js"
+        "/packs/js/indexEditor-00fe34c84f84d545752c.js"
       ],
       "js.map": [
-        "/packs/js/indexEditor-aa3f380a7d9561528de6.js.map"
+        "/packs/js/indexEditor-00fe34c84f84d545752c.js.map"
       ]
     },
     "showEditor": {
       "js": [
-        "/packs/js/showEditor-ae9e5269e5878d5cf797.js"
+        "/packs/js/showEditor-d1c33a0ed49ee2ef7bc7.js"
       ],
       "js.map": [
-        "/packs/js/showEditor-ae9e5269e5878d5cf797.js.map"
+        "/packs/js/showEditor-d1c33a0ed49ee2ef7bc7.js.map"
       ]
     }
   },
-  "indexEditor.js": "/packs/js/indexEditor-aa3f380a7d9561528de6.js",
-  "indexEditor.js.map": "/packs/js/indexEditor-aa3f380a7d9561528de6.js.map",
-  "showEditor.js": "/packs/js/showEditor-ae9e5269e5878d5cf797.js",
-  "showEditor.js.map": "/packs/js/showEditor-ae9e5269e5878d5cf797.js.map"
+  "indexEditor.js": "/packs/js/indexEditor-00fe34c84f84d545752c.js",
+  "indexEditor.js.map": "/packs/js/indexEditor-00fe34c84f84d545752c.js.map",
+  "showEditor.js": "/packs/js/showEditor-d1c33a0ed49ee2ef7bc7.js",
+  "showEditor.js.map": "/packs/js/showEditor-d1c33a0ed49ee2ef7bc7.js.map"
 }
