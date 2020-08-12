@@ -4,7 +4,18 @@
         <%= f.input :description, :id => "rate-desc", :class => "rating-description", input_html: { maxlength: 250 } %>        
     </div>
     <div class="col">
-        <%= f.input :value, :class => "rating-value", :placeholder => "0/5" %>
+        <fieldset class="rate">
+            <%= f.radio_button :value, 5, :id=>"star5"%>
+            <label for="star5" title="Excellent!">5</label>
+            <%= f.radio_button :value, 4, :id=>"star4"%>
+            <label for="star4" title="Good!">4</label>
+            <%= f.radio_button :value, 3, :id=>"star3"%>
+            <label for="star3" title="Average!">3</label>
+            <%= f.radio_button :value, 2, :id=>"star2"%>
+            <label for="star2" title="Poor!">2</label>
+            <%= f.radio_button :value, 1, :id=>"star1"%>
+            <label for="star1" title="Very Poor!">1</label>
+        </fieldset>
     </div>
     <%= f.submit "Rate", :id => "rating-btn", :class => "btn submit-button" %>
 </div>
