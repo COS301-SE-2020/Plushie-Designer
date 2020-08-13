@@ -1,11 +1,30 @@
 <%= simple_form_for ([@toy, @toy.ratings.build]) do |f| %>
 <div class="row rating-form">
-    <div class="col">
+    <div class="row">
         <%= f.input :description, :id => "rate-desc", :class => "rating-description", input_html: { maxlength: 250 } %>        
     </div>
-    <div class="col">
-        <%= f.input :value, :class => "rating-value", :placeholder => "0/5" %>
+    <div class="row">
+        <!-- <%= f.input :value, :class => "rating-value", :placeholder => "0/5" %> -->
+        <div class="col-6">
+            <span class="rating-label">Rating</span>
+        </div>
+        <div class="col-6">
+            <fieldset class="rate">
+                <%= f.radio_button :value, 5, :id=>"star5"%>
+                <label for="star5" title="Excellent!">5</label>
+                <%= f.radio_button :value, 4, :id=>"star4"%>
+                <label for="star4" title="Good!">4</label>
+                <%= f.radio_button :value, 3, :id=>"star3"%>
+                <label for="star3" title="Average!">3</label>
+                <%= f.radio_button :value, 2, :id=>"star2"%>
+                <label for="star2" title="Poor!">2</label>
+                <%= f.radio_button :value, 1, :id=>"star1"%>
+                <label for="star1" title="Very Poor!">1</label>
+            </fieldset>
+        </div>
     </div>
-    <%= f.submit "Rate", :id => "rating-btn", :class => "btn" %>
+    <div class="row">
+        <%= f.submit "Rate", :id => "rating-btn", :class => "btn" %>
+    </div>
 </div>
 <% end %>
