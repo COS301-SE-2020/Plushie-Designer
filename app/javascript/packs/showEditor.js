@@ -7,7 +7,6 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
-import { UVsDebug } from './dynamicUV';
 
 
 var hair = 0;
@@ -77,7 +76,6 @@ controls.maxDistance = 13;
 controls.maxPolarAngle = Math.PI / 2;
 
 var loader = new GLTFLoader(loadingManager);
-
 
 var hurl = '';
 var hurl1 = '';
@@ -399,6 +397,7 @@ loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
 	, undefined, function ( error ) { console.error( error );} );
 //---------------------------------------------------------------------
 
+//---------------------------PLANE--------------------------------
 var geometry = new THREE.BoxBufferGeometry(1000, 0, 1000);
 var material = new THREE.MeshPhongMaterial({ color: 0xA9A9A9 });
 var plane = new THREE.Mesh(geometry, material);
@@ -406,7 +405,9 @@ plane.castShadow = false;
 plane.receiveShadow = true;
 plane.position.setY(-5);
 scene.add(plane);
+//-----------------------------------------------------------------
 
+//---------------------------LIGHTING-----------------------------
 var light = new THREE.AmbientLight(0x222222);
 scene.add(light);
 
@@ -419,6 +420,7 @@ light.shadow.mapSize.width = 512;  // default
 light.shadow.mapSize.height = 512; // default
 light.shadow.camera.near = 0.5;    // default
 light.shadow.camera.far = 500;
+//----------------------------------------------------------------
 
 window.addEventListener( 'resize', onWindowResize, false );
 
@@ -430,9 +432,10 @@ function onWindowResize() {
 
 var animate = function () {
 	requestAnimationFrame(animate);
-	
+
 	controls.update();
-	renderer.render(scene, camera);
+	//renderer.render(scene, camera);
+	composer.render();
 };
 
 animate();
