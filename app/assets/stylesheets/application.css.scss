@@ -20,9 +20,17 @@
  @import "font-awesome";
 
 :root {
-    --primary-colour: #2C2A4A;
-    --secondary-colour: #7FDEFF;
-    --tertiary-colour: rgb(42, 154, 173);
+    --primary-colour: rgb(227,166,104);
+    --secondary-colour: rgb(35,34,34);
+    --tertiary-colour: rgb(13,135,131);
+    // --tertiary-colour: rgb(230,33,41);
+    --q-colour : rgb(241,213,186);
+    --p-colour : rgb(237,66,72);
+
+    // old colour scheme
+    // --primary-colour: #2C2A4A;
+    // --secondary-colour: #7FDEFF;
+    // --tertiary-colour: rgb(42, 154, 173);
 }
 
 .alert{
@@ -37,7 +45,7 @@
 }
 
 body{
-    background-color:  #252525; 
+    background-color:  var(--p-colour); 
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -48,21 +56,34 @@ body{
 }
 
 .navbar {
-    z-index: 999;
+    z-index: 990;
     padding: 10px;
     background-color: var(--primary-colour);
     color: var(--secondary-colour);
     position: fixed;
     width: 100%;
-    margin-bottom: 1em;
-    border-color: var(--secondary-colour);
+    margin-bottom: 2vh;
+    border: 3px solid var(--secondary-colour);
+    .logo {
+        position: absolute;
+        width: 8%;
+        height: 200%;
+        left: 46%;
+        top: 0;
+    }
+    .navbar-header {
+        margin-left: 38.5% !important;
+    }
     a.navbar-brand {
         color: var(--secondary-colour);
     }
     a.navbar-brand:hover {
-        color: var(--tertiary-colour)
+        color: var(--p-colour);
     }
     ul.nav {
+        // left: 75%;
+        display: inline-block;
+        margin-left: 7%;
         li {
             a {
                 color: var(--secondary-colour);
@@ -93,6 +114,13 @@ body{
                 }
             }
         }
+    }
+}
+
+.footer-distributed {
+    background-color: var(--secondary-colour);
+    .fab {
+        color: var(--tertiary-colour);
     }
 }
 
@@ -147,6 +175,10 @@ body{
     max-height: 76vh;
     overflow: scroll;
     overflow-x: hidden;
+    .slider {
+        background-color: white;
+        color: white;
+    }
 
     .control-header:hover {
         cursor: pointer;
@@ -204,7 +236,7 @@ body{
         #share-btn {
             // width: 9em;
             width: 90%;
-            margin-left: 1.02vw;
+            margin-left: 4.5%;
             background-color: var(--primary-colour);
             color: var(--secondary-colour);
             transition: background-color 0.3s ease;
@@ -415,7 +447,7 @@ p{
             padding: 0;
         }
         .rating-label {
-            mix-blend-mode: difference;
+            // mix-blend-mode: difference;
             color: white;
             margin-left: 6%;
             font-weight: 600;
@@ -573,14 +605,17 @@ p{
     .card-container {
         text-align: center;
         width: 100%;
-        margin-bottom: 11vh;
+        margin-top: 6.5vh;
+        margin-bottom: 8.5vh;
         max-height: 60vh;
         overflow: scroll;
         overflow-x: hidden;
         .toy-card {
-            background-color: var(--primary-colour);
-            color: var(--secondary-colour);
-            border-radius: 2em;
+            
+            background-color: var(--tertiary-colour);
+            color: white;
+            // color: var(--secondary-colour);
+            border-radius: 1em;
             padding-top: 1.5%;
             // width: 14.3vw;
             width: 15%;
@@ -588,6 +623,15 @@ p{
             display: inline-block;
             margin: 0.5%;
             text-align: center;
+            img {
+                border-radius: 5px;
+            }
+            a {
+                color: white;
+            }
+            a:hover {
+                color: rgb(255, 218, 218)
+            }
             p.created-on {
                 width: 80%;
                 margin: auto;
@@ -619,20 +663,19 @@ p{
     }    
 }
 
-
 .test{
     color: white;
-    mix-blend-mode: difference;
+    // mix-blend-mode: difference;
 }
 
 label{
     color: white;
-    mix-blend-mode: difference;
+    // mix-blend-mode: difference;
 }
 
 hr{
     color: white;
-    mix-blend-mode: difference;
+    // mix-blend-mode: difference;
     margin-top:1vh;
     margin-bottom:1vh;
 }
