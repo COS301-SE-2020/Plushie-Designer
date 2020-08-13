@@ -29,12 +29,22 @@
 </p>
 
 <p>
+  <%= content_tag :div, class: "headposz", data: {headposz: @toy.head_posz} do %>
+  <% end %>
+</p>
+
+<p>
   <%= content_tag :div, class: "torsoposy", data: {torsoposy: @toy.torso_posy} do %>
   <% end %>
 </p>
 
 <p>
   <%= content_tag :div, class: "torsoposx", data: {torsoposx: @toy.torso_posx} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "torsoposz", data: {torsoposz: @toy.torso_posz} do %>
   <% end %>
 </p>
 
@@ -49,12 +59,22 @@
 </p>
 
 <p>
+  <%= content_tag :div, class: "larmposz", data: {larmposz: @toy.larm_posz} do %>
+  <% end %>
+</p>
+
+<p>
   <%= content_tag :div, class: "rarmposy", data: {rarmposy: @toy.rarm_posy} do %>
   <% end %>
 </p>
 
 <p>
   <%= content_tag :div, class: "rarmposx", data: {rarmposx: @toy.rarm_posx} do %>
+  <% end %>
+</p>
+
+<p>
+  <%= content_tag :div, class: "rarmposz", data: {rarmposz: @toy.rarm_posz} do %>
   <% end %>
 </p>
 
@@ -69,6 +89,11 @@
 </p>
 
 <p>
+  <%= content_tag :div, class: "llegposz", data: {llegposz: @toy.lleg_posz} do %>
+  <% end %>
+</p>
+
+<p>
   <%= content_tag :div, class: "rlegposy", data: {rlegposy: @toy.rleg_posy} do %>
   <% end %>
 </p>
@@ -78,10 +103,15 @@
   <% end %>
 </p>
 
-<div class="details">
+<p>
+  <%= content_tag :div, class: "rlegposz", data: {rlegposz: @toy.rleg_posz} do %>
+  <% end %>
+</p>
+
+<div class="show-toy-container">
   <div class="row">
       <!-- Blog Post Content Column -->
-      <div class="col-lg-8">
+      <div class="info">
           <!-- Blog Post -->
           <!-- Title -->
           <h1 style="font-size: 30.5px;">
@@ -98,15 +128,12 @@
           </div>
               <hr>
               <div class="Ratings">
-                <br><br>
                 <h4 class="test">
                   Ratings:
                 </h4>
                 <%= render @toy.ratings %>
               </div>
               <%= render 'ratings/form' %>
-              <hr>
-              <br><br><br><br><br>
       </div>
   </div>
 </div>
@@ -117,11 +144,16 @@
   <%= link_to 'Back', toys_path %>
   <br><br><br>
   <% if current_user == @toy.user%>
-    <span><%= button_to 'Edit', edit_toy_path(@toy), method: "get", :class => "btn ed-button", :remote => true %></span>
+    <span><%= button_to 'Edit', edit_toy_path(@toy), method: "get", :class => "btn ed-button"%></span>
     <span><%= button_to 'Delete', @toy, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn ed-button" %></span>
   <% end %>
 </div>
 
 <div class="editor">
-    <%= javascript_pack_tag 'showEditor' %>
+    <%= javascript_pack_tag 'showEditor1' %>
 </div>
+
+<section id="loading-screen">
+    <div id="loader"></div>
+    <div id="loadingtext">Loading</div>
+</section>

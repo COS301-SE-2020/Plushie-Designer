@@ -1,3 +1,9 @@
+<div class="controls">
+            <div id="js-tray" class="tray">
+                <div id="js-tray-slide" class="tray__slide"></div>
+            </div>
+        </div>
+
 <div class="options">
     <div class="index-page">
         <%= render 'form_new', toy: @toy %>
@@ -7,5 +13,10 @@
 </div>
 
 <div class="editor">
-    <%= javascript_pack_tag 'Editor' %>
+    <%= javascript_pack_tag 'Editor1' %>
 </div>
+
+<section id="loading-screen">
+    <div id="loader"></div>
+    <div id="loadingtext">Loading</div>
+</section>

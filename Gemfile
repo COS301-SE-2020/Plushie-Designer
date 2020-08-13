@@ -21,6 +21,9 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'bootstrap-sass-extras', '~> 0.0.2'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
+gem 'jquery-rails'
+gem 'bootstrap', '~> 4.1.3'
+gem 'wicked_pdf'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -37,6 +40,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'sqlite3', '~> 1.4'
+  gem 'wkhtmltopdf-binary'
 end
 
 group :development do
@@ -50,6 +54,10 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+end
+
+group :production do
+  gem 'wkhtmltopdf-heroku', '2.12.5.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

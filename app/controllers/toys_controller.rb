@@ -11,6 +11,35 @@ class ToysController < ApplicationController
   # GET /toys/1
   # GET /toys/1.json
   def show
+    @toy = scope.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Toy id: #{@toy.id}",
+               page_size: 'A4',
+               template: "toys/displayPDF.html.erb",
+               layout: "pdf.html",
+               orientation: "Portrait",
+               zoom: 1
+      end
+    end
+  end
+
+  def displayPDF
+    @toy = scope.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Toy id: #{@toy.id}",
+               page_size: 'A4',
+               template: "toys/displayPDF.html.erb",
+               layout: "pdf.html",
+               orientation: "Portrait",
+               zoom: 1
+      end
+    end
   end
 
   # GET /toys/new
@@ -70,6 +99,10 @@ class ToysController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def toy_params
-      params.require(:toy).permit(:name, :head, :arms, :torso, :legs, :rating, :head_pos, :head_posx, :torso_posy, :torso_posx, :larm_posy, :larm_posx, :rarm_posy, :rarm_posx, :lleg_posy, :lleg_posx, :rleg_posy, :rleg_posx, :shared, :image)
+      params.require(:toy).permit(:name, :head, :arms, :torso, :legs, :rating, :head_pos, :head_posx, :torso_posy, :torso_posx, :larm_posy, :larm_posx, :rarm_posy, :rarm_posx, :lleg_posy, :lleg_posx, :rleg_posy, :rleg_posx, :shared, :image, :head_posz, :torso_posz, :larm_posz, :rarm_posz, :lleg_posz, :rleg_posz, :head_uv, :torso_uv, :larm_uv, :rarm_uv, :lleg_uv, :rleg_uv)
+    end
+
+    def scope
+      ::Toy.all
     end
 end
