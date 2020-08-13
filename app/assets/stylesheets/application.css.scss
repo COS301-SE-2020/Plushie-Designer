@@ -114,17 +114,18 @@ body{
     // #generate-pattern {
     //     width: 8em;
     // }
-    #share-btn {
-        width: 9em;
-        background-color: var(--primary-colour);
-        color: var(--secondary-colour);
-        transition: background-color 0.3s ease;
-    }
-    #share-btn:hover {
-        background-color: var(--secondary-colour);
-        color: var(--primary-colour);
-        transition: background-color 0.3s ease;
-    }
+    // #share-btn {
+    //     // width: 9em;
+    //     width: 100% !important;
+    //     background-color: var(--primary-colour);
+    //     color: var(--secondary-colour);
+    //     transition: background-color 0.3s ease;
+    // }
+    // #share-btn:hover {
+    //     background-color: var(--secondary-colour);
+    //     color: var(--primary-colour);
+    //     transition: background-color 0.3s ease;
+    // }
     #back-btn {
         width: 19em;
         color: var(--primary-colour);
@@ -144,22 +145,26 @@ body{
     padding: 0.1em 1em 1em 1em;
     color: white;
     max-height: 76vh;
-    // overflow-y: hidden;
-    // overflow-x: hidden;
-    
     overflow: scroll;
     overflow-x: hidden;
 
     .control-header:hover {
         cursor: pointer;
     }
-    
     .controls {
         overflow: scroll;
     }
-
-    .toy_name {
-        padding-top: 1em;
+    #back-btn {
+        width: 100%;
+        color: var(--primary-colour);
+        background-color: var(--secondary-colour);
+        transition: background-color 0.3s ease;
+        border: none;
+    }
+    #back-btn:hover {
+        color: var(--secondary-colour);
+        background-color: var(--primary-colour);
+        transition: background-color 0.3s ease;
     }
     #scrsh {
         color: var(--secondary-colour);
@@ -195,25 +200,19 @@ body{
             background-color: var(--primary-colour);
             transition: background-color 0.3s ease;
         }
-        // #generate-pattern {
-        //     padding: 6px 9px !important;
-        //     width: 9em;
-        //     text-align: center;
-        //     color: var(--secondary-colour);
-        //     background-color: var(--primary-colour);
-        //     transition: background-color 0.3s ease;
-        // }
 
-        // .generate-pattern-left {
-        //     margin-left: 15px;
-        //     width: 10em !important;
-        //     float: left;
-        // }
-
-        .share-btn-right {
-            // margin-left: 10px;
-            float: right;
-            margin-right: 15px;
+        #share-btn {
+            // width: 9em;
+            width: 90%;
+            margin-left: 1.02vw;
+            background-color: var(--primary-colour);
+            color: var(--secondary-colour);
+            transition: background-color 0.3s ease;
+        }
+        #share-btn:hover {
+            background-color: var(--secondary-colour);
+            color: var(--primary-colour);
+            transition: background-color 0.3s ease;
         }
 
         #headl:hover, #armsl:hover, #torsol:hover, #legsl:hover,
@@ -226,7 +225,6 @@ body{
     }
     .slider {
         background: var(--secondary-colour);
-        // color: var(--primary-colour);
         transition: background-color 0.3s ease;
     }
 }
@@ -262,42 +260,7 @@ body{
                 left: 1em;
                 font-size: 30px;
             }
-            .Ratings {
-                .media {
-                    background-color: rgb(175, 175, 175);
-                    border-radius: 0.5em;
-                    padding: 0.5em;
-                    max-height: 9em;
-
-                    .username {
-                        font-weight: 700;
-                    }
-                    .time {
-                        text-align: right;
-                    }
-                    .rate-button {
-                        margin-bottom: 1em;
-                        background-color:var(--primary-colour);
-                        cursor:pointer;
-                        color:var(--secondary-colour);
-                        font-family:Arial;
-                        font-size:1em;
-                        text-decoration:none;
-                        float: right;
-                        transition: background-color 0.3s ease;
-                    }
-                    .rate-button:hover {
-                        background-color:var(--secondary-colour);
-                        color: var(--primary-colour);
-                        transition: background-color 0.3s ease;
-                    }
-                    .rate-button:active {
-                        background-color: var(--tertiary-colour);
-                        position:relative;
-                        top:1px;
-                    }
-                }
-            }
+            
             textarea {
                 width: 60%;
                 height: 10vh;
@@ -323,6 +286,46 @@ body{
             //     background-color: var(--secondary-colour);
             //     transition: background-color 0.3s ease;
             // }
+        }
+    }
+}
+
+.Ratings {
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 20vh;
+    .media {
+        background-color: rgb(221, 221, 221);
+        border-radius: 0.5em;
+        padding: 0.5em;
+        max-height: 9em;
+
+        .username {
+            font-weight: 700;
+        }
+        .time {
+            text-align: right;
+        }
+        .rate-button {
+            margin-bottom: 1em;
+            background-color:var(--primary-colour);
+            cursor:pointer;
+            color:var(--secondary-colour);
+            font-family:Arial;
+            font-size:1em;
+            text-decoration:none;
+            float: right;
+            transition: background-color 0.3s ease;
+        }
+        .rate-button:hover {
+            background-color:var(--secondary-colour);
+            color: var(--primary-colour);
+            transition: background-color 0.3s ease;
+        }
+        .rate-button:active {
+            background-color: var(--tertiary-colour);
+            position:relative;
+            top:1px;
         }
     }
 }
@@ -407,18 +410,19 @@ p{
     padding-top: 1em;
     margin-bottom: 1em;
         .rating_description {
-            width: 45vw;
-            margin-left: 2.5vw;
+            width: 147%;
+            margin-left: 6%;
             padding: 0;
         }
         .rating-label {
             mix-blend-mode: difference;
             color: white;
-            margin-left: 2.5vw;
+            margin-left: 6%;
+            font-weight: 600;
         }
         .rate {
             display: inline;
-            margin-left: 2.5vw;
+            margin-left: 6%;
             padding: 0 10px;
         }
         .rate:not(:checked) > input {
@@ -556,29 +560,42 @@ p{
 }
 
 .toy-index {
+    position: absolute;
+    left: 5%;
     padding-top: 2rem;
+    width: 90%;
     a {
         text-decoration: none;
-        // color: var(--secondary-colour);
     }
     a:hover {
         color: var(--secondary-colour);
     }
-    .toy-card {
-        background-color: var(--primary-colour);
-        color: var(--secondary-colour);
-        border-radius: 2em;
-        padding: 20px;
-        width: 28%;
-        display: inline-block;
-        margin: 1em;
+    .card-container {
         text-align: center;
-    }
-
-    .create-plushie-button-container {
         width: 100%;
+        margin-bottom: 11vh;
+        max-height: 60vh;
+        overflow: scroll;
+        overflow-x: hidden;
+        .toy-card {
+            background-color: var(--primary-colour);
+            color: var(--secondary-colour);
+            border-radius: 2em;
+            padding-top: 1.5%;
+            // width: 14.3vw;
+            width: 15%;
+            height: 37vh;
+            display: inline-block;
+            margin: 0.5%;
+            text-align: center;
+            p.created-on {
+                width: 80%;
+                margin: auto;
+            }
+        }
+    }
+    .create-plushie-button-container {
         height: 5em;
-        margin: auto;
         text-align: center;
     }
     
@@ -587,11 +604,10 @@ p{
         color: var(--secondary-colour);
         background-color: var(--primary-colour);
         transition: background-color 0.3s ease;
-        padding: 1em;
+        padding: 1.5em 5vw;
         font-size: 20px;
-        position: absolute;
         border-radius: 1em;
-        margin: auto;
+        margin-top: 10vh;
     }
     
     .create-plushie-button:hover {

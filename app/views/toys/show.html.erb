@@ -126,14 +126,15 @@
           <div class="test">
             <span class="glyphicon glyphicon-time"></span> Was Posted: <%= time_ago_in_words(@toy.created_at) %> ago
           </div>
-              <hr>
-              <div class="Ratings">
-                <h4 class="test">
-                  Ratings:
-                </h4>
-                <%= render @toy.ratings %>
-              </div>
-              <%= render 'ratings/form' %>
+          <hr>
+          <div class="Ratings">
+            
+            <h4 class="test">
+              Ratings:
+            </h4>
+            <%= render @toy.ratings %>
+          </div>
+          <%= render 'ratings/form' %>
       </div>
   </div>
 </div>
