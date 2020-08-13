@@ -34,6 +34,14 @@ var rlegposy = $(".rlegposy").data("rlegposy");
 var rlegposx = $(".rlegposx").data("rlegposx");
 var rlegposz = $(".rlegposz").data("rlegposz");
 
+var htemp;
+var ttemp;
+var latemp;
+var ratemp;
+var lltemp;
+var rltemp;
+var hhtemp = null;
+
 var scene = new THREE.Scene();
 scene.background = new THREE.Color(0xbfd1e5);
 scene.fog = new THREE.FogExp2(0xbfd1e5, 0.002);
@@ -299,37 +307,45 @@ function add_model_to_scene(gltf, name)
 	switch(name)
 	{
 		case "hair" : 
+			hhtemp = gltf.scene; 
 			gltf.scene.position.setY(headposy); 
 			gltf.scene.position.setX(headposx);
 			gltf.scene.position.setZ(headposz);  
 			break;
 		case "head" :
+			htemp = gltf.scene;
 			gltf.scene.position.setY(headposy); 
 			gltf.scene.position.setX(headposx);
 			gltf.scene.position.setZ(headposz);  
+			console.log(gltf.scene.children[0]);
 			break;
 		case "torso" : 
+			ttemp = gltf.scene;
 			gltf.scene.position.setY(torsoposy); 
 			gltf.scene.position.setX(torsoposx);  
 			gltf.scene.position.setZ(torsoposz);
 			console.log(gltf.scene.children[0]);
 		break;
-		case "leftarm" :  
+		case "leftarm" : 
+			latemp = gltf.scene; 
 			gltf.scene.position.setY(larmposy); 
 			gltf.scene.position.setX(larmposx);
 			gltf.scene.position.setZ(larmposz);
 		break;
 		case "rightarm" : 
+			ratemp = gltf.scene;
 			gltf.scene.position.setY(rarmposy); 
 			gltf.scene.position.setX(rarmposx); 
 			gltf.scene.position.setZ(rarmposz);
 		break;
 		case "leftleg" : 
+			lltemp = gltf.scene;
 			gltf.scene.position.setY(llegposy); 
 			gltf.scene.position.setX(llegposx);  
 			gltf.scene.position.setZ(llegposz);
 		break;
 		case "rightleg" : 
+			rltemp = gltf.scene;
 			gltf.scene.position.setY(rlegposy); 
 			gltf.scene.position.setX(rlegposx);  
 			gltf.scene.position.setZ(rlegposz);
@@ -408,10 +424,7 @@ window.addEventListener( 'resize', onWindowResize, false );
 
 function onWindowResize() {
 
-	camera.aspect = window.innerWidth / window.innerHeight;
-	camera.updateProjectionMatrix();
-
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	ConfigureCanvas();
 
 }
 
