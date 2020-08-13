@@ -30,25 +30,25 @@
         "/packs/js/Editor-0af9f3b36f59f0d75b07.js.map"
       ]
     },
-    "indexEditor": {
+    "indexEditor1": {
       "js": [
-        "/packs/js/indexEditor-00fe34c84f84d545752c.js"
+        "/packs/js/indexEditor1-0dc430c560ec8885be13.js"
       ],
       "js.map": [
-        "/packs/js/indexEditor-00fe34c84f84d545752c.js.map"
+        "/packs/js/indexEditor1-0dc430c560ec8885be13.js.map"
       ]
     },
     "showEditor": {
       "js": [
-        "/packs/js/showEditor-d1c33a0ed49ee2ef7bc7.js"
+        "/packs/js/showEditor-fa31b2023e035ed8bf88.js"
       ],
       "js.map": [
-        "/packs/js/showEditor-d1c33a0ed49ee2ef7bc7.js.map"
+        "/packs/js/showEditor-fa31b2023e035ed8bf88.js.map"
       ]
     }
   },
-  "indexEditor.js": "/packs/js/indexEditor-00fe34c84f84d545752c.js",
-  "indexEditor.js.map": "/packs/js/indexEditor-00fe34c84f84d545752c.js.map",
-  "showEditor.js": "/packs/js/showEditor-d1c33a0ed49ee2ef7bc7.js",
-  "showEditor.js.map": "/packs/js/showEditor-d1c33a0ed49ee2ef7bc7.js.map"
+  "indexEditor1.js": "/packs/js/indexEditor1-0dc430c560ec8885be13.js",
+  "indexEditor1.js.map": "/packs/js/indexEditor1-0dc430c560ec8885be13.js.map",
+  "showEditor.js": "/packs/js/showEditor-fa31b2023e035ed8bf88.js",
+  "showEditor.js.map": "/packs/js/showEditor-fa31b2023e035ed8bf88.js.map"
 }
