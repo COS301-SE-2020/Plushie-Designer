@@ -167,43 +167,43 @@ body {
     background: transparent; /* Optional: just make scrollbar invisible */
 }
 
-//.options {
-//    float: right;
-//    position: absolute;
-//    top: 7.5em;
-//    right: 2em;;
-//    padding: 0em;
-//
-//    a[href="/toys"] {
-//        background-color: #616161;
-//        width: 2em;
-//        height: 2em;
-//        text-decoration: none;
-//        color: rgb(255, 255, 255);
-//        padding: 1em 2em 1em 2em;
-//        border-radius: 2em;
-//        font-size: 20px;
-//        box-shadow: 5px 5px 20px -5px #000000;
-//        transition: background-color 0.3s ease;
-//    }
-//
-//    a[href="/toys"]:hover {
-//        color: rgb(231, 231, 231);
-//        background-color: #5c5c5c;
-//        box-shadow: 5px 5px 20px -8px #000000;
-//        transition: background-color 0.3s ease;
-//
-//    }
-//}
+.options {
+   float: right;
+   position: absolute;
+   top: 7.5em;
+   right: 2em;;
+   padding: 0em;
+
+   a[href="/toys"] {
+       background-color: #616161;
+       width: 2em;
+       height: 2em;
+       text-decoration: none;
+       color: rgb(255, 255, 255);
+       padding: 1em 2em 1em 2em;
+       border-radius: 2em;
+       font-size: 20px;
+       box-shadow: 5px 5px 20px -5px #000000;
+       transition: background-color 0.3s ease;
+   }
+
+   a[href="/toys"]:hover {
+       color: rgb(231, 231, 231);
+       background-color: #5c5c5c;
+       box-shadow: 5px 5px 20px -8px #000000;
+       transition: background-color 0.3s ease;
+
+   }
+}
 
 .index-controls-container {
     width: 30%;
     position: absolute;
-    right: 0;
+    right: 20em;
     height: 100%;
     .index-page {
         position: absolute;
-        top: 7.5em;
+        top: 0em;
         left: 0;
         background: rgba($color: #000000, $alpha: 0.5);
         border-radius: 0.5em;
@@ -308,6 +308,7 @@ body {
         }
     }
 }
+
 
 // texture control box
 .texture-container {
@@ -551,7 +552,7 @@ p {
     // display: inline-block;
     margin-bottom: 1em;
     // box-shadow: 5px 5px 20px -5px #4b7e44;
-    background-color: #55b65a;
+    background-color: var(--primary-colour);
     // border-radius:10px;
     // display:inline-block;
     cursor: pointer;
@@ -568,7 +569,8 @@ p {
 }
 
 .ed-button:hover {
-    background-color: #50a754;
+    background-color: var(--secondary-colour);
+    color: var(--primary-colour);
 }
 
 .ed-button:active {
