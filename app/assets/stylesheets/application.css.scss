@@ -127,7 +127,15 @@ body {
     background-color: var(--secondary-colour);
 
     .fab {
-        color: var(--tertiary-colour);
+        color: var(--p-colour);
+        font-size: larger;
+        margin-right: 1em;
+    }
+    .page-scroll:hover {
+        color: var(--q-colour);
+    }
+    .fab:hover {
+        color: var(--primary-colour);
     }
 }
 
