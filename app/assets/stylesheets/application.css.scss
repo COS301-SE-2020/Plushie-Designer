@@ -869,6 +869,51 @@ hr {
             }
         }
     }
+    .new_user {
+        input[value="Send me reset password instructions"] {
+            background-color: var(--secondary-colour);
+            color: var(--primary-colour);
+            height: 3em;
+            font-weight: 600 !important;
+            width: 29em;
+        }
+        input[value="Send me reset password instructions"]:hover {
+            color: var(--q-colour);
+        }
+        .sign-in-sign-up {
+            margin-top: 1em;
+            .log-in-btn {
+                display: inline-block;
+                a {
+                    padding: 0.75em 1em;
+                    height: inherit;
+                    display: inline-block;
+                    text-decoration: none;
+                    background-color: var(--q-colour);
+                    color: var(--secondary-colour);
+                    border-radius: 4px;
+                }
+                a:hover {
+                    color: var(--primary-colour);
+                }
+            }
+            .sign-up-btn {
+                display: inline-block;
+                a {
+                    padding: 0.75em 1em;
+                    height: inherit;
+                    display: inline-block;
+                    text-decoration: none;
+                    background-color: var(--q-colour);
+                    color: var(--secondary-colour);
+                    border-radius: 4px;
+                }
+                a:hover {
+                    color: var(--primary-colour);
+                }
+            }
+        }
+    }
 }
 
 // Profile page
