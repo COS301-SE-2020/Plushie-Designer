@@ -37,7 +37,7 @@ var hhtemp = null;
 
 var scene = new THREE.Scene();
 scene.background = new THREE.Color(0x909090);
-scene.fog = new THREE.FogExp2(0x909090, 0.002);
+scene.fog = new THREE.FogExp2(0x909090, 0.012);
 
 var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -95,9 +95,7 @@ var models = new Array();
 //--------------------------------TEXTURE CHANGES---------------------------------------------
 	const colors = [
 		{
-			texture: '/images/box.jpg',
-			size: [1,1,1],
-			shininess: 60
+			color: 'E3A668',
 		},
 		{
 			texture: '/images/head.png',
@@ -105,13 +103,13 @@ var models = new Array();
 			shininess: 0
 		},
 		{
-			color: '153944'
+			color: '438AAC'
 		},
 		{
 			color: '27548D'
 		},
 		{
-			color: '438AAC'
+			color: '153944'
 		}  
 		];
 
@@ -310,7 +308,7 @@ models.push(['/model/chibi/chibi_hair.gltf',
 function add_model_to_scene(gltf, name)
 {
 
-	let color = colors[3];
+	let color = colors[2];
 		let new_mtl;
 		let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
 			bmp.repeat.set( 3, 3, 3);
