@@ -1,112 +1,85 @@
-<p>
-  <%= content_tag :div, class: "head", data: {head: @toy.head} do %>
-  <% end %>
-</p>
+<div class="show-texture-container">
+  <div class="controls texture-controls">
+    <div class="texture-title">
+      <span
+        class="title"
+        id="texture-popover"
+        data-toggle="popover"
+        data-content="Use these textures to bring your plushie to life.
+                      Click on a part of the plushie and select a texture from below."
+      >Textures:</span>
+    </div>
+    <div id="js-tray" class="tray">
+        <div id="js-tray-slide" class="tray__slide"></div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <%= content_tag :div, class: "arms", data: {arms: @toy.arms} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "head", data: {head: @toy.head} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "torso", data: {torso: @toy.torso} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "arms", data: {arms: @toy.arms} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "legs", data: {legs: @toy.legs} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "torso", data: {torso: @toy.torso} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "headposy", data: {headposy: @toy.head_pos} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "legs", data: {legs: @toy.legs} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "headposx", data: {headposx: @toy.head_posx} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "headposy", data: {headposy: @toy.head_pos} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "headposz", data: {headposz: @toy.head_posz} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "headposx", data: {headposx: @toy.head_posx} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "torsoposy", data: {torsoposy: @toy.torso_posy} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "headposz", data: {headposz: @toy.head_posz} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "torsoposx", data: {torsoposx: @toy.torso_posx} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "torsoposy", data: {torsoposy: @toy.torso_posy} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "torsoposz", data: {torsoposz: @toy.torso_posz} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "torsoposx", data: {torsoposx: @toy.torso_posx} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "larmposy", data: {larmposy: @toy.larm_posy} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "torsoposz", data: {torsoposz: @toy.torso_posz} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "larmposx", data: {larmposx: @toy.larm_posx} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "larmposy", data: {larmposy: @toy.larm_posy} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "larmposz", data: {larmposz: @toy.larm_posz} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "larmposx", data: {larmposx: @toy.larm_posx} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "rarmposy", data: {rarmposy: @toy.rarm_posy} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "larmposz", data: {larmposz: @toy.larm_posz} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "rarmposx", data: {rarmposx: @toy.rarm_posx} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "rarmposy", data: {rarmposy: @toy.rarm_posy} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "rarmposz", data: {rarmposz: @toy.rarm_posz} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "rarmposx", data: {rarmposx: @toy.rarm_posx} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "llegposy", data: {llegposy: @toy.lleg_posy} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "rarmposz", data: {rarmposz: @toy.rarm_posz} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "llegposx", data: {llegposx: @toy.lleg_posx} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "llegposy", data: {llegposy: @toy.lleg_posy} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "llegposz", data: {llegposz: @toy.lleg_posz} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "llegposx", data: {llegposx: @toy.lleg_posx} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "rlegposy", data: {rlegposy: @toy.rleg_posy} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "llegposz", data: {llegposz: @toy.lleg_posz} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "rlegposx", data: {rlegposx: @toy.rleg_posx} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "rlegposy", data: {rlegposy: @toy.rleg_posy} do %>
+<% end %>
 
-<p>
-  <%= content_tag :div, class: "rlegposz", data: {rlegposz: @toy.rleg_posz} do %>
-  <% end %>
-</p>
+<%= content_tag :div, class: "rlegposx", data: {rlegposx: @toy.rleg_posx} do %>
+<% end %>
+
+<%= content_tag :div, class: "rlegposz", data: {rlegposz: @toy.rleg_posz} do %>
+<% end %>
 
 <div class="show-toy-container">
   <div class="row">
@@ -126,21 +99,22 @@
           <div class="test">
             <span class="glyphicon glyphicon-time"></span> Was Posted: <%= time_ago_in_words(@toy.created_at) %> ago
           </div>
-              <hr>
-              <div class="Ratings">
-                <h4 class="test">
-                  Ratings:
-                </h4>
-                <%= render @toy.ratings %>
-              </div>
-              <%= render 'ratings/form' %>
+          <hr>
+          <div class="Ratings">
+            
+            <h4 class="test">
+              Ratings:
+            </h4>
+            <%= render @toy.ratings %>
+          </div>
+          <%= render 'ratings/form' %>
       </div>
   </div>
 </div>
 <div id="edit_rating" >
 
 </div> 
-<div class="options">
+<div class="show-options">
   <%= link_to 'Back', toys_path %>
   <br><br><br>
   <% if current_user == @toy.user%>
@@ -150,19 +124,9 @@
 </div>
 
 <div class="editor">
-    <%= javascript_pack_tag 'showEditor1' %>
+    <%= javascript_pack_tag 'showEditor' %>
 </div>
-
-<script>
-    function reloadIt() {
-        if (window.location.href.substr(-2) !== "?r") {
-            window.location = window.location.href + "?r";
-        }
-    }
-    setTimeout('reloadIt()', 1)();
-</script>
 
 <section id="loading-screen">
     <div id="loader"></div>
-    <div id="loadingtext">Loading</div>
 </section>

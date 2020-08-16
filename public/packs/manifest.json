@@ -1,8 +1,10 @@
 {
-  "Editor1.js": "/packs/js/Editor1-664cb22f73a353209564.js",
-  "Editor1.js.map": "/packs/js/Editor1-664cb22f73a353209564.js.map",
+  "Editor.js": "/packs/js/Editor-0af9f3b36f59f0d75b07.js",
+  "Editor.js.map": "/packs/js/Editor-0af9f3b36f59f0d75b07.js.map",
   "application.js": "/packs/js/application-9afcbb5693aa87623e69.js",
   "application.js.map": "/packs/js/application-9afcbb5693aa87623e69.js.map",
+  "dynamicUV.js": "/packs/js/dynamicUV-76704bcdf39dc9ed5cd3.js",
+  "dynamicUV.js.map": "/packs/js/dynamicUV-76704bcdf39dc9ed5cd3.js.map",
   "entrypoints": {
     "application": {
       "js": [
@@ -12,33 +14,41 @@
         "/packs/js/application-9afcbb5693aa87623e69.js.map"
       ]
     },
-    "Editor1": {
+    "dynamicUV": {
       "js": [
-        "/packs/js/Editor1-664cb22f73a353209564.js"
+        "/packs/js/dynamicUV-76704bcdf39dc9ed5cd3.js"
       ],
       "js.map": [
-        "/packs/js/Editor1-664cb22f73a353209564.js.map"
+        "/packs/js/dynamicUV-76704bcdf39dc9ed5cd3.js.map"
+      ]
+    },
+    "Editor": {
+      "js": [
+        "/packs/js/Editor-0af9f3b36f59f0d75b07.js"
+      ],
+      "js.map": [
+        "/packs/js/Editor-0af9f3b36f59f0d75b07.js.map"
       ]
     },
     "indexEditor1": {
       "js": [
-        "/packs/js/indexEditor1-b92283574ed93bac66ad.js"
+        "/packs/js/indexEditor1-0dc430c560ec8885be13.js"
       ],
       "js.map": [
-        "/packs/js/indexEditor1-b92283574ed93bac66ad.js.map"
+        "/packs/js/indexEditor1-0dc430c560ec8885be13.js.map"
       ]
     },
-    "showEditor1": {
+    "showEditor": {
       "js": [
-        "/packs/js/showEditor1-bca19d1632211ce914f0.js"
+        "/packs/js/showEditor-14d9dab6caf5291f58a4.js"
       ],
       "js.map": [
-        "/packs/js/showEditor1-bca19d1632211ce914f0.js.map"
+        "/packs/js/showEditor-14d9dab6caf5291f58a4.js.map"
       ]
     }
   },
-  "indexEditor1.js": "/packs/js/indexEditor1-b92283574ed93bac66ad.js",
-  "indexEditor1.js.map": "/packs/js/indexEditor1-b92283574ed93bac66ad.js.map",
-  "showEditor1.js": "/packs/js/showEditor1-bca19d1632211ce914f0.js",
-  "showEditor1.js.map": "/packs/js/showEditor1-bca19d1632211ce914f0.js.map"
+  "indexEditor1.js": "/packs/js/indexEditor1-0dc430c560ec8885be13.js",
+  "indexEditor1.js.map": "/packs/js/indexEditor1-0dc430c560ec8885be13.js.map",
+  "showEditor.js": "/packs/js/showEditor-14d9dab6caf5291f58a4.js",
+  "showEditor.js.map": "/packs/js/showEditor-14d9dab6caf5291f58a4.js.map"
 }
