@@ -13,6 +13,7 @@ Plushie-Designer is a website that allows users to create and share their plushi
 - SRS Document Version 2: https://www.overleaf.com/read/pyyxfxtkxmxm
 - SRS Document Version 3: (Coming soon)
 - User Manual: https://drive.google.com/file/d/1PkpQGP4PseLXuD0l62Z-f6XHiO7CFBny/view?usp=sharing
+- Technical Installation Manual: (Coming soon)
 - Coding Standards Document: https://www.overleaf.com/read/djbvggfdgrrb
 ### Project Management Tool
 - Trello: https://trello.com/b/Fb6EqN0r/plushiedesigner
