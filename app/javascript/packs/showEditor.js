@@ -9,7 +9,7 @@ import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
 
 
-var hair = 0;
+var hair = $(".head").data("head");
 var head = $(".head").data("head");
 var torso = $(".torso").data("torso");
 var arms = $(".arms").data("arms");
