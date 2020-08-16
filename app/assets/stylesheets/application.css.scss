@@ -247,6 +247,13 @@ body {
             opacity: 1;
         }
 
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 20px;
+        }
+
         .control-header:hover {
             cursor: pointer;
         }
