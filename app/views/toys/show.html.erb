@@ -1,112 +1,69 @@
-<p>
+
   <%= content_tag :div, class: "head", data: {head: @toy.head} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "arms", data: {arms: @toy.arms} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "torso", data: {torso: @toy.torso} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "legs", data: {legs: @toy.legs} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "headposy", data: {headposy: @toy.head_pos} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "headposx", data: {headposx: @toy.head_posx} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "headposz", data: {headposz: @toy.head_posz} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "torsoposy", data: {torsoposy: @toy.torso_posy} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "torsoposx", data: {torsoposx: @toy.torso_posx} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "torsoposz", data: {torsoposz: @toy.torso_posz} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "larmposy", data: {larmposy: @toy.larm_posy} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "larmposx", data: {larmposx: @toy.larm_posx} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "larmposz", data: {larmposz: @toy.larm_posz} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "rarmposy", data: {rarmposy: @toy.rarm_posy} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "rarmposx", data: {rarmposx: @toy.rarm_posx} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "rarmposz", data: {rarmposz: @toy.rarm_posz} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "llegposy", data: {llegposy: @toy.lleg_posy} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "llegposx", data: {llegposx: @toy.lleg_posx} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "llegposz", data: {llegposz: @toy.lleg_posz} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "rlegposy", data: {rlegposy: @toy.rleg_posy} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "rlegposx", data: {rlegposx: @toy.rleg_posx} do %>
   <% end %>
-</p>
 
-<p>
   <%= content_tag :div, class: "rlegposz", data: {rlegposz: @toy.rleg_posz} do %>
   <% end %>
-</p>
 
 <div class="show-toy-container">
   <div class="row">
@@ -141,7 +98,7 @@
 <div id="edit_rating" >
 
 </div> 
-<div class="options">
+<div class="show-options">
   <%= link_to 'Back', toys_path %>
   <br><br><br>
   <% if current_user == @toy.user%>
