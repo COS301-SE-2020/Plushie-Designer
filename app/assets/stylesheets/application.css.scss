@@ -238,7 +238,9 @@ body {
             height: 10px;
             outline: none;
             opacity: 0.7;
+            -webkit-transition: .2s;
             background: var(--secondary-colour);
+            transition: background-color 0.3s ease;
         }
 
         .control-header:hover {
