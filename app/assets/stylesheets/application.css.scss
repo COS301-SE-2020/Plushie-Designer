@@ -26,7 +26,8 @@
     //--tertiary-colour: rgb(47, 56, 86);
 
     --q-colour: rgb(241, 213, 186);
-    --p-colour: rgb(237, 66, 72);
+    --p-colour: #cf3f46;
+    //--p-colour: rgb(237, 66, 72);
     --background : #6c768d;
     //--background : #7a7171;
     // old colour scheme
@@ -39,7 +40,9 @@
     position: absolute;
     top: 5em;
     width: 100%;
-    z-index: 999;
+    z-index: 0;
+    background-color: var(--tertiary-colour);
+    color: var(--q-colour);
 }
 
 .editor {
@@ -606,8 +609,10 @@ p {
         overflow-x: hidden;
         z-index: 99;
         .toy-card {
-            background-color: var(--tertiary-colour);
-            color: white;
+            background-color: var(--secondary-colour);
+            //background-color: var(--tertiary-colour);
+            color: var(--primary-colour);
+            //color: white;
             // color: var(--secondary-colour);
             border-radius: 0.5em;
             padding-top: 1.5%;
@@ -620,7 +625,8 @@ p {
                 border-radius: 5px;
             }
             a {
-                color: white;
+                color: var(--primary-colour);
+                //color: white;
             }
             a:hover {
                 color: rgb(255, 218, 218)
@@ -638,8 +644,10 @@ p {
         text-align: center;
         .create-plushie-button {
             text-decoration: none;
+            //color: var(--p-colour);
             color: var(--secondary-colour);
-            background-color: var(--q-colour);
+            background-color: var(--p-colour);
+            //background-color: var(--q-colour);
             transition: background-color 0.3s ease;
             padding: 2rem 5vw;
             //font-size: 20px;
@@ -650,11 +658,11 @@ p {
         }
 
         .create-plushie-button:hover {
-            text-decoration: none;
+        //    text-decoration: none;
             color: var(--primary-colour);
-            background-color: var(--secondary-colour);
-            transition: background-color 0.3s ease;
-            box-shadow: none;
+        //    background-color: var(--secondary-colour);
+        //    transition: background-color 0.3s ease;
+        //    box-shadow: none;
         }
     }
 }
@@ -697,7 +705,6 @@ hr {
     border-radius: 0.5em;
     margin: 0;
     position: fixed;
-    //position: absolute;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
@@ -706,6 +713,17 @@ hr {
     -webkit-box-shadow: 4px 6px 28px -13px rgba(0,0,0,1);
     -moz-box-shadow: 4px 6px 28px -13px rgba(0,0,0,1);
     box-shadow: 4px 6px 28px -13px rgba(0,0,0,1);
+    .user-form-back {
+        background-color: var(--p-colour);
+        position: absolute;
+        mix-blend-mode: hue;
+        width: inherit;
+        height: 100%;
+        z-index: -1000;
+        border-radius: 0.5em;
+        top: 0.5em;
+        left: 0.5em;
+    }
     h2 {
         color: var(--q-colour);
         text-align: center;
@@ -734,14 +752,17 @@ hr {
                     padding-top: 0.75em;
                     height: inherit;
                     display: inline-block;
-                    background-color: var(--q-colour);
+                    background-color: var(--p-colour);
+                    //background-color: var(--q-colour);
+                    //color: var(---colour);
                     color: var(--secondary-colour);
                     padding-left: 0.7em;
                     padding-right: 0.7em;
                     border-radius: 4px;
                 }
                 a:hover {
-                    color: var(--primary-colour);
+                    color: var(--secondary-colour);
+                    //color: var(--primary-colour);
                 }
             }
             .forgot-password-btn {
@@ -766,14 +787,17 @@ hr {
         display: flex;
         padding-top: 1em;
         input[value="Sign up"] {
-            background-color: var(--secondary-colour);
-            color: var(--primary-colour);
+            background-color: var(--p-colour);
+            //background-color: var(--secondary-colour);
+            color: var(--secondary-colour);
+            //color: var(--primary-colour);
             height: 3em;
             font-weight: 600 !important;
         }
-        input[value="Sign up"]:hover {
-            color: var(--q-colour);
-        }
+        //input[value="Sign up"]:hover {
+        //    color: var(--q-colour);
+        //    color: var(--q-colour);
+        //}
         .right {
             height: 3em;
             width: 28em;
@@ -786,15 +810,17 @@ hr {
                     padding-top: 0.75em;
                     height: inherit;
                     display: inline-block;
-                    background-color: var(--q-colour);
+                    background-color: var(--p-colour);
+                    //background-color: var(--q-colour);
                     color: var(--secondary-colour);
                     padding-left: 0.7em;
                     padding-right: 0.7em;
                     border-radius: 4px;
                 }
-                a:hover {
-                    color: var(--primary-colour);
-                }
+                //a:hover {
+                //    color: var(--secondary-colour);
+                //    //color: var(--primary-colour);
+                //}
             }
             a {
                 text-decoration: none;
@@ -979,6 +1005,17 @@ select:-webkit-autofill:focus {
     -webkit-box-shadow: 4px 6px 28px -13px rgba(0,0,0,1);
     -moz-box-shadow: 4px 6px 28px -13px rgba(0,0,0,1);
     box-shadow: 4px 6px 28px -13px rgba(0,0,0,1);
+    .user-form-back {
+        background-color: var(--p-colour);
+        position: absolute;
+        mix-blend-mode: hue;
+        width: inherit;
+        height: 100%;
+        z-index: -1000;
+        border-radius: 0.5em;
+        top: 0.5em;
+        left: 0.5em;
+    }
     h2, h3, p {
         color: var(--q-colour);
     }
