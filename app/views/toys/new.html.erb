@@ -1,31 +1,44 @@
-<div class="controls">
-            <div id="js-tray" class="tray">
-                <div id="js-tray-slide" class="tray__slide"></div>
-            </div>
-        </div>
+<div class="texture-container">
+  <div class="controls texture-controls">
+    <div class="texture-title">
+      <span
+        class="title"
+        id="texture-popover"
+        data-toggle="popover"
+        data-content="Use these textures to bring your plushie to life.
+                      Click on a part of the plushie and select a texture from below."
+      >Textures:</span>
+    </div>
+      <div id="js-tray" class="tray">
+          <div id="js-tray-slide" class="tray__slide"></div>
+      </div>
+  </div>
+</div>
 
 <div class="options">
+  <div class="index-controls-container">
     <div class="index-page">
         <%= render 'form_new', toy: @toy %>
         <hr>
         <%= button_to 'Back', toys_path, method: :get, :id => "back-btn" %>
     </div>
+  </div>
 </div>
 
 <div class="editor">
-    <%= javascript_pack_tag 'Editor1' %>
+    <%= javascript_pack_tag 'Editor' %>
 </div>
-
-<script>
-    function reloadIt() {
-        if (window.location.href.substr(-2) !== "?r") {
-            window.location = window.location.href + "?r";
-        }
-    }
-    setTimeout('reloadIt()', 1)();
-</script>
 
 <section id="loading-screen">
     <div id="loader"></div>
     <div id="loadingtext">Loading</div>
 </section>
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover({
+            placement : 'top',
+            trigger : 'hover'
+        });
+    });
+</script>
