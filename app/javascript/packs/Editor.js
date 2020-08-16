@@ -1,19 +1,11 @@
 var THREE = require('three');
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
-import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
-import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
-import { UVsDebug } from './dynamicUV';
 
 var headchange = false;
 var torsochange = false;
 var armschange = false; 
 var legschange = false;
-var hair = $("#toy_head")[0].value;
 var head = $("#toy_head")[0].value;
 var torso = $("#toy_torso")[0].value;
 var arms = $("#toy_arms")[0].value;
@@ -21,22 +13,16 @@ var legs = $("#toy_legs")[0].value;
 
 var headposy = $("#toy_head_pos")[0].value;
 var headposx = $("#toy_head_posx")[0].value;
-var headposz = $("#toy_head_posz")[0].value;
 var torsoposy = $("#toy_torso_posy")[0].value;
 var torsoposx = $("#toy_torso_posx")[0].value;
-var torsoposz = $("#toy_torso_posz")[0].value;
 var larmposy = $("#toy_larm_posy")[0].value;
 var larmposx = $("#toy_larm_posx")[0].value;
-var larmposz = $("#toy_larm_posz")[0].value;
 var rarmposy = $("#toy_rarm_posy")[0].value;
 var rarmposx = $("#toy_rarm_posx")[0].value;
-var rarmposz = $("#toy_rarm_posz")[0].value;
 var llegposy = $("#toy_lleg_posy")[0].value;
 var llegposx = $("#toy_lleg_posx")[0].value;
-var llegposz = $("#toy_lleg_posz")[0].value;
 var rlegposy = $("#toy_rleg_posy")[0].value;
 var rlegposx = $("#toy_rleg_posx")[0].value;
-var rlegposz = $("#toy_rleg_posz")[0].value;
 var ihead = 7;
 var itorso = 8;
 var ilarm = 3;
@@ -67,16 +53,6 @@ document.body.appendChild(renderer.domElement);
 var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 1, 10);
 
-const loadingManager = new THREE.LoadingManager( () => {
-	
-	const loadingScreen = document.getElementById( 'loading-screen' );
-	loadingScreen.classList.add( 'fade-out' );
-	
-	// optional: remove loader from DOM via event listener
-	loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
-	
-} );
-
 var controls = new OrbitControls(camera, renderer.domElement);
 
 controls.enableDamping = true;
@@ -87,9 +63,34 @@ controls.maxDistance = 13;
 
 controls.maxPolarAngle = Math.PI / 2;
 
-var loader = new GLTFLoader(loadingManager);
+var loader = new GLTFLoader();
+
 var hurl = '';
-var hurl1 = '';
+if(head==0){
+	hurl = '/model/minecraft/steve_head.gltf';
+}else if(head==1){
+	hurl = '/model/chibi/chibi_head.gltf';
+	loader.load( '/model/chibi/chibi_hair.gltf', function ( gltf ) {
+		gltf.scene.position.setY(headposy);
+		gltf.scene.position.setX(headposx);
+		gltf.scene.castShadow = true;
+		gltf.scene.name = "hair";
+		scene.add( gltf.scene );
+		hhtemp = gltf.scene;
+
+	}, undefined, function ( error ) {
+
+		console.error( error );
+
+	} );
+}
+loader.load( hurl, function ( gltf ) {
+	gltf.scene.position.setY(headposy);
+	gltf.scene.position.setX(headposx);
+	gltf.scene.castShadow = true;
+	gltf.scene.name = "head";
+	scene.add( gltf.scene );
+	htemp = gltf.scene;
 
 var models = new Array();
 
@@ -139,130 +140,50 @@ const colors = [
 	//----------------------------------------------------------------------
 	buildColors(colors);
 
-	//--------------------SETUP SWATCHES-------------------------------------
-	const swatches = document.querySelectorAll(".tray__swatch");
+	console.error( error );
 
-	for (const swatch of swatches) {
-	swatch.addEventListener('click', selectSwatch);
-	}
-	var currentSelection;
-	function selectSwatch(e) {
-		let color = colors[parseInt(e.target.dataset.key)];
-		let new_mtl;
-		let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
-			bmp.repeat.set( 3, 3, 3);
-			bmp.wrapS = THREE.RepeatWrapping;
-			bmp.wrapT = THREE.RepeatWrapping;
+} );
 
+var hurl = '';
+if(torso==0){
+	hurl = '/model/minecraft/steve_Body.gltf';
+}else if(torso==1){
+	hurl = '/model/chibi/chibi_body.gltf';
+}
+loader.load( hurl, function ( gltf ) {
+	gltf.scene.position.setY(torsoposy);
+	gltf.scene.position.setX(torsoposx);
+	gltf.scene.castShadow = true;
+	gltf.scene.name = "torso";
+	scene.add( gltf.scene );
+	ttemp = gltf.scene;
 
-		if (color.texture) {
-      
-			let txt = new THREE.TextureLoader().load(color.texture);
-			
-			txt.repeat.set( color.size[0], color.size[1], color.size[2]);
-			txt.wrapS = THREE.RepeatWrapping;
-			txt.wrapT = THREE.RepeatWrapping;
-			
-			new_mtl = new THREE.MeshPhongMaterial( {
-			  map: txt,
-			  shininess: color.shininess ? color.shininess : 10,
-			  bumpMap: bmp,
-			  bumpScale: 0.45
-			});    
-		  } 
-		  else
-		  {
-			new_mtl = new THREE.MeshPhongMaterial({
-				color: parseInt('0x' + color.color),
-				shininess: color.shininess ? color.shininess : 10,
-				bumpMap: bmp,
-			 	bumpScale: 0.45
-			  });
-		  }
-	
-	setMaterial(currentSelection, new_mtl);
-	}
+}, undefined, function ( error ) {
 
-	function setMaterial(parent, mtl) {
-		if(parent == null)
-		{
-			alert("Select a body part before selecting a texture.");
-			return;
-		}
+	console.error( error );
 
-		parent.children[0].material = mtl;
-	}
-	//------------------------------------------------------------------------
+} );
 
+var hurl = '';
+var hurl1 = '';
+if(arms==0){
+	hurl = '/model/minecraft/steve_l_arm.gltf';
+	hurl1 = '/model/minecraft/steve_r_arm.gltf';
+}else if(arms==1){
+	hurl = '/model/chibi/chibi_l_arm.gltf';
+	hurl1 = '/model/chibi/chibi_r_arm.gltf';
+}
+loader.load( hurl, function ( gltf ) {
+	gltf.scene.position.setY(larmposy);
+	gltf.scene.position.setX(larmposx);
+	gltf.scene.castShadow = true;
+	gltf.scene.name = "leftarm";
+	scene.add( gltf.scene );
+	latemp = gltf.scene;
 
-	document.addEventListener("click", onMouseClick, false);
-	var mouse = new THREE.Vector2();
-	var raycaster = new THREE.Raycaster();
+}, undefined, function ( error ) {
 
-	//------------------------------OUTLINE PASS SETUP------------------------------------------------
-	var selectedObjects = [];
-
-	var composer, copyshader, outlinePass;
-	function addSelectedObject( object ) {
-
-		selectedObjects = [];
-		selectedObjects.push( object );
-
-	}
-	var outlinePass = new OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), scene, camera);
-	outlinePass.edgeStrength = Number( 10 );
-	outlinePass.edgeGlow = Number( 0);
-	outlinePass.edgeThickness = Number( 1 );
-	outlinePass.pulsePeriod = Number( 0 );
-	outlinePass.visibleEdgeColor.set( "#ffffff" );
-	outlinePass.hiddenEdgeColor.set( "#000000" );
-
-	//-------------------------TAA + FXAA SETUP---------------------------
-	var renderPass, taaRenderPass;
-	ConfigureCanvas();
-
-	function ConfigureCanvas()
-	{
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
-
-		renderer.setSize( window.innerWidth, window.innerHeight );
-
-		composer = new EffectComposer( renderer );
-		renderPass = new RenderPass( scene, camera );
-		composer.addPass( renderPass );
-
-		taaRenderPass = new TAARenderPass( scene, camera );
-		taaRenderPass.unbiased = true;
-		taaRenderPass.enabled = true;
-		taaRenderPass.sampleLevel = 3;
-		composer.addPass( taaRenderPass );
-		outlinePass = new OutlinePass( new THREE.Vector2( window.innerWidth, window.innerHeight ), scene, camera );
-		composer.addPass( outlinePass );
-		
-		copyshader = new ShaderPass( FXAAShader );
-		copyshader.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
-		composer.addPass( copyshader );
-	}
-	//----------------------------------------------------------------------------------------------
-
-	function chooseBodyPart(obj)//TODO
-	{	
-		switch(obj.name)
-		{
-			case "hair" : currentSelection = hhtemp; break;
-			case "head" : currentSelection = htemp; break;
-			case "body" : currentSelection = ttemp; break;
-			case "l_leg" : currentSelection = lltemp; break;
-			case "r_leg" : currentSelection = rltemp; break;
-			case "l_arm" : currentSelection = latemp; break;
-			case "r_arm" : currentSelection = ratemp; break;
-			default : return;
-		}
-		var selectedObject = obj;
-		addSelectedObject( selectedObject );
-		outlinePass.selectedObjects = selectedObjects;
-	}
+	console.error( error );
 
 	function onMouseClick(event)
 	{
@@ -327,60 +248,22 @@ function add_model_to_scene(gltf, name)
 	gltf.scene.children[0].castShadow = true;
 	gltf.scene.name = name;
 	scene.add( gltf.scene );
-	switch(name)
-	{
-		case "hair" : 
-			hhtemp = gltf.scene; 
-			gltf.scene.position.setY(headposy); 
-			gltf.scene.position.setX(headposx);
-			gltf.scene.position.setZ(headposz);  
-			break;
-		case "head" :
-			htemp = gltf.scene;
-			gltf.scene.position.setY(headposy); 
-			gltf.scene.position.setX(headposx);
-			gltf.scene.position.setZ(headposz);  
-			console.log(gltf.scene.children[0]);
-			$("#toy_head_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
-			break;
-		case "torso" : 
-			ttemp = gltf.scene;
-			gltf.scene.position.setY(torsoposy); 
-			gltf.scene.position.setX(torsoposx);  
-			gltf.scene.position.setZ(torsoposz);
-			console.log(gltf.scene.children[0]);
-			$("#toy_torso_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
-		break;
-		case "leftarm" : 
-			latemp = gltf.scene; 
-			gltf.scene.position.setY(larmposy); 
-			gltf.scene.position.setX(larmposx);
-			gltf.scene.position.setZ(larmposz);
-			$("#toy_larm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
-		break;
-		case "rightarm" : 
-			ratemp = gltf.scene;
-			gltf.scene.position.setY(rarmposy); 
-			gltf.scene.position.setX(rarmposx); 
-			gltf.scene.position.setZ(rarmposz);
-			$("#toy_rarm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
-		break;
-		case "leftleg" : 
-			lltemp = gltf.scene;
-			gltf.scene.position.setY(llegposy); 
-			gltf.scene.position.setX(llegposx);  
-			gltf.scene.position.setZ(llegposz);
-			$("#toy_lleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
-		break;
-		case "rightleg" : 
-			rltemp = gltf.scene;
-			gltf.scene.position.setY(rlegposy); 
-			gltf.scene.position.setX(rlegposx);  
-			gltf.scene.position.setZ(rlegposz);
-			$("#toy_rleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
-		break;	
-	}
-	
+	ratemp = gltf.scene;
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+
+var hurl = '';
+var hurl1 = '';
+if(legs==0){
+	hurl = '/model/minecraft/steve_l_leg.gltf';
+	hurl1 = '/model/minecraft/steve_r_leg.gltf';
+}else if(legs==1){
+	hurl = '/model/chibi/chibi_l_leg.gltf';
+	hurl1 = '/model/chibi/chibi_r_leg.gltf';
 }
 //---------------------------------------------------------------------------------
 
@@ -438,7 +321,6 @@ plane.castShadow = false;
 plane.receiveShadow = true;
 plane.position.setY(-4.5);
 scene.add(plane);
-//-----------------------------------------------------------------
 
 //---------------------------LIGHTING-----------------------------
 var light = new THREE.AmbientLight(0xffffff);
@@ -460,40 +342,46 @@ light.shadow.mapSize.width = 512;  // default
 light.shadow.mapSize.height = 512; // default
 light.shadow.camera.near = 0.5;    // default
 light.shadow.camera.far = 500;
-//----------------------------------------------------------------
 
-//------------------------------INDEX UPDATER----------------------------
 function updateIndexes(){
 	for(var i=0;i< scene.children.length;++i){
-		switch(scene.children[i].name)
-		{
-			case "head" : ihead = i; break;
-			case "torso" : itorso = i; break;
-			case "leftarm" : ilarm = i; break;
-			case "rightarm" : irarm = i; break;
-			case "leftleg" : illeg = i; break;
-			case "rightleg" : irleg = i; break;
-			case "hair" : ihair = i; break;
+		if(scene.children[i].name=="head"){
+			ihead = i;
+		}else if(scene.children[i].name=="torso"){
+			itorso = i;
+		}else if(scene.children[i].name=="leftarm"){
+			ilarm = i;
+		}else if(scene.children[i].name=="rightarm"){
+			irarm = i;
+		}else if(scene.children[i].name=="leftleg"){
+			illeg = i;
+		}else if(scene.children[i].name=="rightleg"){
+			irleg = i;
+		}else if(scene.children[i].name=="hair"){
+			ihair = i;
 		}
 	}
 }
-//--------------------------------------------------------
 
 window.addEventListener( 'resize', onWindowResize, false );
 
 function onWindowResize() {
 
-	ConfigureCanvas();
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize( window.innerWidth, window.innerHeight );
 
 }
-//-------------------------------ANIMATE---------------------------------
+
 var animate = function () {
-	
 	if(headchange){
 		updateIndexes();
 		var temp = scene.getObjectByName(scene.children[ihead].name);
 		scene.remove(temp);
+		var hurl = '';
 		if(head==0){
+			hurl = '/model/minecraft/steve_head.gltf';
 			updateIndexes();
 			if(ihair!=99){
 				var temp = scene.getObjectByName(scene.children[ihair].name);
@@ -501,12 +389,32 @@ var animate = function () {
 				hhtemp = null;
 			}
 		}else if(head==1){
-			loader.load( '/model/chibi/chibi_hair.gltf', (gltf) => add_model_to_scene(gltf , "hair")
-			, undefined, function ( error ) { console.error( error );} );
+			hurl = '/model/chibi/chibi_head.gltf';
+			loader.load( '/model/chibi/chibi_hair.gltf', function ( gltf ) {
+				gltf.scene.position.setY(1.5);
+				gltf.scene.castShadow = true;
+				gltf.scene.name = "hair";
+				scene.add( gltf.scene );
+				hhtemp = gltf.scene;
+	
+			}, undefined, function ( error ) {
+	
+				console.error( error );
+	
+			} );
 		}
-		hurl = models[head][1];
-		loader.load( hurl, (gltf) => add_model_to_scene(gltf , "head")
-			, undefined, function ( error ) { console.error( error );} );
+		loader.load( hurl, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "head";
+			scene.add( gltf.scene );
+			htemp = gltf.scene;
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
 		headchange = false;
 	}
 
@@ -514,9 +422,24 @@ var animate = function () {
 		updateIndexes();
 		var temp = scene.getObjectByName(scene.children[itorso].name);
 		scene.remove(temp);
-		hurl = models[torso][2];
-		loader.load( hurl, (gltf) => add_model_to_scene(gltf , "torso")
-		, undefined, function ( error ) { console.error( error );} );
+		var hurl = '';
+		if(torso==0){
+			hurl = '/model/minecraft/steve_Body.gltf';
+		}else if(torso==1){
+			hurl = '/model/chibi/chibi_body.gltf';
+		}
+		loader.load( hurl, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "torso";
+			scene.add( gltf.scene );
+			ttemp = gltf.scene;
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
 		torsochange = false;
 	}
 
@@ -527,13 +450,39 @@ var animate = function () {
 		updateIndexes();
 		var temp1 = scene.getObjectByName(scene.children[irarm].name);
 		scene.remove(temp1);
-		
-		hurl = models[arms][3];
-		hurl1 = models[arms][4];
-		loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftarm")
-			, undefined, function ( error ) { console.error( error );} );
-		loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightarm")
-			, undefined, function ( error ) { console.error( error );} );
+		var hurl = '';
+		var hurl1 = '';
+		if(arms==0){
+			hurl = '/model/minecraft/steve_l_arm.gltf';
+			hurl1 = '/model/minecraft/steve_r_arm.gltf';
+		}else if(arms==1){
+			hurl = '/model/chibi/chibi_l_arm.gltf';
+			hurl1 = '/model/chibi/chibi_r_arm.gltf';
+		}
+		loader.load( hurl, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "leftarm";
+			scene.add( gltf.scene );
+			latemp = gltf.scene;
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
+		loader.load( hurl1, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "rightarm";
+			scene.add( gltf.scene );
+			ratemp = gltf.scene;
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
 		armschange = false;
 	}
 
@@ -544,22 +493,47 @@ var animate = function () {
 		updateIndexes();
 		var temp1 = scene.getObjectByName(scene.children[irleg].name);
 		scene.remove(temp1);
+		var hurl = '';
+		var hurl1 = '';
+		if(legs==0){
+			hurl = '/model/minecraft/steve_l_leg.gltf';
+			hurl1 = '/model/minecraft/steve_r_leg.gltf';
+		}else if(legs==1){
+			hurl = '/model/chibi/chibi_l_leg.gltf';
+			hurl1 = '/model/chibi/chibi_r_leg.gltf';
+		}
+		loader.load( hurl, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "leftleg";
+			scene.add( gltf.scene );
+			lltemp = gltf.scene;
 
-		hurl = models[legs][5];
-		hurl1 = models[legs][6];
-		loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
-			, undefined, function ( error ) { console.error( error );} );
-		loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
-			, undefined, function ( error ) { console.error( error );} );
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
+		loader.load( hurl1, function ( gltf ) {
+			gltf.scene.position.setY(1.5);
+			gltf.scene.castShadow = true;
+			gltf.scene.name = "rightleg";
+			scene.add( gltf.scene );
+			rltemp = gltf.scene;
+
+		}, undefined, function ( error ) {
+
+			console.error( error );
+
+		} );
 		legschange = false;
 	}
-	requestAnimationFrame(animate);
 
+	requestAnimationFrame(animate);
+	
 	controls.update();
-	//renderer.render(scene, camera);
-	composer.render();
+	renderer.render(scene, camera);
 };
-//--------------------------------------------------------------
 
 animate();
 
@@ -567,17 +541,9 @@ function screensh(){
 	controls.reset();
 	// var w = window.open('', '');
 	// w.document.title = "Screenshot";
-	var img = new Image();
-	renderer.setSize(500, 500);
-	camera.aspect = 500 / 500;
-	camera.position.set(0, 0.32, 8.5);
-	camera.updateProjectionMatrix();
+    var img = new Image();
     renderer.render(scene, camera);
-	img.src = renderer.domElement.toDataURL();
-	renderer.setSize(window.innerWidth, window.innerHeight);
-	camera.aspect = window.innerWidth / window.innerHeight;
-	camera.position.set(0, 1, 10);
-	camera.updateProjectionMatrix();
+    img.src = renderer.domElement.toDataURL();
 	// w.document.body.appendChild(img);
 	$("#toy_image")[0].value = img.src;
 }
@@ -605,7 +571,6 @@ $(document).ready(function(){
 	});
 	var hslideru = document.getElementById("headup");
 	var hsliderl = document.getElementById("headleft");
-	var hsliderf = document.getElementById("headfront");
 	hslideru.oninput = function() {
 		//var temp = scene.getObjectByName(scene.children[ihead].name);
 		var t = this.value;
@@ -626,16 +591,6 @@ $(document).ready(function(){
 		}
 		$("#toy_head_posx")[0].value = t;
 	}
-	hsliderf.oninput = function() {
-		//var temp = scene.getObjectByName(scene.children[ihead].name);
-		var t = this.value;
-		htemp.position.setZ(-t);
-		// console.log(t);
-		if(hhtemp!=null){
-			hhtemp.position.setZ(-t);
-		}
-		$("#toy_head_posz")[0].value = -t;
-	}
 
 	$('#armsl').click(function () {
 		if($("#toy_arms")[0].value > 0){
@@ -655,10 +610,8 @@ $(document).ready(function(){
 	});
 	var laslideru = document.getElementById("larmup");
 	var lasliderl = document.getElementById("larmleft");
-	var lasliderf = document.getElementById("larmfront");
 	var raslideru = document.getElementById("rarmup");
 	var rasliderl = document.getElementById("rarmleft");
-	var rasliderf = document.getElementById("rarmfront");
 	laslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[ilarm].name);
 		var t = this.value;
@@ -673,13 +626,6 @@ $(document).ready(function(){
 		// console.log(t);
 		$("#toy_larm_posx")[0].value = t;
 	}
-	lasliderf.oninput = function() {
-		// var latemp = scene.getObjectByName(scene.children[ilarm].name);
-		var t = this.value;
-		latemp.position.setZ(-t);
-		$("#toy_larm_posz")[0].value = -t;
-		// console.log(t);
-	}
 	raslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[irarm].name);
 		var t = this.value;
@@ -693,13 +639,6 @@ $(document).ready(function(){
 		ratemp.position.setX(t);
 		// console.log(t);
 		$("#toy_rarm_posx")[0].value = t;
-	}
-	rasliderf.oninput = function() {
-		// var ratemp = scene.getObjectByName(scene.children[irarm].name);
-		var t = this.value;
-		ratemp.position.setZ(-t);
-		$("#toy_rarm_posz")[0].value = -t;
-		// console.log(t);
 	}
 
 	$('#torsol').click(function () {
@@ -720,7 +659,6 @@ $(document).ready(function(){
 	});
 	var tslideru = document.getElementById("torsoup");
 	var tsliderl = document.getElementById("torsoleft");
-	var tsliderf = document.getElementById("torsofront");
 	tslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[itorso].name);
 		var t = this.value;
@@ -734,13 +672,6 @@ $(document).ready(function(){
 		ttemp.position.setX(t);
 		// console.log(t);
 		$("#toy_torso_posx")[0].value = t;
-	}
-	tsliderf.oninput = function() {
-		// var ttemp = scene.getObjectByName(scene.children[itorso].name);
-		var t = this.value;
-		ttemp.position.setZ(-t);
-		$("#toy_torso_posz")[0].value = -t;
-		// console.log(t);
 	}
 
 	$('#legsl').click(function () {
@@ -761,10 +692,8 @@ $(document).ready(function(){
 	});
 	var llslideru = document.getElementById("llegup");
 	var llsliderl = document.getElementById("llegleft");
-	var llsliderf = document.getElementById("llegfront");
 	var rlslideru = document.getElementById("rlegup");
 	var rlsliderl = document.getElementById("rlegleft");
-	var rlsliderf = document.getElementById("rlegfront");
 	llslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[illeg].name);
 		var t = this.value;
@@ -778,13 +707,6 @@ $(document).ready(function(){
 		lltemp.position.setX(t);
 		// console.log(t);
 		$("#toy_lleg_posx")[0].value = t;
-	}
-	llsliderf.oninput = function() {
-		// var lltemp = scene.getObjectByName(scene.children[illeg].name);
-		var t = this.value;
-		lltemp.position.setZ(-t);
-		$("#toy_lleg_posz")[0].value = -t;
-		// console.log(t);
 	}
 	rlslideru.oninput = function() {
 		// var temp = scene.getObjectByName(scene.children[irleg].name);
@@ -800,18 +722,5 @@ $(document).ready(function(){
 		// console.log(t);
 		$("#toy_rleg_posx")[0].value = t;
 	}
-	rlsliderf.oninput = function() {
-		// var rltemp = scene.getObjectByName(scene.children[irleg].name);
-		var t = this.value;
-		rltemp.position.setZ(-t);
-		$("#toy_rleg_posz")[0].value = -t;
-		// console.log(t);
-	}
 
 })
-
-function onTransitionEnd( event ) {
-
-	event.target.remove();
-	
-}

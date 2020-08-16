@@ -1,4 +1,3 @@
 {
-    "git.ignoreLimitWarning": true,
-    "maven.view": "flat"
+    "git.ignoreLimitWarning": true
 }
