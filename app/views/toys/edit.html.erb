@@ -17,16 +17,18 @@
 </div>
 
 <div class="options">
+  <div class="index-controls-container">
     <div class="index-page">
         <%= render 'form', toy: @toy %>
 
         <hr>
         <%= button_to 'Back', toys_path, method: :get, :id => "back-btn" %>
     </div>
+  </div>
 </div>
 
 <div class="editor">
-    <%= javascript_pack_tag 'Editor1' %>
+    <%= javascript_pack_tag 'Editor' %>
 </div>
 
 <section id="loading-screen">
