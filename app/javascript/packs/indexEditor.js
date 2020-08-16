@@ -36,8 +36,8 @@ var rltemp;
 var hhtemp = null;
 
 var scene = new THREE.Scene();
-scene.background = new THREE.Color(0xbfd1e5);
-scene.fog = new THREE.FogExp2(0xbfd1e5, 0.002);
+scene.background = new THREE.Color(0x909090);
+scene.fog = new THREE.FogExp2(0x909090, 0.012);
 
 var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -95,9 +95,7 @@ var models = new Array();
 //--------------------------------TEXTURE CHANGES---------------------------------------------
 	const colors = [
 		{
-			texture: '/images/box.jpg',
-			size: [1,1,1],
-			shininess: 60
+			color: 'E3A668',
 		},
 		{
 			texture: '/images/head.png',
@@ -105,13 +103,13 @@ var models = new Array();
 			shininess: 0
 		},
 		{
-			color: '153944'
+			color: '438AAC'
 		},
 		{
 			color: '27548D'
 		},
 		{
-			color: '438AAC'
+			color: '153944'
 		}  
 		];
 
@@ -309,8 +307,24 @@ models.push(['/model/chibi/chibi_hair.gltf',
 //----------------------------------ADD MODEL----------------------------------------
 function add_model_to_scene(gltf, name)
 {
+
+	let color = colors[2];
+		let new_mtl;
+		let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
+			bmp.repeat.set( 3, 3, 3);
+			bmp.wrapS = THREE.RepeatWrapping;
+			bmp.wrapT = THREE.RepeatWrapping;
+
+	new_mtl = new THREE.MeshPhongMaterial({
+			color: parseInt('0x' + color.color),
+			shininess: color.shininess ? color.shininess : 10,
+			bumpMap: bmp,
+		 	bumpScale: 0.45
+		  });
+	setMaterial(gltf.scene, new_mtl);
+
 	gltf.scene.position.setY(1.5);
-	gltf.scene.castShadow = true;
+	gltf.scene.children[0].castShadow = true;
 	gltf.scene.name = name;
 	scene.add( gltf.scene );
 	switch(name)
@@ -370,26 +384,29 @@ loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
 //---------------------------PLANE--------------------------------
 var geometry = new THREE.PlaneBufferGeometry(1000, 1000, 1000);
 geometry.rotateX(-Math.PI * 0.5); // set horizontal since default is vertical
-var material = new THREE.MeshPhongMaterial({ color: 0x7E7E7E });
+var material = new THREE.MeshPhongMaterial({ color: 0x999999 });
+material.shininess = 0;
 var plane = new THREE.Mesh(geometry, material);
 plane.castShadow = false;
 plane.receiveShadow = true;
-plane.position.setY(-5);
+plane.position.setY(-3);
 scene.add(plane);
 //-----------------------------------------------------------------
 
 //---------------------------LIGHTING-----------------------------
-var light = new THREE.AmbientLight(0x222222);
+var light = new THREE.AmbientLight(0xffffff);
+light.intensity = 0.3;
 scene.add(light);
 
 var light = new THREE.DirectionalLight( 0xffffff, 0.5, 100 );
-light.position.set( -5, 2, 10); 			//default; light shining from top
+light.position.set( -2.5, 5, 5); 			//default; light shining from top
 light.castShadow = true;            // default false
 scene.add( light );
 
 var light = new THREE.DirectionalLight( 0xffffff, 0.5, 100 );
 light.position.set( 5, 2, -10); 			//default; light shining from top
-light.castShadow = true;            // default false
+light.castShadow = false;            // default false
+light.intensity = 0.15;
 scene.add( light );
 
 light.shadow.mapSize.width = 512;  // default
