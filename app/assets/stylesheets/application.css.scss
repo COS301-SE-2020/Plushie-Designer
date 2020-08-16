@@ -257,6 +257,14 @@ body {
             cursor: pointer;
         }
 
+        .slider::-moz-range-thumb {
+            width: 12px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-colour);
+            cursor: pointer;
+        }
+
         .control-header:hover {
             cursor: pointer;
         }
