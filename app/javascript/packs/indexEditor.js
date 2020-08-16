@@ -399,14 +399,15 @@ light.intensity = 0.3;
 scene.add(light);
 
 var light = new THREE.DirectionalLight( 0xffffff, 0.5, 100 );
-light.position.set( -2, 4, 5); 			//default; light shining from top
+light.position.set( -2.5, 5, 5); 			//default; light shining from top
 light.castShadow = true;            // default false
 scene.add( light );
-/*
+
 var light = new THREE.DirectionalLight( 0xffffff, 0.5, 100 );
 light.position.set( 5, 2, -10); 			//default; light shining from top
-light.castShadow = true;            // default false
-scene.add( light );*/
+light.castShadow = false;            // default false
+light.intensity = 0.15;
+scene.add( light );
 
 light.shadow.mapSize.width = 512;  // default
 light.shadow.mapSize.height = 512; // default
