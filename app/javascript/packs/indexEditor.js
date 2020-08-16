@@ -370,7 +370,8 @@ loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
 //---------------------------PLANE--------------------------------
 var geometry = new THREE.PlaneBufferGeometry(1000, 1000, 1000);
 geometry.rotateX(-Math.PI * 0.5); // set horizontal since default is vertical
-var material = new THREE.MeshPhongMaterial({ color: 0x7E7E7E });
+var material = new THREE.MeshPhongMaterial({ color: 0xbfd1e5 });
+material.shininess = 0;
 var plane = new THREE.Mesh(geometry, material);
 plane.castShadow = false;
 plane.receiveShadow = true;
@@ -379,7 +380,8 @@ scene.add(plane);
 //-----------------------------------------------------------------
 
 //---------------------------LIGHTING-----------------------------
-var light = new THREE.AmbientLight(0x222222);
+var light = new THREE.AmbientLight(0xffffff);
+light.intensity = 0.3;
 scene.add(light);
 
 var light = new THREE.DirectionalLight( 0xffffff, 0.5, 100 );
