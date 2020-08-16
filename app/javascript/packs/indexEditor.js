@@ -329,7 +329,6 @@ function add_model_to_scene(gltf, name)
 	
 }
 //---------------------------------------------------------------------------------
-
 //---------------------------------HAIR-------------------------------------------
 hurl = models[hair][0];
 if(hurl != "")// model has hair
@@ -369,8 +368,9 @@ loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
 //---------------------------------------------------------------------
 
 //---------------------------PLANE--------------------------------
-var geometry = new THREE.BoxBufferGeometry(1000, 0, 1000);
-var material = new THREE.MeshPhongMaterial({ color: 0xA9A9A9 });
+var geometry = new THREE.PlaneBufferGeometry(1000, 1000, 1000);
+geometry.rotateX(-Math.PI * 0.5); // set horizontal since default is vertical
+var material = new THREE.MeshPhongMaterial({ color: 0x7E7E7E });
 var plane = new THREE.Mesh(geometry, material);
 plane.castShadow = false;
 plane.receiveShadow = true;
@@ -384,6 +384,11 @@ scene.add(light);
 
 var light = new THREE.DirectionalLight( 0xffffff, 0.5, 100 );
 light.position.set( -5, 2, 10); 			//default; light shining from top
+light.castShadow = true;            // default false
+scene.add( light );
+
+var light = new THREE.DirectionalLight( 0xffffff, 0.5, 100 );
+light.position.set( 5, 2, -10); 			//default; light shining from top
 light.castShadow = true;            // default false
 scene.add( light );
 
