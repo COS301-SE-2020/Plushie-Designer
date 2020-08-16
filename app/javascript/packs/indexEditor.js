@@ -36,8 +36,8 @@ var rltemp;
 var hhtemp = null;
 
 var scene = new THREE.Scene();
-scene.background = new THREE.Color(0xbfd1e5);
-scene.fog = new THREE.FogExp2(0xbfd1e5, 0.002);
+scene.background = new THREE.Color(0x909090);
+scene.fog = new THREE.FogExp2(0x909090, 0.002);
 
 var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -386,7 +386,7 @@ loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
 //---------------------------PLANE--------------------------------
 var geometry = new THREE.PlaneBufferGeometry(1000, 1000, 1000);
 geometry.rotateX(-Math.PI * 0.5); // set horizontal since default is vertical
-var material = new THREE.MeshPhongMaterial({ color: 0xbfd1e5 });
+var material = new THREE.MeshPhongMaterial({ color: 0x999999 });
 material.shininess = 0;
 var plane = new THREE.Mesh(geometry, material);
 plane.castShadow = false;
