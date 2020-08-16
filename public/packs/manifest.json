@@ -30,7 +30,7 @@
         "/packs/js/Editor-0af9f3b36f59f0d75b07.js.map"
       ]
     },
-    "indexEditor1": {
+    "indexEditor": {
       "js": [
         "/packs/js/indexEditor-00fe34c84f84d545752c.js"
       ],
@@ -40,15 +40,15 @@
     },
     "showEditor": {
       "js": [
-        "/packs/js/showEditor-d1c33a0ed49ee2ef7bc7.js"
+        "/packs/js/showEditor-eb18a6d09b4f9de8d5b8.js"
       ],
       "js.map": [
-        "/packs/js/showEditor-d1c33a0ed49ee2ef7bc7.js.map"
+        "/packs/js/showEditor-eb18a6d09b4f9de8d5b8.js.map"
       ]
     }
   },
   "indexEditor.js": "/packs/js/indexEditor-00fe34c84f84d545752c.js",
   "indexEditor.js.map": "/packs/js/indexEditor-00fe34c84f84d545752c.js.map",
-  "showEditor.js": "/packs/js/showEditor-d1c33a0ed49ee2ef7bc7.js",
-  "showEditor.js.map": "/packs/js/showEditor-d1c33a0ed49ee2ef7bc7.js.map"
+  "showEditor.js": "/packs/js/showEditor-eb18a6d09b4f9de8d5b8.js",
+  "showEditor.js.map": "/packs/js/showEditor-eb18a6d09b4f9de8d5b8.js.map"
 }

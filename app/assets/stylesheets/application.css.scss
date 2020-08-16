@@ -380,6 +380,58 @@ body {
     }
 }
 
+.show-texture-container {
+    width: 30%;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    .texture-controls {
+        position: absolute;
+        width: 20em;
+        //width: 27%;
+        //max-width: 20em;
+        height: 35%;
+        bottom: 40px;
+        right: 0;
+        .texture-title {
+            width: 100%;
+            height: 20%;
+            text-align: left;
+            padding-left: 2.5%;
+            color: white;
+            mix-blend-mode: normal;
+            .title {
+                font-size: xx-large;
+                font-weight: 700;
+            }
+            .popover {
+                color: var(--secondary-colour);
+            }
+        }
+        .tray {
+            height: 80%;
+            overflow: scroll;
+            overflow-x: hidden;
+            .tray__slide {
+                //display: inline-block;
+                height: 100%;
+                width: 100%;
+                .tray__swatch {
+                    width: 20%;
+                    height: 20%;
+                    margin-left: 2.5%;
+                    margin-bottom: 2.5%;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    display: inline-block;
+                    border-radius: 2px;
+                }
+            }
+        }
+    }
+}
+
 .hinput {
     display: none;
 }
