@@ -309,8 +309,24 @@ models.push(['/model/chibi/chibi_hair.gltf',
 //----------------------------------ADD MODEL----------------------------------------
 function add_model_to_scene(gltf, name)
 {
+
+	let color = colors[3];
+		let new_mtl;
+		let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
+			bmp.repeat.set( 3, 3, 3);
+			bmp.wrapS = THREE.RepeatWrapping;
+			bmp.wrapT = THREE.RepeatWrapping;
+
+	new_mtl = new THREE.MeshPhongMaterial({
+			color: parseInt('0x' + color.color),
+			shininess: color.shininess ? color.shininess : 10,
+			bumpMap: bmp,
+		 	bumpScale: 0.45
+		  });
+	setMaterial(gltf.scene, new_mtl);
+
 	gltf.scene.position.setY(1.5);
-	gltf.scene.castShadow = true;
+	gltf.scene.children[0].castShadow = true;
 	gltf.scene.name = name;
 	scene.add( gltf.scene );
 	switch(name)
@@ -375,7 +391,7 @@ material.shininess = 0;
 var plane = new THREE.Mesh(geometry, material);
 plane.castShadow = false;
 plane.receiveShadow = true;
-plane.position.setY(-5);
+plane.position.setY(-3);
 scene.add(plane);
 //-----------------------------------------------------------------
 
@@ -385,14 +401,14 @@ light.intensity = 0.3;
 scene.add(light);
 
 var light = new THREE.DirectionalLight( 0xffffff, 0.5, 100 );
-light.position.set( -5, 2, 10); 			//default; light shining from top
+light.position.set( -2, 4, 5); 			//default; light shining from top
 light.castShadow = true;            // default false
 scene.add( light );
-
+/*
 var light = new THREE.DirectionalLight( 0xffffff, 0.5, 100 );
 light.position.set( 5, 2, -10); 			//default; light shining from top
 light.castShadow = true;            // default false
-scene.add( light );
+scene.add( light );*/
 
 light.shadow.mapSize.width = 512;  // default
 light.shadow.mapSize.height = 512; // default
