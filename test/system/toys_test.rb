@@ -11,6 +11,7 @@ class ToysTest < ApplicationSystemTestCase
     assert_text "Welcome! You have signed up successfully."
 
     visit toys_url
+    assert_selector "h1", text: "Plushies"
 
     click_on "Create Plushie"
 
@@ -18,34 +19,35 @@ class ToysTest < ApplicationSystemTestCase
     click_on "armsr"
     click_on "torsor"
     click_on "legsr"
+    click_on "Share"
     fill_in "Name", with: "Test"
 
-    click_on "Share"
+    click_on "Create Toy"
 
     assert_text "Toy was successfully created"
 
-    click_on "Edit"
+    # click_on "Edit"
 
-    click_on "headl"
-    click_on "armsl"
-    click_on "torsol"
-    click_on "legsl"
-    fill_in "Name", with: "Test"
-    click_on "Share"
+    # click_on "headl"
+    # click_on "armsl"
+    # click_on "torsol"
+    # click_on "legsl"
+    # fill_in "Name", with: "Test"
+    # click_on "Share"
 
-    assert_text "Toy was successfully updated."
+    # assert_text "Toy was successfully updated."
 
-    fill_in "Description", with: "Gundam is the best. Screw Transformers!!!!!!!!!!!!!"
-    fill_in "Value", with: 5
+    # fill_in "Description", with: "Gundam is the best. Screw Transformers!!!!!!!!!!!!!"
+    # fill_in "Value", with: 5
 
-    click_on "leave a rating"
+    # click_on "leave a rating"
     
-    assert_text  "Your rating has been saved."
+    # assert_text  "Your rating has been saved."
 
-    page.accept_confirm do
-      click_on "Delete"
-    end
+    # page.accept_confirm do
+    #   click_on "Delete"
+    # end
     
-    assert_text "Toy was successfully destroyed."
+    # assert_text "Toy was successfully destroyed."
   end
 end
