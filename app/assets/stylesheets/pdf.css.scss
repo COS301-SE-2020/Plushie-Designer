@@ -30,6 +30,13 @@
     padding-top: 80px;
 }
 
+.thank-you{
+    color: rgb(227, 166, 104);
+    text-align: center;
+    font-size: 50px;
+    padding-top: 80px;
+}
+
 .shapeHeading{
     text-align: center;
     font-size: 25px;
@@ -41,7 +48,7 @@
 .center-image{
     text-align: center;
     display:table;
-    height: 80%;
+    height: 94%;
     width: 100%;
     top: 0;
     left: 0;
@@ -82,10 +89,10 @@
 
 .PatternImg{
     //border-style: solid;
-    background-color: black;
-    transform: scale(0.8, 0.8);
-    -ms-transform: scale(0.8, 0.8);
-    -webkit-transform: scale(0.8, 0.8);
+    // background-color: black;
+    // transform: scale(0.8, 0.8);
+    // -ms-transform: scale(0.8, 0.8);
+    // -webkit-transform: scale(0.8, 0.8);
     // line-height: 94%;
     // margin: 0;
     // position: relative;
@@ -112,6 +119,10 @@
         margin-bottom: 50px;
        
     }
+}
+
+.th-logo {
+    width: 50%;
 }
 
 .pdf-footer{
