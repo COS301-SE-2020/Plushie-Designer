@@ -1,5 +1,6 @@
 <br/><br/><br/><br/>
-<div class="user-form">
+<div class="user-form" style="z-index: 99">
+  <div class="user-form-back"></div>
 <h2>Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -34,4 +35,20 @@
 </div>
   <% end %>
 
+<div id="back"></div>
+<div id="front"></div>
 
+<!--<div class="area">-->
+<!--  <ul class="circles" style="z-index: 0">-->
+<!--    <li></li>-->
+<!--    <li></li>-->
+<!--    <li></li>-->
+<!--    <li></li>-->
+<!--    <li></li>-->
+<!--    <li></li>-->
+<!--    <li></li>-->
+<!--    <li></li>-->
+<!--    <li></li>-->
+<!--    <li></li>-->
+<!--  </ul>-->
+<!--</div >-->
