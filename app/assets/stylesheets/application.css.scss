@@ -23,23 +23,32 @@
     --primary-colour: rgb(227, 166, 104);
     --secondary-colour: rgb(35, 34, 34);
     --tertiary-colour: rgb(47, 56, 86);
-    //--tertiary-colour: rgb(47, 56, 86);
-
     --q-colour: rgb(241, 213, 186);
-    --p-colour: rgb(237, 66, 72);
+    --p-colour: #cf3f46;
     --background : #6c768d;
-    //--background : #7a7171;
-    // old colour scheme
-    // --primary-colour: #2C2A4A;
-    // --secondary-colour: #7FDEFF;
-    // --tertiary-colour: rgb(42, 154, 173);
+
+    //// --tertiary-colour: rgb(42, 154, 173);--primary-colour: rgb(227, 166, 104);
+    //--secondary-colour: rgb(35, 34, 34);
+    //--tertiary-colour: rgb(47, 56, 86);
+    ////--tertiary-colour: rgb(47, 56, 86);
+    //
+    //--q-colour: rgb(241, 213, 186);
+    //--p-colour: rgb(237, 66, 72);
+    //--background : #6c768d;
+    ////--background : #7a7171;
+    //// old colour scheme
+    //// --primary-colour: #2C2A4A;
+    //// --secondary-colour: #7FDEFF;
+    //// --tertiary-colour: rgb(42, 154, 173);
 }
 
 .alert {
     position: absolute;
     top: 5em;
     width: 100%;
-    z-index: 999;
+    z-index: 0;
+    background-color: var(--tertiary-colour);
+    color: var(--q-colour);
 }
 
 .editor {
@@ -399,6 +408,9 @@ body {
                     display: inline-block;
                     border-radius: 2px;
                 }
+                .tray__swatch:hover {
+                    cursor: pointer;
+                }
             }
         }
     }
@@ -726,8 +738,10 @@ p {
         text-align: center;
         .create-plushie-button {
             text-decoration: none;
+            //color: var(--p-colour);
             color: var(--secondary-colour);
-            background-color: var(--q-colour);
+            background-color: var(--p-colour);
+            //background-color: var(--q-colour);
             transition: background-color 0.3s ease;
             padding: 2rem 5vw;
             //font-size: 20px;
@@ -738,11 +752,11 @@ p {
         }
 
         .create-plushie-button:hover {
-            text-decoration: none;
+            //text-decoration: none;
             color: var(--primary-colour);
-            background-color: var(--secondary-colour);
-            transition: background-color 0.3s ease;
-            box-shadow: none;
+            //background-color: var(--secondary-colour);
+            //transition: background-color 0.3s ease;
+            //box-shadow: none;
         }
     }
 }
@@ -794,6 +808,17 @@ hr {
     -webkit-box-shadow: 4px 6px 28px -13px rgba(0,0,0,1);
     -moz-box-shadow: 4px 6px 28px -13px rgba(0,0,0,1);
     box-shadow: 4px 6px 28px -13px rgba(0,0,0,1);
+    .user-form-back {
+        background-color: var(--p-colour);
+        position: absolute;
+        mix-blend-mode: hue;
+        width: inherit;
+        height: 100%;
+        z-index: -1000;
+        border-radius: 0.5em;
+        top: 0.5em;
+        left: 0.5em;
+    }
     h2 {
         color: var(--q-colour);
         text-align: center;
@@ -854,8 +879,10 @@ hr {
         display: flex;
         padding-top: 1em;
         input[value="Sign up"] {
-            background-color: var(--secondary-colour);
-            color: var(--primary-colour);
+            background-color: var(--p-colour);
+            //background-color: var(--secondary-colour);
+            color: var(--secondary-colour);
+            //color: var(--primary-colour);
             height: 3em;
             font-weight: 600 !important;
         }
@@ -1067,6 +1094,17 @@ select:-webkit-autofill:focus {
     -webkit-box-shadow: 4px 6px 28px -13px rgba(0,0,0,1);
     -moz-box-shadow: 4px 6px 28px -13px rgba(0,0,0,1);
     box-shadow: 4px 6px 28px -13px rgba(0,0,0,1);
+    .user-form-back {
+        background-color: var(--p-colour);
+        position: absolute;
+        mix-blend-mode: hue;
+        width: inherit;
+        height: 100%;
+        z-index: -1000;
+        border-radius: 0.5em;
+        top: 0.5em;
+        left: 0.5em;
+    }
     h2, h3, p {
         color: var(--q-colour);
     }

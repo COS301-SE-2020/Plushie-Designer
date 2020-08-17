@@ -1,6 +1,6 @@
 {
-  "Editor.js": "/packs/js/Editor-ae5f30f0252303941eeb.js",
-  "Editor.js.map": "/packs/js/Editor-ae5f30f0252303941eeb.js.map",
+  "Editor1.js": "/packs/js/Editor1-79227399359ef5e98694.js",
+  "Editor1.js.map": "/packs/js/Editor1-79227399359ef5e98694.js.map",
   "application.js": "/packs/js/application-9afcbb5693aa87623e69.js",
   "application.js.map": "/packs/js/application-9afcbb5693aa87623e69.js.map",
   "dynamicUV.js": "/packs/js/dynamicUV-76704bcdf39dc9ed5cd3.js",
@@ -22,33 +22,33 @@
         "/packs/js/dynamicUV-76704bcdf39dc9ed5cd3.js.map"
       ]
     },
-    "Editor": {
+    "Editor1": {
       "js": [
-        "/packs/js/Editor-ae5f30f0252303941eeb.js"
+        "/packs/js/Editor1-79227399359ef5e98694.js"
       ],
       "js.map": [
-        "/packs/js/Editor-ae5f30f0252303941eeb.js.map"
+        "/packs/js/Editor1-79227399359ef5e98694.js.map"
       ]
     },
-    "indexEditor": {
+    "indexEditor1": {
       "js": [
-        "/packs/js/indexEditor-fdde4634e4f599f5fd2c.js"
+        "/packs/js/indexEditor1-067b0354761b170dd085.js"
       ],
       "js.map": [
-        "/packs/js/indexEditor-fdde4634e4f599f5fd2c.js.map"
+        "/packs/js/indexEditor1-067b0354761b170dd085.js.map"
       ]
     },
-    "showEditor": {
+    "showEditor1": {
       "js": [
-        "/packs/js/showEditor-548432bd8bc686fc2aae.js"
+        "/packs/js/showEditor1-15ce5e3be41241fb243e.js"
       ],
       "js.map": [
-        "/packs/js/showEditor-548432bd8bc686fc2aae.js.map"
+        "/packs/js/showEditor1-15ce5e3be41241fb243e.js.map"
       ]
     }
   },
-  "indexEditor.js": "/packs/js/indexEditor-fdde4634e4f599f5fd2c.js",
-  "indexEditor.js.map": "/packs/js/indexEditor-fdde4634e4f599f5fd2c.js.map",
-  "showEditor.js": "/packs/js/showEditor-548432bd8bc686fc2aae.js",
-  "showEditor.js.map": "/packs/js/showEditor-548432bd8bc686fc2aae.js.map"
+  "indexEditor1.js": "/packs/js/indexEditor1-067b0354761b170dd085.js",
+  "indexEditor1.js.map": "/packs/js/indexEditor1-067b0354761b170dd085.js.map",
+  "showEditor1.js": "/packs/js/showEditor1-15ce5e3be41241fb243e.js",
+  "showEditor1.js.map": "/packs/js/showEditor1-15ce5e3be41241fb243e.js.map"
 }
