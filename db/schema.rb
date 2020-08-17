@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_06_162445) do
+ActiveRecord::Schema.define(version: 2020_08_17_143132) do
 
   create_table "ratings", force: :cascade do |t|
     t.text "description"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 2020_08_06_162445) do
     t.float "lleg_posx"
     t.float "rleg_posy"
     t.float "rleg_posx"
-    t.boolean "shared"
     t.text "image"
     t.float "head_posz"
     t.float "torso_posz"
@@ -59,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_162445) do
     t.text "rarm_uv"
     t.text "lleg_uv"
     t.text "rleg_uv"
+    t.boolean "shared"
   end
 
   create_table "users", force: :cascade do |t|
