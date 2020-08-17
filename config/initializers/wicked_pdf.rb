@@ -10,4 +10,10 @@
 
 WickedPdf.config = {
   :exe_path => Rails.root.join('bin', 'wkhtmltox/bin/wkhtmltopdf.exe').to_s,
+  :margin => {      :top=> 0,
+                    :bottom => 10,
+                    :left=> 0,
+                    :right => 0},
+  
+  :footer => {:html => { :template=> 'layouts/pdf_footer.html.erb'}}
 }
