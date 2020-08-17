@@ -1,17 +1,40 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+:root {
+    --primary-colour: rgb(227, 166, 104);
+    --secondary-colour: rgb(35, 34, 34);
+    --tertiary-colour: rgb(47, 56, 86);
+    //--tertiary-colour: rgb(47, 56, 86);
+
+    --q-colour: rgb(241, 213, 186);
+    --p-colour: rgb(237, 66, 72);
+    --background : #6c768d;
+    //--background : #7a7171;
+    // old colour scheme
+    // --primary-colour: #2C2A4A;
+    // --secondary-colour: #7FDEFF;
+    // --tertiary-colour: rgb(42, 154, 173);
+}
+
 .page-title{
-    color: navy;
+    color: rgb(227, 166, 104);
     text-align: center;
     font-size: 80px;
+    padding-top: 80px;
 }
 
 .shapeHeading{
     text-align: center;
-    page-break-before: always;
     margin-bottom: 2em;
     font-size: 30px;
+    color: rgb(227, 166, 104);
+    padding-top: 80px;
 }
 
 .center-image{
@@ -20,18 +43,58 @@
 
 .toyname{
     font-size: 50px; 
-    color: darkblue; 
+    color: rgb(227, 166, 104);
     text-align: center;
 }
 
 .created-by{
     text-align: right;
+    padding-right: 50px;
 }
 
 .PlushImg{
-    border-style: solid;
+    //border-style: solid;
 }
 
 .PatternImg{
-    border-style: solid;
+    //border-style: solid;
+}
+
+
+.center-logo {
+    .logo {
+        position: relative;
+        width: 12%;
+        top: 10px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 50px;
+    }
+}
+
+.pdf-footer{
+    color: rgb(227, 166, 104);
+    background-color: rgb(35, 34, 34);
+    width: 100%;
+    height: 100px;
+    bottom: 10px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.footer-text{
+    padding-top: 5px;
+}
+
+
+
+
+.pdf-header{
+    page-break-before: always;
+    background-color: rgb(35, 34, 34);
+    width: 100%;
+    height: 100px;
+    text-align: center;
 }
