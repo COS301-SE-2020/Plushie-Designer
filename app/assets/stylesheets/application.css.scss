@@ -706,8 +706,10 @@ p {
         overflow-x: hidden;
         z-index: 99;
         .toy-card {
-            background-color: var(--tertiary-colour);
-            color: white;
+            background-color: var(--secondary-colour);
+            //background-color: var(--tertiary-colour);
+            color: var(--q-colour);
+            //color: white;
             // color: var(--secondary-colour);
             border-radius: 0.5em;
             padding-top: 1.5%;
@@ -720,10 +722,11 @@ p {
                 border-radius: 5px;
             }
             a {
-                color: white;
+                color: var(--q-colour);
+                //color: white;
             }
             a:hover {
-                color: rgb(255, 218, 218)
+                color: rgb(255, 255, 255);
             }
             p.created-on {
                 width: 80%;
