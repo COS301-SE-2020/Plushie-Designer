@@ -1,8 +1,24 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+:root {
+    --primary-colour: rgb(227, 166, 104);
+    --secondary-colour: rgb(35, 34, 34);
+    --tertiary-colour: rgb(47, 56, 86);
+    //--tertiary-colour: rgb(47, 56, 86);
+
+    --q-colour: rgb(241, 213, 186);
+    --p-colour: rgb(237, 66, 72);
+    --background : #6c768d;
+    //--background : #7a7171;
+    // old colour scheme
+    // --primary-colour: #2C2A4A;
+    // --secondary-colour: #7FDEFF;
+    // --tertiary-colour: rgb(42, 154, 173);
+}
+
 .page-title{
-    color: navy;
+    color: rgb(227, 166, 104);
     text-align: center;
     font-size: 80px;
 }
@@ -12,6 +28,8 @@
     page-break-before: always;
     margin-bottom: 2em;
     font-size: 30px;
+    color: rgb(227, 166, 104);
+
 }
 
 .center-image{
@@ -20,7 +38,7 @@
 
 .toyname{
     font-size: 50px; 
-    color: darkblue; 
+    color: rgb(227, 166, 104);
     text-align: center;
 }
 
