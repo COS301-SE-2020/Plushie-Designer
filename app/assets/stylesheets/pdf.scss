@@ -31,10 +31,9 @@
 
 .shapeHeading{
     text-align: center;
-    margin-bottom: 2em;
-    font-size: 30px;
+    font-size: 25px;
     color: rgb(227, 166, 104);
-    padding-top: 80px;
+    padding-top: 30px;
 }
 
 .center-image{
@@ -54,10 +53,14 @@
 
 .PlushImg{
     //border-style: solid;
+
 }
 
 .PatternImg{
     //border-style: solid;
+    transform: scale(0.8, 0.8);
+    -ms-transform: scale(0.8, 0.8);
+    -webkit-transform: scale(0.8, 0.8);
 }
 
 
@@ -71,6 +74,7 @@
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 50px;
+       
     }
 }
 
