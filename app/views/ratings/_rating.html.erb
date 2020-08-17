@@ -21,8 +21,8 @@
         <div class="rate-buttons pull-right">
             <p>
                 <% if current_user == rating.user%>
-                    <%= link_to "Delete", [rating.toy, rating], method: :delete, data: { confirm: "Are you sure?" }, :class => "delete-btn btn rate-button" %>
-                    <%= link_to "Edit", edit_toy_rating_path(rating.toy, rating), :remote => true, :class => "edit-btn btn rate-button" %>
+                    <%= link_to "Delete", [rating.toy, rating], method: :delete, data: { confirm: "Are you sure?" }, :id => "delete-r", :class => "delete-btn btn rate-button" %>
+                    <%= link_to "Edit", edit_toy_rating_path(rating.toy, rating), :remote => true, :id => "edit-r", :class => "edit-btn btn rate-button" %>
                 <% end %>
             </p>
         </div>
