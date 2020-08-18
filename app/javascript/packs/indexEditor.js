@@ -1,5 +1,6 @@
 var THREE = require('three');
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
@@ -431,6 +432,42 @@ function updateIndexes(){
 	}
 }
 //--------------------------------------------------------
+console.log(scene.children);
+
+var Dcontrols = new DragControls( scene.children, camera, renderer.domElement );
+
+Dcontrols.addEventListener( 'dragstart', function ( event ) {
+	// console.log(event.object);
+	if(event.object.name == ""|| event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
+		Dcontrols.enabled = false;
+	}
+	else{
+		event.object.material.emissive.set( 0xaaaaaa );
+		controls.enableRotate = false;
+	}
+
+} );
+
+Dcontrols.addEventListener( 'dragend', function ( event ) {
+
+	if(event.object.name == ""|| event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
+		Dcontrols.enabled = true;
+	}
+	else{
+		event.object.material.emissive.set( 0x000000 );
+		controls.enableRotate = true;
+		if(event.object.name == "head"){
+			updateIndexes();
+			if(ihair!=99){
+				// alert(ihair);
+				var temp = scene.getObjectByName(scene.children[ihair].name);
+				temp.position.setY(event.object.position.y-1.5);
+				temp.position.setX(event.object.position.x-0.09);
+				temp.position.setZ(event.object.position.z);
+			}
+		}
+	}
+} );
 
 window.addEventListener( 'resize', onWindowResize, false );
 
@@ -442,7 +479,6 @@ function onWindowResize() {
 
 //-------------------------------ANIMATE---------------------------------
 var animate = function () {
-	
 	if(headchange){
 		updateIndexes();
 		var temp = scene.getObjectByName(scene.children[ihead].name);
