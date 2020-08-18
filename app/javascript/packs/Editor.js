@@ -489,9 +489,7 @@ function onWindowResize() {
 }
 
 console.log(scene.children);
-var tempy;
-var tempx;
-var tempz;
+
 //--------------------------DragControls-------------------------
 var Dcontrols = new DragControls( scene.children, camera, renderer.domElement );
 // Dcontrols.transformGroup = true;
@@ -503,9 +501,6 @@ Dcontrols.addEventListener( 'dragstart', function ( event ) {
 	else{
 		event.object.material.emissive.set( 0xaaaaaa );
 		controls.enableRotate = false;
-		tempy = event.object.position.y;
-		tempx = event.object.position.x;
-		tempz = event.object.position.z;
 	}
 } );
 
@@ -519,11 +514,12 @@ Dcontrols.addEventListener( 'dragend', function ( event ) {
 		controls.enableRotate = true;
 		if(event.object.name == "head"){
 			updateIndexes();
-			$("#toy_head_pos")[0].value = event.object.position.y - tempy;
-			// console.log($("#toy_head_pos")[0].value);
-			$("#toy_head_posx")[0].value = event.object.position.x - tempx;
-			$("#toy_head_posz")[0].value = event.object.position.z - tempz;
+			$("#toy_head_pos")[0].value = event.object.position.y;
+			$("#toy_head_posx")[0].value = event.object.position.x;
+			$("#toy_head_posz")[0].value = event.object.position.z;
 			if(ihair!=99){
+				// alert(ihair);
+				// var temp = scene.getObjectByName(scene.children[ihair].name);
 				hhtemp.position.setY($("#toy_head_pos")[0].value);
 				hhtemp.position.setX($("#toy_head_posx")[0].value);
 				hhtemp.position.setZ($("#toy_head_posz")[0].value);
@@ -531,31 +527,30 @@ Dcontrols.addEventListener( 'dragend', function ( event ) {
 		}
 		console.log(event.object.name);
 		if(event.object.name == "body"){
-			$("#toy_torso_posy")[0].value = event.object.position.y - tempy;
-			$("#toy_torso_posx")[0].value = event.object.position.x - tempx;
-			$("#toy_torso_posz")[0].value = event.object.position.z - tempz;
+			$("#toy_torso_posy")[0].value = event.object.position.y;
+			$("#toy_torso_posx")[0].value = event.object.position.x;
+			$("#toy_torso_posz")[0].value = event.object.position.z;
 		}
 		if(event.object.name == "l_arm"){
-			$("#toy_larm_posy")[0].value = event.object.position.y - tempy;
-			$("#toy_larm_posx")[0].value = event.object.position.x - tempx;
-			$("#toy_larm_posz")[0].value = event.object.position.z - tempz;
+			$("#toy_larm_posy")[0].value = event.object.position.y;
+			$("#toy_larm_posx")[0].value = event.object.position.x;
+			$("#toy_larm_posz")[0].value = event.object.position.z;
 		}
 		if(event.object.name == "r_arm"){
-			$("#toy_rarm_posy")[0].value = event.object.position.y - tempy;
-			$("#toy_rarm_posx")[0].value = event.object.position.x - tempx;
-			$("#toy_rarm_posz")[0].value = event.object.position.z - tempz;
+			$("#toy_rarm_posy")[0].value = event.object.position.y;
+			$("#toy_rarm_posx")[0].value = event.object.position.x;
+			$("#toy_rarm_posz")[0].value = event.object.position.z;
 		}
 
 		if(event.object.name == "l_leg"){
-			$("#toy_lleg_posy")[0].value = event.object.position.y - tempy;
-			// console.log($("#toy_lleg_posy")[0].value);
-			$("#toy_lleg_posx")[0].value = event.object.position.x - tempx;
-			$("#toy_lleg_posz")[0].value = event.object.position.z - tempz;
+			$("#toy_lleg_posy")[0].value = event.object.position.y;
+			$("#toy_lleg_posx")[0].value = event.object.position.x;
+			$("#toy_lleg_posz")[0].value = event.object.position.z;
 		}
 		if(event.object.name == "r_leg"){
-			$("#toy_rleg_posy")[0].value = event.object.position.y - tempy;
-			$("#toy_rleg_posx")[0].value = event.object.position.x - tempx;
-			$("#toy_rleg_posz")[0].value = event.object.position.z - tempz;
+			$("#toy_rleg_posy")[0].value = event.object.position.y;
+			$("#toy_rleg_posx")[0].value = event.object.position.x;
+			$("#toy_rleg_posz")[0].value = event.object.position.z;
 		}
 	}
 } );
