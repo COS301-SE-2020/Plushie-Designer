@@ -1,5 +1,6 @@
 var THREE = require('three');
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
@@ -486,6 +487,74 @@ function onWindowResize() {
 	ConfigureCanvas();
 
 }
+
+console.log(scene.children);
+
+//--------------------------DragControls-------------------------
+var Dcontrols = new DragControls( scene.children, camera, renderer.domElement );
+// Dcontrols.transformGroup = true;
+Dcontrols.addEventListener( 'dragstart', function ( event ) {
+
+	if(event.object.name == "" || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
+		Dcontrols.enabled = false;
+	}
+	else{
+		event.object.material.emissive.set( 0xaaaaaa );
+		controls.enableRotate = false;
+	}
+} );
+
+Dcontrols.addEventListener( 'dragend', function ( event ) {
+
+	if(event.object.name == "" || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
+		Dcontrols.enabled = true;
+	}
+	else{
+		event.object.material.emissive.set( 0x000000 );
+		controls.enableRotate = true;
+		if(event.object.name == "head"){
+			updateIndexes();
+			$("#toy_head_pos")[0].value = event.object.position.y;
+			$("#toy_head_posx")[0].value = event.object.position.x;
+			$("#toy_head_posz")[0].value = event.object.position.z;
+			if(ihair!=99){
+				// alert(ihair);
+				// var temp = scene.getObjectByName(scene.children[ihair].name);
+				hhtemp.position.setY($("#toy_head_pos")[0].value);
+				hhtemp.position.setX($("#toy_head_posx")[0].value);
+				hhtemp.position.setZ($("#toy_head_posz")[0].value);
+			}
+		}
+		console.log(event.object.name);
+		if(event.object.name == "body"){
+			$("#toy_torso_posy")[0].value = event.object.position.y;
+			$("#toy_torso_posx")[0].value = event.object.position.x;
+			$("#toy_torso_posz")[0].value = event.object.position.z;
+		}
+		if(event.object.name == "l_arm"){
+			$("#toy_larm_posy")[0].value = event.object.position.y;
+			$("#toy_larm_posx")[0].value = event.object.position.x;
+			$("#toy_larm_posz")[0].value = event.object.position.z;
+		}
+		if(event.object.name == "r_arm"){
+			$("#toy_rarm_posy")[0].value = event.object.position.y;
+			$("#toy_rarm_posx")[0].value = event.object.position.x;
+			$("#toy_rarm_posz")[0].value = event.object.position.z;
+		}
+
+		if(event.object.name == "l_leg"){
+			$("#toy_lleg_posy")[0].value = event.object.position.y;
+			$("#toy_lleg_posx")[0].value = event.object.position.x;
+			$("#toy_lleg_posz")[0].value = event.object.position.z;
+		}
+		if(event.object.name == "r_leg"){
+			$("#toy_rleg_posy")[0].value = event.object.position.y;
+			$("#toy_rleg_posx")[0].value = event.object.position.x;
+			$("#toy_rleg_posz")[0].value = event.object.position.z;
+		}
+	}
+} );
+//----------------------------------------------------------------
 //-------------------------------ANIMATE---------------------------------
 var animate = function () {
 	
