@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class ToysTest < ApplicationSystemTestCase
+class IntegrationTest < ApplicationSystemTestCase
   test "Integration Testing" do
     visit new_user_registration_path
     fill_in "Username", with: "HawkEye865"
@@ -22,7 +22,7 @@ class ToysTest < ApplicationSystemTestCase
     find(:css, "#toy_shared[value='1']").set(true)
     fill_in "Name", with: "Test"
 
-    click_on "Create Toy"
+    click_on "Create Plushie"
 
     assert_text "Toy was successfully created"
 
@@ -35,7 +35,7 @@ class ToysTest < ApplicationSystemTestCase
     check("Share")
     fill_in "Name", with: "Test"
 
-    click_on "Update Toy"
+    click_on "Update Plushie"
     assert_text "Toy was successfully updated."
 
     fill_in "Description", with: "Gundam is the best. Screw Transformers!!!!!!!!!!!!!"
@@ -46,7 +46,6 @@ class ToysTest < ApplicationSystemTestCase
     click_on "edit-r"
 
     fill_in "Description", with: "Gundam is the best"
-    fill_in "Value", with: 5
 
     click_on "Update Rating"
     assert_text  "Your rating has been updated."
@@ -62,7 +61,7 @@ class ToysTest < ApplicationSystemTestCase
     click_on "DOWNLOAD PDF"
     assert true
     
-    sleep 6
+    # sleep 3
     window = page.driver.browser.window_handles
     page.driver.browser.switch_to.window(window.last)
     page.driver.browser.close
