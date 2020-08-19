@@ -31,8 +31,8 @@ var UVsDebug = function ( geometry, w, h) {
 	var face = [];
 
 	var canvas = document.createElement( 'canvas' );
-	var width = 1024*w; // power of 2 required for wrapping
-	var height = 1024*h;
+	var width = 1024 * w; // power of 2 required for wrapping
+	var height = 1024 * h;
 	canvas.width = width;
 	canvas.height = height;
 
@@ -122,8 +122,6 @@ var UVsDebug = function ( geometry, w, h) {
 		ctx.beginPath();
 
 		a.set( 0, 0 );
-
-        var prev = uvs[0];
   
 		for ( var j = 0, jl = uvs.length; j < jl; j ++ ) {
 
@@ -136,14 +134,20 @@ var UVsDebug = function ( geometry, w, h) {
 				ctx.moveTo( uv.x * width, ( 1 - uv.y ) * height );
 
 			} else {
-				ctx.lineTo( uv.x * width, ( 1 - uv.y ) * height );
+				//ctx.lineTo( uv.x * width, ( 1 - uv.y ) * height );
             }
 
 		}
 
 		ctx.closePath();
-		ctx.stroke();
+		var img = new Image();
+		img.src = '/images/head.png';
+		var pat = ctx.createPattern(img, "repeat");
+		ctx.rect(0, 0, 150, 100);
+		ctx.fillStyle = pat;
+		//ctx.stroke();
 
+    	 ctx.fill();
 	}
 
 };
