@@ -38,7 +38,7 @@ var hhtemp = null;
 
 var scene = new THREE.Scene();
 scene.background = new THREE.Color(0x909090);
-scene.fog = new THREE.FogExp2(0x909090, 0.012);
+scene.fog = new THREE.FogExp2(0x6c768d, 0.012);
 
 var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -77,6 +77,25 @@ var hurl1 = '';
 
 var models = new Array();
 
+//-----------------------------Background-------------------------------
+
+loader.load( '/background/Room/scene.gltf', function ( gltf ) {
+	gltf.scene.position.setY(-22.5);
+	gltf.scene.position.setX(-3);
+	// gltf.scene.castShadow = false;
+	gltf.scene.children[0].receiveShadow = true;
+	gltf.scene.rotateY(-Math.PI/4);
+	// // gltf.scene.material.shininess = 0;
+	gltf.scene.scale.set(20,20,20);
+	// console.log(gltf);
+	scene.add( gltf.scene );
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+//----------------------------------------------------------------------
 //TEst UV image generation
 // function test( name, mesh ) {
 
@@ -390,7 +409,7 @@ material.shininess = 0;
 var plane = new THREE.Mesh(geometry, material);
 plane.castShadow = false;
 plane.receiveShadow = true;
-plane.position.setY(-3);
+plane.position.setY(-4);
 scene.add(plane);
 //-----------------------------------------------------------------
 
