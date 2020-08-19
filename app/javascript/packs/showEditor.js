@@ -42,7 +42,7 @@ var rltemp;
 var hhtemp = null;
 
 var scene = new THREE.Scene();
-scene.background = new THREE.Color(0x909090);
+scene.background = new THREE.Color(0x6c768d);
 scene.fog = new THREE.FogExp2(0x6c768d, 0.012);
 
 var renderer = new THREE.WebGLRenderer({ antialias: true });
