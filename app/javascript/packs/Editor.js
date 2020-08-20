@@ -497,7 +497,7 @@ loader.load( burl,  (gltf) => add_room_to_scene(gltf , "Room_1")
 //---------------------------PLANE--------------------------------
 var geometry = new THREE.PlaneBufferGeometry(1000, 1000, 1000);
 geometry.rotateX(-Math.PI * 0.5); // set horizontal since default is vertical
-var material = new THREE.MeshPhongMaterial({ color: 0x465985 });
+var material = new THREE.MeshPhongMaterial({ color: 0x3b4252 });
 material.shininess = 0;
 var plane = new THREE.Mesh(geometry, material);
 plane.castShadow = false;
