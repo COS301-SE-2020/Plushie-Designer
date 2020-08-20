@@ -316,7 +316,7 @@ models.push(['/model/chibi/chibi_hair.gltf',
 //--------------------------------------------------------------------------------
 //-----------------------------ROOMS TO LOAD SETUP------------------------------
 rooms.push(
-	'/background/Room/plushRoom.gltf'
+	'/background/Room/scene.gltf'
 );
 
 rooms.push(
@@ -369,9 +369,7 @@ function add_room_to_scene(gltf, name)
 	gltf.scene.name = name;
 	gltf.scene.rotateY(-Math.PI/4);
 	gltf.scene.children.forEach(obj => {
-		obj.material = new THREE.MeshPhongMaterial({
-			color: parseInt('0xD3D3D3')
-		});
+		obj.shininess = 0;
 		obj.receiveShadow = true;
 		obj.castShadow = true;
 	});
