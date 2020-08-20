@@ -89,6 +89,7 @@
           <!-- Title -->
           <h1 style="font-size: 30.5px;">
               <%= @toy.name %>
+              <%= rails_social_share_button_tag(@title, image: @toy.image, desc: "Test") %>
           </h1>
           <!-- Author -->
           <hr>
