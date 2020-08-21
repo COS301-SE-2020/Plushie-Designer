@@ -13,12 +13,15 @@ var headchange = false;
 var torsochange = false;
 var armschange = false; 
 var legschange = false;
+var bchange = false;
 
 var hair = 0;
 var head = 0;
 var torso = 0;
 var arms = 0;
 var legs = 0;
+var room = 0;
+var rtmp = 0;
 
 var ihead = 7;
 var itorso = 8;
@@ -27,6 +30,7 @@ var irarm = 4;
 var illeg = 5;
 var irleg = 6;
 var ihair = 99;
+var ib = 9;
 
 var htemp;
 var ttemp;
@@ -35,10 +39,11 @@ var ratemp;
 var lltemp;
 var rltemp;
 var hhtemp = null;
+var btemp;
 
 var scene = new THREE.Scene();
-scene.background = new THREE.Color(0x909090);
-scene.fog = new THREE.FogExp2(0x909090, 0.012);
+scene.background = new THREE.Color(0x6c768d);
+scene.fog = new THREE.FogExp2(0x6c768d, 0.012);
 
 var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -68,14 +73,18 @@ controls.dampingFactor = 0.05;
 controls.minDistance = 13;
 controls.maxDistance = 13;
 
+controls.enablePan = false;
+
 controls.maxPolarAngle = Math.PI / 2;
 
 var loader = new GLTFLoader(loadingManager);
 
 var hurl = '';
 var hurl1 = '';
+var burl = '';
 
 var models = new Array();
+var rooms = new Array();
 
 //TEst UV image generation
 // function test( name, mesh ) {
@@ -305,6 +314,15 @@ models.push(['/model/chibi/chibi_hair.gltf',
 '/model/chibi/chibi_r_leg.gltf'
 ]);
 //--------------------------------------------------------------------------------
+//-----------------------------ROOMS TO LOAD SETUP------------------------------
+rooms.push(
+	'/background/Room/scene.gltf'
+);
+
+rooms.push(
+	'/background/Room_2/scene.gltf'
+);
+//--------------------------------------------------------------------------------
 //----------------------------------ADD MODEL----------------------------------------
 function add_model_to_scene(gltf, name)
 {
@@ -344,6 +362,36 @@ function add_model_to_scene(gltf, name)
 	
 }
 //---------------------------------------------------------------------------------
+
+//----------------------------------ADD ROOM----------------------------------------
+function add_room_to_scene(gltf, name)
+{
+	gltf.scene.name = name;
+	gltf.scene.rotateY(-Math.PI/4);
+	gltf.scene.children.forEach(obj => {
+		obj.shininess = 0;
+		obj.receiveShadow = true;
+		obj.castShadow = true;
+	});
+	switch(name)
+	{
+		case "Room_1" : 
+			gltf.scene.position.setY(-22.5);
+			gltf.scene.position.setX(-3);
+			gltf.scene.scale.set(20,20,20);
+			break;
+		case "Room_2" : 
+			gltf.scene.position.setY(-2);
+			gltf.scene.position.setZ(35);
+			gltf.scene.position.setX(45);
+			gltf.scene.scale.set(2,2,2);
+			break;
+	}
+
+	scene.add( gltf.scene );
+	btemp = gltf.scene;
+}
+//---------------------------------------------------------------------------------
 //---------------------------------HAIR-------------------------------------------
 hurl = models[hair][0];
 if(hurl != "")// model has hair
@@ -381,16 +429,20 @@ loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
 loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
 	, undefined, function ( error ) { console.error( error );} );
 //---------------------------------------------------------------------
-
+//---------------------------------Background-------------------------------------
+burl = rooms[0];
+loader.load( burl,  (gltf) => add_room_to_scene(gltf , "Room_1")
+	, undefined, function ( error ) { console.error( error );} );
+//--------------------------------------------------------------------------------
 //---------------------------PLANE--------------------------------
 var geometry = new THREE.PlaneBufferGeometry(1000, 1000, 1000);
 geometry.rotateX(-Math.PI * 0.5); // set horizontal since default is vertical
-var material = new THREE.MeshPhongMaterial({ color: 0x999999 });
+var material = new THREE.MeshPhongMaterial({ color: 0x3b4252});
 material.shininess = 0;
 var plane = new THREE.Mesh(geometry, material);
 plane.castShadow = false;
 plane.receiveShadow = true;
-plane.position.setY(-3);
+plane.position.setY(-3.7);
 scene.add(plane);
 //-----------------------------------------------------------------
 
@@ -428,6 +480,8 @@ function updateIndexes(){
 			case "leftleg" : illeg = i; break;
 			case "rightleg" : irleg = i; break;
 			case "hair" : ihair = i; break;
+			case "Room_1" : ib = i; break;
+			case "Room_2" : ib = i; break;
 		}
 	}
 }
@@ -477,8 +531,33 @@ function onWindowResize() {
 
 }
 
+// console.log(scene.children);
 //-------------------------------ANIMATE---------------------------------
 var animate = function () {
+	if(bchange){
+		updateIndexes();
+		if(rtmp != 2){
+			var temp = scene.getObjectByName(scene.children[ib].name);
+			scene.remove(temp);
+		}
+		var tname;
+		var i;
+		if(room == 0){
+			tname = "Room_1";
+			i = 0;
+		}
+		else if(room == 1){
+			tname = "Room_2";
+			i = 1;
+		}
+		if(room != 2){
+			burl = rooms[i];
+			loader.load( burl, (gltf) => add_room_to_scene(gltf , tname)
+			, undefined, function ( error ) { console.error( error );} );
+		}
+		bchange = false;
+	}
+
 	if(headchange){
 		updateIndexes();
 		var temp = scene.getObjectByName(scene.children[ihead].name);
@@ -577,6 +656,24 @@ function screensh(){
 $(document).ready(function(){
 	$('#scrsh').click(function () {
 		screensh();
+	});
+
+	$('#rooml').click(function () {
+		if(room > 0){
+			// alert("hello");
+			bchange = true;
+			rtmp = room;
+			room -= 1;
+		}
+	});
+	$('#roomr').click(function () {
+		var tmp = room;
+		if(tmp < 2){
+			rtmp = room;
+			bchange = true;
+			tmp = +tmp + +1;
+			room = tmp;
+		}
 	});
 
 	$('#headl').click(function () {

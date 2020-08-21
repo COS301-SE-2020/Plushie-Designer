@@ -14,6 +14,8 @@ var head = $(".head").data("head");
 var torso = $(".torso").data("torso");
 var arms = $(".arms").data("arms");
 var legs = $(".legs").data("legs");
+var room = 0;
+
 var headposy = $(".headposy").data("headposy");
 var headposx = $(".headposx").data("headposx");
 var headposz = $(".headposz").data("headposz");
@@ -40,10 +42,11 @@ var ratemp;
 var lltemp;
 var rltemp;
 var hhtemp = null;
+var btemp;
 
 var scene = new THREE.Scene();
-scene.background = new THREE.Color(0x909090);
-scene.fog = new THREE.FogExp2(0x909090, 0.012);
+scene.background = new THREE.Color(0x6c768d);
+scene.fog = new THREE.FogExp2(0x6c768d, 0.012);
 
 var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -73,14 +76,18 @@ controls.dampingFactor = 0.05;
 controls.minDistance = 13;
 controls.maxDistance = 13;
 
+controls.enablePan = false;
+
 controls.maxPolarAngle = Math.PI / 2;
 
 var loader = new GLTFLoader(loadingManager);
 
 var hurl = '';
 var hurl1 = '';
+var burl = '';
 
 var models = new Array();
+var rooms = new Array();
 
 //--------------------------------TEXTURE CHANGES---------------------------------------------
 const colors = [
@@ -292,6 +299,15 @@ models.push(['/model/chibi/chibi_hair.gltf',
 '/model/chibi/chibi_r_leg.gltf'
 ]);
 //--------------------------------------------------------------------------------
+//-----------------------------ROOMS TO LOAD SETUP------------------------------
+rooms.push(
+	'/background/Room/scene.gltf'
+);
+
+rooms.push(
+	'/background/Room_2/scene.gltf'
+);
+//--------------------------------------------------------------------------------
 //----------------------------------ADD MODEL----------------------------------------
 function add_model_to_scene(gltf, name)
 {
@@ -364,7 +380,30 @@ function add_model_to_scene(gltf, name)
 	
 }
 //---------------------------------------------------------------------------------
+//----------------------------------ADD ROOM----------------------------------------
+function add_room_to_scene(gltf, name)
+{
+	gltf.scene.name = name;
+	gltf.scene.rotateY(-Math.PI/4);
+	switch(name)
+	{
+		case "Room_1" : 
+			gltf.scene.position.setY(-24);
+			gltf.scene.position.setX(-4.5);
+			gltf.scene.scale.set(20,20,20);
+			break;
+		case "Room_2" : 
+			gltf.scene.position.setY(-3.5);
+			gltf.scene.position.setZ(36.5);
+			gltf.scene.position.setX(46.5);
+			gltf.scene.scale.set(2,2,2);
+			break;
+	}
 
+	scene.add( gltf.scene );
+	btemp = gltf.scene;
+}
+//---------------------------------------------------------------------------------
 //---------------------------------HAIR-------------------------------------------
 hurl = models[hair][0];
 if(hurl != "")// model has hair
@@ -408,17 +447,21 @@ loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
 loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
 	, undefined, function ( error ) { console.error( error );} );
 //---------------------------------------------------------------------
-
+//---------------------------------Background-------------------------------------
+burl = rooms[0];
+loader.load( burl,  (gltf) => add_room_to_scene(gltf , "Room_1")
+	, undefined, function ( error ) { console.error( error );} );
+//--------------------------------------------------------------------------------
 //---------------------------PLANE--------------------------------
-var geometry = new THREE.PlaneBufferGeometry(1000, 1000, 1000);
-geometry.rotateX(-Math.PI * 0.5); // set horizontal since default is vertical
-var material = new THREE.MeshPhongMaterial({ color: 0x999999 });
-material.shininess = 0;
-var plane = new THREE.Mesh(geometry, material);
-plane.castShadow = false;
-plane.receiveShadow = true;
-plane.position.setY(-4.5);
-scene.add(plane);
+// var geometry = new THREE.PlaneBufferGeometry(1000, 1000, 1000);
+// geometry.rotateX(-Math.PI * 0.5); // set horizontal since default is vertical
+// var material = new THREE.MeshPhongMaterial({ color: 0x999999 });
+// material.shininess = 0;
+// var plane = new THREE.Mesh(geometry, material);
+// plane.castShadow = false;
+// plane.receiveShadow = true;
+// plane.position.setY(-6);
+// scene.add(plane);
 //-----------------------------------------------------------------
 
 //---------------------------LIGHTING-------------------------------
