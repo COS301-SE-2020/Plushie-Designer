@@ -18,7 +18,7 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "rails-social-share-button";
+
 :root {
     --primary-colour: rgb(227, 166, 104);
     --secondary-colour: rgb(35, 34, 34);
@@ -1782,11 +1782,15 @@ fieldset.toy_shared {
     color: var(--primary-colour);
 }
 
-.rails-social-share-button {
+.sharethis-inline-share-buttons {
     position: absolute;  
     // background-color: red;
     right: 7%;
     // margin-left: 65%;
     // width: 5em;
-    bottom: 81%;
+    bottom: 85%;
+}
+
+.st-btn{
+    background-color: var(--primary-colour) !important; 
 }

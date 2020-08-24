@@ -89,7 +89,7 @@
           <!-- Title -->
           <h1 style="font-size: 30.5px;">
               <%= @toy.name %>
-              <%= rails_social_share_button_tag(@title, image: @toy.image, desc: "Test") %>
+               <div class="sharethis-inline-share-buttons"></div>
           </h1>
           <!-- Author -->
           <hr>
@@ -127,7 +127,6 @@
 <div class="editor">
     <%= javascript_pack_tag 'showEditor' %>
 </div>
-
 <section id="loading-screen">
     <div id="loader"></div>
 </section>
