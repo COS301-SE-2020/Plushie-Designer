@@ -38,22 +38,6 @@
         "/packs/js/indexEditor-0f6487e76608e1b2cd94.js.map"
       ]
     },
-    "jquery": {
-      "js": [
-        "/packs/js/jquery-4b4e78dd5400696d61aa.js"
-      ],
-      "js.map": [
-        "/packs/js/jquery-4b4e78dd5400696d61aa.js.map"
-      ]
-    },
-    "rails-social-share-button": {
-      "js": [
-        "/packs/js/rails-social-share-button-c10d5f72c7ca70546c64.js"
-      ],
-      "js.map": [
-        "/packs/js/rails-social-share-button-c10d5f72c7ca70546c64.js.map"
-      ]
-    },
     "showEditor": {
       "js": [
         "/packs/js/showEditor-548432bd8bc686fc2aae.js"
@@ -65,10 +49,6 @@
   },
   "indexEditor.js": "/packs/js/indexEditor-0f6487e76608e1b2cd94.js",
   "indexEditor.js.map": "/packs/js/indexEditor-0f6487e76608e1b2cd94.js.map",
-  "jquery.js": "/packs/js/jquery-4b4e78dd5400696d61aa.js",
-  "jquery.js.map": "/packs/js/jquery-4b4e78dd5400696d61aa.js.map",
-  "rails-social-share-button.js": "/packs/js/rails-social-share-button-c10d5f72c7ca70546c64.js",
-  "rails-social-share-button.js.map": "/packs/js/rails-social-share-button-c10d5f72c7ca70546c64.js.map",
   "showEditor.js": "/packs/js/showEditor-548432bd8bc686fc2aae.js",
   "showEditor.js.map": "/packs/js/showEditor-548432bd8bc686fc2aae.js.map"
 }
