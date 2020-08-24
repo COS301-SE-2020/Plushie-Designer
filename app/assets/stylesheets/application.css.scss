@@ -1781,3 +1781,24 @@ fieldset.toy_shared {
 .close:hover{
     color: var(--primary-colour);
 }
+
+.sharethis-inline-share-buttons {
+    position: absolute;  
+    // background-color: red;
+    right: 7%;
+    // margin-left: 65%;
+    // width: 5em;
+    bottom: 85%;
+}
+
+.st-first{
+    background-color: var(--primary-colour) !important; 
+}
+
+.st-disclaimer{
+    display: none;
+}
+
+.st-logo{
+    display: none;
+}
