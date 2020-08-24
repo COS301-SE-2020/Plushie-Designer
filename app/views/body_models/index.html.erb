@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Body Models</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Body file</th>
+      <th>Tp</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @body_models.each do |body_model| %>
+      <tr>
+        <td><%= body_model.body_file %></td>
+        <td><%= body_model.tp %></td>
+        <td><%= link_to 'Show', body_model %></td>
+        <td><%= link_to 'Edit', edit_body_model_path(body_model) %></td>
+        <td><%= link_to 'Destroy', body_model, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Body Model', new_body_model_path %>

@@ -10,7 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_17_143132) do
+ActiveRecord::Schema.define(version: 2020_08_24_191751) do
+
+  create_table "body_models", force: :cascade do |t|
+    t.string "body_file"
+    t.string "tp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "head_models", force: :cascade do |t|
+    t.string "head_file"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "tp"
+  end
+
+  create_table "l_arm_models", force: :cascade do |t|
+    t.string "l_arm_file"
+    t.string "tp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "l_leg_models", force: :cascade do |t|
+    t.string "l_leg_file"
+    t.string "tp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "r_arm_models", force: :cascade do |t|
+    t.string "r_arm_file"
+    t.string "tp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "r_leg_models", force: :cascade do |t|
+    t.string "r_leg_file"
+    t.string "tp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "ratings", force: :cascade do |t|
     t.text "description"
