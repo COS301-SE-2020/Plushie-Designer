@@ -1,5 +1,8 @@
-<h1>New R Arm Model</h1>
+<div class="upload-controls-container">
+    <div class="index-page">
+        <%= render 'form', r_arm_model: @r_arm_model %>
 
-<%= render 'form', r_arm_model: @r_arm_model %>
-
-<%= link_to 'Back', pages_upload_model_path %>
+        <hr>
+        <%= button_to 'Back', pages_upload_model_path, method: :get, :id => "back-btn" %>
+    </div>
+</div>

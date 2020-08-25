@@ -1,5 +1,7 @@
-<h1>New Head Model</h1>
-
-<%= render 'form', head_model: @head_model %>
-
-<%= link_to 'Back', pages_upload_model_path %>
+<div class="upload-controls-container">
+    <div class="index-page">
+        <%= render 'form', head_model: @head_model %>
+        <hr>
+        <%= button_to 'Back', pages_upload_model_path, method: :get, :id => "back-btn" %>
+    </div>
+</div>

@@ -1,6 +1,12 @@
-<%= button_to 'Upload Head', new_head_model_path, method: "get", :id => "upload-head", :class => "btn ed-button"%>
-<%= button_to 'Upload Body', new_body_model_path, method: "get", :id => "upload-body", :class => "btn ed-button"%>
-<%= button_to 'Upload Left Arm', new_l_arm_model_path, method: "get", :id => "upload-l-arm", :class => "btn ed-button"%>
-<%= button_to 'Upload Right Arm', new_r_arm_model_path, method: "get", :id => "upload-r-arm", :class => "btn ed-button"%>
-<%= button_to 'Upload Left Leg', new_l_leg_model_path, method: "get", :id => "upload-l-leg", :class => "btn ed-button"%>
-<%= button_to 'Upload Right Leg', new_r_leg_model_path, method: "get", :id => "upload-r-leg", :class => "btn ed-button"%>
+<div id="upload-model">
+    <%= button_to 'Upload Head', new_head_model_path, method: "get", :id => "upload-head", :class => "btn ed-button"%>
+    <div id="middle">
+        <%= button_to 'Upload Left Arm', new_l_arm_model_path, method: "get", :id => "upload-l-arm", :class => "btn ed-button"%> 
+        <%= button_to 'Upload Body', new_body_model_path, method: "get", :id => "upload-body", :class => "btn ed-button"%> 
+        <%= button_to 'Upload Right Arm', new_r_arm_model_path, method: "get", :id => "upload-r-arm", :class => "btn ed-button"%> 
+    </div>
+    <div id="bottom">
+        <%= button_to 'Upload Left Leg', new_l_leg_model_path, method: "get", :id => "upload-l-leg", :class => "btn ed-button"%> 
+        <%= button_to 'Upload Right Leg', new_r_leg_model_path, method: "get", :id => "upload-r-leg", :class => "btn ed-button"%> 
+    </div>
+</div>

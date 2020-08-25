@@ -10,7 +10,13 @@
     </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <div class="buttons">
+      <div class="row">
+        <div class="share-btn-right">
+          <div class="form-actions buttons">
+            <%= f.submit "Upload Head", :id => "share-btn" , :class => "btn" %>
+          </div>
+        </div>
+      </div>
+    </div>
 <% end %>

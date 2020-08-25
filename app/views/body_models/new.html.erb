@@ -1,5 +1,8 @@
-<h1>New Body Model</h1>
+<div class="upload-controls-container">
+    <div class="index-page">
+        <%= render 'form', body_model: @body_model %>
 
-<%= render 'form', body_model: @body_model %>
-
-<%= link_to 'Back', pages_upload_model_path %>
+        <hr>
+        <%= button_to 'Back', pages_upload_model_path, method: :get, :id => "back-btn" %>
+    </div>
+</div>
