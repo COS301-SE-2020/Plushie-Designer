@@ -10,37 +10,37 @@ import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
 
 $.ajax({
-	url: "/head_models/1",
+	url: "/head_models",
 	dataType: "json",
 	success:  function(head_models){
 		console.log(head_models);
 		$.ajax({
-			url: "/body_models/1",
+			url: "/body_models",
 			dataType: "json",
 			success:  function(body_models){
 				console.log(body_models);
 				$.ajax({
-					url: "/l_arm_models/1",
+					url: "/l_arm_models",
 					dataType: "json",
 					success:  function(l_arm_models){
 						console.log(l_arm_models);
 						$.ajax({
-							url: "/l_arm_models/1",
+							url: "/l_arm_models",
 							dataType: "json",
 							success:  function(l_arm_models){
 								console.log(l_arm_models);
 								$.ajax({
-									url: "/r_arm_models/1",
+									url: "/r_arm_models",
 									dataType: "json",
 									success:  function(r_arm_models){
 										console.log(r_arm_models);
 										$.ajax({
-											url: "/l_leg_models/1",
+											url: "/l_leg_models",
 											dataType: "json",
 											success:  function(l_leg_models){
 												console.log(l_leg_models);
 												$.ajax({
-													url: "/r_leg_models/1",
+													url: "/r_leg_models",
 													dataType: "json",
 													success:  function(r_leg_models){
 														console.log(r_leg_models);
@@ -924,15 +924,15 @@ $.ajax({
 														}
 													}
 												});
-}
-});
-}
-});
-}
-});
-}
-});
-}
-});
-}
+											}
+										});
+									}
+								});
+							}
+						});
+					}
+				});
+			}
+		});
+	}
 });

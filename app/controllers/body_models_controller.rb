@@ -5,7 +5,10 @@ class BodyModelsController < ApplicationController
   # GET /body_models.json
   def index
     @body_models = BodyModel.all
-    redirect_to new_body_model_path
+    respond_to do |format|
+      format.html #defaults to rendering the /view/coordinates/show template
+      format.json { render json: @body_models }
+    end
   end
 
   # GET /body_models/1

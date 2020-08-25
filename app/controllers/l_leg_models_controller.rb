@@ -5,7 +5,10 @@ class LLegModelsController < ApplicationController
   # GET /l_leg_models.json
   def index
     @l_leg_models = LLegModel.all
-    redirect_to new_l_leg_model_path
+    respond_to do |format|
+      format.html #defaults to rendering the /view/coordinates/show template
+      format.json { render json: @l_leg_models }
+    end
   end
 
   # GET /l_leg_models/1

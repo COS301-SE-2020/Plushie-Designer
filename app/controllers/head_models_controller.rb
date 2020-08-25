@@ -4,8 +4,13 @@ class HeadModelsController < ApplicationController
   # GET /head_models
   # GET /head_models.json
   def index
+    # @head_models = HeadModel.all
     @head_models = HeadModel.all
-    redirect_to new_head_model_path
+    respond_to do |format|
+      format.html #defaults to rendering the /view/coordinates/show template
+      format.json { render json: @head_models }
+    end
+    # redirect_to new_head_model_path
   end
 
   # GET /head_models/1

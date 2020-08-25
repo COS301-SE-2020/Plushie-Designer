@@ -5,7 +5,10 @@ class RArmModelsController < ApplicationController
   # GET /r_arm_models.json
   def index
     @r_arm_models = RArmModel.all
-    redirect_to new_r_arm_model_path
+    respond_to do |format|
+      format.html #defaults to rendering the /view/coordinates/show template
+      format.json { render json: @r_arm_models }
+    end
   end
 
   # GET /r_arm_models/1

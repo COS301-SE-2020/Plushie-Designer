@@ -5,16 +5,19 @@ class RLegModelsController < ApplicationController
   # GET /r_leg_models.json
   def index
     @r_leg_models = RLegModel.all
-    redirect_to new_r_leg_model_path
+    respond_to do |format|
+      format.html #defaults to rendering the /view/coordinates/show template
+      format.json { render json: @r_leg_models }
+    end
   end
 
   # GET /r_leg_models/1
   # GET /r_leg_models/1.json
   def show
-    @plush_models = RLegModel.all
+    @r_leg_models = RLegModel.all
     respond_to do |format|
       format.html #defaults to rendering the /view/coordinates/show template
-      format.json { render json: @plush_models }
+      format.json { render json: @r_leg_models }
     end
     # redirect_to new_r_leg_model_path
   end
