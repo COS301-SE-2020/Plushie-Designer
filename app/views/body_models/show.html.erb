@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body file:</strong>
+  <%= @body_model.body_file %>
+</p>
+
+<p>
+  <strong>Tp:</strong>
+  <%= @body_model.tp %>
+</p>
+
+<%= link_to 'Edit', edit_body_model_path(@body_model) %> |
+<%= link_to 'Back', body_models_path %>

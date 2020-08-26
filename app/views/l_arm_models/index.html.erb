@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>L Arm Models</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>L arm file</th>
+      <th>Tp</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @l_arm_models.each do |l_arm_model| %>
+      <tr>
+        <td><%= l_arm_model.l_arm_file %></td>
+        <td><%= l_arm_model.tp %></td>
+        <td><%= link_to 'Show', l_arm_model %></td>
+        <td><%= link_to 'Edit', edit_l_arm_model_path(l_arm_model) %></td>
+        <td><%= link_to 'Destroy', l_arm_model, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New L Arm Model', new_l_arm_model_path %>
