@@ -1942,10 +1942,15 @@ fieldset.toy_shared {
 }
 
 #upload-model{
+    // background-color: black;
+    background-image: url("/images/TeddyBear.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     display: flex;
+    height: fit-content;
     flex-direction: column;
     position: absolute;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: center;
     top: 20%;
     bottom:20%;
@@ -1957,32 +1962,33 @@ fieldset.toy_shared {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 20%;
-    margin-top: 20%;
+    margin-bottom: 10%;
+    margin-top: 10%;
 }
 
 #bottom{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 10%;
+    // justify-content: space-between;
+    margin-bottom: 15%;
 }
 
 #upload-head{
     margin-bottom: 10%;
+    margin-top: 100%;
 }
 
 #upload-body{
-    margin-left: 10em;
-    margin-right: 10em;
+    margin-left: 5em;
+    margin-right: 5em;
 }
 
 #upload-l-arm{
-    margin-left: 5em;
+    margin-left: 4em;
 }
 
 #upload-r-arm{
-    margin-right: 5em;
+    margin-right: 4em;
 }
 
 #upload-l-leg{
