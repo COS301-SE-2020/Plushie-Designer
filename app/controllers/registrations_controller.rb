@@ -7,7 +7,8 @@ class RegistrationsController < Devise::RegistrationsController
             :email,
             :password,
             :password_confirmation,
-            :username
+            :username,
+            :admin
         )
     end
 
@@ -17,7 +18,8 @@ class RegistrationsController < Devise::RegistrationsController
             :password,
             :password_confirmation,
             :current_password,
-            :username
+            :username,
+            :admin
         )
     end
 end 
