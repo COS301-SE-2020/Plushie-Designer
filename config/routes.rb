@@ -1,6 +1,19 @@
 
 Rails.application.routes.draw do 
   
+  namespace :admin do
+      resources :users
+      resources :body_models
+      resources :head_models
+      resources :l_arm_models
+      resources :l_leg_models
+      resources :ratings
+      resources :r_arm_models
+      resources :r_leg_models
+      resources :toys
+
+      root to: "users#index"
+    end
   resources :r_leg_models
   resources :l_leg_models
   resources :r_arm_models
