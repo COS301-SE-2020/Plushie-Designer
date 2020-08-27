@@ -2,7 +2,7 @@
 @import "../library/data-label";
 @import "../library/variables";
 .main-content {
-  background-color: rgb(35, 34, 34);;
+  background-color: rgba(35, 34, 34, 0.7);
   border-radius: $base-border-radius;
   box-shadow: 0 0 6px 0 rgba($black, 0.12),
               0 2px 2px rgba($black, 0.2);
