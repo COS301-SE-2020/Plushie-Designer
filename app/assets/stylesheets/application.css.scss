@@ -2034,10 +2034,11 @@ fieldset.toy_shared {
 }
 
 .index-search{
+    background-color: transparent !important;
     position: absolute;
     top: 1.3em;
     right: 0.3em;
-    width: 25%;
+    width: 100%;
 }
 
 .btn-success{
@@ -2056,4 +2057,23 @@ fieldset.toy_shared {
     background-color: var(--secondary-colour);
     border-color: var(--primary-colour);
     color: var(--primary-colour);
+}
+
+#search-toggle{
+    background-color: transparent;
+    position: relative;
+    float: right;
+    top: 1.2em;
+}
+
+#search-dropdown{
+    position: relative;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    float: right;
+    width: 50%;
+    bottom: 0.8em;
 }
