@@ -46,7 +46,7 @@
                   <a href="#" id="search-toggle" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span aria-hidden="true" class="glyphicon glyphicon-search"></span><span class="caret"></span></a>
                   <ul class="dropdown-menu" id="search-dropdown">
                     <div class="index-search">
-                      <%= form_tag(toys_path, method: :get) do %>
+                      <%= form_tag(toys_path, method: :get, autocomplete: "off") do %>
                           <div class="search-field">
                               <%= text_field_tag(:search, params[:search]) %>
                               <%= button_tag(type: 'submit', class: 'btn btn-success') do %>
