@@ -2077,3 +2077,9 @@ fieldset.toy_shared {
     width: 50%;
     bottom: 0.8em;
 }
+
+.head-controls{
+    position: relative;
+    // left: -50%;
+    z-index: 99999;
+}
