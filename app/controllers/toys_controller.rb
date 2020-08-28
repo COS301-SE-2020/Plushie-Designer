@@ -74,7 +74,7 @@ class ToysController < ApplicationController
 
     respond_to do |format|
       if @toy.save
-        format.html { redirect_to @toy, notice: 'Toy was successfully created.' }
+        format.html { redirect_to @toy, notice: 'Plushie was successfully created.' }
         format.json { render :show, status: :created, location: @toy }
       else
         format.html { render :new }
@@ -88,7 +88,7 @@ class ToysController < ApplicationController
   def update
     respond_to do |format|
       if @toy.update(toy_params)
-        format.html { redirect_to @toy, notice: 'Toy was successfully updated.' }
+        format.html { redirect_to @toy, notice: 'Plushie was successfully updated.' }
         format.json { render :show, status: :ok, location: @toy }
       else
         format.html { render :edit }
@@ -102,7 +102,7 @@ class ToysController < ApplicationController
   def destroy
     @toy.destroy
     respond_to do |format|
-      format.html { redirect_to toys_url, notice: 'Toy was successfully destroyed.' }
+      format.html { redirect_to toys_url, notice: 'Plushie was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
