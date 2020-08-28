@@ -830,7 +830,7 @@ p {
     left: 5%;
     padding-top: 2rem;
     width: 90%;
-
+    z-index: -2;
     a {
         text-decoration: none;
     }
@@ -1623,7 +1623,7 @@ fieldset.toy_shared {
     right: 0;
     bottom: 0;
     opacity: 1;
-    z-index: -1;
+    z-index: -3;
     -webkit-animation-name: backgroundAnimate;
     -webkit-animation-duration: 500s;
     -webkit-animation-timing-function: linear;
@@ -1650,7 +1650,7 @@ fieldset.toy_shared {
     right: 0;
     bottom: 0;
     opacity: 0.9;
-    z-index: -1;
+    z-index: -3;
     -webkit-animation-name: backgroundAnimate;
     -webkit-animation-duration: 300s;
     -webkit-animation-timing-function: linear;
@@ -2003,4 +2003,28 @@ fieldset.toy_shared {
 
 #upload-r-leg{
     margin-left: 6em;
+}
+
+#search{
+    width: 100%;
+    margin-right: 5px;
+    margin-left: 5px;
+    background-color: transparent;
+    border-radius: 0%;
+    border-width: 0px 0px 1px 0px;
+    border-color: var(--primary-colour);
+}
+
+.search-field{
+    display: flex;
+    position: relative;
+    color: var(--primary-colour);
+    right: 0;
+}
+
+.index-search{
+    position: absolute;
+    top: 1.3em;
+    right: 0.3em;
+    width: 25%;
 }
