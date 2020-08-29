@@ -42,41 +42,45 @@
   </div>
 
   
-  <div class="plushie-controls">
-  <div class="buttons">
-    <div class="head-div">
-      <div class="head-controls" data-toggle="collapse" data-target="#collapse-head-controls">
-          <!-- <button style="display: none;" id="hc-btn" type="hidden" data-toggle="collapse" data-target="#collapse-head-controls"></button> -->
-          <button class="btn" id="headl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-          <span class="control-header">Head</span>
-          <button class="btn" id="headr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button><br>
-      </div>
-
-      <div class="head-collapse collapse" id="collapse-head-controls">
-          <div class="slider-row">
-              <div class="col-10">
-                  <label class="ml-3" for="headup">Up / Down</label>
-                  <input type="range" min="-4" max="3" value="1.5" class="slider" id="headup" step="0.1">
-              </div>
-          </div>
-
-          <div class="slider-row">
-              <div class="col-10">
-                  <label for="headleft">Left / Right</label>
-                  <input type="range" min="-4" max="4" value="0" class="slider" id="headleft" step="0.1">
-              </div>
-          </div>
-
-          <div class="slider-row">
-              <div class="col-10">
-                  <label class="ml-3" for="headfront">Front / Back</label>
-                  <input type="range" min="-4" max="4" value="1.5" class="slider" id="headfront" step="0.1">
-              </div>
-          </div>
-      </div>
+  <div class="panel-group plushie-controls" id="controls-parent">
+  <div class="buttons panel panel-default">
+    <div class="head-div panel-heading">
+      <h4 class="panel-title">
+        <div class="head-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#collapse-head-controls">
+            <!-- <button style="display: none;" id="hc-btn" type="hidden" data-toggle="collapse" data-target="#collapse-head-controls"></button> -->
+            <span class="control-header">Head</span>
+        </div>
+      </h4>
     </div>
 
-    <hr>
+    <div class="head-collapse panel-collapse collapse" id="collapse-head-controls">
+      <div class="panel-body">
+        <button class="btn" id="headl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="headr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+
+        <div class="slider-row">
+            <div class="col-10">
+                <label class="ml-3" for="headup">Up / Down</label>
+                <input type="range" min="-4" max="3" value="1.5" class="slider" id="headup" step="0.1">
+            </div>
+        </div>
+
+        <div class="slider-row">
+            <div class="col-10">
+                <label for="headleft">Left / Right</label>
+                <input type="range" min="-4" max="4" value="0" class="slider" id="headleft" step="0.1">
+            </div>
+        </div>
+
+        <div class="slider-row">
+            <div class="col-10">
+                <label class="ml-3" for="headfront">Front / Back</label>
+                <input type="range" min="-4" max="4" value="1.5" class="slider" id="headfront" step="0.1">
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <div class="buttons">
       <div class="arms-div" data-toggle="collapse" data-target="#arms-collapse">
@@ -104,8 +108,6 @@
       </div>
     </div>
 
-    <hr>
-
     <div class="buttons">
       <div class="torso-div" data-toggle="collapse" data-target="#torso-collapse">
         <!-- <button style="display: none;" id="tc-btn" type="hidden" data-toggle="collapse" data-target="#torso-collapse"></button> -->
@@ -123,8 +125,6 @@
           <input type="range" min="-4" max="4" value="0" class="slider" id="torsofront" step="0.1">
       </div>
     </div>
-
-    <hr>
 
     <div class="buttons">
       <div class="legs-div" data-toggle="collapse" data-target="#legs-collapse">
@@ -152,13 +152,12 @@
       </div>
     </div>
 
-    <hr>
     <div class="buttons">
       <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button>
       <span class="control-header">Room</span>
       <button class="btn" id="roomr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button><br>
     </div>
-    <hr>
+  
     <div class="buttons">
       <div class="row">
         <div class="share-btn-right">
@@ -172,65 +171,4 @@
   </div>
 </div>
 
-    
-    <!-- <div class="buttons">
-      <button class="btn" id="armsl" type="button">
-        <span class="glyphicon glyphicon glyphicon-chevron-left"></span>
-      </button> 
-      Arms 
-      <button class="btn" id="armsr" type="button">
-        <span class="glyphicon glyphicon glyphicon-chevron-right"></span>
-      </button>
-    </div>
-    <hr>
-    Left Arm<br>
-    Up / Down
-    <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="larmup" step="0.1">
-    Left / Right
-    <input type="range" min="-4" max="4" value="0" class="slider" id="larmleft" step="0.1">
-    Right Arm<br>
-    Up / Down
-    <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="rarmup" step="0.1">
-    Left / Right
-    <input type="range" min="-4" max="4" value="0" class="slider" id="rarmleft" step="0.1">
-    <div class="buttons">
-      <button class="btn" id="torsol" type="button">
-        <span class="glyphicon glyphicon glyphicon-chevron-left"></span>
-      </button> 
-      Torso 
-      <button class="btn" id="torsor" type="button">
-        <span class="glyphicon glyphicon glyphicon-chevron-right"></span>
-      </button>
-    </div>
-    <hr>
-    Up / Down
-    <input type="range" min="-4" max="3" value="1.5" class="slider" id="torsoup" step="0.1">
-    Left / Right
-    <input type="range" min="-4" max="4" value="0" class="slider" id="torsoleft" step="0.1">
-    <div class="buttons">
-      <button class="btn" id="legsl" type="button">
-        <span class="glyphicon glyphicon glyphicon-chevron-left"></span>
-      </button> 
-      Legs 
-      <button class="btn" id="legsr" type="button">
-        <span class="glyphicon glyphicon glyphicon-chevron-right"></span>
-      </button>
-    </div>
-    <hr>
-    Left Leg<br>
-    Up / Down
-    <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="llegup" step="0.1">
-    Left / Right
-    <input type="range" min="-4" max="4" value="0" class="slider" id="llegleft" step="0.1">
-    Right Leg<br>
-    Up / Down
-    <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="rlegup" step="0.1">
-    Left / Right
-    <input type="range" min="-4" max="4" value="0" class="slider" id="rlegleft" step="0.1">
-    <div class="buttons">
-      <button class="btn" id="generate-pattern" type="button">Generate Pattern</button>
-      <hr>
-    <div class="form-actions buttons">
-      <%= f.button :submit, :id => "share-btn" %>
-    </div> -->
 <% end %>
