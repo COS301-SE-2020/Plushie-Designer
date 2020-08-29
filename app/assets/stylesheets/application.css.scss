@@ -26,6 +26,8 @@
     --q-colour: rgb(241, 213, 186);
     --p-colour: #cf3f46;
     --background : #6c768d;
+    --alert-color: rgba(47, 56, 86, 0.7);
+    --danger-color: rgba(207, 63, 70, 0.7);
     --control-background: rgba(0, 0, 0, 0.8);
 
     //// --tertiary-colour: rgb(42, 154, 173);--primary-colour: rgb(227, 166, 104);
@@ -44,12 +46,20 @@
 }
 
 .alert {
-    position: absolute;
-    top: 5em;
-    width: 100%;
-    z-index: 0;
-    background-color: var(--tertiary-colour);
-    color: var(--q-colour);
+    position: fixed !important;
+    top: 10em !important;
+    width: 16% !important;
+    left: 42%;
+    z-index: 0 !important;
+    background-color: var(--alert-color) !important;
+    border-color: var(--alert-color) !important;
+    color: var(--q-colour) !important;
+}
+
+.alert-danger {
+    background-color: var(--danger-color)!important;
+    border-color: var(--danger-color)!important;
+    color: var(--q-colour)!important;
 }
 
 .editor {
@@ -355,18 +365,18 @@ body {
 }
 
 .upload-controls-container {
-    width: 60%;
     position: absolute;
-    right: 0;
+    width: 18.35%;
+    left: 40.825%;
+    // right: 0;
     bottom:0;
     height: 80%;
     .index-page {
         position: absolute;
         top: 7.5em;
-        left: 0;
         background: rgba($color: #000000, $alpha: 0.5);
         border-radius: 0.5em;
-        width: 21em;
+        width: 100%;
         padding: 0.1em 1em 1em 1em;
         color: white;
         max-height: 76vh;
@@ -715,7 +725,7 @@ p {
     left: 5%;
     padding-top: 2rem;
     width: 90%;
-
+    z-index: -2;
     a {
         text-decoration: none;
     }
@@ -793,12 +803,12 @@ p {
     }
 }
 
-.alert {
-    width: 20%;
-    position: absolute;
-    left: 40%;
-    top: 9em;
-}
+// .alert {
+//     width: 20%;
+//     position: absolute;
+//     left: 40%;
+//     top: 9em;
+// }
 
 .test {
     color: white;
@@ -1508,7 +1518,7 @@ fieldset.toy_shared {
     right: 0;
     bottom: 0;
     opacity: 1;
-    z-index: -1;
+    z-index: -3;
     -webkit-animation-name: backgroundAnimate;
     -webkit-animation-duration: 500s;
     -webkit-animation-timing-function: linear;
@@ -1535,7 +1545,7 @@ fieldset.toy_shared {
     right: 0;
     bottom: 0;
     opacity: 0.9;
-    z-index: -1;
+    z-index: -3;
     -webkit-animation-name: backgroundAnimate;
     -webkit-animation-duration: 300s;
     -webkit-animation-timing-function: linear;
@@ -1890,6 +1900,49 @@ fieldset.toy_shared {
     margin-left: 6em;
 }
 
+#search{
+    width: 100%;
+    margin-right: 5px;
+    margin-left: 5px;
+    background-color: transparent;
+    border-radius: 0%;
+    border-width: 0px 0px 1px 0px;
+    border-color: var(--primary-colour);
+}
+
+.search-field{
+    display: flex;
+    position: relative;
+    color: var(--primary-colour);
+    right: 0;
+}
+
+.index-search{
+    background-color: transparent !important;
+    position: absolute;
+    top: 1.3em;
+    right: 0.3em;
+    width: 100%;
+}
+
+.btn-success{
+    background-color: var(--primary-colour);
+    border-color: var(--primary-colour);
+    color: var(--secondary-colour);
+}
+
+.btn-success:hover{
+    background-color: var(--secondary-colour);
+    border-color: var(--primary-colour);
+    color: var(--primary-colour);
+}
+
+.btn-success:focus{
+    background-color: var(--secondary-colour);
+    border-color: var(--primary-colour);
+    color: var(--primary-colour);
+}
+
 .panel-heading{
     background: var(--control-background) !important;
     border: none !important;
@@ -1946,6 +1999,31 @@ fieldset.toy_shared {
     border-width: 0px 0px 1px 0px;
     border-color: var(--primary-colour);
     color: var(--primary-colour);
+}
+
+#search-toggle{
+    background-color: transparent;
+    position: relative;
+    float: right;
+    top: 1.2em;
+}
+
+#search-dropdown{
+    position: relative;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    float: right;
+    width: 50%;
+    bottom: 0.8em;
+}
+
+.head-controls{
+    position: relative;
+    // left: -50%;
+    z-index: 99999;
 }
 
 .string:focus{
