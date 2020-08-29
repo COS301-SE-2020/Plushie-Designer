@@ -253,11 +253,24 @@
     </div>
   </div>
 
-    <div class="buttons">
-      <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button>
-      <span class="control-header">Room</span>
-      <button class="btn" id="roomr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button><br>
+  <div class="buttons panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <div class="rooms-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#rooms-collapse">
+          <%# <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> %>
+          <span class="control-header">Room</span>
+          <%# <button class="btn" id="roomr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button><br> %>
+        </div>
+      </h4>
     </div>
+
+    <div class="rooms-collapse panel-collapse collapse" id="rooms-collapse">
+      <div class="panel-body">
+          <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button>
+          <button class="btn" id="roomr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+      </div>
+    </div>
+  </div>
   
     <div class="buttons">
       <div class="row">
