@@ -823,12 +823,12 @@ $.ajax({
 															hslideru.oninput = function() {
 																//var temp = scene.getObjectByName(scene.children[ihead].name);
 																var t = this.value;
-																htemp.position.setY(t);
+																htemp.position.setY(-t);
 																// console.log(t);
 																if(hhtemp!=null){
-																	hhtemp.position.setY(t);
+																	hhtemp.position.setY(-t);
 																}
-																$("#toy_head_pos")[0].value = t;
+																$("#toy_head_pos")[0].value = -t;
 															}
 															hsliderl.oninput = function() {
 																//var temp = scene.getObjectByName(scene.children[ihead].name);
@@ -876,9 +876,9 @@ $.ajax({
 															laslideru.oninput = function() {
 																// var temp = scene.getObjectByName(scene.children[ilarm].name);
 																var t = this.value;
-																latemp.position.setY(t);
+																latemp.position.setY(-t);
 																// console.log(t);
-																$("#toy_larm_posy")[0].value = t;
+																$("#toy_larm_posy")[0].value = -t;
 															}
 															lasliderl.oninput = function() {
 																// var latemp = scene.getObjectByName(scene.children[ilarm].name);
@@ -897,9 +897,9 @@ $.ajax({
 															raslideru.oninput = function() {
 																// var temp = scene.getObjectByName(scene.children[irarm].name);
 																var t = this.value;
-																ratemp.position.setY(t);
+																ratemp.position.setY(-t);
 																// console.log(t);
-																$("#toy_rarm_posy")[0].value = t;
+																$("#toy_rarm_posy")[0].value = -t;
 															}
 															rasliderl.oninput = function() {
 																// var ratemp = scene.getObjectByName(scene.children[irarm].name);
@@ -938,9 +938,9 @@ $.ajax({
 															tslideru.oninput = function() {
 																// var temp = scene.getObjectByName(scene.children[itorso].name);
 																var t = this.value;
-																ttemp.position.setY(t);
+																ttemp.position.setY(-t);
 																// console.log(t);
-																$("#toy_torso_posy")[0].value = t;
+																$("#toy_torso_posy")[0].value = -t;
 															}
 															tsliderl.oninput = function() {
 																// var ttemp = scene.getObjectByName(scene.children[itorso].name);
@@ -982,9 +982,9 @@ $.ajax({
 															llslideru.oninput = function() {
 																// var temp = scene.getObjectByName(scene.children[illeg].name);
 																var t = this.value;
-																lltemp.position.setY(t);
+																lltemp.position.setY(-t);
 																// console.log(t);
-																$("#toy_lleg_posy")[0].value = t;
+																$("#toy_lleg_posy")[0].value = -t;
 															}
 															llsliderl.oninput = function() {
 																// var lltemp = scene.getObjectByName(scene.children[illeg].name);
@@ -1003,9 +1003,9 @@ $.ajax({
 															rlslideru.oninput = function() {
 																// var temp = scene.getObjectByName(scene.children[irleg].name);
 																var t = this.value;
-																rltemp.position.setY(t);
+																rltemp.position.setY(-t);
 																// console.log(t);
-																$("#toy_rleg_posy")[0].value = t;
+																$("#toy_rleg_posy")[0].value = -t;
 															}
 															rlsliderl.oninput = function() {
 																// var rltemp = scene.getObjectByName(scene.children[irleg].name);
