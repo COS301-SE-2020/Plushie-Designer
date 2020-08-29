@@ -1,0 +1,23 @@
+@import "../library/clearfix";
+@import "../library/data-label";
+@import "../library/variables";
+html {
+  background-color: $base-background-color;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+figure {
+  margin: 0;
+}
+
+img,
+picture {
+  margin: 0;
+  max-width: 100%;
+}

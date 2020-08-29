@@ -151,12 +151,17 @@
     </div>
 
     <hr>
-
+    <div class="buttons">
+      <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button>
+      <span class="control-header">Room</span>
+      <button class="btn" id="roomr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button><br>
+    </div>
+    <hr>
     <div class="buttons">
       <div class="row">
         <div class="share-btn-right">
           <div class="form-actions buttons">
-            <%= f.button :submit, :id => "share-btn" %>
+            <%= f.submit "Create Plushie", :id => "share-btn" , :class => "btn"%>
           </div>
         </div>
       </div>

@@ -1,0 +1,36 @@
+@import "../library/clearfix";
+@import "../library/data-label";
+@import "../library/variables";
+$_navigation-link-padding: 0.6em;
+
+.navigation {
+  flex: 1 0 10rem;
+  padding: $base-spacing;
+  padding-left: 0;
+}
+
+.navigation__link {
+  background-color: rgba(35, 34, 34, 0.7);
+  border-radius: 15px;
+  color: $base-font-color;
+  display: block;
+  line-height: 1;
+  margin-left: -($_navigation-link-padding);
+  padding: $_navigation-link-padding;
+  transition: background-color $base-duration $base-timing,
+              color $base-duration $base-timing;
+
+  &:not(:last-of-type) {
+    margin-bottom: $small-spacing;
+  }
+
+  &:hover {
+    background-color: mix($blue, rgb(35, 34, 34), 30%);
+    border-radius: 15px;
+    color: $base-font-color;
+  }
+}
+
+.navigation__link--active {
+  font-weight: $bold-font-weight;
+}

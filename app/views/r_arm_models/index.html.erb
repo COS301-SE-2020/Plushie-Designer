@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>R Arm Models</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>R arm file</th>
+      <th>Tp</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @r_arm_models.each do |r_arm_model| %>
+      <tr>
+        <td><%= r_arm_model.r_arm_file %></td>
+        <td><%= r_arm_model.tp %></td>
+        <td><%= link_to 'Show', r_arm_model %></td>
+        <td><%= link_to 'Edit', edit_r_arm_model_path(r_arm_model) %></td>
+        <td><%= link_to 'Destroy', r_arm_model, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New R Arm Model', new_r_arm_model_path %>

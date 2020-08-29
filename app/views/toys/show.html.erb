@@ -81,6 +81,11 @@
 <%= content_tag :div, class: "rlegposz", data: {rlegposz: @toy.rleg_posz} do %>
 <% end %>
 
+<meta property="og:title" content=<%= @toy.name %> />
+<meta property="og:image" content=<%= @toy.image %> />
+<meta property="og:description" content="Test" />
+<meta property="og:site_name" content="Wish upon a Plush" />
+
 <div class="show-toy-container">
   <div class="row">
       <!-- Blog Post Content Column -->
@@ -89,6 +94,7 @@
           <!-- Title -->
           <h1 style="font-size: 30.5px;">
               <%= @toy.name %>
+               <div class="sharethis-inline-share-buttons"></div>
           </h1>
           <!-- Author -->
           <hr>
@@ -118,15 +124,33 @@
   <%= link_to 'Back', toys_path %>
   <br><br><br>
   <% if current_user == @toy.user%>
-    <span><%= button_to 'Edit', edit_toy_path(@toy), method: "get", :class => "btn ed-button"%></span>
-    <span><%= button_to 'Delete', @toy, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn ed-button" %></span>
+    <div class="show-buttons">
+      <span><%= button_to 'Edit', edit_toy_path(@toy), method: "get", :id => "edit-p", :class => "btn ed-button"%></span>
+      <span><%= button_to 'Delete', @toy, method: :delete, data: { confirm: 'Are you sure?' }, :id => "delete-p", :class => "btn ed-button" %></span>
+    </div>
   <% end %>
+
 </div>
 
 <div class="editor">
     <%= javascript_pack_tag 'showEditor' %>
 </div>
 
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5f4366186142da001992be5f&product=inline-share-buttons" async="async"></script>
 <section id="loading-screen">
     <div id="loader"></div>
 </section>
+
+<script type="text/javascript">
+$(document).ready(function(){    
+    //Check if the current URL contains '#'
+    if(document.URL.indexOf("#")==-1){
+        // Set the URL to whatever it was plus "#".
+        url = document.URL+"#";
+        location = "#";
+
+        //Reload the page
+        location.reload(true);
+    }
+});
+</script>

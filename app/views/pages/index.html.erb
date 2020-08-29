@@ -2,10 +2,10 @@
 
 <html>
     <head>
-        <script
+        <%# <script
             src="https://code.jquery.com/jquery-3.5.1.slim.js"
             integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script> %>
     </head>
     <body>
         <div class="texture-container">
@@ -131,6 +131,12 @@
                             <label for="rlegfront">Front / Back</label>
                             <input type="range" min="-4" max="4" value="0" class="slider" id="rlegfront" step="0.1">
                         </div>
+                    </div>
+                    <hr>
+                    <div class="buttons">
+                        <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button>
+                        <span class="control-header">Room</span>
+                        <button class="btn" id="roomr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button><br>
                     </div>
                     <hr>
                     <div class="editor">

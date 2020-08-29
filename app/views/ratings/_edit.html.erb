@@ -1,15 +1,63 @@
 <div class="edit_ratings">
+    <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
     <%= simple_form_for([@toy, @rating]) do |f| %>
     <div class="row rating-form">
-        <div class="col">
-            <%= f.input :description, :id => "rate-desc", :class => "rating-description", input_html: { maxlength: 250 } %>
+        <div class="row">
+            <%= f.input :description, :id => "rate-desc", :class => "rating-description", input_html: { maxlength: 250 } %>        
         </div>
-        <div class="col">
-            <%= f.input :value, :class => "rating-value" %>
+        <div class="edit-rate row">
+            <!-- <%= f.input :value, :class => "rating-value", :placeholder => "0/5" %> -->
+            <div class="col-6">
+                <span class="rating-label">Rating</span>
+            </div>
+            <div class="col-6">
+                <fieldset class="rate">
+                    <% if @rating.value == 5 %>
+                        <%= f.radio_button :value, 5, :id=>"estar5", :checked=>"checked"%>
+                    <% else %>
+                        <%= f.radio_button :value, 5, :id=>"estar5"%>
+                    <% end %>
+                    <label for="estar5" title="Excellent!">5</label>
+                    <% if @rating.value == 4 %>
+                        <%= f.radio_button :value, 4, :id=>"estar4", :checked=>"checked"%>
+                    <% else %>
+                        <%= f.radio_button :value, 4, :id=>"estar4"%>
+                    <% end %>
+                    <label for="estar4" title="Good!">4</label>
+                    <% if @rating.value == 3 %>
+                        <%= f.radio_button :value, 3, :id=>"estar3", :checked=>"checked"%>
+                    <% else %>
+                        <%= f.radio_button :value, 3, :id=>"estar3"%>
+                    <% end %>
+                    <label for="estar3" title="Average!">3</label>
+                    <% if @rating.value == 2 %>
+                        <%= f.radio_button :value, 2, :id=>"estar2", :checked=>"checked"%>
+                    <% else %>
+                        <%= f.radio_button :value, 2, :id=>"estar2"%>
+                    <% end %>
+                    <label for="estar2" title="Poor!">2</label>
+                    <% if @rating.value == 1 %>
+                        <%= f.radio_button :value, 1, :id=>"estar1", :checked=>"checked"%>
+                    <% else %>
+                        <%= f.radio_button :value, 1, :id=>"estar1"%>
+                    <% end %>
+                    <label for="estar1" title="Very Poor!">1</label>
+                </fieldset>
+            </div>
         </div>
         <div class="row">
             <%= f.submit :id => "rating-btn", :class => "btn submit-button" %>
         </div>
     </div>
     <% end %>
+
+    <script>
+            $(document).ready(() => {
+                $('.close').click(() => {
+                    $('#edit_rating').empty();
+                });
+            });
+        </script>
 </div>
