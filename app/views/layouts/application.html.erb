@@ -5,6 +5,7 @@
     <link rel="icon" href="/images/logo.svg">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5f4366186142da001992be5f&product=inline-share-buttons" async="async"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -18,7 +19,8 @@
     <div class='container'>
       <%= yield %>
     </div>
-
+    <div id="back"></div>
+    <div id="front"></div>
     <%= render 'layouts/footer' %>
   </body>
 </html>

@@ -10,7 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_06_162445) do
+ActiveRecord::Schema.define(version: 2020_08_27_070059) do
+
+  create_table "body_models", force: :cascade do |t|
+    t.string "body_file"
+    t.string "tp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "head_models", force: :cascade do |t|
+    t.string "head_file"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "tp"
+  end
+
+  create_table "l_arm_models", force: :cascade do |t|
+    t.string "l_arm_file"
+    t.string "tp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "l_leg_models", force: :cascade do |t|
+    t.string "l_leg_file"
+    t.string "tp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "r_arm_models", force: :cascade do |t|
+    t.string "r_arm_file"
+    t.string "tp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "r_leg_models", force: :cascade do |t|
+    t.string "r_leg_file"
+    t.string "tp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "ratings", force: :cascade do |t|
     t.text "description"
@@ -45,7 +87,6 @@ ActiveRecord::Schema.define(version: 2020_08_06_162445) do
     t.float "lleg_posx"
     t.float "rleg_posy"
     t.float "rleg_posx"
-    t.boolean "shared"
     t.text "image"
     t.float "head_posz"
     t.float "torso_posz"
@@ -59,6 +100,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_162445) do
     t.text "rarm_uv"
     t.text "lleg_uv"
     t.text "rleg_uv"
+    t.boolean "shared"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,6 +116,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_162445) do
     t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

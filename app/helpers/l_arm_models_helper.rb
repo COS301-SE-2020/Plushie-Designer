@@ -1,0 +1,2 @@
+module LArmModelsHelper
+end

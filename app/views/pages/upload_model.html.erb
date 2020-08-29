@@ -1,0 +1,12 @@
+<div id="upload-model">
+    <%= button_to 'Head', new_head_model_path, method: "get", :id => "upload-head", :class => "btn ed-button"%>
+    <div id="middle">
+        <%= button_to 'Left Arm', new_l_arm_model_path, method: "get", :id => "upload-l-arm", :class => "btn ed-button"%> 
+        <%= button_to 'Body', new_body_model_path, method: "get", :id => "upload-body", :class => "btn ed-button"%> 
+        <%= button_to 'Right Arm', new_r_arm_model_path, method: "get", :id => "upload-r-arm", :class => "btn ed-button"%> 
+    </div>
+    <div id="bottom">
+        <%= button_to 'Left Leg', new_l_leg_model_path, method: "get", :id => "upload-l-leg", :class => "btn ed-button"%> 
+        <%= button_to 'Right Leg', new_r_leg_model_path, method: "get", :id => "upload-r-leg", :class => "btn ed-button"%> 
+    </div>
+</div>
