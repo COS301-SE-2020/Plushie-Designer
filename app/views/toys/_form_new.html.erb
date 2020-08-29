@@ -82,6 +82,47 @@
     </div>
   </div>
 
+  <div class="buttons panel panel-default">
+    <div class="torso-div panel-heading">
+      <h4 class="panel-title">
+        <div class="torso-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#torso-collapse">
+          <!-- <button style="display: none;" id="tc-btn" type="hidden" data-toggle="collapse" data-target="#torso-collapse"></button> -->
+          <%# <button class="btn" id="torsol" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button>  %>
+          <span class="control-header">Torso</span>
+          <%# <button class="btn" id="torsor" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button> %>
+        </div>
+      </h4>
+    </div>
+
+    <div class="torso-collapse panel-collapse collapse" id="torso-collapse">
+      <div class="panel-body">
+        <button class="btn" id="torsol" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="torsor" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="torsoup">Up / Down</label>
+            <input type="range" min="-4" max="3" value="1.5" class="slider" id="torsoup" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="torsoleft">Left / Right</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="torsoleft" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="torsofront">Front / Back</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="torsofront" step="0.1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <div class="buttons">
       <div class="arms-div" data-toggle="collapse" data-target="#arms-collapse">
         <!-- <button style="display: none;" id="ac-btn" type="hidden" data-toggle="collapse" data-target="#arms-collapse"></button> -->
@@ -105,24 +146,6 @@
         <input type="range" min="-4" max="4" value="0" class="slider" id="rarmleft" step="0.1">
         <label for="rarmfront">Front / Back</label>
         <input type="range" min="-4" max="4" value="0" class="slider" id="rarmfront" step="0.1">
-      </div>
-    </div>
-
-    <div class="buttons">
-      <div class="torso-div" data-toggle="collapse" data-target="#torso-collapse">
-        <!-- <button style="display: none;" id="tc-btn" type="hidden" data-toggle="collapse" data-target="#torso-collapse"></button> -->
-        <button class="btn" id="torsol" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-        <span class="control-header">Torso</span>
-        <button class="btn" id="torsor" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
-      </div>
-
-      <div class="collapse torso-collapse" id="torso-collapse">
-          <label for="torsoup">Up / Down</label>
-          <input type="range" min="-4" max="3" value="1.5" class="slider" id="torsoup" step="0.1">
-          <label for="torsoleft">Left / Right</label>
-          <input type="range" min="-4" max="4" value="0" class="slider" id="torsoleft" step="0.1">
-          <label for="torsofront">Front / Back</label>
-          <input type="range" min="-4" max="4" value="0" class="slider" id="torsofront" step="0.1">
       </div>
     </div>
 
