@@ -41,23 +41,23 @@
                   </ul>
                 </li>
               <% end %>
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <li class="dropdown">
-                  <a href="#" id="search-toggle" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span aria-hidden="true" class="glyphicon glyphicon-search"></span><span class="caret"></span></a>
-                  <ul class="dropdown-menu" id="search-dropdown">
-                    <div class="index-search">
-                      <%= form_tag(toys_path, method: :get, autocomplete: "off") do %>
-                          <div class="search-field">
-                              <%= text_field_tag(:search, params[:search]) %>
-                              <%= button_tag(type: 'submit', class: 'btn btn-success') do %>
-                                <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
-                              <% end %>
-                          </div>
-                      <% end %>
-                    </div>
-                  </ul>
-                </li>
-              </div>
+              <%# <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> %>
+                <%# <li class="dropdown"> %>
+                  <%# <a href="#" id="search-toggle" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span aria-hidden="true" class="glyphicon glyphicon-search"></span><span class="caret"></span></a> %>
+                  <%# <ul class="dropdown-menu" id="search-dropdown"> %>
+                    <%# <div class="index-search"> %>
+                      <%# <%= form_tag(toys_path, method: :get, autocomplete: "off") do %>
+                          <%# <div class="search-field"> %>
+                              <%# <%= text_field_tag(:search, params[:search]) %>
+                              <%# <%= button_tag(type: 'submit', class: 'btn btn-success') do %>
+                                <%# <span aria-hidden="true" class="glyphicon glyphicon-search"></span> %>
+                              <%# <% end %>
+                          <%# </div> %>
+                      <%# <% end %>
+                    <%# </div> %>
+                  <%# </ul> %>
+                <%# </li> %>
+              <%# </div> %>
             </ul>
           </div>
         </div>
