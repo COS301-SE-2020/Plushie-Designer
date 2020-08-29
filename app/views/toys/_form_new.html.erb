@@ -3,8 +3,10 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :name %><hr>
-    <%= f.input :shared, label: "Share"%><hr>
+    <div class="options-header">
+      <%= f.input :name, label_html: { class: 'name-label' }, placeholder: 'Plushie Name', required: false, input_html: { :autocomplete => "off" } %>
+      <%= f.input :shared, label: "Share"%>
+    </div>
     <div class="hinput">
       <%= f.input :head, input_html: {value: 0} %>
       <%= f.input :arms, input_html: {value: 0} %>
