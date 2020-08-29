@@ -123,31 +123,69 @@
     </div>
   </div>
 
-    <div class="buttons">
-      <div class="arms-div" data-toggle="collapse" data-target="#arms-collapse">
-        <!-- <button style="display: none;" id="ac-btn" type="hidden" data-toggle="collapse" data-target="#arms-collapse"></button> -->
-        <button class="btn" id="armsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-        <span class="control-header">Arms</span>
-        <button class="btn" id="armsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
-      </div>
+    <div class="buttons panel panel-default">
+    <div class="arms-div panel-heading">
+      <h4 class="panel-title">
+        <div class="arms-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#arms-collapse">
+          <!-- <button style="display: none;" id="ac-btn" type="hidden" data-toggle="collapse" data-target="#arms-collapse"></button> -->
+          <span class="control-header">Arms</span>
+        </div>
+      </h4>
+    </div>
 
-      <div class="arms-collapse collapse" id="arms-collapse">
+    <div class="arms-collapse panel-collapse collapse" id="arms-collapse">
+      <div class="panel-body">
+        <button class="btn" id="armsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="armsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+        <br>
         <span class="refined-control-label">Left Arm</span><br/>
-        <label for="larmup">Up / Down</label>
-        <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="larmup" step="0.1">
-        <label for="larmleft">Left / Right</label>
-        <input type="range" min="-4" max="4" value="0" class="slider" id="larmleft" step="0.1">
-        <label for="larmfront">Front / Back</label>
-        <input type="range" min="-4" max="4" value="0" class="slider" id="larmfront" step="0.1">
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="larmup">Up / Down</label>
+            <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="larmup" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="larmleft">Left / Right</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="larmleft" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="larmfront">Front / Back</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="larmfront" step="0.1">
+          </div>
+        </div>
+
         <span class="refined-control-label">Right Arm</span><br/>
-        <label for="rarmup">Up / Down</label>
-        <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="rarmup" step="0.1">
-        <label for="rarmleft">Left / Right</label>
-        <input type="range" min="-4" max="4" value="0" class="slider" id="rarmleft" step="0.1">
-        <label for="rarmfront">Front / Back</label>
-        <input type="range" min="-4" max="4" value="0" class="slider" id="rarmfront" step="0.1">
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="rarmup">Up / Down</label>
+            <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="rarmup" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="rarmleft">Left / Right</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="rarmleft" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="rarmfront">Front / Back</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="rarmfront" step="0.1">
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
     <div class="buttons">
       <div class="legs-div" data-toggle="collapse" data-target="#legs-collapse">
