@@ -232,18 +232,20 @@ body {
 .index-controls-container {
     width: 30%;
     position: absolute;
-    right: 0;
+    left: 0;
     height: 100%;
+    color: var(--primary-colour);
     .index-page {
         position: absolute;
-        top: 7.5em;
+        top: 10%;
         left: 0;
-        background: rgba($color: #000000, $alpha: 0.5);
+        // background: rgba($color: #000000, $alpha: 0.5);
+        background: transparent;
         border-radius: 0.5em;
-        width: 21em;
+        width: 100%;
         padding: 0.1em 1em 1em 1em;
-        color: white;
-        max-height: 76vh;
+        color: var(--primary-colour);
+        max-height: 100%;
         overflow: scroll;
         overflow-x: hidden;
 
@@ -505,59 +507,34 @@ body {
 }
 
 // texture control box
-.texture-container {
-    width: 30%;
-    position: absolute;
-    left: 0;
-    height: 100%;
-    .texture-controls {
-        position: absolute;
-        width: 20em;
-        //width: 27%;
-        //max-width: 20em;
-        height: 35%;
-        bottom: 40px;
-        right: 0;
-        .texture-title {
-            width: 100%;
-            height: 20%;
-            text-align: left;
-            padding-left: 2.5%;
-            color: white;
-            mix-blend-mode: normal;
-            .title {
-                font-size: xx-large;
-                font-weight: 700;
-            }
-            .popover {
-                color: var(--secondary-colour);
-            }
+.tray {
+    height: 80%;
+    overflow: scroll;
+    overflow-x: hidden;
+    .tray__slide {
+        //display: inline-block;
+        height: 100%;
+        width: 100%;
+        .tray__swatch {
+            height: 40px;
+            min-width: 50px;
+            margin-left: 2.5%;
+            // margin-bottom: 2.5%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            display: inline-block;
+            border-radius: 2px;
         }
-        .tray {
-            height: 80%;
-            overflow: scroll;
-            overflow-x: hidden;
-            .tray__slide {
-                //display: inline-block;
-                height: 100%;
-                width: 100%;
-                .tray__swatch {
-                    width: 20%;
-                    height: 20%;
-                    margin-left: 2.5%;
-                    margin-bottom: 2.5%;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    background-position: center center;
-                    display: inline-block;
-                    border-radius: 2px;
-                }
-                .tray__swatch:hover {
-                    cursor: pointer;
-                }
-            }
+        .tray__swatch:hover {
+            cursor: pointer;
         }
     }
+}
+.texture-controls {
+    // position: relative;
+    // bottom: 40px;
+    width: 100%;
 }
 
 .show-texture-container {
@@ -2003,4 +1980,73 @@ fieldset.toy_shared {
 
 #upload-r-leg{
     margin-left: 6em;
+}
+
+.panel-heading{
+    background: rgba($color: #000000, $alpha: 0.8) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    width: 20% !important;
+    text-align: center !important;
+    color: var(--primary-colour) !important;
+}
+
+.panel-group{
+    background: transparent !important;
+    border: none !important;
+}
+
+.panel{
+    background: transparent !important;
+    border: none !important;
+}
+
+.panel-default{
+    background: transparent !important;
+    border: none !important;
+}
+
+.panel-body{
+    background: rgba($color: #000000, $alpha: 0.8) !important;
+    border: none !important;
+    height: 63.3% !important;
+}
+
+.panel-collapse{
+    position: absolute;
+    right: 3%;
+    top: 22.8%;
+    width: 72%;
+    height: 100% !important;
+}
+
+.options-header{
+    background: rgba($color: #000000, $alpha: 0.8) !important;
+    border: none !important;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.string{
+    background: transparent;
+    border-radius: 0%;
+    border-width: 0px 0px 1px 0px;
+    border-color: var(--primary-colour);
+}
+
+.string:focus{
+    border-color: var(--q-colour);
+    box-shadow: none;
+}
+
+.string:hover{
+    border-color: var(--q-colour);
+}
+
+.name-label{
+    display: none
+}
+
+#toy_shared:focus{
+    background-color: var(--primary-colour);
 }
