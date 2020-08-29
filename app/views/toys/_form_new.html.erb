@@ -42,7 +42,7 @@
   </div>
 
   
-  <div class="panel-group plushie-controls" id="controls-parent">
+<div class="panel-group plushie-controls" id="controls-parent">
   <div class="buttons panel panel-default">
     <div class="head-div panel-heading">
       <h4 class="panel-title">
@@ -123,7 +123,7 @@
     </div>
   </div>
 
-    <div class="buttons panel panel-default">
+  <div class="buttons panel panel-default">
     <div class="arms-div panel-heading">
       <h4 class="panel-title">
         <div class="arms-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#arms-collapse">
@@ -187,31 +187,71 @@
     </div>
   </div>
 
-    <div class="buttons">
-      <div class="legs-div" data-toggle="collapse" data-target="#legs-collapse">
-        <!-- <button style="display: none;" id="lc-btn" type="hidden" data-toggle="collapse" data-target="#legs-collapse"></button> -->
-        <button class="btn" id="legsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-        <span class="control-header">Legs</span>
-        <button class="btn" id="legsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+  <div class="buttons panel panel-default">
+    <div class="legs-div panel-heading">
+      <h4 class="panel-title">
+        <div class="legs-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#legs-collapse">
+          <!-- <button style="display: none;" id="lc-btn" type="hidden" data-toggle="collapse" data-target="#legs-collapse"></button> -->
+          <%# <button class="btn" id="legsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button>  %>
+          <span class="control-header">Legs</span>
+          <%# <button class="btn" id="legsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button> %>
+        </div>
+      </h4>
     </div>
 
-      <div class="collapse legs-collapse" id="legs-collapse">
-        Left Leg<br>
-        <label for="llegup">Up / Down</label>
-        <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="llegup" step="0.1">
-        <label for="llegleft">Left / Right</label>
-        <input type="range" min="-4" max="4" value="0" class="slider" id="llegleft" step="0.1">
-        <label for="llegfront">Front / Back</label>
-        <input type="range" min="-4" max="4" value="0" class="slider" id="llegfront" step="0.1">
-        Right Leg<br>
-        <label for="rlegup">Up / Down</label>
-        <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="rlegup" step="0.1">
-        <label for="rlegleft">Left / Right</label>
-        <input type="range" min="-4" max="4" value="0" class="slider" id="rlegleft" step="0.1">
-        <label for="rlegfront">Front / Back</label>
-        <input type="range" min="-4" max="4" value="0" class="slider" id="rlegfront" step="0.1">
+    <div class="legs-collapse panel-collapse collapse" id="legs-collapse">
+      <div class="panel-body">
+        <button class="btn" id="legsl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="legsr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+        <br>
+        <span class="refined-control-label">Left Leg</span><br/>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="llegup">Up / Down</label>
+            <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="llegup" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="llegleft">Left / Right</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="llegleft" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="llegfront">Front / Back</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="llegfront" step="0.1">
+          </div>
+        </div>
+
+        <span class="refined-control-label">Right Leg</span><br/>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="rlegup">Up / Down</label>
+            <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="rlegup" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="rlegleft">Left / Right</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="rlegleft" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="rlegfront">Front / Back</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="rlegfront" step="0.1">
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
     <div class="buttons">
       <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button>
