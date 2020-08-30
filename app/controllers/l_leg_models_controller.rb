@@ -6,7 +6,7 @@ class LLegModelsController < ApplicationController
   def index
     @l_leg_models = LLegModel.all
     respond_to do |format|
-      format.html #defaults to rendering the /view/coordinates/show template
+      format.html { redirect_to new_l_leg_model_path}
       format.json { render json: @l_leg_models }
     end
   end
@@ -39,7 +39,7 @@ class LLegModelsController < ApplicationController
 
     respond_to do |format|
       if @l_leg_model.save
-        format.html { redirect_to pages_upload_model_path, notice: 'L leg model was successfully created.' }
+        format.html { redirect_to pages_upload_model_path, notice: 'L leg model was successfully uploaded.' }
         format.json { render :show, status: :created, location: @l_leg_model }
       else
         format.html { render :new }

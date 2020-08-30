@@ -6,7 +6,7 @@ class BodyModelsController < ApplicationController
   def index
     @body_models = BodyModel.all
     respond_to do |format|
-      format.html #defaults to rendering the /view/coordinates/show template
+      format.html { redirect_to new_body_model_path}
       format.json { render json: @body_models }
     end
   end
@@ -39,7 +39,7 @@ class BodyModelsController < ApplicationController
 
     respond_to do |format|
       if @body_model.save
-        format.html { redirect_to pages_upload_model_path notice: 'Body model was successfully created.' }
+        format.html { redirect_to pages_upload_model_path notice: 'Body model was successfully uploaded.' }
         format.json { render :show, status: :created, location: @body_model }
       else
         format.html { render :new }
