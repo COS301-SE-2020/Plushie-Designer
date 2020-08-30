@@ -37,7 +37,7 @@ var UVsDebug = function ( geometry, w, h) {
 	canvas.height = height;
 
 	var ctx = canvas.getContext( '2d' );
-	ctx.lineWidth = 2;
+	ctx.lineWidth = 0;
 	ctx.strokeStyle = 'rgba( 0, 0, 0, 1.0 )';
 	ctx.textAlign = 'center';
 
@@ -64,7 +64,7 @@ var UVsDebug = function ( geometry, w, h) {
 			uvs[ 1 ].copy( uv[ 1 ] );
 			uvs[ 2 ].copy( uv[ 2 ] );
 
-			processFace( face, uvs, i );
+			processFace( face, uvs, i);
 
 		}
 
@@ -115,7 +115,25 @@ var UVsDebug = function ( geometry, w, h) {
 
 	return canvas;
 
-	function processFace( face, uvs, index ) {
+	function drawPattern(img, size) {   
+
+		var tempCanvas = document.createElement("canvas"),
+			tCtx = tempCanvas.getContext("2d");
+   
+		tempCanvas.width = size;
+		tempCanvas.height = size;
+		tCtx.drawImage(img, 0, 0, img.width, img.height, 0, 0, size, size);
+   
+		// use getContext to use the canvas for drawing
+		var ctx = canvas.getContext('2d');
+		//ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.fillStyle = ctx.createPattern(tempCanvas, 'repeat');
+   
+		ctx.fill();
+   
+   }
+
+	function processFace( face, uvs, index, pat ) {
 
 		// draw contour of face
 
@@ -145,10 +163,8 @@ var UVsDebug = function ( geometry, w, h) {
 		ctx.closePath();
 		var img = new Image();
 		img.src = '/images/head.png';
-		var pat = ctx.createPattern(img, "repeat");
-		ctx.fillStyle = pat;
-
-    	ctx.fill();
+		drawPattern(img, 50);
+		
 	}
 
 };
