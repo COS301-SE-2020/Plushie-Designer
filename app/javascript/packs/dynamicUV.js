@@ -127,6 +127,9 @@ var UVsDebug = function ( geometry, w, h) {
 
 			var uv = uvs[ j ];
 
+			//uv.x = uv.x - Math.floor( uv.x );
+			//uv.y = uv.y - Math.floor( uv.y );
+
 			a.x += uv.x;
 			a.y += uv.y;
 
@@ -134,7 +137,7 @@ var UVsDebug = function ( geometry, w, h) {
 				ctx.moveTo( uv.x * width, ( 1 - uv.y ) * height );
 
 			} else {
-				//ctx.lineTo( uv.x * width, ( 1 - uv.y ) * height );
+				ctx.lineTo( uv.x * width, ( 1 - uv.y ) * height );
             }
 
 		}
