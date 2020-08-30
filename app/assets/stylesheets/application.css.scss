@@ -1953,6 +1953,11 @@ fieldset.toy_shared {
     color: var(--primary-colour) !important;
 }
 
+.panel-heading:hover{
+    background: var(--primary-colour) !important;
+    color: var(--secondary-colour) !important;
+}
+
 .panel-group{
     background: transparent !important;
     border: none !important;
