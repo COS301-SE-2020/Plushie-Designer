@@ -46,15 +46,19 @@ $.ajax({
 														console.log(r_leg_models);
 														var headchange = false;
 														var torsochange = false;
-														var armschange = false; 
-														var legschange = false;
+														var larmchange = false; 
+														var rarmchange = false; 
+														var llegchange = false;
+														var rlegchange = false;
 														var bchange = false;
 
 														var hair = 0;
 														var head = 0;
 														var torso = 0;
-														var arms = 0;
-														var legs = 0;
+														var larm = 0;
+														var rarm = 0;
+														var lleg = 0;
+														var rleg = 0;
 														var room = 0;
 														var rtmp = 0;
 
@@ -448,8 +452,8 @@ $.ajax({
 														//----------------------------------------------------------------
 
 														//------------------------------ARMS---------------------------------
-														hurl = models[arms][3];
-														hurl1 = models[arms][4];
+														hurl = models[larm][3];
+														hurl1 = models[rarm][4];
 														loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftarm")
 															, undefined, function ( error ) { console.error( error );} );
 														loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightarm")
@@ -457,8 +461,8 @@ $.ajax({
 														//---------------------------------------------------------------------
 
 														//---------------------------LEGS--------------------------------------
-														hurl = models[legs][5];
-														hurl1 = models[legs][6];
+														hurl = models[lleg][5];
+														hurl1 = models[rleg][6];
 														loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
 															, undefined, function ( error ) { console.error( error );} );
 														loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
@@ -624,38 +628,48 @@ $.ajax({
 																torsochange = false;
 															}
 
-															if(armschange){
+															if(larmchange){
 																updateIndexes();
 																var temp = scene.getObjectByName(scene.children[ilarm].name);
 																scene.remove(temp);
+																
+																hurl = models[larm][3];
+																loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftarm")
+																	, undefined, function ( error ) { console.error( error );} );
+																larmchange = false;
+															}
+
+															if(rarmchange){
 																updateIndexes();
 																var temp1 = scene.getObjectByName(scene.children[irarm].name);
 																scene.remove(temp1);
 																
-																hurl = models[arms][3];
-																hurl1 = models[arms][4];
-																loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftarm")
-																	, undefined, function ( error ) { console.error( error );} );
+																hurl1 = models[rarm][4];
 																loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightarm")
 																	, undefined, function ( error ) { console.error( error );} );
-																armschange = false;
+																rarmchange = false;
 															}
 
-															if(legschange){
+															if(llegchange){
 																updateIndexes();
 																var temp = scene.getObjectByName(scene.children[illeg].name);
 																scene.remove(temp);
+
+																hurl = models[lleg][5];
+																loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
+																	, undefined, function ( error ) { console.error( error );} );
+																llegchange = false;
+															}
+
+															if(rlegchange){
 																updateIndexes();
 																var temp1 = scene.getObjectByName(scene.children[irleg].name);
 																scene.remove(temp1);
 
-																hurl = models[legs][5];
-																hurl1 = models[legs][6];
-																loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
-																	, undefined, function ( error ) { console.error( error );} );
+																hurl1 = models[rleg][6];
 																loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
 																	, undefined, function ( error ) { console.error( error );} );
-																legschange = false;
+																rlegchange = false;
 															}
 															requestAnimationFrame(animate);
 
@@ -758,20 +772,37 @@ $.ajax({
 																}
 															}
 
-															$('#armsl').click(function () {
-																if(arms > 0){
-																	armschange = true;
-																	arms -= 1;
-																	arms = arms;
+															$('#larml').click(function () {
+																if(larm > 0){
+																	larmchange = true;
+																	larm -= 1;
+																	larm = larm;
 																}
 															});
-															$('#armsr').click(function () {
-																var tmp = arms;
+															$('#larmr').click(function () {
+																var tmp = larm;
 																if(tmp < 1){
-																	armschange = true;
+																	larmchange = true;
 																	tmp = +tmp + +1;
-																	arms = tmp;
-																	arms = arms;
+																	larm = tmp;
+																	larm = larm;
+																}
+															});
+
+															$('#rarml').click(function () {
+																if(rarm > 0){
+																	rarmchange = true;
+																	rarm -= 1;
+																	rarm = rarm;
+																}
+															});
+															$('#rarmr').click(function () {
+																var tmp = rarm;
+																if(tmp < 1){
+																	rarmchange = true;
+																	tmp = +tmp + +1;
+																	rarm = tmp;
+																	rarm = rarm;
 																}
 															});
 															var laslideru = document.getElementById("larmup");
@@ -855,20 +886,37 @@ $.ajax({
 																// console.log(t);
 															}
 
-															$('#legsl').click(function () {
-																if(legs > 0){
-																	legschange = true;
-																	legs -= 1;
-																	legs = legs;
+															$('#llegl').click(function () {
+																if(lleg > 0){
+																	llegchange = true;
+																	lleg -= 1;
+																	lleg = lleg;
 																}
 															});
-															$('#legsr').click(function () {
-																var tmp = legs;
+															$('#llegr').click(function () {
+																var tmp = lleg;
 																if(tmp < 1){
-																	legschange = true;
+																	llegchange = true;
 																	tmp = +tmp + +1;
-																	legs = tmp;
-																	legs = legs;
+																	lleg = tmp;
+																	lleg = lleg;
+																}
+															});
+
+															$('#rlegl').click(function () {
+																if(rleg > 0){
+																	rlegchange = true;
+																	rleg -= 1;
+																	rleg = rleg;
+																}
+															});
+															$('#rlegr').click(function () {
+																var tmp = rleg;
+																if(tmp < 1){
+																	rlegchange = true;
+																	tmp = +tmp + +1;
+																	rleg = tmp;
+																	rleg = rleg;
 																}
 															});
 															var llslideru = document.getElementById("llegup");

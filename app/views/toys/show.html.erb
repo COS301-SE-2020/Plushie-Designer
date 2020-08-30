@@ -18,13 +18,19 @@
 <%= content_tag :div, class: "head", data: {head: @toy.head} do %>
 <% end %>
 
-<%= content_tag :div, class: "arms", data: {arms: @toy.arms} do %>
+<%= content_tag :div, class: "larm", data: {larm: @toy.arms} do %>
+<% end %>
+
+<%= content_tag :div, class: "rarm", data: {rarm: @toy.r_arm} do %>
 <% end %>
 
 <%= content_tag :div, class: "torso", data: {torso: @toy.torso} do %>
 <% end %>
 
-<%= content_tag :div, class: "legs", data: {legs: @toy.legs} do %>
+<%= content_tag :div, class: "lleg", data: {lleg: @toy.legs} do %>
+<% end %>
+
+<%= content_tag :div, class: "rleg", data: {rleg: @toy.r_leg} do %>
 <% end %>
 
 <%= content_tag :div, class: "headposy", data: {headposy: @toy.head_pos} do %>

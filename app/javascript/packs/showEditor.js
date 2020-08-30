@@ -46,8 +46,10 @@ $.ajax({
 														var hair = $(".head").data("head");
 														var head = $(".head").data("head");
 														var torso = $(".torso").data("torso");
-														var arms = $(".arms").data("arms");
-														var legs = $(".legs").data("legs");
+														var larm = $(".larm").data("larm");
+														var lleg = $(".lleg").data("lleg");
+														var rarm = $(".rarm").data("rarm");
+														var rleg = $(".rleg").data("rleg");
 														var room = 0;
 
 														var headposy = $(".headposy").data("headposy");
@@ -465,8 +467,8 @@ $.ajax({
 														});*/ //TODO 
 
 														//------------------------------ARMS---------------------------------
-														hurl = models[arms][3];
-														hurl1 = models[arms][4];
+														hurl = models[larm][3];
+														hurl1 = models[rarm][4];
 														loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftarm")
 															, undefined, function ( error ) { console.error( error );} );
 														loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightarm")
@@ -474,8 +476,8 @@ $.ajax({
 														//---------------------------------------------------------------------
 
 														//---------------------------LEGS--------------------------------------
-														hurl = models[legs][5];
-														hurl1 = models[legs][6];
+														hurl = models[lleg][5];
+														hurl1 = models[rleg][6];
 														loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
 															, undefined, function ( error ) { console.error( error );} );
 														loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")

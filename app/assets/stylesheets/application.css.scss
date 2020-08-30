@@ -317,22 +317,23 @@ body {
         }
 
         .buttons {
-            #headl, #armsl, #torsol, #legsl, #rooml{
+            #headl, #larml, #rarml, #torsol, #llegl, #rlegl, #rooml{
                 width: 6.5em;
                 background: rgba($color: #e2e2e2, $alpha: 1.0);
                 text-decoration: none;
-                margin-right: 13.2em;
+                margin-right: 8em;
                 margin-bottom: 1em;
                 color: var(--secondary-colour);
                 background-color: var(--primary-colour);
                 transition: background-color 0.3s ease;
             }
 
-            #headr, #armsr, #torsor, #legsr, #roomr {
+            #headr, #larmr, #rarmr, #torsor, #llegr, #rlegr, #roomr {
                 width: 6.5em;
                 background: rgba($color: #e2e2e2, $alpha: 1.0);
                 text-decoration: none;
                 margin-left: 1em;
+                margin-bottom: 1em;
                 color: var(--secondary-colour);
                 background-color: var(--primary-colour);
                 transition: background-color 0.3s ease;
@@ -353,8 +354,8 @@ body {
                 transition: background-color 0.3s ease;
             }
 
-            #headl:hover, #armsl:hover, #torsol:hover, #legsl:hover,
-            #headr:hover, #armsr:hover, #torsor:hover, #legsr:hover,
+            #headl:hover, #larml:hover, #rarml:hover, #torsol:hover, #llegl:hover, #rlegl:hover,
+            #headr:hover, #larmr:hover, #rarmr:hover, #torsor:hover, #llegr:hover, #rlegr:hover,
             #generate-pattern:hover, #rooml:hover, #roomr:hover {
                 background-color: var(--secondary-colour);
                 color: var(--primary-colour);
@@ -1947,7 +1948,7 @@ fieldset.toy_shared {
     background: var(--control-background) !important;
     border: none !important;
     border-radius: 0 !important;
-    width: 20% !important;
+    width: 8em !important;
     text-align: center !important;
     color: var(--primary-colour) !important;
 }
@@ -1975,9 +1976,9 @@ fieldset.toy_shared {
 
 .panel-collapse{
     position: absolute;
-    right: 3%;
+    left: 10em;
     top: 10.5em;
-    width: 72%;
+    width: 25em !important;
     height: 26.68em !important;
 }
 
@@ -1990,6 +1991,7 @@ fieldset.toy_shared {
     background: var(--control-background) !important;
     border: none !important;
     padding: 1em;
+    width: 35em !important;
     margin-bottom: 1em;
 }
 
@@ -2018,12 +2020,6 @@ fieldset.toy_shared {
     float: right;
     width: 50%;
     bottom: 0.8em;
-}
-
-.head-controls{
-    position: relative;
-    // left: -50%;
-    z-index: 99999;
 }
 
 .string:focus{
