@@ -22,13 +22,8 @@ var UVsDebug = function ( geometry, w, h) {
 	var a = new Vector2();
 	var b = new Vector2();
 
-	var uvs = [
-		new Vector2(),
-		new Vector2(),
-		new Vector2()
-	];
-
 	var face = [];
+	var uvs = [];
 
 	var canvas = document.createElement( 'canvas' );
 	var width = 1024 * w; // power of 2 required for wrapping
@@ -37,7 +32,7 @@ var UVsDebug = function ( geometry, w, h) {
 	canvas.height = height;
 
 	var ctx = canvas.getContext( '2d' );
-	ctx.lineWidth = 0;
+	ctx.lineWidth = 1;
 	ctx.strokeStyle = 'rgba( 0, 0, 0, 1.0 )';
 	ctx.textAlign = 'center';
 
@@ -77,20 +72,10 @@ var UVsDebug = function ( geometry, w, h) {
 
 			// indexed geometry
 
-			for ( var i = 0, il = index.count; i < il; i += 3 ) {
-
-				face[ 0 ] = index.getX( i );
-				face[ 1 ] = index.getX( i + 1 );
-				face[ 2 ] = index.getX( i + 2 );
-
-				uvs[ 0 ].fromBufferAttribute( uvAttribute, face[ 0 ] );
-				uvs[ 1 ].fromBufferAttribute( uvAttribute, face[ 1 ] );
-				uvs[ 2 ].fromBufferAttribute( uvAttribute, face[ 2 ] );
-
-				processFace( face, uvs, i / 3 );
-
+			for ( var i = 0, il = index.count; i < il; i ++ ) {
+				uvs.push(new Vector2().fromBufferAttribute( uvAttribute, index.getX( i )));
 			}
-
+			processFace( face, uvs, 3 );
 		} else {
 
 			// non-indexed geometry
@@ -133,7 +118,7 @@ var UVsDebug = function ( geometry, w, h) {
    
    }
 
-	function processFace( face, uvs, index, pat ) {
+	function processFace( face, uvs, index ) {
 
 		// draw contour of face
 
@@ -151,7 +136,7 @@ var UVsDebug = function ( geometry, w, h) {
 			a.x += uv.x;
 			a.y += uv.y;
 
-			if ( j === 0 ) {
+			if ( j === 0 || j % 3 === 0) {
 				ctx.moveTo( uv.x * width, ( 1 - uv.y ) * height );
 
 			} else {
