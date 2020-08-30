@@ -146,11 +146,9 @@ var UVsDebug = function ( geometry, w, h) {
 		var img = new Image();
 		img.src = '/images/head.png';
 		var pat = ctx.createPattern(img, "repeat");
-		ctx.rect(0, 0, 150, 100);
 		ctx.fillStyle = pat;
-		//ctx.stroke();
 
-    	 ctx.fill();
+    	ctx.fill();
 	}
 
 };
