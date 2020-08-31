@@ -32,8 +32,8 @@ var UVsDebug = function ( geometry, w, h) {
 	canvas.height = height;
 
 	var ctx = canvas.getContext( '2d' );
-	ctx.lineWidth = 1;
-	ctx.strokeStyle = 'rgba( 0, 0, 0, 1.0 )';
+	ctx.lineWidth = 3;
+	ctx.strokeStyle = 'rgba( 1.0, 0, 0, 1.0 )';
 	ctx.textAlign = 'center';
 
 	// paint background white
@@ -100,6 +100,24 @@ var UVsDebug = function ( geometry, w, h) {
 
 	return canvas;
 
+	function count(array_elements) {	
+		var points = [];
+	
+		var cnt = 0;
+		for(var x = 0 ; x < array_elements.length; x++ ){
+			cnt = 0;
+			for (var i = 0; i < array_elements.length; i++) {
+				if (array_elements[i].x == array_elements[x].x) {
+					if (array_elements[i].y == array_elements[x].y) 
+					cnt++;
+				}
+			}
+			if(cnt > 3)
+				points.push(array_elements[x]);
+		}
+		return points;	
+	}
+
 	function drawPattern(img, size) {   
 
 		var tempCanvas = document.createElement("canvas"),
@@ -115,12 +133,16 @@ var UVsDebug = function ( geometry, w, h) {
 		ctx.fillStyle = ctx.createPattern(tempCanvas, 'repeat');
    
 		ctx.fill();
-   
+		
    }
 
 	function processFace( face, uvs, index ) {
 
 		// draw contour of face
+
+		var points_to_ignore = count(uvs);
+
+		//alert(points_to_ignore);
 
 		ctx.beginPath();
 
@@ -129,9 +151,6 @@ var UVsDebug = function ( geometry, w, h) {
 		for ( var j = 0, jl = uvs.length; j < jl; j ++ ) {
 
 			var uv = uvs[ j ];
-
-			//uv.x = uv.x - Math.floor( uv.x );
-			//uv.y = uv.y - Math.floor( uv.y );
 
 			a.x += uv.x;
 			a.y += uv.y;
@@ -144,11 +163,11 @@ var UVsDebug = function ( geometry, w, h) {
             }
 
 		}
-
+		
 		ctx.closePath();
 		var img = new Image();
 		img.src = '/images/head.png';
-		drawPattern(img, 50);
+		drawPattern(img, 50);	
 		
 	}
 
