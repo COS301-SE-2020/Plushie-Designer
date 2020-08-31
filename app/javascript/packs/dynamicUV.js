@@ -168,6 +168,29 @@ var UVsDebug = function ( geometry, w, h) {
 		var img = new Image();
 		img.src = '/images/head.png';
 		drawPattern(img, 50);	
+
+		ctx.beginPath();
+
+		a.set( 0, 0 );
+
+		for ( var j = 0, jl = uvs.length; j < jl; j ++ ) {
+
+			var uv = uvs[ j ];
+
+			a.x += uv.x;
+			a.y += uv.y;
+
+			if(!points_to_ignore.includes(uvs[ j ]))
+			if ( j === 0 || j % 3 === 0) {
+				ctx.moveTo( uv.x * width, ( 1 - uv.y ) * height );
+
+			} else {
+				ctx.lineTo( uv.x * width, ( 1 - uv.y ) * height );
+            }
+
+		}
+		ctx.closePath();
+		ctx.stroke();	
 		
 	}
 
