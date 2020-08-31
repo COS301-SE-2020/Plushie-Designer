@@ -1830,6 +1830,25 @@ fieldset.toy_shared {
     // width: 5em;
     bottom: 85%;
 }
+.glyphicon-save-file
+{
+    color: var(--primary-colour) !important;
+}
+
+.glyphicon-save-file:hover
+{
+    opacity: 70% !important;
+    transition: 1s;
+    background: none;
+}
+
+.downloadthis-inline-download-buttons {
+    // background-color: red;
+    // margin-left: 65%;
+
+    // width: 5em;
+    color: var(--primary-colour);
+}
 
 .st-first{
     background-color: var(--primary-colour) !important; 
