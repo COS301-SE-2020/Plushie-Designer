@@ -20,3 +20,51 @@ end
 else
 puts "****NOT VALID****"
 end
+
+admin=User.new({ username: "TickleRick", email: 'u18112405@tuks.co.za',
+    password: 'ASmith25'})
+
+admin.toggle!(:admin)
+
+if admin.valid?
+admin.save()
+
+elsif admin.errors.any?
+admin.errors.full_messages.each do |msg|
+puts msg
+end
+else
+puts "****NOT VALID****"
+end
+
+admin=User.new({ username: "SemiRelic", email: 'u1711796@tuks.co.za',
+    password: '3st13nn3'})
+
+admin.toggle!(:admin)
+
+if admin.valid?
+admin.save()
+
+elsif admin.errors.any?
+admin.errors.full_messages.each do |msg|
+puts msg
+end
+else
+puts "****NOT VALID****"
+end
+
+admin=User.new({ username: "PugLife", email: 'u18113941@tuks.co.za',
+    password: 'Duplessis1!'})
+
+admin.toggle!(:admin)
+
+if admin.valid?
+admin.save()
+
+elsif admin.errors.any?
+admin.errors.full_messages.each do |msg|
+puts msg
+end
+else
+puts "****NOT VALID****"
+end
