@@ -101,7 +101,11 @@
           <h1 style="font-size: 30.5px;">
               <%= @toy.name %>
                <%= link_to "", displayPDF_path(@toy.id, format: :pdf), class:"downloadthis-inline-download-buttons glyphicon glyphicon-save-file", target: :_blank %>
-
+               
+              <% if current_user != @toy.user%>
+                   <span><%= button_to 'Contribute', contribute_path(@toy), method: "get", :id => "edit-p", :class => "btn ed-button"%></span>
+              <% end %>
+               
                <div class="sharethis-inline-share-buttons"></div>
           </h1>
           <!-- Author -->
@@ -122,6 +126,7 @@
             <%= render @toy.ratings %>
           </div>
           <%= render 'ratings/form' %>
+          <%= %>
       </div>
   </div>
 </div>

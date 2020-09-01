@@ -1,0 +1,16 @@
+<div class="options">
+  <div class="index-controls-container">
+    <div class="index-page">
+        <%= render 'contribute_form', toy: @toy %>
+        <%= button_to 'Back', toys_path, method: :get, :id => "back-btn" %>
+    </div>
+  </div>
+</div>
+
+<div class="editor">
+    <%= javascript_pack_tag 'Editor' %>
+</div>
+
+<section id="loading-screen">
+    <div id="loader"></div>
+</section>

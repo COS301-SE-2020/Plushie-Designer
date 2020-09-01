@@ -1832,7 +1832,6 @@ fieldset.toy_shared {
 }
 .glyphicon-save-file
 {
-    color: var(--primary-colour) !important;
 }
 
 .glyphicon-save-file:hover
@@ -1846,7 +1845,8 @@ fieldset.toy_shared {
 .downloadthis-inline-download-buttons {
     // background-color: red;
     // margin-left: 65%;
-
+    right: -60%;
+    color: var(--primary-colour) !important;
     // width: 5em;
     color: var(--primary-colour);
 }

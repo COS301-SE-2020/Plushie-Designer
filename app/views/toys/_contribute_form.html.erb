@@ -1,0 +1,351 @@
+<!-- Index page after sign in -->
+<%= simple_form_for @toy, :url => submitcontribution_path do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div class="options-header">
+      <%= f.input :name, label_html: { class: 'name-label' }, placeholder: 'Plushie Name', required: false, input_html: { :autocomplete => "off" } %>
+      <%= f.input :shared, label: "Share"%>
+    </div>
+    <div class="hinput">
+      <%= f.input :head%>
+      <%= f.input :arms%>
+      <%= f.input :r_arm%>
+      <%= f.input :torso%>
+      <%= f.input :legs%>
+      <%= f.input :r_leg%>
+      <%= f.input :rating%>
+      <%= f.input :head_pos%>
+      <%= f.input :head_posx %>
+      <%= f.input :torso_posy %>
+      <%= f.input :torso_posx %>
+      <%= f.input :larm_posy %>
+      <%= f.input :larm_posx %>
+      <%= f.input :rarm_posy %>
+      <%= f.input :rarm_posx %>
+      <%= f.input :lleg_posy %>
+      <%= f.input :lleg_posx %>
+      <%= f.input :rleg_posy %>
+      <%= f.input :rleg_posx %>
+      <%= f.input :image %>
+      <%= f.input :head_posz %>
+      <%= f.input :torso_posz %>
+      <%= f.input :larm_posz %>
+      <%= f.input :rarm_posz %>
+      <%= f.input :lleg_posz %>
+      <%= f.input :rleg_posz %>
+      <%= f.input :head_uv, input_html: {value: ""} %>
+      <%= f.input :torso_uv, input_html: {value: ""} %>
+      <%= f.input :larm_uv, input_html: {value: ""} %>
+      <%= f.input :rarm_uv, input_html: {value: ""} %>
+      <%= f.input :lleg_uv, input_html: {value: ""} %>
+      <%= f.input :rleg_uv, input_html: {value: ""} %>
+    </div>
+  </div>
+
+<div class="panel-group plushie-controls" id="controls-parent">
+  <div class="buttons panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <div class="type-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#type-collapse">
+          <span class="control-header">Type</span>
+        </div>
+      </h4>
+    </div>
+
+    <div class="type-collapse panel-collapse collapse in" id="type-collapse">
+      <div class="panel-body">
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons panel panel-default">
+    <div class="head-div panel-heading">
+      <h4 class="panel-title">
+        <div class="head-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#collapse-head-controls">
+            <!-- <button style="display: none;" id="hc-btn" type="hidden" data-toggle="collapse" data-target="#collapse-head-controls"></button> -->
+            <span class="control-header">Head</span>
+        </div>
+      </h4>
+    </div>
+
+    <div class="head-collapse panel-collapse collapse" id="collapse-head-controls">
+      <div class="panel-body">
+        <button class="btn" id="headl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="headr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+
+        <div class="slider-row">
+            <div class="col-10">
+                <label class="ml-3" for="headup">Up / Down</label>
+                <input type="range" min="-4" max="3" value="1.5" class="slider" id="headup" step="0.1">
+            </div>
+        </div>
+
+        <div class="slider-row">
+            <div class="col-10">
+                <label for="headleft">Left / Right</label>
+                <input type="range" min="-4" max="4" value="0" class="slider" id="headleft" step="0.1">
+            </div>
+        </div>
+
+        <div class="slider-row">
+            <div class="col-10">
+                <label class="ml-3" for="headfront">Front / Back</label>
+                <input type="range" min="-4" max="4" value="1.5" class="slider" id="headfront" step="0.1">
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons panel panel-default">
+    <div class="torso-div panel-heading">
+      <h4 class="panel-title">
+        <div class="torso-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#torso-collapse">
+          <!-- <button style="display: none;" id="tc-btn" type="hidden" data-toggle="collapse" data-target="#torso-collapse"></button> -->
+          <%# <button class="btn" id="torsol" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button>  %>
+          <span class="control-header">Torso</span>
+          <%# <button class="btn" id="torsor" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button> %>
+        </div>
+      </h4>
+    </div>
+
+    <div class="torso-collapse panel-collapse collapse" id="torso-collapse">
+      <div class="panel-body">
+        <button class="btn" id="torsol" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="torsor" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="torsoup">Up / Down</label>
+            <input type="range" min="-4" max="3" value="1.5" class="slider" id="torsoup" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="torsoleft">Left / Right</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="torsoleft" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="torsofront">Front / Back</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="torsofront" step="0.1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons panel panel-default">
+    <div class="arms-div panel-heading">
+      <h4 class="panel-title">
+        <div class="arms-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#arms-collapse">
+        <!-- <button style="display: none;" id="ac-btn" type="hidden" data-toggle="collapse" data-target="#arms-collapse"></button> -->
+          <span class="control-header">Left Arm</span>
+        </div>
+      </h4>
+    </div>
+
+    <div class="arms-collapse panel-collapse collapse" id="arms-collapse">
+      <div class="panel-body">
+          <button class="btn" id="larml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+          <button class="btn" id="larmr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+          <br>
+          <div class="slider-row">
+            <div class="col-10">
+              <label for="larmup">Up / Down</label>
+              <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="larmup" step="0.1">
+            </div>  
+          </div>
+
+          <div class="slider-row">
+            <div class="col-10">
+              <label for="larmleft">Left / Right</label>
+              <input type="range" min="-4" max="4" value="0" class="slider" id="larmleft" step="0.1">
+            </div>
+          </div>
+
+          <div class="slider-row">
+            <div class="col-10">
+              <label for="larmfront">Front / Back</label>
+              <input type="range" min="-4" max="4" value="0" class="slider" id="larmfront" step="0.1">
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <div class="r-arms-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#r-arms-collapse">
+          <span class="control-header">Right Arm</span>
+        </div>
+      </h4>
+    </div>
+
+    <div class="r-arms-collapse panel-collapse collapse" id="r-arms-collapse">
+      <div class="panel-body">
+        <button class="btn" id="rarml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="rarmr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+        <br>
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="rarmup">Up / Down</label>
+            <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="rarmup" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="rarmleft">Left / Right</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="rarmleft" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="rarmfront">Front / Back</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="rarmfront" step="0.1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons panel panel-default">
+    <div class="legs-div panel-heading">
+      <h4 class="panel-title">
+        <div class="legs-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#legs-collapse">
+        <!-- <button style="display: none;" id="lc-btn" type="hidden" data-toggle="collapse" data-target="#legs-collapse"></button> -->
+          <span class="control-header">Left Leg</span>
+        </div>
+      </h4>
+    </div>
+
+    <div class="legs-collapse panel-collapse collapse" id="legs-collapse">
+      <div class="panel-body">
+        <button class="btn" id="llegl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="llegr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+        <br>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="llegup">Up / Down</label>
+            <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="llegup" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="llegleft">Left / Right</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="llegleft" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="llegfront">Front / Back</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="llegfront" step="0.1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <div class="r-legs-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#r-legs-collapse">
+          <span class="control-header">Right Leg</span>
+        </div>
+      </h4>
+    </div>
+
+    <div class="r-legs-collapse panel-collapse collapse" id="r-legs-collapse">
+      <div class="panel-body">
+        <button class="btn" id="rlegl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="rlegr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+        <br>
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="rlegup">Up / Down</label>
+            <input type="range" min="-1.5" max="5" value="1.5" class="slider" id="rlegup" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="rlegleft">Left / Right</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="rlegleft" step="0.1">
+          </div>
+        </div>
+
+        <div class="slider-row">
+          <div class="col-10">
+            <label for="rlegfront">Front / Back</label>
+            <input type="range" min="-4" max="4" value="0" class="slider" id="rlegfront" step="0.1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <div class="rooms-controls" data-toggle="collapse" data-parent="#controls-parent" data-target="#rooms-collapse">
+          <%# <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> %>
+          <span class="control-header">Room</span>
+          <%# <button class="btn" id="roomr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button><br> %>
+        </div>
+      </h4>
+    </div>
+
+    <div class="rooms-collapse panel-collapse collapse" id="rooms-collapse">
+      <div class="panel-body">
+          <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button>
+          <button class="btn" id="roomr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="buttons panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <div class="textures" data-toggle="collapse" data-parent="#controls-parent" data-target="#texture-collapse">
+          <%# <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> %>
+          <span class="control-header">Texture</span>
+          <%# <button class="btn" id="roomr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button><br> %>
+        </div>
+      </h4>
+    </div>
+
+    <div class="texture-collapse panel-collapse collapse" id="texture-collapse">
+      <div class="panel-body">
+        <div class="texture-controls">
+          <div id="js-tray" class="tray">
+              <div id="js-tray-slide" class="tray__slide"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="buttons">
+    <div class="row">
+      <div class="share-btn-right">
+        <div class="form-actions buttons">
+          <%= f.submit "Contribute Plushie", :id => "share-btn" , :class => "btn"%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
