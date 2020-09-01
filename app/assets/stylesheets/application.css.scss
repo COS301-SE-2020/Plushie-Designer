@@ -1947,15 +1947,22 @@ fieldset.toy_shared {
 .panel-heading{
     background: var(--control-background) !important;
     border: none !important;
-    border-radius: 0 !important;
+    border-radius: 5px !important;
     width: 8em !important;
+    height: 2.64em !important;
     text-align: center !important;
     color: var(--primary-colour) !important;
+    padding: 0;
+}
+
+.panel-title {
+    height: 100% !important;
 }
 
 .panel-heading:hover{
     background: var(--primary-colour) !important;
     color: var(--secondary-colour) !important;
+    cursor: pointer;
 }
 
 .panel-group{
@@ -1976,6 +1983,7 @@ fieldset.toy_shared {
 .panel-body{
     background: var(--control-background) !important;
     border: none !important;
+    border-radius: 5px !important;
     height: 100% !important;
 }
 
@@ -1995,6 +2003,7 @@ fieldset.toy_shared {
 .options-header{
     background: var(--control-background) !important;
     border: none !important;
+    border-radius: 5px !important;
     padding: 1em;
     width: 35em !important;
     margin-bottom: 1em;
@@ -2042,4 +2051,15 @@ fieldset.toy_shared {
 
 #toy_shared:focus{
     background-color: var(--primary-colour);
+}
+
+.comp-click-zone {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0.57em;
+}
+
+.control-header {
+    width: 100% !important;
+    height: 100% !important;
 }
