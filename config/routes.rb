@@ -29,5 +29,7 @@ Rails.application.routes.draw do
   get 'pages/about'
   get 'pages/upload_model'
   get '/toys/:id', to: "toys#displayPDF", as: :displayPDF
+  get '/toys/:id/contribute', to: "toys#contribute", as: :contribute
+  patch '/toys/:id/submitcontribution', to: "toys#submitcontribution", as: :submitcontribution
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
