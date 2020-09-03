@@ -17,9 +17,6 @@
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
-    <div class="hinput">
-      <%= f.input :admin %>
-    </div>
     <%
 =begin%>
  <%= f.input :password_confirmation,
