@@ -1,10 +1,10 @@
 {
-  "Editor.js": "/packs/js/Editor-d3d6be3a358b82e82080.js",
-  "Editor.js.map": "/packs/js/Editor-d3d6be3a358b82e82080.js.map",
+  "Editor.js": "/packs/js/Editor-59815eb56bec1bc6706e.js",
+  "Editor.js.map": "/packs/js/Editor-59815eb56bec1bc6706e.js.map",
   "application.js": "/packs/js/application-9afcbb5693aa87623e69.js",
   "application.js.map": "/packs/js/application-9afcbb5693aa87623e69.js.map",
-  "dynamicUV.js": "/packs/js/dynamicUV-0571e19c5eabe2aa9555.js",
-  "dynamicUV.js.map": "/packs/js/dynamicUV-0571e19c5eabe2aa9555.js.map",
+  "dynamicUV.js": "/packs/js/dynamicUV-746b5749ba35bb93e9de.js",
+  "dynamicUV.js.map": "/packs/js/dynamicUV-746b5749ba35bb93e9de.js.map",
   "entrypoints": {
     "application": {
       "js": [
@@ -16,18 +16,18 @@
     },
     "dynamicUV": {
       "js": [
-        "/packs/js/dynamicUV-0571e19c5eabe2aa9555.js"
+        "/packs/js/dynamicUV-746b5749ba35bb93e9de.js"
       ],
       "js.map": [
-        "/packs/js/dynamicUV-0571e19c5eabe2aa9555.js.map"
+        "/packs/js/dynamicUV-746b5749ba35bb93e9de.js.map"
       ]
     },
     "Editor": {
       "js": [
-        "/packs/js/Editor-d3d6be3a358b82e82080.js"
+        "/packs/js/Editor-59815eb56bec1bc6706e.js"
       ],
       "js.map": [
-        "/packs/js/Editor-d3d6be3a358b82e82080.js.map"
+        "/packs/js/Editor-59815eb56bec1bc6706e.js.map"
       ]
     },
     "indexEditor": {
