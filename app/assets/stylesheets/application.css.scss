@@ -1845,7 +1845,11 @@ fieldset.toy_shared {
 .downloadthis-inline-download-buttons {
     // background-color: red;
     // margin-left: 65%;
-    right: -60%;
+    position: absolute;
+    right: 18%;
+    // margin-left: 65%;
+    // width: 5em;
+    top: 1.2em;
     color: var(--primary-colour) !important;
     // width: 5em;
     color: var(--primary-colour);
