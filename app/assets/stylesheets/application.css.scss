@@ -241,7 +241,7 @@ body {
 }
 
 .index-controls-container {
-    width: 30%;
+    width: 40em;
     position: absolute;
     left: 0;
     height: 100%;
@@ -259,6 +259,41 @@ body {
         max-height: 100%;
         overflow: scroll;
         overflow-x: hidden;
+
+        .options-header{
+            background: var(--control-background) !important;
+            border: none !important;
+            border-radius: 5px !important;
+            padding: 1em;
+            width: 35em !important;
+            margin-bottom: 1em;
+        
+            .string{
+                background: transparent;
+                border-radius: 0%;
+                width: 33em !important;
+                border-width: 0px 0px 1px 0px;
+                border-color: var(--primary-colour);
+                color: var(--primary-colour);
+            }
+
+            .string:focus{
+                border-color: var(--q-colour);
+                box-shadow: none;
+            }
+            
+            .string:hover{
+                border-color: var(--q-colour);
+            }
+            
+            .name-label{
+                display: none
+            }
+            
+            #toy_shared:focus{
+                background-color: var(--primary-colour);
+            }
+        }
 
         .slider {
             -webkit-appearance: none;
@@ -321,7 +356,7 @@ body {
                 width: 6.5em;
                 background: rgba($color: #e2e2e2, $alpha: 1.0);
                 text-decoration: none;
-                margin-right: 8em;
+                margin-right: 9.5em;
                 margin-bottom: 1em;
                 color: var(--secondary-colour);
                 background-color: var(--primary-colour);
@@ -341,8 +376,8 @@ body {
 
             #share-btn {
                 // width: 9em;
-                width: 90%;
-                margin-left: 4.5%;
+                width: 32em;
+                margin-left: 2em;
                 background-color: var(--primary-colour);
                 color: var(--secondary-colour);
                 transition: background-color 0.3s ease;
@@ -360,6 +395,68 @@ body {
                 background-color: var(--secondary-colour);
                 color: var(--primary-colour);
                 transition: background-color 0.3s ease;
+            }
+        }
+       
+        .panel-group{
+            background: transparent !important;
+            border: none !important;
+
+            .panel-default{
+                background: transparent !important;
+                border: none !important;
+    
+                .panel-heading{
+                    background: var(--control-background) !important;
+                    border: none !important;
+                    border-radius: 5px !important;
+                    width: 8em !important;
+                    height: 2.64em !important;
+                    text-align: center !important;
+                    color: var(--primary-colour) !important;
+                    padding: 0;
+    
+                    .panel-title {
+                        height: 100% !important;
+
+                        .comp-click-zone {
+                            width: 100% !important;
+                            height: 100% !important;
+                            padding: 0.57em;
+
+                            .control-header {
+                                width: 100% !important;
+                                height: 100% !important;
+                            }
+                        }
+                    }
+                }
+            
+                .panel-heading:hover{
+                    background: var(--primary-colour) !important;
+                    color: var(--secondary-colour) !important;
+                    cursor: pointer;
+                }
+
+                .panel-collapse{
+                    position: absolute;
+                    left: 10em;
+                    top: 10.5em;
+                    width: 26em !important;
+                    height: 26.68em !important;
+        
+                    .panel-body{
+                        background: var(--control-background) !important;
+                        border: none !important;
+                        border-radius: 5px !important;
+                        height: 100% !important;
+                    }
+                }
+                
+                .index-collapse{
+                    top: 0.1em !important;
+                    height: 26.65em !important;
+                }
             }
         }
     }
@@ -1944,86 +2041,6 @@ fieldset.toy_shared {
     color: var(--primary-colour);
 }
 
-.panel-heading{
-    background: var(--control-background) !important;
-    border: none !important;
-    border-radius: 5px !important;
-    width: 8em !important;
-    height: 2.64em !important;
-    text-align: center !important;
-    color: var(--primary-colour) !important;
-    padding: 0;
-}
-
-.panel-title {
-    height: 100% !important;
-}
-
-.panel-heading:hover{
-    background: var(--primary-colour) !important;
-    color: var(--secondary-colour) !important;
-    cursor: pointer;
-}
-
-.panel-group{
-    background: transparent !important;
-    border: none !important;
-}
-
-.panel{
-    background: transparent !important;
-    border: none !important;
-}
-
-.panel-default{
-    background: transparent !important;
-    border: none !important;
-}
-
-.panel-body{
-    background: var(--control-background) !important;
-    border: none !important;
-    border-radius: 5px !important;
-    height: 100% !important;
-}
-
-.panel-collapse{
-    position: absolute;
-    left: 10em;
-    top: 10.5em;
-    width: 25em !important;
-    height: 26.68em !important;
-}
-
-.index-collapse{
-    top: 0.1em !important;
-    height: 26.65em !important;
-}
-
-.options-header{
-    background: var(--control-background) !important;
-    border: none !important;
-    border-radius: 5px !important;
-    padding: 1em;
-    width: 35em !important;
-    margin-bottom: 1em;
-}
-
-.string{
-    background: transparent;
-    border-radius: 0%;
-    border-width: 0px 0px 1px 0px;
-    border-color: var(--primary-colour);
-    color: var(--primary-colour);
-}
-
-#search-toggle{
-    background-color: transparent;
-    position: relative;
-    float: right;
-    top: 1.2em;
-}
-
 #search-dropdown{
     position: relative;
     background-color: transparent !important;
@@ -2036,30 +2053,9 @@ fieldset.toy_shared {
     bottom: 0.8em;
 }
 
-.string:focus{
-    border-color: var(--q-colour);
-    box-shadow: none;
-}
-
-.string:hover{
-    border-color: var(--q-colour);
-}
-
-.name-label{
-    display: none
-}
-
-#toy_shared:focus{
-    background-color: var(--primary-colour);
-}
-
-.comp-click-zone {
-    width: 100% !important;
-    height: 100% !important;
-    padding: 0.57em;
-}
-
-.control-header {
-    width: 100% !important;
-    height: 100% !important;
+#search-toggle{
+    background-color: transparent;
+    position: relative;
+    float: right;
+    top: 1.2em;
 }
