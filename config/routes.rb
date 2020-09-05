@@ -25,8 +25,6 @@ Rails.application.routes.draw do
     resources :ratings
   end
   root to: 'pages#index'
-  get 'pages/contact'
-  get 'pages/about'
   get 'pages/upload_model'
   get '/toys/:id', to: "toys#displayPDF", as: :displayPDF
   get '/toys/:id/contribute', to: "toys#contribute", as: :contribute

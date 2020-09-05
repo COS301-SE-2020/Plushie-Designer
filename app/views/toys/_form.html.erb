@@ -46,7 +46,7 @@
 
 <div class="panel-group plushie-controls" id="controls-parent">
   <div class="buttons panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading panel-clr on">
       <h4 class="panel-title">
         <div class="type-controls comp-click-zone" data-toggle="collapse" data-parent="#controls-parent" data-target="#type-collapse">
           <span class="control-header">Type</span>
@@ -62,7 +62,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="head-div panel-heading">
+    <div class="head-div panel-heading panel-clr">
       <h4 class="panel-title">
         <div class="head-controls comp-click-zone" data-toggle="collapse" data-parent="#controls-parent" data-target="#collapse-head-controls">
             <!-- <button style="display: none;" id="hc-btn" type="hidden" data-toggle="collapse" data-target="#collapse-head-controls"></button> -->
@@ -101,7 +101,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="torso-div panel-heading">
+    <div class="torso-div panel-heading panel-clr">
       <h4 class="panel-title">
         <div class="torso-controls comp-click-zone" data-toggle="collapse" data-parent="#controls-parent" data-target="#torso-collapse">
           <!-- <button style="display: none;" id="tc-btn" type="hidden" data-toggle="collapse" data-target="#torso-collapse"></button> -->
@@ -142,7 +142,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="arms-div panel-heading">
+    <div class="arms-div panel-heading panel-clr">
       <h4 class="panel-title">
         <div class="arms-controls comp-click-zone" data-toggle="collapse" data-parent="#controls-parent" data-target="#arms-collapse">
         <!-- <button style="display: none;" id="ac-btn" type="hidden" data-toggle="collapse" data-target="#arms-collapse"></button> -->
@@ -181,7 +181,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading panel-clr">
       <h4 class="panel-title">
         <div class="r-arms-controls comp-click-zone" data-toggle="collapse" data-parent="#controls-parent" data-target="#r-arms-collapse">
           <span class="control-header">Right Arm</span>
@@ -219,7 +219,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="legs-div panel-heading">
+    <div class="legs-div panel-heading panel-clr">
       <h4 class="panel-title">
         <div class="legs-controls comp-click-zone" data-toggle="collapse" data-parent="#controls-parent" data-target="#legs-collapse">
         <!-- <button style="display: none;" id="lc-btn" type="hidden" data-toggle="collapse" data-target="#legs-collapse"></button> -->
@@ -259,7 +259,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading panel-clr">
       <h4 class="panel-title">
         <div class="r-legs-controls comp-click-zone" data-toggle="collapse" data-parent="#controls-parent" data-target="#r-legs-collapse">
           <span class="control-header">Right Leg</span>
@@ -297,7 +297,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading panel-clr">
       <h4 class="panel-title">
         <div class="rooms-controls comp-click-zone" data-toggle="collapse" data-parent="#controls-parent" data-target="#rooms-collapse">
           <%# <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> %>
@@ -316,7 +316,7 @@
   </div>
   
   <div class="buttons panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading panel-clr">
       <h4 class="panel-title">
         <div class="textures comp-click-zone" data-toggle="collapse" data-parent="#controls-parent" data-target="#texture-collapse">
           <%# <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> %>
@@ -347,5 +347,16 @@
     </div>
   </div>
 </div>
+
+ <script>
+    $(document).ready(() => {
+      $( function() {
+        $('.panel-clr').click( function() {
+          $('.panel-clr.on').toggleClass('on');
+          $(this).toggleClass('on');
+        } )
+      }); 
+    });
+</script>
 
 <% end %>
