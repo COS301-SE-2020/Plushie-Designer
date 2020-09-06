@@ -4,10 +4,4 @@ class PagesController < ApplicationController
       redirect_to new_toy_path
     end
   end
-
-  def contact
-  end
-
-  def about
-  end
 end

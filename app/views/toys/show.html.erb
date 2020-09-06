@@ -18,13 +18,19 @@
 <%= content_tag :div, class: "head", data: {head: @toy.head} do %>
 <% end %>
 
-<%= content_tag :div, class: "arms", data: {arms: @toy.arms} do %>
+<%= content_tag :div, class: "larm", data: {larm: @toy.arms} do %>
+<% end %>
+
+<%= content_tag :div, class: "rarm", data: {rarm: @toy.r_arm} do %>
 <% end %>
 
 <%= content_tag :div, class: "torso", data: {torso: @toy.torso} do %>
 <% end %>
 
-<%= content_tag :div, class: "legs", data: {legs: @toy.legs} do %>
+<%= content_tag :div, class: "lleg", data: {lleg: @toy.legs} do %>
+<% end %>
+
+<%= content_tag :div, class: "rleg", data: {rleg: @toy.r_leg} do %>
 <% end %>
 
 <%= content_tag :div, class: "headposy", data: {headposy: @toy.head_pos} do %>
@@ -94,6 +100,9 @@
           <!-- Title -->
           <h1 style="font-size: 30.5px;">
               <%= @toy.name %>
+               <%= link_to "", displayPDF_path(@toy.id, format: :pdf), class:"downloadthis-inline-download-buttons glyphicon glyphicon-save-file", target: :_blank %>
+          
+               
                <div class="sharethis-inline-share-buttons"></div>
           </h1>
           <!-- Author -->
@@ -114,6 +123,7 @@
             <%= render @toy.ratings %>
           </div>
           <%= render 'ratings/form' %>
+          <%= %>
       </div>
   </div>
 </div>
@@ -128,6 +138,8 @@
       <span><%= button_to 'Edit', edit_toy_path(@toy), method: "get", :id => "edit-p", :class => "btn ed-button"%></span>
       <span><%= button_to 'Delete', @toy, method: :delete, data: { confirm: 'Are you sure?' }, :id => "delete-p", :class => "btn ed-button" %></span>
     </div>
+  <% else %>
+    <span><%= button_to 'Contribute', contribute_path(@toy), method: "get", :id => "edit-p", :class => "btn ed-button"%></span>
   <% end %>
 
 </div>

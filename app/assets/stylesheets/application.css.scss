@@ -149,6 +149,18 @@ body {
 .footer-distributed {
     background-color: var(--secondary-colour);
 
+    a{
+        background: transparent;
+    }
+
+    .footer-left a {
+        color: var(--p-colour);
+    }
+
+    .footer-left a:hover {
+        color: var(--primary-colour);
+    }
+
     .fab {
         color: var(--p-colour);
         font-size: larger;
@@ -241,7 +253,7 @@ body {
 }
 
 .index-controls-container {
-    width: 30%;
+    width: 40em;
     position: absolute;
     left: 0;
     height: 100%;
@@ -259,6 +271,41 @@ body {
         max-height: 100%;
         overflow: scroll;
         overflow-x: hidden;
+
+        .options-header{
+            background: var(--control-background) !important;
+            border: none !important;
+            border-radius: 5px !important;
+            padding: 1em;
+            width: 35em !important;
+            margin-bottom: 1em;
+        
+            .string{
+                background: transparent;
+                border-radius: 0%;
+                width: 33em !important;
+                border-width: 0px 0px 1px 0px;
+                border-color: var(--primary-colour);
+                color: var(--primary-colour);
+            }
+
+            .string:focus{
+                border-color: var(--q-colour);
+                box-shadow: none;
+            }
+            
+            .string:hover{
+                border-color: var(--q-colour);
+            }
+            
+            .name-label{
+                display: none
+            }
+            
+            #toy_shared:focus{
+                background-color: var(--primary-colour);
+            }
+        }
 
         .slider {
             -webkit-appearance: none;
@@ -317,22 +364,23 @@ body {
         }
 
         .buttons {
-            #headl, #armsl, #torsol, #legsl, #rooml{
+            #headl, #larml, #rarml, #torsol, #llegl, #rlegl, #rooml{
                 width: 6.5em;
                 background: rgba($color: #e2e2e2, $alpha: 1.0);
                 text-decoration: none;
-                margin-right: 13.2em;
+                margin-right: 9.5em;
                 margin-bottom: 1em;
                 color: var(--secondary-colour);
                 background-color: var(--primary-colour);
                 transition: background-color 0.3s ease;
             }
 
-            #headr, #armsr, #torsor, #legsr, #roomr {
+            #headr, #larmr, #rarmr, #torsor, #llegr, #rlegr, #roomr {
                 width: 6.5em;
                 background: rgba($color: #e2e2e2, $alpha: 1.0);
                 text-decoration: none;
                 margin-left: 1em;
+                margin-bottom: 1em;
                 color: var(--secondary-colour);
                 background-color: var(--primary-colour);
                 transition: background-color 0.3s ease;
@@ -340,8 +388,8 @@ body {
 
             #share-btn {
                 // width: 9em;
-                width: 90%;
-                margin-left: 4.5%;
+                width: 32em;
+                margin-left: 2em;
                 background-color: var(--primary-colour);
                 color: var(--secondary-colour);
                 transition: background-color 0.3s ease;
@@ -353,12 +401,84 @@ body {
                 transition: background-color 0.3s ease;
             }
 
-            #headl:hover, #armsl:hover, #torsol:hover, #legsl:hover,
-            #headr:hover, #armsr:hover, #torsor:hover, #legsr:hover,
+            #headl:hover, #larml:hover, #rarml:hover, #torsol:hover, #llegl:hover, #rlegl:hover,
+            #headr:hover, #larmr:hover, #rarmr:hover, #torsor:hover, #llegr:hover, #rlegr:hover,
             #generate-pattern:hover, #rooml:hover, #roomr:hover {
                 background-color: var(--secondary-colour);
                 color: var(--primary-colour);
                 transition: background-color 0.3s ease;
+            }
+        }
+       
+        .panel-group{
+            background: transparent !important;
+            border: none !important;
+
+            .panel-default{
+                background: transparent !important;
+                border: none !important;
+    
+                .panel-heading{
+                    // background: var(--control-background) ;
+                    border: none !important;
+                    border-radius: 5px !important;
+                    width: 8em !important;
+                    height: 2.64em !important;
+                    text-align: center !important;
+                    // color: var(--primary-colour) ;
+                    padding: 0;
+    
+                    .panel-title {
+                        height: 100% !important;
+
+                        .comp-click-zone {
+                            width: 100% !important;
+                            height: 100% !important;
+                            padding: 0.57em;
+
+                            .control-header {
+                                width: 100% !important;
+                                height: 100% !important;
+                            }
+                        }
+                    }
+                }
+
+                .panel-clr {
+                    background: var(--control-background) ;
+                    color: var(--primary-colour) ;
+                }
+
+                .panel-clr.on {
+                    background: var(--primary-colour) ;
+                    color: var(--secondary-colour) ;
+                }
+            
+                .panel-heading:hover{
+                    background: var(--primary-colour) ;
+                    color: var(--secondary-colour) ;
+                    cursor: pointer;
+                }
+
+                .panel-collapse{
+                    position: absolute;
+                    left: 10em;
+                    top: 10.5em;
+                    width: 26em !important;
+                    height: 26.68em !important;
+        
+                    .panel-body{
+                        background: var(--control-background) !important;
+                        border: none !important;
+                        border-radius: 5px !important;
+                        height: 100% !important;
+                    }
+                }
+                
+                .index-collapse{
+                    top: 0.1em !important;
+                    height: 26.65em !important;
+                }
             }
         }
     }
@@ -1829,6 +1949,30 @@ fieldset.toy_shared {
     // width: 5em;
     bottom: 85%;
 }
+.glyphicon-save-file
+{
+}
+
+.glyphicon-save-file:hover
+{
+    opacity: 70% !important;
+    transition: 0.3s;
+    background: none;
+    top: 1.0em;
+}
+
+.downloadthis-inline-download-buttons {
+    // background-color: red;
+    // margin-left: 65%;
+    position: absolute;
+    right: 18%;
+    // margin-left: 65%;
+    // width: 5em;
+    top: 1.2em;
+    color: var(--primary-colour) !important;
+    // width: 5em;
+    color: var(--primary-colour);
+}
 
 .st-first{
     background-color: var(--primary-colour) !important; 
@@ -1943,71 +2087,6 @@ fieldset.toy_shared {
     color: var(--primary-colour);
 }
 
-.panel-heading{
-    background: var(--control-background) !important;
-    border: none !important;
-    border-radius: 0 !important;
-    width: 20% !important;
-    text-align: center !important;
-    color: var(--primary-colour) !important;
-}
-
-.panel-group{
-    background: transparent !important;
-    border: none !important;
-}
-
-.panel{
-    background: transparent !important;
-    border: none !important;
-}
-
-.panel-default{
-    background: transparent !important;
-    border: none !important;
-}
-
-.panel-body{
-    background: var(--control-background) !important;
-    border: none !important;
-    height: 100% !important;
-}
-
-.panel-collapse{
-    position: absolute;
-    right: 3%;
-    top: 10.5em;
-    width: 72%;
-    height: 26.68em !important;
-}
-
-.index-collapse{
-    top: 0.1em !important;
-    height: 26.65em !important;
-}
-
-.options-header{
-    background: var(--control-background) !important;
-    border: none !important;
-    padding: 1em;
-    margin-bottom: 1em;
-}
-
-.string{
-    background: transparent;
-    border-radius: 0%;
-    border-width: 0px 0px 1px 0px;
-    border-color: var(--primary-colour);
-    color: var(--primary-colour);
-}
-
-#search-toggle{
-    background-color: transparent;
-    position: relative;
-    float: right;
-    top: 1.2em;
-}
-
 #search-dropdown{
     position: relative;
     background-color: transparent !important;
@@ -2020,25 +2099,9 @@ fieldset.toy_shared {
     bottom: 0.8em;
 }
 
-.head-controls{
+#search-toggle{
+    background-color: transparent;
     position: relative;
-    // left: -50%;
-    z-index: 99999;
-}
-
-.string:focus{
-    border-color: var(--q-colour);
-    box-shadow: none;
-}
-
-.string:hover{
-    border-color: var(--q-colour);
-}
-
-.name-label{
-    display: none
-}
-
-#toy_shared:focus{
-    background-color: var(--primary-colour);
+    float: right;
+    top: 1.2em;
 }
