@@ -149,8 +149,16 @@ body {
 .footer-distributed {
     background-color: var(--secondary-colour);
 
-    .footer-right a{
+    a{
         background: transparent;
+    }
+
+    .footer-left a {
+        color: var(--p-colour);
+    }
+
+    .footer-left a:hover {
+        color: var(--primary-colour);
     }
 
     .fab {
