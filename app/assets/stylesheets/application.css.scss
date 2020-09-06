@@ -149,6 +149,10 @@ body {
 .footer-distributed {
     background-color: var(--secondary-colour);
 
+    .footer-right a{
+        background: transparent;
+    }
+
     .fab {
         color: var(--p-colour);
         font-size: larger;
