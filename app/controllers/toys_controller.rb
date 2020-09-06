@@ -1,10 +1,26 @@
 class ToysController < ApplicationController
-  before_action :set_toy, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new]
+  before_action :set_toy, only: [:show, :edit, :update, :destroy, :contribute]
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new, :contribute]
   # GET /toys
   # GET /toys.json
   def index
-    @toys = Toy.all
+    @toys = Toy.search(params[:search])
+      if @toys == 0
+        @toys = Toy.all
+        flash.now[:alert] = 'Your plushie was not found!'
+      else
+        @temp = false
+        @toys.each do |toy|
+          if toy.shared || current_user == toy.user
+            @temp = true
+          end
+        end
+
+        if !@temp 
+          @toys = Toy.all
+          flash.now[:alert] = 'Your plushie was not found!'
+        end
+      end
     @num = 0
   end
 
@@ -55,10 +71,10 @@ class ToysController < ApplicationController
   # POST /toys.json
   def create
     @toy = current_user.toys.build(toy_params)
-
+    
     respond_to do |format|
       if @toy.save
-        format.html { redirect_to @toy, notice: 'Toy was successfully created.' }
+        format.html { redirect_to @toy, notice: "plushie successfully created" }
         format.json { render :show, status: :created, location: @toy }
       else
         format.html { render :new }
@@ -67,12 +83,32 @@ class ToysController < ApplicationController
     end
   end
 
+
+  def contribute
+    render :contribute
+  end
+
+  def submitcontribution
+    @toy = current_user.toys.build(toy_params)
+    
+    respond_to do |format|
+      if @toy.save
+        format.html { redirect_to @toy, notice: "plushie successfully created" }
+        format.json { render :show, status: :created, location: @toy }
+      else
+        format.html { render :new }
+        format.json { render json: @toy.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   # PATCH/PUT /toys/1
   # PATCH/PUT /toys/1.json
   def update
     respond_to do |format|
       if @toy.update(toy_params)
-        format.html { redirect_to @toy, notice: 'Toy was successfully updated.' }
+        format.html { redirect_to @toy, notice: 'Plushie was successfully updated.' }
         format.json { render :show, status: :ok, location: @toy }
       else
         format.html { render :edit }
@@ -81,12 +117,15 @@ class ToysController < ApplicationController
     end
   end
 
+
+
+
   # DELETE /toys/1
   # DELETE /toys/1.json
   def destroy
     @toy.destroy
     respond_to do |format|
-      format.html { redirect_to toys_url, notice: 'Toy was successfully destroyed.' }
+      format.html { redirect_to toys_url, notice: 'Plushie was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -99,7 +138,7 @@ class ToysController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def toy_params
-      params.require(:toy).permit(:name, :head, :arms, :torso, :legs, :rating, :head_pos, :head_posx, :torso_posy, :torso_posx, :larm_posy, :larm_posx, :rarm_posy, :rarm_posx, :lleg_posy, :lleg_posx, :rleg_posy, :rleg_posx, :shared, :image, :head_posz, :torso_posz, :larm_posz, :rarm_posz, :lleg_posz, :rleg_posz, :head_uv, :torso_uv, :larm_uv, :rarm_uv, :lleg_uv, :rleg_uv)
+      params.require(:toy).permit(:name, :head, :arms, :r_arm, :torso, :legs, :r_leg, :rating, :head_pos, :head_posx, :torso_posy, :torso_posx, :larm_posy, :larm_posx, :rarm_posy, :rarm_posx, :lleg_posy, :lleg_posx, :rleg_posy, :rleg_posx, :shared, :image, :head_posz, :torso_posz, :larm_posz, :rarm_posz, :lleg_posz, :rleg_posz, :head_uv, :torso_uv, :larm_uv, :rarm_uv, :lleg_uv, :rleg_uv, :search)
     end
 
     def scope

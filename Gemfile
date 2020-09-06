@@ -65,3 +65,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'rails_12factor', '~> 0.0.3'
 gem 'rack-cors', ">= 1.0.4"
+gem 'administrate'

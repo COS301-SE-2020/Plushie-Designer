@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_24_191751) do
+ActiveRecord::Schema.define(version: 2020_08_30_072101) do
 
   create_table "body_models", force: :cascade do |t|
     t.string "body_file"
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 2020_08_24_191751) do
     t.text "lleg_uv"
     t.text "rleg_uv"
     t.boolean "shared"
+    t.integer "r_arm"
+    t.integer "r_leg"
   end
 
   create_table "users", force: :cascade do |t|
@@ -116,6 +118,7 @@ ActiveRecord::Schema.define(version: 2020_08_24_191751) do
     t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

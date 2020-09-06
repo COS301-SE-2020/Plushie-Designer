@@ -7,10 +7,9 @@ class HeadModelsController < ApplicationController
     # @head_models = HeadModel.all
     @head_models = HeadModel.all
     respond_to do |format|
-      format.html #defaults to rendering the /view/coordinates/show template
+      format.html { redirect_to new_head_model_path}
       format.json { render json: @head_models }
     end
-    # redirect_to new_head_model_path
   end
 
   # GET /head_models/1
@@ -41,7 +40,7 @@ class HeadModelsController < ApplicationController
 
     respond_to do |format|
       if @head_model.save
-        format.html { redirect_to pages_upload_model_path, notice: 'Head model was successfully created.' }
+        format.html { redirect_to pages_upload_model_path, notice: 'Head model was successfully uploaded.' }
         format.json { render :show, status: :created, location: @head_model }
       else
         format.html { render :new }
