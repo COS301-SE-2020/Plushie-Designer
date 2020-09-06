@@ -122,14 +122,14 @@ var UVsDebug = function ( geometry, w, h) {
 		return points;	
 	}
 
-	function drawPattern(img, size) {   
+	function drawPattern(img, width, height) {   
 
 		var tempCanvas = document.createElement("canvas"),
 			tCtx = tempCanvas.getContext("2d");
    
-		tempCanvas.width = size;
-		tempCanvas.height = size;
-		tCtx.drawImage(img, 0, 0, img.width, img.height, 0, 0, size, size);
+		tempCanvas.width = width;
+		tempCanvas.height = height;
+		tCtx.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height);
    
 		// use getContext to use the canvas for drawing
 		var ctx = canvas.getContext('2d');
@@ -169,7 +169,7 @@ var UVsDebug = function ( geometry, w, h) {
 		ctx.closePath();
 		var img = new Image();
 		img.src = '/images/head.png';
-		drawPattern(img, 256);	
+		drawPattern(img, 256, 256);	
 /*
 		ctx.beginPath();
 
