@@ -104,22 +104,19 @@ var UVsDebug = function ( geometry, w, h) {
 		var points = [];
 	
 		var cnt = 0;
-		for(var x = 0 ; x < array_elements.length; x++ ){
+		for(var x = 0; x < array_elements.length ; x++ ){
 			cnt = 0;
 			for (var i = 0; i < array_elements.length; i++) {
 				if (array_elements[i].x == array_elements[x].x) {
 					if (array_elements[i].y == array_elements[x].y) 
 					{
-						//console.log(array_elements[i].x.toFixed(4)  + " " + array_elements[i].y.toFixed(4));
 						cnt++;
 					}
 				}
 			}
-			if(cnt <= 3)
+			if(cnt > 3)
 			{
-				if(!points.includes(array_elements[x]))
-					{points.push(array_elements[x]);}
-					else {alert(array_elements[x]);}
+				points.push(array_elements[x]);	
 			}
 		}
 		return points;	
@@ -147,9 +144,7 @@ var UVsDebug = function ( geometry, w, h) {
 
 		// draw contour of face
 
-		var points_to_use = count(uvs);
-
-		
+	//	var points_to_ignore = count(uvs);
 
 		ctx.beginPath();
 
@@ -175,30 +170,29 @@ var UVsDebug = function ( geometry, w, h) {
 		var img = new Image();
 		img.src = '/images/head.png';
 		drawPattern(img, 256);	
-
+/*
 		ctx.beginPath();
 
 		a.set( 0, 0 );
 
-		for ( var j = 0, jl = points_to_use.length; j < jl; j ++ ) {
+		for ( var j = 0, jl = uvs.length; j < jl; j ++ ) {
 
-			var uv = points_to_use[ j ];
+			var uv = uvs[ j ];
 
 			a.x += uv.x;
 			a.y += uv.y;
 
-			//if(!points_to_ignore.includes(uvs[ j ]))
-			//{
-			//	if ( j === 0 || j % 3 === 0) {
-			//		ctx.moveTo( uv.x * width, ( 1 - uv.y ) * height );
-			//	} else {
+			if ( j === 0 || j % 3 === 0) {
+				if(!points_to_ignore.includes(uvs[ j ]) )
+					ctx.moveTo( uv.x * width, ( 1 - uv.y ) * height );
+			} else {
+				if(!points_to_ignore.includes(uvs[ j ]) &&  !points_to_ignore.includes(uvs[ j - 1 ]))
 					ctx.lineTo( uv.x * width, ( 1 - uv.y ) * height );
-			//	}
-			//}
+			}	
 
 		}
 		ctx.closePath();
-		ctx.stroke();	
+		ctx.stroke();	*/
 		
 	}
 
