@@ -74,7 +74,7 @@ class ToysController < ApplicationController
     
     respond_to do |format|
       if @toy.save
-        format.html { redirect_to @toy, notice: "plushie successfully created" }
+        format.html { redirect_to @toy, notice: "Plushie successfully created" }
         format.json { render :show, status: :created, location: @toy }
       else
         format.html { render :new }
@@ -93,7 +93,7 @@ class ToysController < ApplicationController
     
     respond_to do |format|
       if @toy.save
-        format.html { redirect_to @toy, notice: "plushie successfully created" }
+        format.html { redirect_to @toy, notice: "Plushie successfully created" }
         format.json { render :show, status: :created, location: @toy }
       else
         format.html { render :new }
