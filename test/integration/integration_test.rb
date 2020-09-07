@@ -15,28 +15,44 @@ class IntegrationTest < ApplicationSystemTestCase
 
     click_on "Create Plushie"
 
+    find('#Head').click
     click_on "headr"
-    click_on "armsr"
+    find('#Left-Arm').click
+    click_on "larmr"
+    find('#Right-Arm').click
+    click_on "rarmr"
+    find('#Torso').click
     click_on "torsor"
-    click_on "legsr"
+    find('#Left-Leg').click
+    click_on "llegr"
+    find('#Right-Leg').click
+    click_on "rlegr"
     find(:css, "#toy_shared[value='1']").set(true)
     fill_in "Name", with: "Test"
 
     click_on "Create Plushie"
 
-    assert_text "Toy was successfully created"
+    assert_text "Plushie successfully created"
 
-    click_on "edit-p"
+    click_on "Edit"
 
+    find('#Head').click
     click_on "headl"
-    click_on "armsl"
+    find('#Left-Arm').click
+    click_on "larml"
+    find('#Right-Arm').click
+    click_on "rarml"
+    find('#Torso').click
     click_on "torsol"
-    click_on "legsl"
+    find('#Left-Leg').click
+    click_on "llegl"
+    find('#Right-Leg').click
+    click_on "rlegl"
     check("Share")
     fill_in "Name", with: "Test"
 
     click_on "Update Plushie"
-    assert_text "Toy was successfully updated."
+    assert_text "Plushie was successfully updated."
 
     fill_in "Description", with: "Gundam is the best. Screw Transformers!!!!!!!!!!!!!"
     
@@ -75,6 +91,6 @@ class IntegrationTest < ApplicationSystemTestCase
       click_on "delete-p"
     end
     
-    assert_text "Toy was successfully destroyed."
+    assert_text "Plushie was successfully destroyed."
   end
 end
