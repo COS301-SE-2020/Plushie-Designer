@@ -767,10 +767,10 @@ $.ajax({
 													hslideru.oninput = function() {
 														//var temp = scene.getObjectByName(scene.children[ihead].name);
 														var t = this.value;
-														htemp.position.setY(t);
-														// console.log(t);
+														htemp.position.setY(-t);
+														//console.log(t);
 														if(hhtemp!=null){
-															hhtemp.position.setY(t);
+															hhtemp.position.setY(-t);
 														}
 													}
 													hsliderl.oninput = function() {
@@ -784,7 +784,7 @@ $.ajax({
 													}
 													hsliderf.oninput = function() {
 														//var temp = scene.getObjectByName(scene.children[ihead].name);
-														var t = this.value;
+														var t = this.value;														
 														htemp.position.setZ(-t);
 														// console.log(t);
 														if(hhtemp!=null){
@@ -834,7 +834,7 @@ $.ajax({
 													laslideru.oninput = function() {
 														// var temp = scene.getObjectByName(scene.children[ilarm].name);
 														var t = this.value;
-														latemp.position.setY(t);
+														latemp.position.setY(-t);
 														// console.log(t);
 													}
 													lasliderl.oninput = function() {
@@ -852,7 +852,7 @@ $.ajax({
 													raslideru.oninput = function() {
 														// var temp = scene.getObjectByName(scene.children[irarm].name);
 														var t = this.value;
-														ratemp.position.setY(t);
+														ratemp.position.setY(-t);
 														// console.log(t);
 													}
 													rasliderl.oninput = function() {
@@ -890,8 +890,8 @@ $.ajax({
 													tslideru.oninput = function() {
 														// var temp = scene.getObjectByName(scene.children[itorso].name);
 														var t = this.value;
-														ttemp.position.setY(t);
-														// console.log(t);
+														ttemp.position.setY(-t);
+														//console.log(t);
 													}
 													tsliderl.oninput = function() {
 														// var ttemp = scene.getObjectByName(scene.children[itorso].name);
@@ -948,7 +948,7 @@ $.ajax({
 													llslideru.oninput = function() {
 														// var temp = scene.getObjectByName(scene.children[illeg].name);
 														var t = this.value;
-														lltemp.position.setY(t);
+														lltemp.position.setY(-t);
 														// console.log(t);
 													}
 													llsliderl.oninput = function() {
@@ -966,7 +966,7 @@ $.ajax({
 													rlslideru.oninput = function() {
 														// var temp = scene.getObjectByName(scene.children[irleg].name);
 														var t = this.value;
-														rltemp.position.setY(t);
+														rltemp.position.setY(-t);
 														// console.log(t);
 													}
 													rlsliderl.oninput = function() {

@@ -818,7 +818,29 @@ $.ajax({
 													$("#toy_image")[0].value = img.src;
 												}
 
-												$(document).ready(function(){
+												$(document).ready(function(){										
+													$('#headup').attr("value",-headposy);
+													$('#headleft').attr("value",headposx);
+													$('#headfront').attr("value",-headposz);
+
+													$('#torsoup').attr("value",-torsoposy);
+													$('#torsoleft').attr("value",torsoposx);
+													$('#torsofront').attr("value",-torsoposz);
+
+													$('#larmup').attr("value",-larmposy);
+													$('#larmleft').attr("value",larmposx);
+													$('#larmfront').attr("value",-larmposz);
+													$('#rarmup').attr("value",-rarmposy);
+													$('#rarmleft').attr("value",rarmposx);
+													$('#rarmfront').attr("value",-rarmposz);
+
+													$('#llegup').attr("value",-llegposy);
+													$('#llegleft').attr("value",llegposx);
+													$('#llegfront').attr("value",-llegposz);
+													$('#rlegup').attr("value",-rlegposy);
+													$('#rlegleft').attr("value",rlegposx);
+													$('#rlegfront').attr("value",-rlegposz);
+
 													$('#share-btn').click(function () {
 														screensh();
 													});
