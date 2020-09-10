@@ -100,6 +100,9 @@
           <!-- Title -->
           <h1 style="font-size: 30.5px;">
               <%= @toy.name %>
+               <%= link_to "", displayPDF_path(@toy.id, format: :pdf), class:"downloadthis-inline-download-buttons glyphicon glyphicon-save-file", target: :_blank %>
+          
+               
                <div class="sharethis-inline-share-buttons"></div>
           </h1>
           <!-- Author -->
@@ -120,6 +123,7 @@
             <%= render @toy.ratings %>
           </div>
           <%= render 'ratings/form' %>
+          <%= %>
       </div>
   </div>
 </div>
@@ -134,6 +138,8 @@
       <span><%= button_to 'Edit', edit_toy_path(@toy), method: "get", :id => "edit-p", :class => "btn ed-button"%></span>
       <span><%= button_to 'Delete', @toy, method: :delete, data: { confirm: 'Are you sure?' }, :id => "delete-p", :class => "btn ed-button" %></span>
     </div>
+  <% else %>
+    <span><%= button_to 'Contribute', contribute_path(@toy), method: "get", :id => "edit-p", :class => "btn ed-button"%></span>
   <% end %>
 
 </div>
@@ -147,7 +153,7 @@
     <div id="loader"></div>
 </section>
 
-<script type="text/javascript">
+<%# <script type="text/javascript">
 $(document).ready(function(){    
     //Check if the current URL contains '#'
     if(document.URL.indexOf("#")==-1){
@@ -159,4 +165,4 @@ $(document).ready(function(){
         location.reload(true);
     }
 });
-</script>
+</script> %>

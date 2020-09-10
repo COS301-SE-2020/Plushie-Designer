@@ -1,6 +1,6 @@
 class ToysController < ApplicationController
-  before_action :set_toy, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new]
+  before_action :set_toy, only: [:show, :edit, :update, :destroy, :contribute]
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new, :contribute]
   # GET /toys
   # GET /toys.json
   def index
@@ -71,10 +71,10 @@ class ToysController < ApplicationController
   # POST /toys.json
   def create
     @toy = current_user.toys.build(toy_params)
-
+    
     respond_to do |format|
       if @toy.save
-        format.html { redirect_to @toy, notice: 'Plushie was successfully created.' }
+        format.html { redirect_to @toy, notice: "Plushie successfully created" }
         format.json { render :show, status: :created, location: @toy }
       else
         format.html { render :new }
@@ -82,6 +82,26 @@ class ToysController < ApplicationController
       end
     end
   end
+
+
+  def contribute
+    render :contribute
+  end
+
+  def submitcontribution
+    @toy = current_user.toys.build(toy_params)
+    
+    respond_to do |format|
+      if @toy.save
+        format.html { redirect_to @toy, notice: "Plushie successfully created" }
+        format.json { render :show, status: :created, location: @toy }
+      else
+        format.html { render :new }
+        format.json { render json: @toy.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   # PATCH/PUT /toys/1
   # PATCH/PUT /toys/1.json
@@ -96,6 +116,9 @@ class ToysController < ApplicationController
       end
     end
   end
+
+
+
 
   # DELETE /toys/1
   # DELETE /toys/1.json
