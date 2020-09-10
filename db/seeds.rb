@@ -37,7 +37,7 @@ else
 puts "****NOT VALID****"
 end
 
-admin=User.new({ username: "SemiRelic", email: 'u1711796@tuks.co.za',
+admin=User.new({ username: "SemiRelic", email: 'u17011796@tuks.co.za',
     password: '3st13nn3'})
 
 admin.toggle!(:admin)
