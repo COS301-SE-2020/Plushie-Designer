@@ -823,6 +823,10 @@ $.ajax({
 													$('#headleft').attr("value",headposx);
 													$('#headfront').attr("value",-headposz);
 
+													$('#torsoup').attr("value",-torsoposy);
+													$('#torsoleft').attr("value",torsoposx);
+													$('#torsofront').attr("value",-torsoposz);
+
 													$('#share-btn').click(function () {
 														screensh();
 													});
