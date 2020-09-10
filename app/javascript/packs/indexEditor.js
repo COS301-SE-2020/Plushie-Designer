@@ -948,7 +948,7 @@ $.ajax({
 													llslideru.oninput = function() {
 														// var temp = scene.getObjectByName(scene.children[illeg].name);
 														var t = this.value;
-														lltemp.position.setY(t);
+														lltemp.position.setY(-t);
 														// console.log(t);
 													}
 													llsliderl.oninput = function() {
@@ -966,7 +966,7 @@ $.ajax({
 													rlslideru.oninput = function() {
 														// var temp = scene.getObjectByName(scene.children[irleg].name);
 														var t = this.value;
-														rltemp.position.setY(t);
+														rltemp.position.setY(-t);
 														// console.log(t);
 													}
 													rlsliderl.oninput = function() {
