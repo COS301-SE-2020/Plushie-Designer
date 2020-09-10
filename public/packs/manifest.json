@@ -1,6 +1,6 @@
 {
-  "Editor.js": "/packs/js/Editor-ac90d10f458c9cd216dc.js",
-  "Editor.js.map": "/packs/js/Editor-ac90d10f458c9cd216dc.js.map",
+  "Editor.js": "/packs/js/Editor-b52f06867a93a4c82560.js",
+  "Editor.js.map": "/packs/js/Editor-b52f06867a93a4c82560.js.map",
   "application.js": "/packs/js/application-9afcbb5693aa87623e69.js",
   "application.js.map": "/packs/js/application-9afcbb5693aa87623e69.js.map",
   "dynamicUV.js": "/packs/js/dynamicUV-ffa986d90060e5b6f430.js",
@@ -24,10 +24,10 @@
     },
     "Editor": {
       "js": [
-        "/packs/js/Editor-ac90d10f458c9cd216dc.js"
+        "/packs/js/Editor-b52f06867a93a4c82560.js"
       ],
       "js.map": [
-        "/packs/js/Editor-ac90d10f458c9cd216dc.js.map"
+        "/packs/js/Editor-b52f06867a93a4c82560.js.map"
       ]
     },
     "indexEditor": {

@@ -834,7 +834,12 @@ $.ajax({
 													$('#rarmleft').attr("value",rarmposx);
 													$('#rarmfront').attr("value",-rarmposz);
 
-													
+													$('#llegup').attr("value",-llegposy);
+													$('#llegleft').attr("value",llegposx);
+													$('#llegfront').attr("value",-llegposz);
+													$('#rlegup').attr("value",-rlegposy);
+													$('#rlegleft').attr("value",rlegposx);
+													$('#rlegfront').attr("value",-rlegposz);
 
 													$('#share-btn').click(function () {
 														screensh();
