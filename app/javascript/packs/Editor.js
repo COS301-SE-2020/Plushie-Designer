@@ -827,6 +827,15 @@ $.ajax({
 													$('#torsoleft').attr("value",torsoposx);
 													$('#torsofront').attr("value",-torsoposz);
 
+													$('#larmup').attr("value",-larmposy);
+													$('#larmleft').attr("value",larmposx);
+													$('#larmfront').attr("value",-larmposz);
+													$('#rarmup').attr("value",-rarmposy);
+													$('#rarmleft').attr("value",rarmposx);
+													$('#rarmfront').attr("value",-rarmposz);
+
+													
+
 													$('#share-btn').click(function () {
 														screensh();
 													});
