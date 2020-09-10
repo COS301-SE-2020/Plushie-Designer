@@ -78,6 +78,13 @@ body {
     color: white;
 }
 
+.nav-thin {
+    width: 100%;
+    position: fixed;
+    height: 0.75em;
+    background-color: var(--secondary-colour);
+}
+
 .navbar {
     z-index: 990;
     padding: 10px;
@@ -85,11 +92,32 @@ body {
     color: var(--primary-colour);
     //background-color: var(--primary-colour);
     //color: var(--secondary-colour);
+    left: 27.5%;
+    right: 27.5%;
     position: fixed;
-    width: 100%;
+    width: 45%;
     margin-bottom: 2vh;
     border-radius: 0;
     border: 3px solid var(--secondary-colour);
+    .nav-s-left {
+        position: absolute;
+        left:-18%;
+        top:-64%;
+        fill: var(--secondary-colour);
+        // top:22.1%;
+        height: 12.3em;
+        padding: 0;
+        // border: 1px solid white;
+    }
+    .nav-s-right {
+        position: absolute;
+        right: -18%;
+        top: -64%;
+        // left:-18%;
+        // top:-64%;
+        height: 12.3em;
+        padding: 0;
+    }
     .navbar-header {
         width: 50%;
         height: inherit;
@@ -1949,9 +1977,9 @@ fieldset.toy_shared {
     // width: 5em;
     bottom: 85%;
 }
-.glyphicon-save-file
-{
-}
+// .glyphicon-save-file
+// {
+// }
 
 .glyphicon-save-file:hover
 {
