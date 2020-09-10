@@ -818,7 +818,11 @@ $.ajax({
 													$("#toy_image")[0].value = img.src;
 												}
 
-												$(document).ready(function(){
+												$(document).ready(function(){										
+													$('#headup').attr("value",-headposy);
+													$('#headleft').attr("value",headposx);
+													$('#headfront').attr("value",-headposz);
+
 													$('#share-btn').click(function () {
 														screensh();
 													});
