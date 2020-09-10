@@ -767,10 +767,10 @@ $.ajax({
 													hslideru.oninput = function() {
 														//var temp = scene.getObjectByName(scene.children[ihead].name);
 														var t = this.value;
-														htemp.position.setY(t);
-														// console.log(t);
+														htemp.position.setY(-t);
+														//console.log(t);
 														if(hhtemp!=null){
-															hhtemp.position.setY(t);
+															hhtemp.position.setY(-t);
 														}
 													}
 													hsliderl.oninput = function() {
@@ -784,7 +784,7 @@ $.ajax({
 													}
 													hsliderf.oninput = function() {
 														//var temp = scene.getObjectByName(scene.children[ihead].name);
-														var t = this.value;
+														var t = this.value;														
 														htemp.position.setZ(-t);
 														// console.log(t);
 														if(hhtemp!=null){
