@@ -890,8 +890,8 @@ $.ajax({
 													tslideru.oninput = function() {
 														// var temp = scene.getObjectByName(scene.children[itorso].name);
 														var t = this.value;
-														ttemp.position.setY(t);
-														// console.log(t);
+														ttemp.position.setY(-t);
+														//console.log(t);
 													}
 													tsliderl.oninput = function() {
 														// var ttemp = scene.getObjectByName(scene.children[itorso].name);
