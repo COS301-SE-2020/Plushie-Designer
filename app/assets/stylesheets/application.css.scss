@@ -2105,3 +2105,42 @@ fieldset.toy_shared {
     float: right;
     top: 1.2em;
 }
+
+.types{
+    position: relative;
+    display: flexbox;
+    width: 15em;
+    top: 6.5em;
+    left: 4.35em;
+}
+
+.typebtn{
+    color: black;
+    width: 15em;
+    margin-bottom: 1em;
+}
+
+.preshapes{
+    position: relative;
+    display: flexbox;
+    width: 25em;
+    max-height: 10em;
+
+    .btn{
+        color: black;
+        margin-right: 1em;
+        margin-bottom: 1em;
+    }
+}
+
+.uplshapes{
+    position: relative;
+    display: flexbox;
+    width: 24em;
+    max-height: 10em;
+
+    .btn{
+        color: black;
+        margin-right: 1em;
+    }
+}

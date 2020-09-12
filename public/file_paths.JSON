@@ -1,0 +1,30 @@
+{
+    "file_paths":{
+        "models":{
+            "length":2,
+            "0":{
+                "hair": "" ,
+                "head": "/model/minecraft/steve_head.gltf",
+                "body": "/model/minecraft/steve_body.gltf",
+                "l_arm": "/model/minecraft/steve_l_arm.gltf",
+                "r_arm": "/model/minecraft/steve_r_arm.gltf",
+                "l_leg": "/model/minecraft/steve_l_leg.gltf",
+                "r_leg": "/model/minecraft/steve_r_leg.gltf"
+            },
+            "1":{
+                "hair": "/model/chibi/chibi_hair.gltf" ,
+                "head": "/model/chibi/chibi_head.gltf",
+                "body": "/model/chibi/chibi_body.gltf",
+                "l_arm": "/model/chibi/chibi_l_arm.gltf",
+                "r_arm": "/model/chibi/chibi_r_arm.gltf",
+                "l_leg": "/model/chibi/chibi_l_leg.gltf",
+                "r_leg": "/model/chibi/chibi_r_leg.gltf"
+            }
+        },
+        "rooms":{
+            "room_1": "/background/Room/scene.gltf",   
+            "room_2": "/background/Room_2/scene.gltf"    
+        }
+    }
+    
+}

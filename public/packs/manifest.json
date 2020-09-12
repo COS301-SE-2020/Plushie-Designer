@@ -32,10 +32,10 @@
     },
     "indexEditor": {
       "js": [
-        "/packs/js/indexEditor-8c8091a7229b91820135.js"
+        "/packs/js/indexEditor-caa59e51e552422fa5c0.js"
       ],
       "js.map": [
-        "/packs/js/indexEditor-8c8091a7229b91820135.js.map"
+        "/packs/js/indexEditor-caa59e51e552422fa5c0.js.map"
       ]
     },
     "showEditor": {
@@ -47,8 +47,8 @@
       ]
     }
   },
-  "indexEditor.js": "/packs/js/indexEditor-8c8091a7229b91820135.js",
-  "indexEditor.js.map": "/packs/js/indexEditor-8c8091a7229b91820135.js.map",
+  "indexEditor.js": "/packs/js/indexEditor-caa59e51e552422fa5c0.js",
+  "indexEditor.js.map": "/packs/js/indexEditor-caa59e51e552422fa5c0.js.map",
   "showEditor.js": "/packs/js/showEditor-68fae549be0d1eb8e1f8.js",
   "showEditor.js.map": "/packs/js/showEditor-68fae549be0d1eb8e1f8.js.map"
 }
