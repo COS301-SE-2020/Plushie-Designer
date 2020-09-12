@@ -101,7 +101,7 @@ body {
     border: 3px solid var(--secondary-colour);
     .nav-s-left {
         position: absolute;
-        left:-18%;
+        left:-10em;
         top:-64%;
         fill: var(--secondary-colour);
         // top:22.1%;
@@ -111,7 +111,7 @@ body {
     }
     .nav-s-right {
         position: absolute;
-        right: -18%;
+        right: -10em;
         top: -64%;
         // left:-18%;
         // top:-64%;
