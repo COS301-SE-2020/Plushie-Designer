@@ -14,7 +14,7 @@ import {
 	Vector2
 } from "three/build/three.module.js";
 
-var UVsDebug = function ( geometry, w, h) {
+var UVsDebug = function ( geometry, w, h, tex) {
 
 	// handles wrapping of uv.x > 1 only
 
@@ -59,7 +59,7 @@ var UVsDebug = function ( geometry, w, h) {
 			uvs[ 1 ].copy( uv[ 1 ] );
 			uvs[ 2 ].copy( uv[ 2 ] );
 
-			processFace( face, uvs, i);
+			processFace(uvs, tex);
 
 		}
 
@@ -75,7 +75,7 @@ var UVsDebug = function ( geometry, w, h) {
 			for ( var i = 0, il = index.count; i < il; i ++ ) {
 				uvs.push(new Vector2().fromBufferAttribute( uvAttribute, index.getX( i )));
 			}
-			processFace( face, uvs, 3 );
+			processFace(uvs, tex);
 		} else {
 
 			// non-indexed geometry
@@ -90,7 +90,7 @@ var UVsDebug = function ( geometry, w, h) {
 				uvs[ 1 ].fromBufferAttribute( uvAttribute, face[ 1 ] );
 				uvs[ 2 ].fromBufferAttribute( uvAttribute, face[ 2 ] );
 
-				processFace( face, uvs, i / 3 );
+				processFace( uvs, tex );
 
 			}
 
@@ -140,7 +140,7 @@ var UVsDebug = function ( geometry, w, h) {
 		
    }
 
-	function processFace( face, uvs, index ) {
+	function processFace(uvs, tex ) {
 
 		// draw contour of face
 
@@ -169,7 +169,7 @@ var UVsDebug = function ( geometry, w, h) {
 		ctx.closePath();
 		var img = new Image();
 		img.src = '/images/head.png';
-		drawPattern(img, 256, 256);	
+		drawPattern(tex, 256, 256);	
 /*
 		ctx.beginPath();
 
