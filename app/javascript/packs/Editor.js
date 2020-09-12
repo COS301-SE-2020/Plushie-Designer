@@ -204,7 +204,26 @@ $.ajax({
 
 													//--------------------SETUP SWATCHES-------------------------------------
 													const swatches = document.querySelectorAll(".tray__swatch");
-
+													//---------------------SAVE TO DB----------------------
+													function saveTextureToDB(tex)
+													{
+														switch(currentSelection)
+														{
+															case htemp:  $("#toy_head_tex")[0].value = tex;
+															break;
+															case ttemp:  $("#toy_torso_tex")[0].value = tex;
+															break;
+															case lltemp:  $("#toy_lleg_tex")[0].value = tex;
+															break;
+															case rltemp:  $("#toy_rleg_tex")[0].value = tex;
+															break;
+															case latemp:  $("#toy_larm_tex")[0].value = tex;
+															break;
+															case ratemp:  $("#toy_rarm_tex")[0].value = tex;
+															break;												
+														}
+													}
+													//------------------------------------------------------
 													for (const swatch of swatches) {
 													swatch.addEventListener('click', selectSwatch);
 													}
@@ -219,9 +238,9 @@ $.ajax({
 
 
 														if (color.texture) {
-													
+															saveTextureToDB(color.texture);
 															let txt = new THREE.TextureLoader().load(color.texture);
-															
+														
 															txt.repeat.set( color.size[0], color.size[1], color.size[2]);
 															txt.wrapS = THREE.RepeatWrapping;
 															txt.wrapT = THREE.RepeatWrapping;
@@ -235,6 +254,7 @@ $.ajax({
 														} 
 														else
 														{
+															saveTextureToDB(color.color);
 															new_mtl = new THREE.MeshPhongMaterial({
 																color: parseInt('0x' + color.color),
 																shininess: color.shininess ? color.shininess : 10,
