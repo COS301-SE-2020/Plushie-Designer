@@ -433,7 +433,8 @@ $.ajax({
 															gltf.scene.position.setX(headposx);
 															gltf.scene.position.setZ(headposz);  
 															console.log(gltf.scene.children[0]);
-															$("#toy_head_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
+															$("#toy_head_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
+																$("#toy_head_tex")[0].value).toDataURL("image/png");
 															break;
 														case "torso" : 
 															ttemp = gltf.scene;
@@ -441,35 +442,40 @@ $.ajax({
 															gltf.scene.position.setX(torsoposx);  
 															gltf.scene.position.setZ(torsoposz);
 															console.log(gltf.scene.children[0]);
-															$("#toy_torso_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
+															$("#toy_torso_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
+																, $("#toy_torso_tex")[0].value ).toDataURL("image/png");
 														break;
 														case "leftarm" : 
 															latemp = gltf.scene; 
 															gltf.scene.position.setY(larmposy); 
 															gltf.scene.position.setX(larmposx);
 															gltf.scene.position.setZ(larmposz);
-															$("#toy_larm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
+															$("#toy_larm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
+																, $("#toy_larm_tex")[0].value).toDataURL("image/png");
 														break;
 														case "rightarm" : 
 															ratemp = gltf.scene;
 															gltf.scene.position.setY(rarmposy); 
 															gltf.scene.position.setX(rarmposx); 
 															gltf.scene.position.setZ(rarmposz);
-															$("#toy_rarm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
+															$("#toy_rarm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
+																$("#toy_rarm_tex")[0].value).toDataURL("image/png");
 														break;
 														case "leftleg" : 
 															lltemp = gltf.scene;
 															gltf.scene.position.setY(llegposy); 
 															gltf.scene.position.setX(llegposx);  
 															gltf.scene.position.setZ(llegposz);
-															$("#toy_lleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
+															$("#toy_lleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
+																, $("#toy_lleg_tex")[0].value).toDataURL("image/png");
 														break;
 														case "rightleg" : 
 															rltemp = gltf.scene;
 															gltf.scene.position.setY(rlegposy); 
 															gltf.scene.position.setX(rlegposx);  
 															gltf.scene.position.setZ(rlegposz);
-															$("#toy_rleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
+															$("#toy_rleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
+																$("#toy_rleg_tex")[0].value).toDataURL("image/png");
 														break;	
 													}
 													
