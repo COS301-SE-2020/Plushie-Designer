@@ -342,7 +342,8 @@ $.ajax({
 												//----------------------------------ADD MODEL----------------------------------------
 												function add_model_to_scene(gltf, name)
 												{
-													let color = colors[2];
+													let color = $(".head_tex").data("head_tex");
+													alert($(".head_tex").data("head_tex"));
 														let new_mtl;
 														let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
 															bmp.repeat.set( 3, 3, 3);
@@ -350,8 +351,8 @@ $.ajax({
 															bmp.wrapT = THREE.RepeatWrapping;
 
 													new_mtl = new THREE.MeshPhongMaterial({
-															color: parseInt('0x' + color.color),
-															shininess: color.shininess ? color.shininess : 10,
+															color: parseInt('0x' + color),
+															shininess: 10,
 															bumpMap: bmp,
 															bumpScale: 0.45
 														});
