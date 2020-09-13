@@ -25,34 +25,34 @@ $.ajax({
 	url: "/head_models",
 	dataType: "json",
 	success:  function(head_models){
-		console.log(head_models);
+		// console.log(head_models);
 		$.ajax({
 			url: "/body_models",
 			dataType: "json",
 			success:  function(body_models){
-				console.log(body_models);
+				// console.log(body_models);
 				$.ajax({
 					url: "/l_arm_models",
 					dataType: "json",
 					success:  function(l_arm_models){
-						console.log(l_arm_models);
+						// console.log(l_arm_models);
 						$.ajax({
 							url: "/r_arm_models",
 							dataType: "json",
 							success:  function(r_arm_models){
-								console.log(r_arm_models);
+								// console.log(r_arm_models);
 								$.ajax({
 									url: "/l_leg_models",
 									dataType: "json",
 									success:  function(l_leg_models){
-										console.log(l_leg_models);
+										// console.log(l_leg_models);
 										$.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
 											success:  function(r_leg_models){
 												readTextFile("/file_paths1.JSON", function(text){
 													var data = JSON.parse(text);
-													console.log(r_leg_models);
+													// console.log(r_leg_models);
 													var headchange = false;
 													var torsochange = false;
 													var larmchange = false; 
@@ -775,7 +775,11 @@ $.ajax({
 														
 														for(var i=0;i<head_models.length;++i){
 															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + head_models[i].head_image.url + '" alt="No Image" />';
+															var img = head_models[i].head_image.url;
+															if (img == null){
+																img = "/images/Default_Upl.png";
+															}
+															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 															button.className = 'btn';
 															button.value = i + data.file_paths.models.length;
 															button.onclick = function(){
@@ -789,7 +793,11 @@ $.ajax({
 																																									
 														for(var i=0;i<body_models.length;++i){
 															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + body_models[i].body_image.url + '" alt="No Image" />';
+															var img = body_models[i].body_image.url;
+															if (img == null){
+																img = "/images/Default_Upl.png";
+															}
+															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 															button.className = 'btn';
 															button.value = i + data.file_paths.models.length;
 															button.onclick = function(){
@@ -803,7 +811,11 @@ $.ajax({
 																								
 														for(var i=0;i<l_arm_models.length;++i){
 															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + l_arm_models[i].l_arm_image.url + '" alt="No Image" />';
+															var img = l_arm_models[i].l_arm_image.url;
+															if (img == null){
+																img = "/images/Default_Upl.png";
+															}
+															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 															button.className = 'btn';
 															button.value = i + data.file_paths.models.length;
 															button.onclick = function(){
@@ -817,7 +829,11 @@ $.ajax({
 
 														for(var i=0;i<r_arm_models.length;++i){
 															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + r_arm_models[i].r_arm_image.url + '" alt="No Image" />';
+															var img = r_arm_models[i].r_arm_image.url;
+															if (img == null){
+																img = "/images/Default_Upl.png";
+															}
+															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 															button.className = 'btn';
 															button.value = i + data.file_paths.models.length;
 															button.onclick = function(){
@@ -831,7 +847,11 @@ $.ajax({
 
 														for(var i=0;i<l_leg_models.length;++i){
 															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + l_leg_models[i].l_leg_image.url + '" alt="No Image" />';
+															var img = l_leg_models[i].l_leg_image.url;
+															if (img == null){
+																img = "/images/Default_Upl.png";
+															}
+															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 															button.className = 'btn';
 															button.value = i + data.file_paths.models.length;
 															button.onclick = function(){
@@ -845,7 +865,11 @@ $.ajax({
 
 														for(var i=0;i<r_leg_models.length;++i){
 															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + r_leg_models[i].r_leg_image.url + '" alt="No Image" />';
+															var img = r_leg_models[i].r_leg_image.url;
+															if (img == null){
+																img = "/images/Default_Upl.png";
+															}
+															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 															button.className = 'btn';
 															button.value = i + data.file_paths.models.length;
 															button.onclick = function(){
