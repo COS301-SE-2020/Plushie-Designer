@@ -256,6 +256,10 @@ body {
        justify-content: space-between;
        #delete-p{
            margin-left: 10px;
+           color: var(--secondary-colour);
+       }
+       #edit-p {
+           color: var(--secondary-colour);
        }
     }
    a[href="/toys"] {
@@ -844,7 +848,7 @@ p {
     // border-radius:10px;
     // display:inline-block;
     cursor: pointer;
-    color: #000000;
+    color: var(--secondary-colour);
     font-family: Arial;
     font-size: 1em;
     // padding:11px 43px;
@@ -2155,6 +2159,53 @@ fieldset.toy_shared {
         h1 {
             top: 2em;
             color: var(--q-colour);
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .navbar {
+        height: 7rem;
+        button.navbar-toggle {
+            position: absolute;
+            left: 1rem;
+            top: 0.7rem;
+        }
+        a.navbar-brand {
+            position: absolute;
+            right: -3rem;
+            top: 0.7rem;
+        }
+    }
+    footer {
+        display: inline-block;
+        .footer-left {
+            width: 30% !important;
+            position: absolute;
+            left: 0;
+            bottom: 3px;
+        }
+        .footer-right {
+            width: 30% !important;
+            position: absolute;
+            right: 0;
+            bottom: 3px;
+        }
+    }
+}
+
+@media only screen and (max-width: 626px) {
+    .navbar {
+        height: 7rem;
+        button.navbar-toggle {
+            position: absolute;
+            left: 1rem;
+            top: 0.7rem;
+        }
+        a.navbar-brand {
+            position: absolute;
+            right: -3rem;
+            top: 0.7rem;
         }
     }
 }
