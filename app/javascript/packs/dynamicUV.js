@@ -14,13 +14,12 @@ import {
 	Vector2
 } from "three/build/three.module.js";
 
-var UVsDebug = function ( geometry, w, h, tex) {
+var UVsDebug = function ( geometry, w, h, tex, isTex) {
 
 	// handles wrapping of uv.x > 1 only
 
-	var abc = 'abc';
 	var a = new Vector2();
-	var b = new Vector2();
+	var isTexture = isTex;
 
 	var face = [];
 	var uvs = [];
@@ -140,6 +139,12 @@ var UVsDebug = function ( geometry, w, h, tex) {
 		
    }
 
+   function drawColor(tex)
+   {
+		ctx.fillStyle = tex;
+		ctx.fill();
+   }
+
 	function processFace(uvs, tex ) {
 
 		// draw contour of face
@@ -169,7 +174,13 @@ var UVsDebug = function ( geometry, w, h, tex) {
 		ctx.closePath();
 		var img = new Image();
 		img.src = '/images/head.png';
-		drawPattern(tex, 256, 256);	
+		if(isTexture)
+		{
+			drawPattern(tex, 256, 256);	
+		}
+		else{
+			drawColor(tex);
+		}
 /*
 		ctx.beginPath();
 
