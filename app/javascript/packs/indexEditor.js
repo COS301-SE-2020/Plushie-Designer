@@ -50,7 +50,7 @@ $.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
 											success:  function(r_leg_models){
-												readTextFile("/file_paths.JSON", function(text){
+												readTextFile("/file_paths1.JSON", function(text){
 													var data = JSON.parse(text);
 													console.log(r_leg_models);
 													var headchange = false;
@@ -352,7 +352,8 @@ $.ajax({
 													
 													for(var i=0;i<data.file_paths.models.length;++i){
 														var button = document.createElement('button');
-														button.innerHTML = 'test';
+														//alert(data.file_paths.models.test);
+														button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].head.img + '" />';
 														button.className = 'btn';
 														button.value = i;
 														button.onclick = function(){
@@ -366,7 +367,7 @@ $.ajax({
 																																								
 													for(var i=0;i<data.file_paths.models.length;++i){
 														var button = document.createElement('button');
-														button.innerHTML = 'test';
+														button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].body.img + '" />';
 														button.className = 'btn';
 														button.value = i;
 														button.onclick = function(){
@@ -380,7 +381,7 @@ $.ajax({
 																							
 													for(var i=0;i<data.file_paths.models.length;++i){
 														var button = document.createElement('button');
-														button.innerHTML = 'test';
+														button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_arm.img + '" />';
 														button.className = 'btn';
 														button.value = i;
 														button.onclick = function(){
@@ -394,7 +395,7 @@ $.ajax({
 
 													for(var i=0;i<data.file_paths.models.length;++i){
 														var button = document.createElement('button');
-														button.innerHTML = 'test';
+														button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_arm.img + '" />';
 														button.className = 'btn';
 														button.value = i;
 														button.onclick = function(){
@@ -408,7 +409,7 @@ $.ajax({
 
 													for(var i=0;i<data.file_paths.models.length;++i){
 														var button = document.createElement('button');
-														button.innerHTML = 'test';
+														button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_leg.img + '" />';
 														button.className = 'btn';
 														button.value = i;
 														button.onclick = function(){
@@ -422,7 +423,7 @@ $.ajax({
 
 													for(var i=0;i<data.file_paths.models.length;++i){
 														var button = document.createElement('button');
-														button.innerHTML = 'test';
+														button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_leg.img + '" />';
 														button.className = 'btn';
 														button.value = i;
 														button.onclick = function(){
@@ -630,7 +631,7 @@ $.ajax({
 													//---------------------------------HEAD-------------------------------------------
 													if(head >= data.file_paths.models.length){
 														hurl = head_models[head - data.file_paths.models.length].head_file.url;
-													}else hurl = data.file_paths.models[head].head;
+													}else hurl = data.file_paths.models[head].head.url;
 													loader.load( hurl, (gltf) => add_model_to_scene(gltf , "head")
 														, undefined, function ( error ) { console.error( error );} );
 
@@ -639,7 +640,7 @@ $.ajax({
 													//-------------------------------BODY---------------------------------
 													if(torso >= data.file_paths.models.length){
 														hurl = body_models[torso - data.file_paths.models.length].body_file.url;
-													}else hurl = data.file_paths.models[torso].body;
+													}else hurl = data.file_paths.models[torso].body.url;
 													loader.load( hurl, (gltf) => add_model_to_scene(gltf , "torso")
 														, undefined, function ( error ) { console.error( error );} );
 													//----------------------------------------------------------------
@@ -647,10 +648,10 @@ $.ajax({
 													//------------------------------ARMS---------------------------------
 													if(larm >= data.file_paths.models.length){
 														hurl = l_arm_models[larm - data.file_paths.models.length].l_arm_file.url;
-													}else hurl = data.file_paths.models[larm].l_arm;
+													}else hurl = data.file_paths.models[larm].l_arm.url;
 													if(rarm >= data.file_paths.models.length){
 														hurl1 = r_arm_models[rarm - data.file_paths.models.length].r_arm_file.url;
-													}else hurl1 = data.file_paths.models[rarm].r_arm;
+													}else hurl1 = data.file_paths.models[rarm].r_arm.url;
 													loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftarm")
 														, undefined, function ( error ) { console.error( error );} );
 													loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightarm")
@@ -660,10 +661,10 @@ $.ajax({
 													//---------------------------LEGS--------------------------------------
 													if(lleg >= data.file_paths.models.length){
 														hurl = l_leg_models[lleg - data.file_paths.models.length].l_leg_file.url;
-													}else hurl = data.file_paths.models[lleg].l_leg;
+													}else hurl = data.file_paths.models[lleg].l_leg.url;
 													if(rleg >= data.file_paths.models.length){
 														hurl1 = r_leg_models[rleg - data.file_paths.models.length].r_leg_file.url;
-													}else hurl1 = data.file_paths.models[rleg].r_leg;
+													}else hurl1 = data.file_paths.models[rleg].r_leg.url;
 													loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
 														, undefined, function ( error ) { console.error( error );} );
 													loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
@@ -818,7 +819,7 @@ $.ajax({
 
 															if(head >= data.file_paths.models.length){
 																hurl = head_models[head - data.file_paths.models.length].head_file.url;
-															}else hurl = data.file_paths.models[head].head;
+															}else hurl = data.file_paths.models[head].head.url;
 															loader.load( hurl, (gltf) => add_model_to_scene(gltf , "head")
 																, undefined, function ( error ) { console.error( error );} );
 															headchange = false;
@@ -830,7 +831,7 @@ $.ajax({
 															scene.remove(temp);
 															if(torso >= data.file_paths.models.length){
 																hurl = body_models[torso - data.file_paths.models.length].body_file.url;
-															}else hurl = data.file_paths.models[torso].body;
+															}else hurl = data.file_paths.models[torso].body.url;
 															loader.load( hurl, (gltf) => add_model_to_scene(gltf , "torso")
 															, undefined, function ( error ) { console.error( error );} );
 															torsochange = false;
@@ -843,7 +844,7 @@ $.ajax({
 															
 															if(larm >= data.file_paths.models.length){
 																hurl = l_arm_models[larm - data.file_paths.models.length].l_arm_file.url;
-															}else hurl = data.file_paths.models[larm].l_arm;
+															}else hurl = data.file_paths.models[larm].l_arm.url;
 															loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftarm")
 																, undefined, function ( error ) { console.error( error );} );
 															larmchange = false;
@@ -856,7 +857,7 @@ $.ajax({
 															
 															if(rarm >= data.file_paths.models.length){
 																hurl1 = r_arm_models[rarm - data.file_paths.models.length].r_arm_file.url;
-															}else hurl1 = data.file_paths.models[rarm].r_arm;
+															}else hurl1 = data.file_paths.models[rarm].r_arm.url;
 															loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightarm")
 																, undefined, function ( error ) { console.error( error );} );
 															rarmchange = false;
@@ -869,7 +870,7 @@ $.ajax({
 
 															if(lleg >= data.file_paths.models.length){
 																hurl = l_leg_models[lleg - data.file_paths.models.length].l_leg_file.url;
-															}else hurl = data.file_paths.models[lleg].l_leg;
+															}else hurl = data.file_paths.models[lleg].l_leg.url;
 															loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
 																, undefined, function ( error ) { console.error( error );} );
 															llegchange = false;
@@ -882,7 +883,7 @@ $.ajax({
 
 															if(rleg >= data.file_paths.models.length){
 																hurl1 = r_leg_models[rleg - data.file_paths.models.length].r_leg_file.url;
-															}else hurl1 = data.file_paths.models[rleg].r_leg;
+															}else hurl1 = data.file_paths.models[rleg].r_leg.url;
 															loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
 																, undefined, function ( error ) { console.error( error );} );
 															rlegchange = false;

@@ -2122,14 +2122,26 @@ fieldset.toy_shared {
 
 .preshapes{
     position: relative;
+    left: -0.6em;
+    top: -0.6em;
     display: flexbox;
     width: 25em;
     max-height: 10em;
 
     .btn{
-        color: black;
-        margin-right: 1em;
-        margin-bottom: 1em;
+        background-size: 100% 100%;
+        background: transparent;
+        width: 6em;
+        height: 6em;
+        padding: 0;
+
+        .modimgbtn{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .btn:hover{
+        background-color: var(--primary-colour);
     }
 }
 
@@ -2140,7 +2152,18 @@ fieldset.toy_shared {
     max-height: 10em;
 
     .btn{
-        color: black;
-        margin-right: 1em;
+        background-size: 100% 100%;
+        background: transparent;
+        width: 6em;
+        height: 6em;
+        padding: 0;
+
+        .modimgbtn{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .btn:hover{
+        background-color: var(--primary-colour);
     }
 }
