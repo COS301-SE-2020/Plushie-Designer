@@ -874,6 +874,15 @@ p {
     padding-top: 2rem;
     width: 90%;
     z-index: -2;
+    h1 {
+        position: fixed;
+        left: 5%;
+        width: 16rem;
+        padding: 10px;
+        border-radius: 1rem;
+        // background-color: rgba(235, 232, 230, 0.932);
+        color: var(--secondary-colour);
+    }
     a {
         text-decoration: none;
     }
@@ -886,7 +895,8 @@ p {
         //position: fixed;
         text-align: center;
         width: 100%;
-        margin-top: 6.5vh;
+        margin-top: 10vh;
+        // margin-top: 6.5vh;
         margin-bottom: 8.5vh;
         max-height: 60vh;
         overflow: scroll;
