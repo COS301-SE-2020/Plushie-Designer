@@ -2039,47 +2039,46 @@ fieldset.toy_shared {
     bottom:20%;
     right:30%;
     left: 30%;
-}
-
-#middle{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 10%;
-    margin-top: 15%;
-}
-
-#bottom{
-    display: flex;
-    flex-direction: row;
-    // justify-content: space-between;
-    margin-bottom: 15%;
-}
-
-#upload-head{
-    margin-bottom: 15%;
-    margin-top: 100%;
-}
-
-#upload-body{
-    margin-left: 5em;
-    margin-right: 5em;
-}
-
-#upload-l-arm{
-    margin-left: 4em;
-}
-
-#upload-r-arm{
-    margin-right: 4em;
-}
-
-#upload-l-leg{
-    margin-right: 6em;
-}
-
-#upload-r-leg{
-    margin-left: 6em;
+    #upload-head{
+        margin-bottom: 15%;
+        margin-top: 100%;
+        color: var(--secondary-colour);
+    }
+    #middle{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 10%;
+        margin-top: 15%;
+        #upload-body{
+            margin-left: 5em;
+            margin-right: 5em;
+            color: var(--secondary-colour);
+        }
+        #upload-l-arm{
+            margin-left: 4em;
+            color: var(--secondary-colour);
+        }
+        #upload-r-arm{
+            margin-right: 4em;
+            color: var(--secondary-colour);
+        }
+    }
+    #bottom{
+        display: flex;
+        flex-direction: row;
+        // justify-content: space-between;
+        margin-bottom: 15%;
+        color: var(--secondary-colour);
+        #upload-l-leg{
+            margin-right: 6em;
+            color: var(--secondary-colour);
+        }
+        #upload-r-leg{
+            margin-left: 6em;
+            color: var(--secondary-colour);
+        }
+    }
 }
 
 #search{
