@@ -1668,61 +1668,6 @@ fieldset.toy_shared {
     }
 }
 
-#back {
-    background: url(http://www.tranexnet.com/img/back.png) repeat 20% 20%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 1;
-    z-index: -3;
-    -webkit-animation-name: backgroundAnimate;
-    -webkit-animation-duration: 500s;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-iteration-count: infinite;
-    -moz-animation-name: backgroundAnimate;
-    -moz-animation-duration: 5s;
-    -moz-animation-timing-function: linear;
-    -moz-animation-iteration-count: infinite;
-    -o-animation-name: backgroundAnimate;
-    -o-animation-duration: 500s;
-    -o-animation-timing-function: linear;
-    -o-animation-iteration-count: infinite;
-    animation-name: backgroundAnimate;
-    animation-duration: 500s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-#front {
-    background: url(http://www.tranexnet.com/img/front.png) repeat 35% 35%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.9;
-    z-index: -3;
-    -webkit-animation-name: backgroundAnimate;
-    -webkit-animation-duration: 300s;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-iteration-count: infinite;
-    -moz-animation-name: backgroundAnimate;
-    -moz-animation-duration: 300s;
-    -moz-animation-timing-function: linear;
-    -moz-animation-iteration-count: infinite;
-    -o-animation-name: backgroundAnimate;
-    -o-animation-duration: 300s;
-    -o-animation-timing-function: linear;
-    -o-animation-iteration-count: infinite;
-    animation-name: backgroundAnimate;
-    animation-duration: 300s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-
 /*
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
@@ -2141,4 +2086,111 @@ fieldset.toy_shared {
     position: relative;
     float: right;
     top: 1.2em;
+}
+
+#back {
+    background: url(http://www.tranexnet.com/img/back.png) repeat 20% 20%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    z-index: -3;
+    -webkit-animation-name: backgroundAnimate;
+    -webkit-animation-duration: 500s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: backgroundAnimate;
+    -moz-animation-duration: 5s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-name: backgroundAnimate;
+    -o-animation-duration: 500s;
+    -o-animation-timing-function: linear;
+    -o-animation-iteration-count: infinite;
+    animation-name: backgroundAnimate;
+    animation-duration: 500s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#front {
+    background: url(http://www.tranexnet.com/img/front.png) repeat 35% 35%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.9;
+    z-index: -3;
+    -webkit-animation-name: backgroundAnimate;
+    -webkit-animation-duration: 300s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: backgroundAnimate;
+    -moz-animation-duration: 300s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-name: backgroundAnimate;
+    -o-animation-duration: 300s;
+    -o-animation-timing-function: linear;
+    -o-animation-iteration-count: infinite;
+    animation-name: backgroundAnimate;
+    animation-duration: 300s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@media only screen and (max-width: 1106px) {
+    .nav-s-left, .nav-s-right, .nav-thin {
+        display: none;
+    }
+    .navbar {
+        width: 100%;
+        left: 0;
+    }
+    .toy-index {
+        margin-top: 3em;
+        h1 {
+            top: 2em;
+            color: var(--q-colour);
+        }
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .navbar {
+        height: 7rem;
+        button.navbar-toggle {
+            position: absolute;
+            left: 1rem;
+            top: 0.7rem;
+        }
+        a.navbar-brand {
+            position: absolute;
+            right: -3rem;
+            top: 0.7rem;
+        }
+    }
+    .toy-index {
+        margin-top: 3em;
+        h1 {
+            top: 2em;
+            color: var(--q-colour);
+        }
+        .card-container {
+            .toy-card {
+                width: 30rem;
+                height: 40rem;
+                padding-top: 5rem;
+                font-size: 16px;
+                p {
+                    font-size: 16px;
+                    padding-top: 4px;
+                    padding-bottom: 4px;
+                }
+            }
+        }
+    }
 }
