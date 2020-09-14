@@ -627,11 +627,6 @@ $.ajax({
 														ConfigureCanvas();
 
 													}
-													//--------------------------------------------------------
-
-													window.addEventListener( 'resize', onWindowResize, false );
-
-													function onWindowResize() {
 
 													// var tempy;
 													// var tempx;
@@ -1541,7 +1536,7 @@ $.ajax({
 															// console.log(t);
 														}
 
-													});
+													})
 
 													function onTransitionEnd( event ) {
 
