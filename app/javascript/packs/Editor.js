@@ -228,16 +228,28 @@ $.ajax({
 														switch(currentSelection)
 														{
 															case htemp:  $("#toy_head_tex")[0].value = tex;
+															$("#toy_head_uv")[0].value = UVsDebug(htemp.children[0].geometry, htemp.children[0].scale.x, htemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
 															break;
 															case ttemp:  $("#toy_torso_tex")[0].value = tex;
+															$("#toy_torso_uv")[0].value = UVsDebug(ttemp.children[0].geometry, ttemp.children[0].scale.x, ttemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
 															break;
 															case lltemp:  $("#toy_lleg_tex")[0].value = tex;
+															$("#toy_lleg_uv")[0].value = UVsDebug(lltemp.children[0].geometry, lltemp.children[0].scale.x, lltemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
 															break;
 															case rltemp:  $("#toy_rleg_tex")[0].value = tex;
+															$("#toy_rleg_uv")[0].value = UVsDebug(rltemp.children[0].geometry, rltemp.children[0].scale.x, rltemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
 															break;
 															case latemp:  $("#toy_larm_tex")[0].value = tex;
+															$("#toy_larm_uv")[0].value = UVsDebug(latemp.children[0].geometry, latemp.children[0].scale.x, latemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
 															break;
 															case ratemp:  $("#toy_rarm_tex")[0].value = tex;
+															$("#toy_rarm_uv")[0].value = UVsDebug(ratemp.children[0].geometry, ratemp.children[0].scale.x, ratemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
 															break;												
 														}
 													}
