@@ -342,21 +342,8 @@ $.ajax({
 												//----------------------------------ADD MODEL----------------------------------------
 												function add_model_to_scene(gltf, name)
 												{
-													let color = $(".head_tex").data("head");
-													alert($(".head_tex").data("head"));
-														let new_mtl;
-														let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
-															bmp.repeat.set( 3, 3, 3);
-															bmp.wrapS = THREE.RepeatWrapping;
-															bmp.wrapT = THREE.RepeatWrapping;
-
-													new_mtl = new THREE.MeshPhongMaterial({
-															color: parseInt('0x' + color),
-															shininess: 10,
-															bumpMap: bmp,
-															bumpScale: 0.45
-														});
-													setMaterial(gltf.scene, new_mtl);
+													let color = colors[2];
+													
 
 													gltf.scene.position.setY(1.5);
 													gltf.scene.children[0].castShadow = true;
@@ -372,6 +359,7 @@ $.ajax({
 															break;
 														case "head" :
 															htemp = gltf.scene;
+															color = $(".head_tex").data("head");
 															gltf.scene.position.setY(headposy); 
 															gltf.scene.position.setX(headposx);
 															gltf.scene.position.setZ(headposz);  
@@ -379,6 +367,7 @@ $.ajax({
 															break;
 														case "torso" : 
 															ttemp = gltf.scene;
+															color = $(".torso_tex").data("torso_tex");
 															gltf.scene.position.setY(torsoposy); 
 															gltf.scene.position.setX(torsoposx);  
 															gltf.scene.position.setZ(torsoposz);
@@ -386,30 +375,48 @@ $.ajax({
 														break;
 														case "leftarm" : 
 															latemp = gltf.scene; 
+															color = $(".larm_tex").data("larm_tex");
 															gltf.scene.position.setY(larmposy); 
 															gltf.scene.position.setX(larmposx);
 															gltf.scene.position.setZ(larmposz);
 														break;
 														case "rightarm" : 
 															ratemp = gltf.scene;
+															color = $(".rarm_tex").data("rarm_tex");
 															gltf.scene.position.setY(rarmposy); 
 															gltf.scene.position.setX(rarmposx); 
 															gltf.scene.position.setZ(rarmposz);
 														break;
 														case "leftleg" : 
 															lltemp = gltf.scene;
+															color = $(".lleg_tex").data("lleg_tex");
 															gltf.scene.position.setY(llegposy); 
 															gltf.scene.position.setX(llegposx);  
 															gltf.scene.position.setZ(llegposz);
 														break;
 														case "rightleg" : 
 															rltemp = gltf.scene;
+															color = $(".rleg_tex").data("lleg_tex");
 															gltf.scene.position.setY(rlegposy); 
 															gltf.scene.position.setX(rlegposx);  
 															gltf.scene.position.setZ(rlegposz);
 														break;	
 													}
+													let new_mtl;
+													let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
+														bmp.repeat.set( 3, 3, 3);
+														bmp.wrapS = THREE.RepeatWrapping;
+														bmp.wrapT = THREE.RepeatWrapping;
+
+													new_mtl = new THREE.MeshPhongMaterial({
+															color: parseInt('0x' + color),
+															shininess: 10,
+															bumpMap: bmp,
+															bumpScale: 0.45
+														});
 													
+													setMaterial(gltf.scene, new_mtl);
+												
 												}
 												//---------------------------------------------------------------------------------
 												//----------------------------------ADD ROOM----------------------------------------
