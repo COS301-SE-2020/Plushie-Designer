@@ -795,8 +795,8 @@ $.ajax({
 														// var w = window.open('', '');
 														// w.document.title = "Screenshot";
 														var img = new Image();
-														renderer.setSize(500, 500);
-														camera.aspect = 500 / 500;
+														renderer.setSize(972, 500);
+														camera.aspect = 972 / 500;
 														camera.position.set(0, 0.32, 8.5);
 														camera.updateProjectionMatrix();
 														renderer.render(scene, camera);
