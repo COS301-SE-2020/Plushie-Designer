@@ -51,7 +51,7 @@ $.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
 											success:  function(r_leg_models){
-												readTextFile("/file_paths1.JSON", function(text){
+												readTextFile("/file_paths.JSON", function(text){
 													var data = JSON.parse(text);
 													// console.log(r_leg_models);
 													var headchange = false;
@@ -61,6 +61,9 @@ $.ajax({
 													var llegchange = false;
 													var rlegchange = false;
 													var bchange = false;
+
+													var type = 0;
+													var typechange = false;
 
 													var hair = $("#toy_head")[0].value;
 													var head = $("#toy_head")[0].value;
@@ -698,6 +701,12 @@ $.ajax({
 													//----------------------------------------------------------------
 													//-------------------------------ANIMATE---------------------------------
 													var animate = function () {
+														if(typechange){
+															clearcontrols();
+															populateControls();
+															typechange=false;
+														}
+
 														if(bchange){
 															updateIndexes();
 															if(rtmp != 2){
@@ -842,6 +851,36 @@ $.ajax({
 														$("#toy_image")[0].value = img.src;
 													}
 
+													function clearcontrols(){
+														var hprsh = document.getElementById("headprsh");
+														var tprsh = document.getElementById("torsoprsh");
+														var laprsh = document.getElementById("larmprsh");
+														var raprsh = document.getElementById("rarmprsh");
+														var llprsh = document.getElementById("llegprsh");
+														var rlprsh = document.getElementById("rlegprsh");
+													
+														hprsh.innerHTML = "";
+														tprsh.innerHTML = "";
+														laprsh.innerHTML = "";
+														raprsh.innerHTML = "";
+														llprsh.innerHTML = "";
+														rlprsh.innerHTML = "";
+													
+														var hupsh = document.getElementById("headupsh");
+														var tupsh = document.getElementById("torsoupsh");
+														var laupsh = document.getElementById("larmupsh");
+														var raupsh = document.getElementById("rarmupsh");
+														var llupsh = document.getElementById("llegupsh");
+														var rlupsh = document.getElementById("rlegupsh");
+													
+														hupsh.innerHTML = "";
+														tupsh.innerHTML = "";
+														laupsh.innerHTML = "";
+														raupsh.innerHTML = "";
+														llupsh.innerHTML = "";
+														rlupsh.innerHTML = "";
+													}
+
 													function populateControls(){
 														var hprsh = document.getElementById("headprsh");
 														var tprsh = document.getElementById("torsoprsh");
@@ -851,100 +890,112 @@ $.ajax({
 														var rlprsh = document.getElementById("rlegprsh");
 														
 														for(var i=0;i<data.file_paths.models.length;++i){
-															var button = document.createElement('button');
-															//alert(data.file_paths.models.test);
-															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].head.img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i;
-															button.onclick = function(){
-																if(head!=this.value){
-																	headchange = true;
-																	head = this.value;
-																	$("#toy_head")[0].value = head;
-																}																
-															};
-															hprsh.appendChild(button);
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																//alert(data.file_paths.models.test);
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].head.img + '" />';
+																button.className = 'btn';
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){
+																	if(head!=this.value){
+																		headchange = true;
+																		head = this.value;
+																		$("#toy_head")[0].value = head;
+																	}																
+																};
+																hprsh.appendChild(button);
+															}
 														}
 																																									
 														for(var i=0;i<data.file_paths.models.length;++i){
-															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].body.img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i;
-															button.onclick = function(){
-																if(torso!=this.value){
-																	torsochange = true;
-																	torso = this.value;
-																	$("#toy_torso")[0].value = torso;
-																}
-															};
-															tprsh.appendChild(button);
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].body.img + '" />';
+																button.className = 'btn';
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){
+																	if(torso!=this.value){
+																		torsochange = true;
+																		torso = this.value;
+																		$("#toy_torso")[0].value = torso;
+																	}
+																};
+																tprsh.appendChild(button);
+															}
 														}
 																								
 														for(var i=0;i<data.file_paths.models.length;++i){
-															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_arm.img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i;
-															button.onclick = function(){
-																if(larm!=this.value){
-																	larmchange = true;
-																	larm = this.value;
-																	$("#toy_arms")[0].value = larm;
-																}																
-															};
-															laprsh.appendChild(button);
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_arm.img + '" />';
+																button.className = 'btn';
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){
+																	if(larm!=this.value){
+																		larmchange = true;
+																		larm = this.value;
+																		$("#toy_arms")[0].value = larm;
+																	}																
+																};
+																laprsh.appendChild(button);
+															}
 														}
 
 														for(var i=0;i<data.file_paths.models.length;++i){
-															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_arm.img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i;
-															button.onclick = function(){
-																if(rarm!=this.value){
-																	rarmchange = true;
-																	rarm = this.value;
-																	$("#toy_r_arm")[0].value = rarm;
-																}																
-															};
-															raprsh.appendChild(button);
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_arm.img + '" />';
+																button.className = 'btn';
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){
+																	if(rarm!=this.value){
+																		rarmchange = true;
+																		rarm = this.value;
+																		$("#toy_r_arm")[0].value = rarm;
+																	}																
+																};
+																raprsh.appendChild(button);
+															}
 														}
 
 														for(var i=0;i<data.file_paths.models.length;++i){
-															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_leg.img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i;
-															button.onclick = function(){
-																if(lleg!=this.value){
-																	llegchange = true;
-																	lleg = this.value;
-																	$("#toy_legs")[0].value = lleg;
-																}															
-															};
-															llprsh.appendChild(button);
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_leg.img + '" />';
+																button.className = 'btn';
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){
+																	if(lleg!=this.value){
+																		llegchange = true;
+																		lleg = this.value;
+																		$("#toy_legs")[0].value = lleg;
+																	}															
+																};
+																llprsh.appendChild(button);
+															}
 														}
 
 														for(var i=0;i<data.file_paths.models.length;++i){
-															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_leg.img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i;
-															button.onclick = function(){
-																if(rleg!=this.value){
-																	rlegchange = true;
-																	rleg = this.value;
-																	$("#toy_r_leg")[0].value = rleg;
-																}																
-															};
-															rlprsh.appendChild(button);
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_leg.img + '" />';
+																button.className = 'btn';
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){
+																	if(rleg!=this.value){
+																		rlegchange = true;
+																		rleg = this.value;
+																		$("#toy_r_leg")[0].value = rleg;
+																	}																
+																};
+																rlprsh.appendChild(button);
+															}
 														}
 
 														var hupsh = document.getElementById("headupsh");
@@ -1075,7 +1126,106 @@ $.ajax({
 														}
 													}
 
-													$(document).ready(function(){										
+													$(document).ready(function(){	
+														$('#humanoid').click(function () {
+															if(type!=0){
+																type=0;
+																typechange=true;														
+																$('#lach').html('Left Arm');
+																$('#rach').html('Right Arm');
+																$('#llch').html('Left Leg');
+																$('#rlch').html('Right Leg');
+
+																hair = 0;
+																head = 0;
+																torso = 0;
+																larm = 0;
+																rarm = 0;
+																lleg = 0;
+																rleg = 0;
+
+																$("#toy_head")[0].value = head;
+																$("#toy_torso")[0].value = torso;
+																$("#toy_arms")[0].value = larm;
+																$("#toy_r_leg")[0].value = rarm;
+																$("#toy_r_arm")[0].value = lleg;
+																$("#toy_legs")[0].value = rleg;
+
+																headchange = true;
+																torsochange = true;
+																larmchange = true; 
+																rarmchange = true; 
+																llegchange = true;
+																rlegchange = true;
+															}
+														});
+														
+														$('#animal').click(function () {
+															if(type!=1){
+																type=1;
+																typechange=true;
+																$('#lach').html('Left Arm');
+																$('#rach').html('Right Arm');
+																$('#llch').html('Left Leg');
+																$('#rlch').html('Right Leg');
+
+																hair = 2;
+																head = 2;
+																torso = 2;
+																larm = 2;
+																rarm = 2;
+																lleg = 2;
+																rleg = 2;
+
+																$("#toy_head")[0].value = head;
+																$("#toy_torso")[0].value = torso;
+																$("#toy_arms")[0].value = larm;
+																$("#toy_r_leg")[0].value = rarm;
+																$("#toy_r_arm")[0].value = lleg;
+																$("#toy_legs")[0].value = rleg;
+
+																headchange = true;
+																torsochange = true;
+																larmchange = true; 
+																rarmchange = true; 
+																llegchange = true;
+																rlegchange = true;
+															}
+														});
+														
+														$('#fish').click(function () {
+															if(type!=2){
+																type=2;
+																typechange=true;
+																$('#lach').html('Left Fin');
+																$('#rach').html('Right Fin');
+																$('#llch').html('Back Fin');
+																$('#rlch').html('Tail Fin');
+
+																hair = 3;
+																head = 3;
+																torso = 3;
+																larm = 3;
+																rarm = 3;
+																lleg = 3;
+																rleg = 3;
+
+																$("#toy_head")[0].value = head;
+																$("#toy_torso")[0].value = torso;
+																$("#toy_arms")[0].value = larm;
+																$("#toy_r_leg")[0].value = rarm;
+																$("#toy_r_arm")[0].value = lleg;
+																$("#toy_legs")[0].value = rleg;
+
+																headchange = true;
+																torsochange = true;
+																larmchange = true; 
+																rarmchange = true; 
+																llegchange = true;
+																rlegchange = true;
+															}
+														});
+
 														$('#headup').attr("value",-headposy);
 														$('#headleft').attr("value",headposx);
 														$('#headfront').attr("value",-headposz);
