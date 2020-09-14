@@ -379,12 +379,13 @@ $.ajax({
 															break;
 															case "rightleg" : 
 																rltemp = gltf.scene;
-																color = $(".rlegtex").data("llegtex");
+																color = $(".rlegtex").data("rlegtex");
 																gltf.scene.position.setY(rlegposy); 
 																gltf.scene.position.setX(rlegposx);  
 																gltf.scene.position.setZ(rlegposz);
 															break;	
 														}
+														if(color == null) color = colors[2].color;
 														let new_mtl;
 													let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
 														bmp.repeat.set( 3, 3, 3);

@@ -391,21 +391,8 @@ $.ajax({
 													//----------------------------------ADD MODEL----------------------------------------
 													function add_model_to_scene(gltf, name)
 													{
-														let color = colors[2];
-															let new_mtl;
-															let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
-																bmp.repeat.set( 3, 3, 3);
-																bmp.wrapS = THREE.RepeatWrapping;
-																bmp.wrapT = THREE.RepeatWrapping;
-
-														new_mtl = new THREE.MeshPhongMaterial({
-																color: parseInt('0x' + color.color),
-																shininess: color.shininess ? color.shininess : 10,
-																bumpMap: bmp,
-																bumpScale: 0.45
-															});
-														setMaterial(gltf.scene, new_mtl);
-
+														let color = colors[2].color;
+															
 														gltf.scene.position.setY(1.5);
 														gltf.scene.children[0].castShadow = true;
 														gltf.scene.name = name;
@@ -420,55 +407,74 @@ $.ajax({
 																break;
 															case "head" :
 																htemp = gltf.scene;
+																color = $("#toy_head_tex")[0].value;
 																gltf.scene.position.setY(headposy); 
 																gltf.scene.position.setX(headposx);
 																gltf.scene.position.setZ(headposz);  
 																console.log(gltf.scene.children[0]);
 																$("#toy_head_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
-																	$("#toy_head_tex")[0].value, false).toDataURL("image/png");
+																	color, false).toDataURL("image/png");
 																break;
 															case "torso" : 
 																ttemp = gltf.scene;
+																color = $("#toy_torso_tex")[0].value;
 																gltf.scene.position.setY(torsoposy); 
 																gltf.scene.position.setX(torsoposx);  
 																gltf.scene.position.setZ(torsoposz);
 																console.log(gltf.scene.children[0]);
 																$("#toy_torso_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
-																	, $("#toy_torso_tex")[0].value, false ).toDataURL("image/png");															
+																	, color, false ).toDataURL("image/png");															
 																break;
 															case "leftarm" : 
 																latemp = gltf.scene; 
+																color = $("#toy_larm_tex")[0].value;
 																gltf.scene.position.setY(larmposy); 
 																gltf.scene.position.setX(larmposx);
 																gltf.scene.position.setZ(larmposz);
 																$("#toy_larm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
-																	, $("#toy_larm_tex")[0].value, false).toDataURL("image/png");
+																	, color, false).toDataURL("image/png");
 															break;
 															case "rightarm" : 
 																ratemp = gltf.scene;
+																color = $("#toy_rarm_tex")[0].value;
 																gltf.scene.position.setY(rarmposy); 
 																gltf.scene.position.setX(rarmposx); 
 																gltf.scene.position.setZ(rarmposz);
 																$("#toy_rarm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
-																	$("#toy_rarm_tex")[0].value, false).toDataURL("image/png");
+																	color , false).toDataURL("image/png");
 															break;
 															case "leftleg" : 
 																lltemp = gltf.scene;
+																color = $("#toy_lleg_tex")[0].value;
 																gltf.scene.position.setY(llegposy); 
 																gltf.scene.position.setX(llegposx);  
 																gltf.scene.position.setZ(llegposz);
 																$("#toy_lleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
-																	, $("#toy_lleg_tex")[0].value, false).toDataURL("image/png");
+																	,color , false).toDataURL("image/png");
 															break;
 															case "rightleg" : 
 																rltemp = gltf.scene;
+																color = $("#toy_rleg_tex")[0].value;
 																gltf.scene.position.setY(rlegposy); 
 																gltf.scene.position.setX(rlegposx);  
 																gltf.scene.position.setZ(rlegposz);
 																$("#toy_rleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
-																	$("#toy_rleg_tex")[0].value, false).toDataURL("image/png");
+																	color , false).toDataURL("image/png");
 															break;	
 														}
+														let new_mtl;
+															let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
+																bmp.repeat.set( 3, 3, 3);
+																bmp.wrapS = THREE.RepeatWrapping;
+																bmp.wrapT = THREE.RepeatWrapping;
+
+														new_mtl = new THREE.MeshPhongMaterial({
+																color: parseInt('0x' + color),
+																shininess: 10,
+																bumpMap: bmp,
+																bumpScale: 0.45
+															});
+														setMaterial(gltf.scene, new_mtl);
 														
 													}
 													//---------------------------------------------------------------------------------
