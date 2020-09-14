@@ -173,13 +173,13 @@ var UVsDebug = function ( geometry, w, h, tex, isTex) {
 		
 		ctx.closePath();
 		var img = new Image();
-		img.src = '/images/head.png';
+		img.src = tex;
 		if(isTexture)
 		{
-			drawPattern(tex, 256, 256);	
+			drawPattern(img, 256, 256);	
 		}
 		else{
-			drawColor(tex);
+			drawColor('#' + tex);
 		}
 /*
 		ctx.beginPath();
