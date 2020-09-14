@@ -6,6 +6,7 @@
   <div class="form-inputs">
     <%= f.input :l_leg_file, :label => "Left Leg File", required: true, error: 'Left leg file is mandatory, please specify one'   %>
     <%= f.input :l_leg_image%>
+    <%= f.input :model_type, collection: [["Humanoid", 0], ["Land Animal", 1], ["Sea Creature", 2]], selected: "Humanoid"%>
     <div class="hinput">
       <%= f.input :tp, input_html: {value: ""} %>
     </div>

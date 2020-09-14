@@ -825,111 +825,123 @@ $.ajax({
 														var rlupsh = document.getElementById("rlegupsh");
 														
 														for(var i=0;i<head_models.length;++i){
-															var button = document.createElement('button');
-															var img = head_models[i].head_image.url;
-															if (img == null){
-																img = "/images/Default_Upl.png";
+															if(head_models[i].model_type == type){
+																var button = document.createElement('button');
+																var img = head_models[i].head_image.url;
+																if (img == null){
+																	img = "/images/Default_Upl.png";
+																}
+																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
+																button.className = 'btn';
+																button.value = i + data.file_paths.models.length;
+																button.onclick = function(){
+																	if(head!=this.value){
+																		headchange = true;
+																		head = this.value;
+																	}																
+																};
+																hupsh.appendChild(button);
 															}
-															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
-															button.className = 'btn';
-															button.value = i + data.file_paths.models.length;
-															button.onclick = function(){
-																if(head!=this.value){
-																	headchange = true;
-																	head = this.value;
-																}																
-															};
-															hupsh.appendChild(button);
 														}
 																																									
 														for(var i=0;i<body_models.length;++i){
-															var button = document.createElement('button');
-															var img = body_models[i].body_image.url;
-															if (img == null){
-																img = "/images/Default_Upl.png";
-															}
-															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
-															button.className = 'btn';
-															button.value = i + data.file_paths.models.length;
-															button.onclick = function(){
-																if(torso!=this.value){
-																	torsochange = true;
-																	torso = this.value;
+															if(body_models[i].model_type == type){
+																var button = document.createElement('button');
+																var img = body_models[i].body_image.url;
+																if (img == null){
+																	img = "/images/Default_Upl.png";
 																}
-															};
-															tupsh.appendChild(button);
+																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
+																button.className = 'btn';
+																button.value = i + data.file_paths.models.length;
+																button.onclick = function(){
+																	if(torso!=this.value){
+																		torsochange = true;
+																		torso = this.value;
+																	}
+																};
+																tupsh.appendChild(button);
+															}
 														}
 																								
 														for(var i=0;i<l_arm_models.length;++i){
-															var button = document.createElement('button');
-															var img = l_arm_models[i].l_arm_image.url;
-															if (img == null){
-																img = "/images/Default_Upl.png";
+															if(l_arm_models[i].model_type == type){
+																var button = document.createElement('button');
+																var img = l_arm_models[i].l_arm_image.url;
+																if (img == null){
+																	img = "/images/Default_Upl.png";
+																}
+																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
+																button.className = 'btn';
+																button.value = i + data.file_paths.models.length;
+																button.onclick = function(){
+																	if(larm!=this.value){
+																		larmchange = true;
+																		larm = this.value;
+																	}																
+																};
+																laupsh.appendChild(button);
 															}
-															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
-															button.className = 'btn';
-															button.value = i + data.file_paths.models.length;
-															button.onclick = function(){
-																if(larm!=this.value){
-																	larmchange = true;
-																	larm = this.value;
-																}																
-															};
-															laupsh.appendChild(button);
 														}
 
 														for(var i=0;i<r_arm_models.length;++i){
-															var button = document.createElement('button');
-															var img = r_arm_models[i].r_arm_image.url;
-															if (img == null){
-																img = "/images/Default_Upl.png";
+															if(r_arm_models[i].model_type == type){
+																var button = document.createElement('button');
+																var img = r_arm_models[i].r_arm_image.url;
+																if (img == null){
+																	img = "/images/Default_Upl.png";
+																}
+																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
+																button.className = 'btn';
+																button.value = i + data.file_paths.models.length;
+																button.onclick = function(){
+																	if(rarm!=this.value){
+																		rarmchange = true;
+																		rarm = this.value;
+																	}																
+																};
+																raupsh.appendChild(button);
 															}
-															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
-															button.className = 'btn';
-															button.value = i + data.file_paths.models.length;
-															button.onclick = function(){
-																if(rarm!=this.value){
-																	rarmchange = true;
-																	rarm = this.value;
-																}																
-															};
-															raupsh.appendChild(button);
 														}
 
 														for(var i=0;i<l_leg_models.length;++i){
-															var button = document.createElement('button');
-															var img = l_leg_models[i].l_leg_image.url;
-															if (img == null){
-																img = "/images/Default_Upl.png";
+															if(l_leg_models[i].model_type == type){
+																var button = document.createElement('button');
+																var img = l_leg_models[i].l_leg_image.url;
+																if (img == null){
+																	img = "/images/Default_Upl.png";
+																}
+																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
+																button.className = 'btn';
+																button.value = i + data.file_paths.models.length;
+																button.onclick = function(){
+																	if(lleg!=this.value){
+																		llegchange = true;
+																		lleg = this.value;
+																	}															
+																};
+																llupsh.appendChild(button);
 															}
-															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
-															button.className = 'btn';
-															button.value = i + data.file_paths.models.length;
-															button.onclick = function(){
-																if(lleg!=this.value){
-																	llegchange = true;
-																	lleg = this.value;
-																}															
-															};
-															llupsh.appendChild(button);
 														}
 
 														for(var i=0;i<r_leg_models.length;++i){
-															var button = document.createElement('button');
-															var img = r_leg_models[i].r_leg_image.url;
-															if (img == null){
-																img = "/images/Default_Upl.png";
+															if(r_leg_models[i].model_type == type){
+																var button = document.createElement('button');
+																var img = r_leg_models[i].r_leg_image.url;
+																if (img == null){
+																	img = "/images/Default_Upl.png";
+																}
+																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
+																button.className = 'btn';
+																button.value = i + data.file_paths.models.length;
+																button.onclick = function(){
+																	if(rleg!=this.value){
+																		rlegchange = true;
+																		rleg = this.value;
+																	}																
+																};
+																rlupsh.appendChild(button);
 															}
-															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
-															button.className = 'btn';
-															button.value = i + data.file_paths.models.length;
-															button.onclick = function(){
-																if(rleg!=this.value){
-																	rlegchange = true;
-																	rleg = this.value;
-																}																
-															};
-															rlupsh.appendChild(button);
 														}
 													}
 
