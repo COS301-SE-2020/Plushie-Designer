@@ -9,64 +9,26 @@
                 <!-- Title -->
                 <% if toy.shared || current_user == toy.user%>
                     <div class="toy-card">
-                        <!-- <div class="toy-download-pdf"> -->
-                            <%= link_to '<span class="glyphicon glyphicon-download-alt"></span>'.html_safe, displayPDF_path(toy.id, format: :pdf),target: :_blank, :class => "toy-download-pdf" %>
-                        <!-- </div> -->
-                        <div class="card-content">
-                            <img class="PlushImg" src=<%= toy.image %>>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <h4 class="toy-name" style="font-size: 20px;"><%= link_to toy.name, toy %></h4>
-                                    </div>
-                                    <!-- Author -->
-                                    <div class="col-8">
-                                        <p class="toy-author">
-                                            Plushie By:<strong> <%= toy.user.username %></strong>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <!-- Date/Time -->
-                                    <p class="created-on">
-                                        <span class="glyphicon glyphicon-time"></span> Created: <%= time_ago_in_words(toy.created_at) %>
-                                    </p>
-                                    
-                                    <p class="toy-rating">
-                                        <% toy.rating = 0 %>
-                                        <% toy.ratings.each do |r| %>
-                                            <% toy.rating = toy.rating + r.value %>
-                                            <% @num = @num + 1 %>
-                                        <% end %>
-                                        Rating:<strong> <%= toy.rating/@num %>/5</strong>
-                                        <% @num = 0 %>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- <div class="toy-footer-row">
-                                <h4 class="toy-name" style="font-size: 20px;"><%= link_to toy.name, toy %></h4> -->
-                                <!-- Author -->
-                                <!-- <p class="toy-author">
-                                    Plushie By:<strong> <%= toy.user.username %></strong>
-                                </p>
-                            </div> -->
-                            <!-- Date/Time -->
-                            <!-- <p class="created-on">
-                                <span class="glyphicon glyphicon-time"></span> Created: <%= time_ago_in_words(toy.created_at) %>
-                            </p>
-                            
-                            <p class="toy-rating">
-                                <% toy.rating = 0 %>
-                                <% toy.ratings.each do |r| %>
-                                    <% toy.rating = toy.rating + r.value %>
-                                    <% @num = @num + 1 %>
-                                <% end %>
-                                Rating:<strong> <%= toy.rating/@num %>/5</strong>
-                                <% @num = 0 %>
-                            </p>
-                            <%= link_to 'DOWNLOAD PDF', displayPDF_path(toy.id, format: :pdf),target: :_blank %> -->
-                        </div>
+                        <img class="PlushImg" src=<%= toy.image %>>
+                        <h4 style="font-size: 20px;"><%= link_to toy.name, toy %></h4>
+                        <!-- Date/Time -->
+                        <p class="created-on">
+                            <span class="glyphicon glyphicon-time"></span> Was created: <%= time_ago_in_words(toy.created_at) %>
+                        </p>
+                        <!-- Author -->
+                        <p>
+                            Plushie By:<strong> <%= toy.user.username %></strong>
+                        </p>
+                        <p>
+                            <% toy.rating = 0 %>
+                            <% toy.ratings.each do |r| %>
+                                <% toy.rating = toy.rating + r.value %>
+                                <% @num = @num + 1 %>
+                            <% end %>
+                            Rating:<strong> <%= toy.rating/@num %>/5</strong>
+                            <% @num = 0 %>
+                        </p>
+                        <%= link_to 'DOWNLOAD PDF', displayPDF_path(toy.id, format: :pdf),target: :_blank %>
                     </div>
                     <!-- <hr> -->
                     <!-- toyed Comments -->
