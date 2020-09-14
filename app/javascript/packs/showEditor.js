@@ -342,8 +342,8 @@ $.ajax({
 												//----------------------------------ADD MODEL----------------------------------------
 												function add_model_to_scene(gltf, name)
 												{
-													let color = $(".head_tex").data("head_tex");
-													alert($(".head_tex").data("head_tex"));
+													let color = $(".head_tex").data("head");
+													alert($(".head_tex").data("head"));
 														let new_mtl;
 														let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
 															bmp.repeat.set( 3, 3, 3);
