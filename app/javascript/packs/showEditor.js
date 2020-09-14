@@ -359,7 +359,7 @@ $.ajax({
 															break;
 														case "head" :
 															htemp = gltf.scene;
-															color = $(".head_tex").data("head");
+															color = $(".head_tex").data("head_tex");
 															gltf.scene.position.setY(headposy); 
 															gltf.scene.position.setX(headposx);
 															gltf.scene.position.setZ(headposz);  
