@@ -943,6 +943,21 @@ $.ajax({
 																$('#rach').html('Right Arm');
 																$('#llch').html('Left Leg');
 																$('#rlch').html('Right Leg');
+
+																hair = 0;
+																head = 0;
+																torso = 0;
+																larm = 0;
+																rarm = 0;
+																lleg = 0;
+																rleg = 0;
+
+																headchange = true;
+																torsochange = true;
+																larmchange = true; 
+																rarmchange = true; 
+																llegchange = true;
+																rlegchange = true;
 															}
 														});
 														
@@ -954,6 +969,21 @@ $.ajax({
 																$('#rach').html('Right Arm');
 																$('#llch').html('Left Leg');
 																$('#rlch').html('Right Leg');
+
+																hair = 2;
+																head = 2;
+																torso = 2;
+																larm = 2;
+																rarm = 2;
+																lleg = 2;
+																rleg = 2;
+
+																headchange = true;
+																torsochange = true;
+																larmchange = true; 
+																rarmchange = true; 
+																llegchange = true;
+																rlegchange = true;
 															}
 														});
 														
@@ -965,6 +995,21 @@ $.ajax({
 																$('#rach').html('Right Fin');
 																$('#llch').html('Back Fin');
 																$('#rlch').html('Tail Fin');
+
+																hair = 3;
+																head = 3;
+																torso = 3;
+																larm = 3;
+																rarm = 3;
+																lleg = 3;
+																rleg = 3;
+
+																headchange = true;
+																torsochange = true;
+																larmchange = true; 
+																rarmchange = true; 
+																llegchange = true;
+																rlegchange = true;
 															}
 														});
 

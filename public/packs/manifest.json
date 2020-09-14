@@ -32,10 +32,10 @@
     },
     "indexEditor": {
       "js": [
-        "/packs/js/indexEditor-9d239a7cfe93cbb1b3a5.js"
+        "/packs/js/indexEditor-4d89d685b6bb615b87c7.js"
       ],
       "js.map": [
-        "/packs/js/indexEditor-9d239a7cfe93cbb1b3a5.js.map"
+        "/packs/js/indexEditor-4d89d685b6bb615b87c7.js.map"
       ]
     },
     "showEditor": {
@@ -47,8 +47,8 @@
       ]
     }
   },
-  "indexEditor.js": "/packs/js/indexEditor-9d239a7cfe93cbb1b3a5.js",
-  "indexEditor.js.map": "/packs/js/indexEditor-9d239a7cfe93cbb1b3a5.js.map",
+  "indexEditor.js": "/packs/js/indexEditor-4d89d685b6bb615b87c7.js",
+  "indexEditor.js.map": "/packs/js/indexEditor-4d89d685b6bb615b87c7.js.map",
   "showEditor.js": "/packs/js/showEditor-cc8bd28f76eeb089d257.js",
   "showEditor.js.map": "/packs/js/showEditor-cc8bd28f76eeb089d257.js.map"
 }
