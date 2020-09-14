@@ -803,7 +803,7 @@ body {
 p {
     overflow-wrap: break-word;
     max-width: 18em;
-    min-width: 10em;
+    // min-width: 10em;
 }
 
 .edit-btn {
@@ -907,32 +907,95 @@ p {
         overflow-x: hidden;
         z-index: 99;
         .toy-card {
-            background-color: var(--secondary-colour);
-            //background-color: var(--tertiary-colour);
-            color: var(--q-colour);
-            //color: white;
-            // color: var(--secondary-colour);
-            border-radius: 0.5em;
-            padding-top: 1.5%;
-            width: 18em;
-            height: 23em;
+            background-color: white;
+            width: 35rem;
+            height: 25rem;
+            border-radius: 5px;
             display: inline-block;
-            margin: 0.5%;
-            text-align: center;
-            img {
-                border-radius: 5px;
-            }
+            margin: 0.7rem;
             a {
-                color: var(--q-colour);
-                //color: white;
+                font-weight: 700;
             }
             a:hover {
-                color: rgb(255, 255, 255);
+                color: var(--p-colour);
+                background-color: initial;
+                transition: 0s;
             }
-            p.created-on {
-                width: 80%;
-                margin: auto;
+            .toy-download-pdf {
+                position: absolute;
+                border-radius: 5px;
+                width: 3rem;
+                height: 3rem;
+                margin-left: -16rem;
+                margin-top: 1.5rem;
+                padding: 7px 8px 7px 8px;
+                z-index: 99;
+                background-color: white;
             }
+            .toy-download-pdf:hover {
+                background-color: var(--q-colour);
+                color: var(--secondary-colour);
+            }
+            .card-content {
+                position: absolute;
+                z-index: 0;
+                .PlushImg {
+                    width: 35rem;
+                    height: 18rem;
+                    position: relative;
+                    top: 0;
+                    border-radius: 5px 5px 0px 0px;
+                }
+                .card-footer {
+                    .row {
+                        width: 100%;
+                        margin: 0;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        .col-4 {
+                            float: left;
+                        }
+                        .col-8 {
+                            float: right;
+                            margin-top: 10px;
+                        }
+                        .created-on {
+                            float: left;
+                        }
+                        .toy-rating {
+                            float: right;
+                        }
+                    }
+                }
+            }
+            
+
+
+
+
+            // below is the old style for the plushie cards
+            // background-color: var(--secondary-colour);
+            // color: var(--q-colour);
+            // border-radius: 0.5em;
+            // padding-top: 1.5%;
+            // width: 18em;
+            // height: 23em;
+            // display: inline-block;
+            // margin: 0.5%;
+            // text-align: center;
+            // img {
+            //     border-radius: 5px;
+            // }
+            // a {
+            //     color: var(--q-colour);
+            // }
+            // a:hover {
+            //     color: rgb(255, 255, 255);
+            // }
+            // p.created-on {
+            //     width: 80%;
+            //     margin: auto;
+            // }
         }
     }
 
@@ -2224,24 +2287,151 @@ fieldset.toy_shared {
             top: 0.7rem;
         }
     }
-    .toy-index {
-        margin-top: 3em;
-        h1 {
-            top: 2em;
-            color: var(--q-colour);
+}
+
+// .toy-index {
+//     margin-top: 3em;
+//     h1 {
+//         top: 2em;
+//         color: var(--q-colour);
+//     }
+//     .card-container {
+//         .toy-card {
+//             width: 30rem;
+//             height: 40rem;
+//             padding-top: 5rem;
+//             font-size: 16px;
+//             p {
+//                 font-size: 16px;
+//                 padding-top: 4px;
+//                 padding-bottom: 4px;
+//             }
+//         }
+//     }
+//     .types{
+//         position: relative;
+//         display: flexbox;
+//         width: 15em;
+//         top: 6.5em;
+//         left: 4.35em;
+//     }
+
+//     .typebtn{
+//         color: black;
+//         width: 15em;
+//         margin-bottom: 1em;
+//     }
+
+//     .preshapes{
+//         position: relative;
+//         left: -0.6em;
+//         top: -0.6em;
+//         display: flexbox;
+//         width: 25em;
+//         max-height: 10em;
+
+//         .btn{
+//             background-size: 100% 100%;
+//             background: transparent;
+//             width: 6em;
+//             height: 6em;
+//             padding: 0;
+
+//             .modimgbtn{
+//                 width: 100%;
+//                 height: 100%;
+//             }
+//         }
+//         .btn:hover{
+//             background-color: var(--primary-colour);
+//         }
+//     }
+
+//     .uplshapes{
+//         position: relative;
+//         display: flexbox;
+//         width: 24em;
+//         max-height: 10em;
+
+//         .btn{
+//             background-size: 100% 100%;
+//             background: transparent;
+//             width: 6em;
+//             height: 6em;
+//             padding: 0;
+
+//             .modimgbtn{
+//                 width: 100%;
+//                 height: 100%;
+//             }
+//         }
+//         .btn:hover{
+//             background-color: var(--primary-colour);
+//         }
+//     }
+// }
+
+
+
+
+.types{
+    position: relative;
+    display: flexbox;
+    width: 15em;
+    top: 6.5em;
+    left: 4.35em;
+}
+
+.typebtn{
+    color: black;
+    width: 15em;
+    margin-bottom: 1em;
+}
+
+.preshapes{
+    position: relative;
+    left: -0.6em;
+    top: -0.6em;
+    display: flexbox;
+    width: 25em;
+    max-height: 10em;
+
+    .btn{
+        background-size: 100% 100%;
+        background: transparent;
+        width: 6em;
+        height: 6em;
+        padding: 0;
+
+        .modimgbtn{
+            width: 100%;
+            height: 100%;
         }
-        .card-container {
-            .toy-card {
-                width: 30rem;
-                height: 40rem;
-                padding-top: 5rem;
-                font-size: 16px;
-                p {
-                    font-size: 16px;
-                    padding-top: 4px;
-                    padding-bottom: 4px;
-                }
-            }
+    }
+    .btn:hover{
+        background-color: var(--primary-colour);
+    }
+}
+
+.uplshapes{
+    position: relative;
+    display: flexbox;
+    width: 24em;
+    max-height: 10em;
+
+    .btn{
+        background-size: 100% 100%;
+        background: transparent;
+        width: 6em;
+        height: 6em;
+        padding: 0;
+
+        .modimgbtn{
+            width: 100%;
+            height: 100%;
         }
+    }
+    .btn:hover{
+        background-color: var(--primary-colour);
     }
 }

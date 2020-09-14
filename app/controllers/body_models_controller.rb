@@ -80,6 +80,6 @@ class BodyModelsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def body_model_params
-      params.require(:body_model).permit(:body_file, :tp)
+      params.require(:body_model).permit(:body_file, :tp, :body_image)
     end
 end
