@@ -62,7 +62,12 @@
 
     <div class="type-collapse panel-collapse collapse in" id="type-collapse">
       <div class="panel-body">
-          <span class="control-header">Coming Soon</span>
+         <div class="types">
+            <%# onthou om die buttons se functions te code %>
+            <button class="typebtn" id="humanoid" type="button">Humanoid</button>
+            <button class="typebtn" id="animal" type="button">Land Animal</button>
+            <button class="typebtn" id="fish" type="button">Sea Creature</button>
+          </div>
       </div>
     </div>
   </div>
@@ -79,13 +84,17 @@
 
     <div class="head-collapse panel-collapse collapse" id="collapse-head-controls">
       <div class="panel-body">
-        <button class="btn" id="headl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-        <button class="btn" id="headr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+        <%# <button class="btn" id="headl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="headr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button> %>
+        <div class="preshapes" id="headprsh"></div>
+        <br><hr>
+        <div class="uplshapes" id="headupsh"></div>
 
+        <br>
         <div class="slider-row">
             <div class="col-10">
                 <label class="ml-3" for="headup">Up / Down</label>
-                <input type="range" min="-4" max="3" value="1.5" class="slider" id="headup" step="0.1">
+                <input type="range" min="-4" max="3" value="-1.5" class="slider" id="headup" step="0.1">
             </div>
         </div>
 
@@ -120,9 +129,13 @@
 
     <div class="torso-collapse panel-collapse collapse" id="torso-collapse">
       <div class="panel-body">
-        <button class="btn" id="torsol" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-        <button class="btn" id="torsor" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+        <%# <button class="btn" id="torsol" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="torsor" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button> %>
+        <div class="preshapes" id="torsoprsh"></div>
+        <br><hr>
+        <div class="uplshapes" id="torsoupsh"></div>
 
+        <br>
         <div class="slider-row">
           <div class="col-10">
             <label for="torsoup">Up / Down</label>
@@ -159,8 +172,12 @@
 
     <div class="arms-collapse panel-collapse collapse" id="arms-collapse">
       <div class="panel-body">
-          <button class="btn" id="larml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-          <button class="btn" id="larmr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+          <%# <button class="btn" id="larml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+          <button class="btn" id="larmr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button> %>
+          <div class="preshapes" id="larmprsh"></div>
+          <br><hr>
+          <div class="uplshapes" id="larmupsh"></div>
+
           <br>
           <div class="slider-row">
             <div class="col-10">
@@ -197,8 +214,12 @@
 
     <div class="r-arms-collapse panel-collapse collapse" id="r-arms-collapse">
       <div class="panel-body">
-        <button class="btn" id="rarml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-        <button class="btn" id="rarmr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+        <%# <button class="btn" id="rarml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="rarmr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button> %>
+        <div class="preshapes" id="rarmprsh"></div>
+        <br><hr>
+        <div class="uplshapes" id="rarmupsh"></div>
+
         <br>
         <div class="slider-row">
           <div class="col-10">
@@ -236,8 +257,12 @@
 
     <div class="legs-collapse panel-collapse collapse" id="legs-collapse">
       <div class="panel-body">
-        <button class="btn" id="llegl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-        <button class="btn" id="llegr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+        <%# <button class="btn" id="llegl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="llegr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button> %>
+        <div class="preshapes" id="llegprsh"></div>
+        <br><hr>
+        <div class="uplshapes" id="llegupsh"></div>
+
         <br>
 
         <div class="slider-row">
@@ -275,8 +300,12 @@
 
     <div class="r-legs-collapse panel-collapse collapse" id="r-legs-collapse">
       <div class="panel-body">
-        <button class="btn" id="rlegl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
-        <button class="btn" id="rlegr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button>
+        <%# <button class="btn" id="rlegl" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> 
+        <button class="btn" id="rlegr" type="button"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></button> %>
+        <div class="preshapes" id="rlegprsh"></div>
+        <br><hr>
+        <div class="uplshapes" id="rlegupsh"></div>
+        
         <br>
         <div class="slider-row">
           <div class="col-10">

@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_13_092425) do
+ActiveRecord::Schema.define(version: 2020_09_13_115149) do
 
   create_table "body_models", force: :cascade do |t|
     t.string "body_file"
     t.string "tp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "body_image"
   end
 
   create_table "head_models", force: :cascade do |t|
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_09_13_092425) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "tp"
+    t.string "head_image"
   end
 
   create_table "l_arm_models", force: :cascade do |t|
@@ -31,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_09_13_092425) do
     t.string "tp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "l_arm_image"
   end
 
   create_table "l_leg_models", force: :cascade do |t|
@@ -38,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_09_13_092425) do
     t.string "tp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "l_leg_image"
   end
 
   create_table "r_arm_models", force: :cascade do |t|
@@ -45,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_09_13_092425) do
     t.string "tp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "r_arm_image"
   end
 
   create_table "r_leg_models", force: :cascade do |t|
@@ -52,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_09_13_092425) do
     t.string "tp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "r_leg_image"
   end
 
   create_table "ratings", force: :cascade do |t|
