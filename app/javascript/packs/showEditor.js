@@ -49,7 +49,7 @@ $.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
 											success:  function(r_leg_models){
-												readTextFile("/file_paths.JSON", function(text){
+												readTextFile("/file_paths5.JSON", function(text){
 													var data = JSON.parse(text);
 													// console.log(r_leg_models);
 													var hair = $(".head").data("head");
