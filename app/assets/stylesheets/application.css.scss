@@ -57,6 +57,9 @@
 }
 
 .alert-danger {
+    position: fixed !important;
+    top: 10em !important;
+    width: 16% !important;
     background-color: var(--danger-color)!important;
     border-color: var(--danger-color)!important;
     color: var(--q-colour)!important;
@@ -1997,7 +2000,8 @@ fieldset.toy_shared {
     right: 7%;
     // margin-left: 65%;
     // width: 5em;
-    bottom: 85%;
+    top: 1.2em;
+    // bottom: 85%;
 }
 // .glyphicon-save-file
 // {

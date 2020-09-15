@@ -10,7 +10,7 @@
                 <% if toy.shared || current_user == toy.user%>
                     <div class="toy-card">
                         <!-- <div class="toy-download-pdf"> -->
-                            <%= link_to '<span class="glyphicon glyphicon-download-alt"></span>'.html_safe, displayPDF_path(toy.id, format: :pdf),target: :_blank, :class => "toy-download-pdf" %>
+                            <%= link_to '<span class="glyphicon glyphicon-download-alt"></span>'.html_safe, displayPDF_path(toy.id, format: :pdf),target: :_blank, :class => "toy-download-pdf", :id => "download-pdf" %>
                         <!-- </div> -->
                         <div class="card-content">
                             <img class="PlushImg" src=<%= toy.image %>>
