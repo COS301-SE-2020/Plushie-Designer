@@ -1,5 +1,5 @@
 # Plushie-Designer
-[![Build Status](https://travis-ci.com/COS301-SE-2020/Plushie-Designer.svg?branch=Development)](https://travis-ci.com/COS301-SE-2020/Plushie-Designer)
+[![Build Status](https://travis-ci.com/COS301-SE-2020/Plushie-Designer.svg?branch=Master)](https://travis-ci.com/COS301-SE-2020/Plushie-Designer)
 
 ## Description
 Plushie-Designer is a website that allows users to create and share their plushie creations. A plushie is a soft toy with an outer fabric sewn from a textile and stuffed with flexible material. Users will be able to create their plushies with an editor that contains predefined shapes for the different parts for the Plushie. A sewing pattern will be generated and can be downloaded by the user.
