@@ -226,7 +226,10 @@ $.ajax({
 																return;
 															}
 
-															parent.children[0].material = mtl;
+															// parent.children[0].material = mtl;
+															parent.children.forEach(obj => {
+																obj.material = mtl;
+															});
 														}
 														//------------------------------------------------------------------------
 
