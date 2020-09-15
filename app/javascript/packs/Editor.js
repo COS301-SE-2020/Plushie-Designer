@@ -304,8 +304,9 @@ $.ajax({
 																alert("Select a body part before selecting a texture.");
 																return;
 															}
-
-															parent.children[0].material = mtl;
+															parent.children.forEach(obj => {
+																obj.material = mtl;
+															});
 														}
 														//------------------------------------------------------------------------
 
