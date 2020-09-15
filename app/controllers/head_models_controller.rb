@@ -81,6 +81,6 @@ class HeadModelsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def head_model_params
-      params.require(:head_model).permit(:head_file, :tp)
+      params.require(:head_model).permit(:head_file, :tp, :head_image, :model_type)
     end
 end

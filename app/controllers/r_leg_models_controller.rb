@@ -80,6 +80,6 @@ class RLegModelsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def r_leg_model_params
-      params.require(:r_leg_model).permit(:r_leg_file, :tp)
+      params.require(:r_leg_model).permit(:r_leg_file, :tp, :r_leg_image, :model_type)
     end
 end

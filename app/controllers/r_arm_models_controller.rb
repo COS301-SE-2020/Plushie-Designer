@@ -80,6 +80,6 @@ class RArmModelsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def r_arm_model_params
-      params.require(:r_arm_model).permit(:r_arm_file, :tp)
+      params.require(:r_arm_model).permit(:r_arm_file, :tp, :r_arm_image, :model_type)
     end
 end

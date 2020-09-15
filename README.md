@@ -1,4 +1,5 @@
 # Plushie-Designer
+[![Build Status](https://travis-ci.com/COS301-SE-2020/Plushie-Designer.svg?branch=Development)](https://travis-ci.com/COS301-SE-2020/Plushie-Designer)
 
 ## Description
 Plushie-Designer is a website that allows users to create and share their plushie creations. A plushie is a soft toy with an outer fabric sewn from a textile and stuffed with flexible material. Users will be able to create their plushies with an editor that contains predefined shapes for the different parts for the Plushie. A sewing pattern will be generated and can be downloaded by the user.
@@ -15,6 +16,7 @@ Plushie-Designer is a website that allows users to create and share their plushi
 - User Manual: https://drive.google.com/file/d/1EPGDxy4nsSFeQx1w7Ks1VKytvmdF7ns0/view?usp=sharing
 - Technical Installation Manual: https://drive.google.com/file/d/16ejWi_Qly0wbr9ULincQqWjY6_BfkI7A/view?usp=sharing
 - Coding Standards Document: https://www.overleaf.com/read/djbvggfdgrrb
+- Testing Policy Document: https://www.overleaf.com/read/dsbcspvzfkdg
 ### Project Management Tool
 - Trello: https://trello.com/b/Fb6EqN0r/plushiedesigner
 ### Members' LinkIn Profile Links

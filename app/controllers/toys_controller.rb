@@ -74,7 +74,7 @@ class ToysController < ApplicationController
     
     respond_to do |format|
       if @toy.save
-        format.html { redirect_to @toy, notice: "plushie successfully created" }
+        format.html { redirect_to @toy, notice: "Plushie successfully created" }
         format.json { render :show, status: :created, location: @toy }
       else
         format.html { render :new }
@@ -93,7 +93,7 @@ class ToysController < ApplicationController
     
     respond_to do |format|
       if @toy.save
-        format.html { redirect_to @toy, notice: "plushie successfully created" }
+        format.html { redirect_to @toy, notice: "Plushie successfully created" }
         format.json { render :show, status: :created, location: @toy }
       else
         format.html { render :new }
@@ -138,7 +138,7 @@ class ToysController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def toy_params
-      params.require(:toy).permit(:name, :head, :arms, :r_arm, :torso, :legs, :r_leg, :rating, :head_pos, :head_posx, :torso_posy, :torso_posx, :larm_posy, :larm_posx, :rarm_posy, :rarm_posx, :lleg_posy, :lleg_posx, :rleg_posy, :rleg_posx, :shared, :image, :head_posz, :torso_posz, :larm_posz, :rarm_posz, :lleg_posz, :rleg_posz, :head_uv, :torso_uv, :larm_uv, :rarm_uv, :lleg_uv, :rleg_uv, :search)
+      params.require(:toy).permit(:name, :head, :arms, :r_arm, :torso, :legs, :r_leg, :rating, :head_pos, :head_posx, :torso_posy, :torso_posx, :larm_posy, :larm_posx, :rarm_posy, :rarm_posx, :lleg_posy, :lleg_posx, :rleg_posy, :rleg_posx, :shared, :image, :head_posz, :torso_posz, :larm_posz, :rarm_posz, :lleg_posz, :rleg_posz, :head_uv, :torso_uv, :larm_uv, :rarm_uv, :lleg_uv, :rleg_uv, :search, :head_tex, :torso_tex, :larm_tex, :rarm_tex, :lleg_tex, :rleg_tex)
     end
 
     def scope

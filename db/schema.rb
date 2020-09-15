@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_30_072101) do
+ActiveRecord::Schema.define(version: 2020_09_14_173819) do
 
   create_table "body_models", force: :cascade do |t|
     t.string "body_file"
     t.string "tp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "body_image"
+    t.integer "model_type"
   end
 
   create_table "head_models", force: :cascade do |t|
@@ -24,6 +26,8 @@ ActiveRecord::Schema.define(version: 2020_08_30_072101) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "tp"
+    t.string "head_image"
+    t.integer "model_type"
   end
 
   create_table "l_arm_models", force: :cascade do |t|
@@ -31,6 +35,8 @@ ActiveRecord::Schema.define(version: 2020_08_30_072101) do
     t.string "tp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "l_arm_image"
+    t.integer "model_type"
   end
 
   create_table "l_leg_models", force: :cascade do |t|
@@ -38,6 +44,8 @@ ActiveRecord::Schema.define(version: 2020_08_30_072101) do
     t.string "tp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "l_leg_image"
+    t.integer "model_type"
   end
 
   create_table "r_arm_models", force: :cascade do |t|
@@ -45,6 +53,8 @@ ActiveRecord::Schema.define(version: 2020_08_30_072101) do
     t.string "tp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "r_arm_image"
+    t.integer "model_type"
   end
 
   create_table "r_leg_models", force: :cascade do |t|
@@ -52,6 +62,8 @@ ActiveRecord::Schema.define(version: 2020_08_30_072101) do
     t.string "tp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "r_leg_image"
+    t.integer "model_type"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -103,6 +115,12 @@ ActiveRecord::Schema.define(version: 2020_08_30_072101) do
     t.boolean "shared"
     t.integer "r_arm"
     t.integer "r_leg"
+    t.text "head_tex"
+    t.text "torso_tex"
+    t.text "larm_tex"
+    t.text "rarm_tex"
+    t.text "lleg_tex"
+    t.text "rleg_tex"
   end
 
   create_table "users", force: :cascade do |t|

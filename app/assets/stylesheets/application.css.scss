@@ -50,13 +50,16 @@
     top: 10em !important;
     width: 16% !important;
     left: 42%;
-    z-index: 0 !important;
+    z-index: 1 !important;
     background-color: var(--alert-color) !important;
     border-color: var(--alert-color) !important;
     color: var(--q-colour) !important;
 }
 
 .alert-danger {
+    position: fixed !important;
+    top: 10em !important;
+    width: 16% !important;
     background-color: var(--danger-color)!important;
     border-color: var(--danger-color)!important;
     color: var(--q-colour)!important;
@@ -71,11 +74,19 @@ body {
     background-color: var(--background);
     overflow-x: hidden;
     overflow-y: hidden;
+    height: 0.75em;
 }
 
 .dropdown-menu {
     background-color: rgb(61, 61, 61);
     color: white;
+}
+
+.nav-thin {
+    width: 100%;
+    position: fixed;
+    height: 0.75em;
+    background-color: var(--secondary-colour);
 }
 
 .navbar {
@@ -85,11 +96,32 @@ body {
     color: var(--primary-colour);
     //background-color: var(--primary-colour);
     //color: var(--secondary-colour);
+    left: 27.5%;
+    right: 27.5%;
     position: fixed;
-    width: 100%;
+    width: 45%;
     margin-bottom: 2vh;
     border-radius: 0;
     border: 3px solid var(--secondary-colour);
+    .nav-s-left {
+        position: absolute;
+        left:-10em;
+        top:-64%;
+        fill: var(--secondary-colour);
+        // top:22.1%;
+        height: 12.3em;
+        padding: 0;
+        // border: 1px solid white;
+    }
+    .nav-s-right {
+        position: absolute;
+        right: -10em;
+        top: -64%;
+        // left:-18%;
+        // top:-64%;
+        height: 12.3em;
+        padding: 0;
+    }
     .navbar-header {
         width: 50%;
         height: inherit;
@@ -228,6 +260,10 @@ body {
        justify-content: space-between;
        #delete-p{
            margin-left: 10px;
+           color: var(--secondary-colour);
+       }
+       #edit-p {
+           color: var(--secondary-colour);
        }
     }
    a[href="/toys"] {
@@ -258,11 +294,12 @@ body {
     left: 0;
     height: 100%;
     color: var(--primary-colour);
+    overflow-y: hidden;
     .index-page {
         position: absolute;
         top: 10%;
         left: 0;
-        // background: rgba($color: #000000, $alpha: 0.5);
+        overflow-y: hidden !important;
         background: transparent;
         border-radius: 0.5em;
         width: 100%;
@@ -271,7 +308,6 @@ body {
         max-height: 100%;
         overflow: scroll;
         overflow-x: hidden;
-
         .options-header{
             background: var(--control-background) !important;
             border: none !important;
@@ -691,14 +727,14 @@ body {
 .Ratings {
     overflow: scroll;
     overflow-x: hidden;
+    overflow-y: scroll;
     max-height: 20vh;
-
     .media {
         background-color: rgb(221, 221, 221);
         border-radius: 0.5em;
         padding: 0.5em;
         max-height: 9em;
-
+        width: 98%;
         .username {
             font-weight: 700;
         }
@@ -771,7 +807,7 @@ body {
 p {
     overflow-wrap: break-word;
     max-width: 18em;
-    min-width: 10em;
+    // min-width: 10em;
 }
 
 .edit-btn {
@@ -816,7 +852,7 @@ p {
     // border-radius:10px;
     // display:inline-block;
     cursor: pointer;
-    color: #000000;
+    color: var(--secondary-colour);
     font-family: Arial;
     font-size: 1em;
     // padding:11px 43px;
@@ -846,6 +882,15 @@ p {
     padding-top: 2rem;
     width: 90%;
     z-index: -2;
+    h1 {
+        position: fixed;
+        left: 5%;
+        width: 16rem;
+        padding: 10px;
+        border-radius: 1rem;
+        // background-color: rgba(235, 232, 230, 0.932);
+        color: var(--secondary-colour);
+    }
     a {
         text-decoration: none;
     }
@@ -858,7 +903,8 @@ p {
         //position: fixed;
         text-align: center;
         width: 100%;
-        margin-top: 6.5vh;
+        margin-top: 10vh;
+        // margin-top: 6.5vh;
         margin-bottom: 8.5vh;
         max-height: 60vh;
         overflow: scroll;
@@ -866,31 +912,100 @@ p {
         z-index: 99;
         .toy-card {
             background-color: var(--secondary-colour);
-            //background-color: var(--tertiary-colour);
             color: var(--q-colour);
-            //color: white;
+            position: relative;
+            // background-color: var(--q-colour);
             // color: var(--secondary-colour);
-            border-radius: 0.5em;
-            padding-top: 1.5%;
-            width: 18em;
-            height: 23em;
+            width: 35rem;
+            height: 25rem;
+            border-radius: 5px;
             display: inline-block;
-            margin: 0.5%;
-            text-align: center;
-            img {
-                border-radius: 5px;
-            }
+            margin: 0.7rem;
             a {
-                color: var(--q-colour);
-                //color: white;
+                font-weight: 700;
+                color: var(--p-colour);
             }
             a:hover {
-                color: rgb(255, 255, 255);
+                color: var(--primary-colour);
+                background-color: initial;
+                transition: 0s;
             }
-            p.created-on {
-                width: 80%;
-                margin: auto;
+            .toy-download-pdf {
+                position: absolute;
+                border-radius: 5px;
+                width: 3rem;
+                height: 3rem;
+                margin-left: -16rem;
+                margin-top: 1.5rem;
+                padding: 7px 8px 7px 8px;
+                z-index: 99;
+                background-color: var(--secondary-colour);
+                color: var(--q-colour);
             }
+            .toy-download-pdf:hover {
+                background-color: var(--q-colour);
+                color: var(--secondary-colour);
+            }
+            .card-content {
+                position: absolute;
+                z-index: 0;
+                .PlushImg {
+                    width: 35rem;
+                    height: 18rem;
+                    position: relative;
+                    top: 0;
+                    border-radius: 5px 5px 0px 0px;
+                }
+                .card-footer {
+                    .row {
+                        width: 100%;
+                        margin: 0;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        .col-4 {
+                            float: left;
+                        }
+                        .col-8 {
+                            float: right;
+                            margin-top: 10px;
+                        }
+                        .created-on {
+                            float: left;
+                        }
+                        .toy-rating {
+                            float: right;
+                        }
+                    }
+                }
+            }
+            
+
+
+
+
+            // below is the old style for the plushie cards
+            // background-color: var(--secondary-colour);
+            // color: var(--q-colour);
+            // border-radius: 0.5em;
+            // padding-top: 1.5%;
+            // width: 18em;
+            // height: 23em;
+            // display: inline-block;
+            // margin: 0.5%;
+            // text-align: center;
+            // img {
+            //     border-radius: 5px;
+            // }
+            // a {
+            //     color: var(--q-colour);
+            // }
+            // a:hover {
+            //     color: rgb(255, 255, 255);
+            // }
+            // p.created-on {
+            //     width: 80%;
+            //     margin: auto;
+            // }
         }
     }
 
@@ -1630,61 +1745,6 @@ fieldset.toy_shared {
     }
 }
 
-#back {
-    background: url(http://www.tranexnet.com/img/back.png) repeat 20% 20%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 1;
-    z-index: -3;
-    -webkit-animation-name: backgroundAnimate;
-    -webkit-animation-duration: 500s;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-iteration-count: infinite;
-    -moz-animation-name: backgroundAnimate;
-    -moz-animation-duration: 5s;
-    -moz-animation-timing-function: linear;
-    -moz-animation-iteration-count: infinite;
-    -o-animation-name: backgroundAnimate;
-    -o-animation-duration: 500s;
-    -o-animation-timing-function: linear;
-    -o-animation-iteration-count: infinite;
-    animation-name: backgroundAnimate;
-    animation-duration: 500s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-#front {
-    background: url(http://www.tranexnet.com/img/front.png) repeat 35% 35%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.9;
-    z-index: -3;
-    -webkit-animation-name: backgroundAnimate;
-    -webkit-animation-duration: 300s;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-iteration-count: infinite;
-    -moz-animation-name: backgroundAnimate;
-    -moz-animation-duration: 300s;
-    -moz-animation-timing-function: linear;
-    -moz-animation-iteration-count: infinite;
-    -o-animation-name: backgroundAnimate;
-    -o-animation-duration: 300s;
-    -o-animation-timing-function: linear;
-    -o-animation-iteration-count: infinite;
-    animation-name: backgroundAnimate;
-    animation-duration: 300s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-
 /*
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
@@ -1947,11 +2007,12 @@ fieldset.toy_shared {
     right: 7%;
     // margin-left: 65%;
     // width: 5em;
-    bottom: 85%;
+    top: 1.2em;
+    // bottom: 85%;
 }
-.glyphicon-save-file
-{
-}
+// .glyphicon-save-file
+// {
+// }
 
 .glyphicon-save-file:hover
 {
@@ -2001,47 +2062,46 @@ fieldset.toy_shared {
     bottom:20%;
     right:30%;
     left: 30%;
-}
-
-#middle{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 10%;
-    margin-top: 15%;
-}
-
-#bottom{
-    display: flex;
-    flex-direction: row;
-    // justify-content: space-between;
-    margin-bottom: 15%;
-}
-
-#upload-head{
-    margin-bottom: 15%;
-    margin-top: 100%;
-}
-
-#upload-body{
-    margin-left: 5em;
-    margin-right: 5em;
-}
-
-#upload-l-arm{
-    margin-left: 4em;
-}
-
-#upload-r-arm{
-    margin-right: 4em;
-}
-
-#upload-l-leg{
-    margin-right: 6em;
-}
-
-#upload-r-leg{
-    margin-left: 6em;
+    #upload-head{
+        margin-bottom: 15%;
+        margin-top: 100%;
+        color: var(--secondary-colour);
+    }
+    #middle{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 10%;
+        margin-top: 15%;
+        #upload-body{
+            margin-left: 5em;
+            margin-right: 5em;
+            color: var(--secondary-colour);
+        }
+        #upload-l-arm{
+            margin-left: 4em;
+            color: var(--secondary-colour);
+        }
+        #upload-r-arm{
+            margin-right: 4em;
+            color: var(--secondary-colour);
+        }
+    }
+    #bottom{
+        display: flex;
+        flex-direction: row;
+        // justify-content: space-between;
+        margin-bottom: 15%;
+        color: var(--secondary-colour);
+        #upload-l-leg{
+            margin-right: 6em;
+            color: var(--secondary-colour);
+        }
+        #upload-r-leg{
+            margin-left: 6em;
+            color: var(--secondary-colour);
+        }
+    }
 }
 
 #search{
@@ -2104,4 +2164,315 @@ fieldset.toy_shared {
     position: relative;
     float: right;
     top: 1.2em;
+}
+
+#back {
+    background: url(http://www.tranexnet.com/img/back.png) repeat 20% 20%;
+    position: absolute;
+    // position: fixed;
+    top: -5em;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    z-index: -3;
+    -webkit-animation-name: backgroundAnimate;
+    -webkit-animation-duration: 500s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: backgroundAnimate;
+    -moz-animation-duration: 5s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-name: backgroundAnimate;
+    -o-animation-duration: 500s;
+    -o-animation-timing-function: linear;
+    -o-animation-iteration-count: infinite;
+    animation-name: backgroundAnimate;
+    animation-duration: 500s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#front {
+    background: url(http://www.tranexnet.com/img/front.png) repeat 35% 35%;
+    position: absolute;
+    // position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.9;
+    z-index: -3;
+    -webkit-animation-name: backgroundAnimate;
+    -webkit-animation-duration: 300s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: backgroundAnimate;
+    -moz-animation-duration: 300s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-name: backgroundAnimate;
+    -o-animation-duration: 300s;
+    -o-animation-timing-function: linear;
+    -o-animation-iteration-count: infinite;
+    animation-name: backgroundAnimate;
+    animation-duration: 300s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@media only screen and (max-width: 1106px) {
+    .nav-s-left, .nav-s-right, .nav-thin {
+        display: none;
+    }
+    .navbar {
+        width: 100%;
+        left: 0;
+    }
+    .toy-index {
+        margin-top: 3em;
+        h1 {
+            top: 2em;
+            color: var(--q-colour);
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .navbar {
+        height: 7rem;
+        button.navbar-toggle {
+            position: absolute;
+            left: 1rem;
+            top: 0.7rem;
+        }
+        a.navbar-brand {
+            position: absolute;
+            right: -3rem;
+            top: 0.7rem;
+        }
+    }
+    footer {
+        display: inline-block;
+        .footer-left {
+            width: 30% !important;
+            position: absolute;
+            left: 0;
+            bottom: 3px;
+        }
+        .footer-right {
+            width: 30% !important;
+            position: absolute;
+            right: 0;
+            bottom: 3px;
+        }
+    }
+}
+
+@media only screen and (max-width: 626px) {
+    .navbar {
+        height: 7rem;
+        button.navbar-toggle {
+            position: absolute;
+            left: 1rem;
+            top: 0.7rem;
+        }
+        a.navbar-brand {
+            position: absolute;
+            right: -3rem;
+            top: 0.7rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .navbar {
+        height: 7rem;
+        button.navbar-toggle {
+            position: absolute;
+            left: 1rem;
+            top: 0.7rem;
+        }
+        a.navbar-brand {
+            position: absolute;
+            right: -3rem;
+            top: 0.7rem;
+        }
+    }
+}
+
+// .toy-index {
+//     margin-top: 3em;
+//     h1 {
+//         top: 2em;
+//         color: var(--q-colour);
+//     }
+//     .card-container {
+//         .toy-card {
+//             width: 30rem;
+//             height: 40rem;
+//             padding-top: 5rem;
+//             font-size: 16px;
+//             p {
+//                 font-size: 16px;
+//                 padding-top: 4px;
+//                 padding-bottom: 4px;
+//             }
+//         }
+//     }
+//     .types{
+//         position: relative;
+//         display: flexbox;
+//         width: 15em;
+//         top: 6.5em;
+//         left: 4.35em;
+//     }
+
+//     .typebtn{
+//         color: black;
+//         width: 15em;
+//         margin-bottom: 1em;
+//     }
+
+//     .preshapes{
+//         position: relative;
+//         left: -0.6em;
+//         top: -0.6em;
+//         display: flexbox;
+//         width: 25em;
+//         max-height: 10em;
+
+//         .btn{
+//             background-size: 100% 100%;
+//             background: transparent;
+//             width: 6em;
+//             height: 6em;
+//             padding: 0;
+
+//             .modimgbtn{
+//                 width: 100%;
+//                 height: 100%;
+//             }
+//         }
+//         .btn:hover{
+//             background-color: var(--primary-colour);
+//         }
+//     }
+
+//     .uplshapes{
+//         position: relative;
+//         display: flexbox;
+//         width: 24em;
+//         max-height: 10em;
+
+//         .btn{
+//             background-size: 100% 100%;
+//             background: transparent;
+//             width: 6em;
+//             height: 6em;
+//             padding: 0;
+
+//             .modimgbtn{
+//                 width: 100%;
+//                 height: 100%;
+//             }
+//         }
+//         .btn:hover{
+//             background-color: var(--primary-colour);
+//         }
+//     }
+// }
+
+
+
+
+.types{
+    position: relative;
+    display: flexbox;
+    width: 15em;
+    top: 6.5em;
+    left: 4.35em;
+}
+
+.typebtn{
+    color: black;
+    width: 15em;
+    margin-bottom: 1em;
+}
+
+.preshapes{
+    position: relative;
+    left: -0.6em;
+    top: -0.6em;
+    display: flexbox;
+    width: 25em;
+    max-height: 10em;
+
+    .btn{
+        background-size: 100% 100%;
+        background: transparent;
+        width: 6em;
+        height: 6em;
+        padding: 0;
+
+        .modimgbtn{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .btn:hover{
+        background-color: var(--primary-colour);
+    }
+}
+
+.uplshapes{
+    position: relative;
+    display: flexbox;
+    width: 24em;
+    max-height: 10em;
+
+    .btn{
+        background-size: 100% 100%;
+        background: transparent;
+        width: 6em;
+        height: 6em;
+        padding: 0;
+
+        .modimgbtn{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .btn:hover{
+        background-color: var(--primary-colour);
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    cursor: pointer;
+}
+
+.login-background {
+    position: absolute;
+    top: 0;
 }

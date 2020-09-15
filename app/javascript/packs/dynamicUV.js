@@ -14,31 +14,25 @@ import {
 	Vector2
 } from "three/build/three.module.js";
 
-var UVsDebug = function ( geometry, w, h) {
+var UVsDebug = function ( geometry, w, h, tex, isTex) {
 
 	// handles wrapping of uv.x > 1 only
 
-	var abc = 'abc';
 	var a = new Vector2();
-	var b = new Vector2();
-
-	var uvs = [
-		new Vector2(),
-		new Vector2(),
-		new Vector2()
-	];
+	var isTexture = isTex;
 
 	var face = [];
+	var uvs = [];
 
 	var canvas = document.createElement( 'canvas' );
-	var width = 1024*w; // power of 2 required for wrapping
-	var height = 1024*h;
+	var width = 1024 * 1; // power of 2 required for wrapping
+	var height = 1024 * 1;
 	canvas.width = width;
 	canvas.height = height;
 
 	var ctx = canvas.getContext( '2d' );
-	ctx.lineWidth = 2;
-	ctx.strokeStyle = 'rgba( 0, 0, 0, 1.0 )';
+	ctx.lineWidth = 3;
+	ctx.strokeStyle = 'rgba( 1.0, 0, 0, 1.0 )';
 	ctx.textAlign = 'center';
 
 	// paint background white
@@ -64,7 +58,7 @@ var UVsDebug = function ( geometry, w, h) {
 			uvs[ 1 ].copy( uv[ 1 ] );
 			uvs[ 2 ].copy( uv[ 2 ] );
 
-			processFace( face, uvs, i );
+			processFace(uvs, tex);
 
 		}
 
@@ -77,20 +71,10 @@ var UVsDebug = function ( geometry, w, h) {
 
 			// indexed geometry
 
-			for ( var i = 0, il = index.count; i < il; i += 3 ) {
-
-				face[ 0 ] = index.getX( i );
-				face[ 1 ] = index.getX( i + 1 );
-				face[ 2 ] = index.getX( i + 2 );
-
-				uvs[ 0 ].fromBufferAttribute( uvAttribute, face[ 0 ] );
-				uvs[ 1 ].fromBufferAttribute( uvAttribute, face[ 1 ] );
-				uvs[ 2 ].fromBufferAttribute( uvAttribute, face[ 2 ] );
-
-				processFace( face, uvs, i / 3 );
-
+			for ( var i = 0, il = index.count; i < il; i ++ ) {
+				uvs.push(new Vector2().fromBufferAttribute( uvAttribute, index.getX( i )));
 			}
-
+			processFace(uvs, tex);
 		} else {
 
 			// non-indexed geometry
@@ -105,7 +89,7 @@ var UVsDebug = function ( geometry, w, h) {
 				uvs[ 1 ].fromBufferAttribute( uvAttribute, face[ 1 ] );
 				uvs[ 2 ].fromBufferAttribute( uvAttribute, face[ 2 ] );
 
-				processFace( face, uvs, i / 3 );
+				processFace( uvs, tex );
 
 			}
 
@@ -115,15 +99,61 @@ var UVsDebug = function ( geometry, w, h) {
 
 	return canvas;
 
-	function processFace( face, uvs, index ) {
+	function count(array_elements) {	
+		var points = [];
+	
+		var cnt = 0;
+		for(var x = 0; x < array_elements.length ; x++ ){
+			cnt = 0;
+			for (var i = 0; i < array_elements.length; i++) {
+				if (array_elements[i].x == array_elements[x].x) {
+					if (array_elements[i].y == array_elements[x].y) 
+					{
+						cnt++;
+					}
+				}
+			}
+			if(cnt > 3)
+			{
+				points.push(array_elements[x]);	
+			}
+		}
+		return points;	
+	}
+
+	function drawPattern(img, width, height) {   
+
+		var tempCanvas = document.createElement("canvas"),
+			tCtx = tempCanvas.getContext("2d");
+   
+		tempCanvas.width = width;
+		tempCanvas.height = height;
+		tCtx.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height);
+   
+		// use getContext to use the canvas for drawing
+		var ctx = canvas.getContext('2d');
+		//ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.fillStyle = ctx.createPattern(tempCanvas, 'repeat');
+   
+		ctx.fill();
+		
+   }
+
+   function drawColor(tex)
+   {
+		ctx.fillStyle = tex;
+		ctx.fill();
+   }
+
+	function processFace(uvs, tex ) {
 
 		// draw contour of face
+
+	//	var points_to_ignore = count(uvs);
 
 		ctx.beginPath();
 
 		a.set( 0, 0 );
-
-        var prev = uvs[0];
   
 		for ( var j = 0, jl = uvs.length; j < jl; j ++ ) {
 
@@ -132,7 +162,7 @@ var UVsDebug = function ( geometry, w, h) {
 			a.x += uv.x;
 			a.y += uv.y;
 
-			if ( j === 0 ) {
+			if ( j === 0 || j % 3 === 0) {
 				ctx.moveTo( uv.x * width, ( 1 - uv.y ) * height );
 
 			} else {
@@ -140,10 +170,42 @@ var UVsDebug = function ( geometry, w, h) {
             }
 
 		}
-
+		
 		ctx.closePath();
-		ctx.stroke();
+	
+		if(isTexture)
+		{
+			var img = new Image();
+			img.src = tex;
+			drawPattern(img, 256, 256);	
+		}
+		else{
+			drawColor('#' + tex);
+		}
+/*
+		ctx.beginPath();
 
+		a.set( 0, 0 );
+
+		for ( var j = 0, jl = uvs.length; j < jl; j ++ ) {
+
+			var uv = uvs[ j ];
+
+			a.x += uv.x;
+			a.y += uv.y;
+
+			if ( j === 0 || j % 3 === 0) {
+				if(!points_to_ignore.includes(uvs[ j ]) )
+					ctx.moveTo( uv.x * width, ( 1 - uv.y ) * height );
+			} else {
+				if(!points_to_ignore.includes(uvs[ j ]) &&  !points_to_ignore.includes(uvs[ j - 1 ]))
+					ctx.lineTo( uv.x * width, ( 1 - uv.y ) * height );
+			}	
+
+		}
+		ctx.closePath();
+		ctx.stroke();	*/
+		
 	}
 
 };
