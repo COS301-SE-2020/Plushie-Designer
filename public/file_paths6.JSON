@@ -1,0 +1,124 @@
+{
+    "file_paths":{
+        "models":{
+            "length":4,
+            "0":{
+                "type": 0,
+                "hair": "" ,
+                "head": {
+                    "img": "/model/minecraft/images/steve_head.png",
+                    "url": "/model/minecraft/steve_head.gltf"
+                },
+                "body": {
+                    "img": "/model/minecraft/images/steve_body.png",
+                    "url": "/model/minecraft/steve_body.gltf"
+                },
+                "l_arm": {
+                    "img": "/model/minecraft/images/steve_l_arm.png",
+                    "url": "/model/minecraft/steve_l_arm.gltf"
+                },
+                "r_arm": {
+                    "img": "/model/minecraft/images/steve_r_arm.png",
+                    "url": "/model/minecraft/steve_r_arm.gltf"
+                },
+                "l_leg": {
+                    "img": "/model/minecraft/images/steve_l_leg.png",
+                    "url": "/model/minecraft/steve_l_leg.gltf"
+                },
+                "r_leg": {
+                    "img": "/model/minecraft/images/steve_r_leg.png",
+                    "url": "/model/minecraft/steve_r_leg.gltf"
+                }
+            },
+            "1":{
+                "type": 0,
+                "hair":"/model/chibi/chibi_hair.gltf",
+                "head": {
+                    "img": "/model/chibi/images/chibi_head.png",
+                    "url": "/model/chibi/chibi_head.gltf"
+                },
+                "body": {
+                    "img": "/model/chibi/images/chibi_body.png",
+                    "url": "/model/chibi/chibi_body.gltf"
+                },
+                "l_arm": {
+                    "img": "/model/chibi/images/chibi_l_arm.png",
+                    "url": "/model/chibi/chibi_l_arm.gltf"
+                },
+                "r_arm": {
+                    "img": "/model/chibi/images/chibi_r_arm.png",
+                    "url": "/model/chibi/chibi_r_arm.gltf"
+                },
+                "l_leg": {
+                    "img": "/model/chibi/images/chibi_l_leg.png",
+                    "url": "/model/chibi/chibi_l_leg.gltf"
+                },
+                "r_leg": {
+                    "img": "/model/chibi/images/chibi_r_leg.png",
+                    "url": "/model/chibi/chibi_r_leg.gltf"
+                }
+            },
+            "2":{
+                "type": 1,
+                "hair":"",
+                "head": {
+                    "img": "/model/animals/images/head.png",
+                    "url": "/model/animals/head3.gltf"
+                },
+                "body": {
+                    "img": "/model/animals/images/body.png",
+                    "url": "/model/animals/body1.gltf"
+                },
+                "l_arm": {
+                    "img": "/model/animals/images/flleg.png",
+                    "url": "/model/animals/flleg.gltf"
+                },
+                "r_arm": {
+                    "img": "/model/animals/images/frleg.png",
+                    "url": "/model/animals/frleg.gltf"
+                },
+                "l_leg": {
+                    "img": "/model/animals/images/blleg.png",
+                    "url": "/model/animals/blleg.gltf"
+                },
+                "r_leg": {
+                    "img": "/model/animals/images/brleg.png",
+                    "url": "/model/animals/brleg.gltf"
+                }
+            },
+            "3":{
+                "type": 2,
+                "hair":"",
+                "head": {
+                    "img": "/model/fish/images/head.png",
+                    "url": "/model/fish/head2.gltf"
+                },
+                "body": {
+                    "img": "/model/fish/images/body.png",
+                    "url": "/model/fish/body2.gltf"
+                },
+                "l_arm": {
+                    "img": "/model/fish/images/lfin.png",
+                    "url": "/model/fish/lfin1.gltf"
+                },
+                "r_arm": {
+                    "img": "/model/fish/images/rfin.png",
+                    "url": "/model/fish/rfin1.gltf"
+                },
+                "l_leg": {
+                    "img": "/model/fish/images/bfin.png",
+                    "url": "/model/fish/bfin1.gltf"
+                },
+                "r_leg": {
+                    "img": "/model/fish/images/tfin.png",
+                    "url": "/model/fish/tfin1.gltf"
+                }
+            }
+        },
+        "rooms":{
+            "room_1": "/background/Room/scene.gltf",   
+            "room_2": "/background/Room_2/scene.gltf"    
+        }
+    }
+    
+}

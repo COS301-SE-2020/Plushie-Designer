@@ -9,6 +9,7 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
 import { UVsDebug } from './dynamicUV';
+import { ColorKeyframeTrack } from 'three/build/three.module';
 
 function readTextFile(file, callback) {
 	var rawFile = new XMLHttpRequest();
@@ -51,7 +52,7 @@ $.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
 											success:  function(r_leg_models){
-												readTextFile("/file_paths5.JSON", function(text){
+												readTextFile("/file_paths6.JSON", function(text){
 													var data = JSON.parse(text);
 													// console.log(r_leg_models);
 													var headchange = false;
@@ -428,7 +429,7 @@ $.ajax({
 																gltf.scene.position.setZ(headposz);  
 																console.log(gltf.scene.children[0]);
 																$("#toy_head_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
-																	'E3A668', false).toDataURL("image/png");
+																	color, false).toDataURL("image/png");
 																break;
 															case "torso" : 
 																ttemp = gltf.scene;
