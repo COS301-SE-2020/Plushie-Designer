@@ -71,6 +71,7 @@ body {
     background-color: var(--background);
     overflow-x: hidden;
     overflow-y: hidden;
+    height: 0.75em;
 }
 
 .dropdown-menu {
@@ -2160,8 +2161,9 @@ fieldset.toy_shared {
 
 #back {
     background: url(http://www.tranexnet.com/img/back.png) repeat 20% 20%;
-    position: fixed;
-    top: 0;
+    position: absolute;
+    // position: fixed;
+    top: -5em;
     left: 0;
     right: 0;
     bottom: 0;
@@ -2187,7 +2189,8 @@ fieldset.toy_shared {
 
 #front {
     background: url(http://www.tranexnet.com/img/front.png) repeat 35% 35%;
-    position: fixed;
+    position: absolute;
+    // position: fixed;
     top: 0;
     left: 0;
     right: 0;
