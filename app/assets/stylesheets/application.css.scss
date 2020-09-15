@@ -25,7 +25,7 @@
     --tertiary-colour: rgb(47, 56, 86);
     --q-colour: rgb(241, 213, 186);
     --p-colour: #cf3f46;
-    --background : #c8ccd6;
+    --background : #6c768d;
     --alert-color: rgba(47, 56, 86, 0.7);
     --danger-color: rgba(207, 63, 70, 0.7);
     --control-background: rgba(0, 0, 0, 0.8);
@@ -2460,4 +2460,9 @@ fieldset.toy_shared {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
     cursor: pointer;
+}
+
+.login-background {
+    position: absolute;
+    top: 0;
 }
