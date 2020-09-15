@@ -25,7 +25,7 @@
     --tertiary-colour: rgb(47, 56, 86);
     --q-colour: rgb(241, 213, 186);
     --p-colour: #cf3f46;
-    --background : #6c768d;
+    --background : #c8ccd6;
     --alert-color: rgba(47, 56, 86, 0.7);
     --danger-color: rgba(207, 63, 70, 0.7);
     --control-background: rgba(0, 0, 0, 0.8);
@@ -908,6 +908,9 @@ p {
         z-index: 99;
         .toy-card {
             background-color: white;
+            position: relative;
+            // background-color: var(--q-colour);
+            // color: var(--secondary-colour);
             width: 35rem;
             height: 25rem;
             border-radius: 5px;
