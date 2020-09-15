@@ -908,6 +908,7 @@ p {
         z-index: 99;
         .toy-card {
             background-color: white;
+	    position: relative;
             width: 35rem;
             height: 25rem;
             border-radius: 5px;
