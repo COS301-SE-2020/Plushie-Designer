@@ -139,7 +139,7 @@ class IntegrationTest < ApplicationSystemTestCase
 
     click_on "Test"
     sleep 2
-    click_on "Copy"
+    click_on "Clone"
     fill_in "Name", with: "Tes2"
 
     click_on "Create Plushie"
