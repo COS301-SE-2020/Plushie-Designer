@@ -25,7 +25,7 @@
     --tertiary-colour: rgb(47, 56, 86);
     --q-colour: rgb(241, 213, 186);
     --p-colour: #cf3f46;
-    --background : #c8ccd6;
+    --background : #6c768d;
     --alert-color: rgba(47, 56, 86, 0.7);
     --danger-color: rgba(207, 63, 70, 0.7);
     --control-background: rgba(0, 0, 0, 0.8);
@@ -74,6 +74,7 @@ body {
     background-color: var(--background);
     overflow-x: hidden;
     overflow-y: hidden;
+    height: 0.75em;
 }
 
 .dropdown-menu {
@@ -2167,8 +2168,9 @@ fieldset.toy_shared {
 
 #back {
     background: url(http://www.tranexnet.com/img/back.png) repeat 20% 20%;
-    position: fixed;
-    top: 0;
+    position: absolute;
+    // position: fixed;
+    top: -5em;
     left: 0;
     right: 0;
     bottom: 0;
@@ -2194,7 +2196,8 @@ fieldset.toy_shared {
 
 #front {
     background: url(http://www.tranexnet.com/img/front.png) repeat 35% 35%;
-    position: fixed;
+    position: absolute;
+    // position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -2467,4 +2470,9 @@ fieldset.toy_shared {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
     cursor: pointer;
+}
+
+.login-background {
+    position: absolute;
+    top: 0;
 }
