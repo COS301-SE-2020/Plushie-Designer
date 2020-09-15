@@ -308,12 +308,12 @@ $.ajax({
 															switch(obj.name)
 															{
 																case "hair" : currentSelection = hhtemp; break;
-																case "head" : currentSelection = htemp; break;
-																case "body" : currentSelection = ttemp; break;
-																case "l_leg" : currentSelection = lltemp; break;
-																case "r_leg" : currentSelection = rltemp; break;
-																case "l_arm" : currentSelection = latemp; break;
-																case "r_arm" : currentSelection = ratemp; break;
+																case htemp.children[0].name : currentSelection = htemp; break;
+																case ttemp.children[0].name : currentSelection = ttemp; break;
+																case lltemp.children[0].name : currentSelection = lltemp; break;
+																case rltemp.children[0].name : currentSelection = rltemp; break;
+																case latemp.children[0].name : currentSelection = latemp; break;
+																case ratemp.children[0].name : currentSelection = ratemp; break;
 																default : return;
 															}
 															var selectedObject = obj;
