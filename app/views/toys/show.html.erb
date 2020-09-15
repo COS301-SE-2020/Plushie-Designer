@@ -158,7 +158,7 @@
       <span><%= button_to 'Delete', @toy, method: :delete, data: { confirm: 'Are you sure?' }, :id => "delete-p", :class => "btn ed-button" %></span>
     </div>
   <% else %>
-    <span><%= button_to 'Contribute', contribute_path(@toy), method: "get", :id => "edit-p", :class => "btn ed-button"%></span>
+    <span><%= button_to 'Copy', contribute_path(@toy), method: "get", :id => "edit-p", :class => "btn ed-button"%></span>
   <% end %>
 
 </div>
