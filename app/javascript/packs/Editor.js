@@ -895,6 +895,8 @@ $.ajax({
 																//alert(data.file_paths.models.test);
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].head.img + '" />';
 																button.className = 'btn';
+																var tid = "head" + i;
+																button.id = tid;
 																button.type = "button";
 																button.value = i;
 																button.onclick = function(){
@@ -913,6 +915,8 @@ $.ajax({
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].body.img + '" />';
 																button.className = 'btn';
+																var tid = "body" + i;
+																button.id = tid;
 																button.type = "button";
 																button.value = i;
 																button.onclick = function(){
@@ -931,6 +935,8 @@ $.ajax({
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_arm.img + '" />';
 																button.className = 'btn';
+																var tid = "l_arm" + i;
+																button.id = tid;
 																button.type = "button";
 																button.value = i;
 																button.onclick = function(){
@@ -949,6 +955,8 @@ $.ajax({
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_arm.img + '" />';
 																button.className = 'btn';
+																var tid = "r_arm" + i;
+																button.id = tid;
 																button.type = "button";
 																button.value = i;
 																button.onclick = function(){
@@ -967,6 +975,8 @@ $.ajax({
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_leg.img + '" />';
 																button.className = 'btn';
+																var tid = "l_leg" + i;
+																button.id = tid;
 																button.type = "button";
 																button.value = i;
 																button.onclick = function(){
@@ -985,6 +995,8 @@ $.ajax({
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_leg.img + '" />';
 																button.className = 'btn';
+																var tid = "r_leg" + i;
+																button.id = tid;
 																button.type = "button";
 																button.value = i;
 																button.onclick = function(){
