@@ -139,10 +139,10 @@ class IntegrationTest < ApplicationSystemTestCase
 
     click_on "Test"
     sleep 2
-    click_on "Contribute"
+    click_on "Copy"
     fill_in "Name", with: "Tes2"
 
-    click_on "Contribute Plushie"
+    click_on "Create Plushie"
     sleep 2
     assert_text "Plushie successfully created"
 
