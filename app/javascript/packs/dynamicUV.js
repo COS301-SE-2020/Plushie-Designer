@@ -25,8 +25,8 @@ var UVsDebug = function ( geometry, w, h, tex, isTex) {
 	var uvs = [];
 
 	var canvas = document.createElement( 'canvas' );
-	var width = 1024 * w; // power of 2 required for wrapping
-	var height = 1024 * h;
+	var width = 1024 * 1; // power of 2 required for wrapping
+	var height = 1024 * 1;
 	canvas.width = width;
 	canvas.height = height;
 
@@ -172,14 +172,15 @@ var UVsDebug = function ( geometry, w, h, tex, isTex) {
 		}
 		
 		ctx.closePath();
-		var img = new Image();
-		img.src = '/images/head.png';
+	
 		if(isTexture)
 		{
-			drawPattern(tex, 256, 256);	
+			var img = new Image();
+			img.src = tex;
+			drawPattern(img, 256, 256);	
 		}
 		else{
-			drawColor(tex);
+			drawColor('#' + tex);
 		}
 /*
 		ctx.beginPath();

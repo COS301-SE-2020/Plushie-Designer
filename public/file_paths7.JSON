@@ -7,27 +7,27 @@
                 "hair": "" ,
                 "head": {
                     "img": "/model/minecraft/images/steve_head.png",
-                    "url": "/model/minecraft/steve_head.gltf"
+                    "url": "/model/minecraft/steve_head1.gltf"
                 },
                 "body": {
                     "img": "/model/minecraft/images/steve_body.png",
-                    "url": "/model/minecraft/steve_body.gltf"
+                    "url": "/model/minecraft/steve_body1.gltf"
                 },
                 "l_arm": {
                     "img": "/model/minecraft/images/steve_l_arm.png",
-                    "url": "/model/minecraft/steve_l_arm.gltf"
+                    "url": "/model/minecraft/steve_l_arm1.gltf"
                 },
                 "r_arm": {
                     "img": "/model/minecraft/images/steve_r_arm.png",
-                    "url": "/model/minecraft/steve_r_arm.gltf"
+                    "url": "/model/minecraft/steve_r_arm1.gltf"
                 },
                 "l_leg": {
                     "img": "/model/minecraft/images/steve_l_leg.png",
-                    "url": "/model/minecraft/steve_l_leg.gltf"
+                    "url": "/model/minecraft/steve_l_leg1.gltf"
                 },
                 "r_leg": {
                     "img": "/model/minecraft/images/steve_r_leg.png",
-                    "url": "/model/minecraft/steve_r_leg.gltf"
+                    "url": "/model/minecraft/steve_r_leg1.gltf"
                 }
             },
             "1":{
@@ -63,11 +63,11 @@
                 "hair":"",
                 "head": {
                     "img": "/model/animals/images/head.png",
-                    "url": "/model/animals/head.gltf"
+                    "url": "/model/animals/head3.gltf"
                 },
                 "body": {
                     "img": "/model/animals/images/body.png",
-                    "url": "/model/animals/body.gltf"
+                    "url": "/model/animals/body1.gltf"
                 },
                 "l_arm": {
                     "img": "/model/animals/images/flleg.png",
@@ -91,27 +91,27 @@
                 "hair":"",
                 "head": {
                     "img": "/model/fish/images/head.png",
-                    "url": "/model/fish/head.gltf"
+                    "url": "/model/fish/head2.gltf"
                 },
                 "body": {
                     "img": "/model/fish/images/body.png",
-                    "url": "/model/fish/body.gltf"
+                    "url": "/model/fish/body2.gltf"
                 },
                 "l_arm": {
                     "img": "/model/fish/images/lfin.png",
-                    "url": "/model/fish/lfin.gltf"
+                    "url": "/model/fish/lfin1.gltf"
                 },
                 "r_arm": {
                     "img": "/model/fish/images/rfin.png",
-                    "url": "/model/fish/rfin.gltf"
+                    "url": "/model/fish/rfin1.gltf"
                 },
                 "l_leg": {
                     "img": "/model/fish/images/bfin.png",
-                    "url": "/model/fish/bfin.gltf"
+                    "url": "/model/fish/bfin1.gltf"
                 },
                 "r_leg": {
                     "img": "/model/fish/images/tfin.png",
-                    "url": "/model/fish/tfin.gltf"
+                    "url": "/model/fish/tfin1.gltf"
                 }
             }
         },

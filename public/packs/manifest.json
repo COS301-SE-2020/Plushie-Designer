@@ -1,10 +1,10 @@
 {
-  "Editor.js": "/packs/js/Editor-63caa2927f1109afecc2.js",
-  "Editor.js.map": "/packs/js/Editor-63caa2927f1109afecc2.js.map",
+  "Editor.js": "/packs/js/Editor-0984f5055a72578823c8.js",
+  "Editor.js.map": "/packs/js/Editor-0984f5055a72578823c8.js.map",
   "application.js": "/packs/js/application-9afcbb5693aa87623e69.js",
   "application.js.map": "/packs/js/application-9afcbb5693aa87623e69.js.map",
-  "dynamicUV.js": "/packs/js/dynamicUV-94252c9fb637f8c412a4.js",
-  "dynamicUV.js.map": "/packs/js/dynamicUV-94252c9fb637f8c412a4.js.map",
+  "dynamicUV.js": "/packs/js/dynamicUV-04f8b0712d58b792b474.js",
+  "dynamicUV.js.map": "/packs/js/dynamicUV-04f8b0712d58b792b474.js.map",
   "entrypoints": {
     "application": {
       "js": [
@@ -16,39 +16,39 @@
     },
     "dynamicUV": {
       "js": [
-        "/packs/js/dynamicUV-94252c9fb637f8c412a4.js"
+        "/packs/js/dynamicUV-04f8b0712d58b792b474.js"
       ],
       "js.map": [
-        "/packs/js/dynamicUV-94252c9fb637f8c412a4.js.map"
+        "/packs/js/dynamicUV-04f8b0712d58b792b474.js.map"
       ]
     },
     "Editor": {
       "js": [
-        "/packs/js/Editor-63caa2927f1109afecc2.js"
+        "/packs/js/Editor-0984f5055a72578823c8.js"
       ],
       "js.map": [
-        "/packs/js/Editor-63caa2927f1109afecc2.js.map"
+        "/packs/js/Editor-0984f5055a72578823c8.js.map"
       ]
     },
     "indexEditor": {
       "js": [
-        "/packs/js/indexEditor-6190ac0c89841bdde061.js"
+        "/packs/js/indexEditor-899e6b301b7411282b9d.js"
       ],
       "js.map": [
-        "/packs/js/indexEditor-6190ac0c89841bdde061.js.map"
+        "/packs/js/indexEditor-899e6b301b7411282b9d.js.map"
       ]
     },
     "showEditor": {
       "js": [
-        "/packs/js/showEditor-4e2f4b34a58551dc9878.js"
+        "/packs/js/showEditor-cbc92c8c8031c3e67a13.js"
       ],
       "js.map": [
-        "/packs/js/showEditor-4e2f4b34a58551dc9878.js.map"
+        "/packs/js/showEditor-cbc92c8c8031c3e67a13.js.map"
       ]
     }
   },
-  "indexEditor.js": "/packs/js/indexEditor-6190ac0c89841bdde061.js",
-  "indexEditor.js.map": "/packs/js/indexEditor-6190ac0c89841bdde061.js.map",
-  "showEditor.js": "/packs/js/showEditor-4e2f4b34a58551dc9878.js",
-  "showEditor.js.map": "/packs/js/showEditor-4e2f4b34a58551dc9878.js.map"
+  "indexEditor.js": "/packs/js/indexEditor-899e6b301b7411282b9d.js",
+  "indexEditor.js.map": "/packs/js/indexEditor-899e6b301b7411282b9d.js.map",
+  "showEditor.js": "/packs/js/showEditor-cbc92c8c8031c3e67a13.js",
+  "showEditor.js.map": "/packs/js/showEditor-cbc92c8c8031c3e67a13.js.map"
 }

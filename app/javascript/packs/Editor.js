@@ -9,6 +9,7 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
 import { UVsDebug } from './dynamicUV';
+import { ColorKeyframeTrack } from 'three/build/three.module';
 
 function readTextFile(file, callback) {
 	var rawFile = new XMLHttpRequest();
@@ -51,7 +52,7 @@ $.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
 											success:  function(r_leg_models){
-												readTextFile("/file_paths.JSON", function(text){
+												readTextFile("/file_paths7.JSON", function(text){
 													var data = JSON.parse(text);
 													// console.log(r_leg_models);
 													var headchange = false;
@@ -228,16 +229,28 @@ $.ajax({
 														switch(currentSelection)
 														{
 															case htemp:  $("#toy_head_tex")[0].value = tex;
+															$("#toy_head_uv")[0].value = UVsDebug(htemp.children[0].geometry, htemp.children[0].scale.x, htemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
 															break;
 															case ttemp:  $("#toy_torso_tex")[0].value = tex;
+															$("#toy_torso_uv")[0].value = UVsDebug(ttemp.children[0].geometry, ttemp.children[0].scale.x, ttemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
 															break;
 															case lltemp:  $("#toy_lleg_tex")[0].value = tex;
+															$("#toy_lleg_uv")[0].value = UVsDebug(lltemp.children[0].geometry, lltemp.children[0].scale.x, lltemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
 															break;
 															case rltemp:  $("#toy_rleg_tex")[0].value = tex;
+															$("#toy_rleg_uv")[0].value = UVsDebug(rltemp.children[0].geometry, rltemp.children[0].scale.x, rltemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
 															break;
 															case latemp:  $("#toy_larm_tex")[0].value = tex;
+															$("#toy_larm_uv")[0].value = UVsDebug(latemp.children[0].geometry, latemp.children[0].scale.x, latemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
 															break;
 															case ratemp:  $("#toy_rarm_tex")[0].value = tex;
+															$("#toy_rarm_uv")[0].value = UVsDebug(ratemp.children[0].geometry, ratemp.children[0].scale.x, ratemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
 															break;												
 														}
 													}
@@ -291,8 +304,9 @@ $.ajax({
 																alert("Select a body part before selecting a texture.");
 																return;
 															}
-
-															parent.children[0].material = mtl;
+															parent.children.forEach(obj => {
+																obj.material = mtl;
+															});
 														}
 														//------------------------------------------------------------------------
 
@@ -353,12 +367,12 @@ $.ajax({
 															switch(obj.name)
 															{
 																case "hair" : currentSelection = hhtemp; break;
-																case "head" : currentSelection = htemp; break;
-																case "body" : currentSelection = ttemp; break;
-																case "l_leg" : currentSelection = lltemp; break;
-																case "r_leg" : currentSelection = rltemp; break;
-																case "l_arm" : currentSelection = latemp; break;
-																case "r_arm" : currentSelection = ratemp; break;
+																case htemp.children[0].name : currentSelection = htemp; break;
+																case ttemp.children[0].name : currentSelection = ttemp; break;
+																case lltemp.children[0].name : currentSelection = lltemp; break;
+																case rltemp.children[0].name : currentSelection = rltemp; break;
+																case latemp.children[0].name : currentSelection = latemp; break;
+																case ratemp.children[0].name : currentSelection = ratemp; break;
 																default : return;
 															}
 															var selectedObject = obj;
@@ -409,7 +423,7 @@ $.ajax({
 																gltf.scene.position.setZ(headposz);  
 																break;
 															case "head" :
-																htemp = gltf.scene;
+																htemp = gltf.scene;																
 																color = $("#toy_head_tex")[0].value;
 																gltf.scene.position.setY(headposy); 
 																gltf.scene.position.setX(headposx);
@@ -436,6 +450,7 @@ $.ajax({
 																gltf.scene.position.setZ(larmposz);
 																$("#toy_larm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
 																	, color, false).toDataURL("image/png");
+																
 															break;
 															case "rightarm" : 
 																ratemp = gltf.scene;
