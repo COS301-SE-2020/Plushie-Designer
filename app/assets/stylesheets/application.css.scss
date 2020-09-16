@@ -2222,9 +2222,26 @@ fieldset.toy_shared {
     animation-iteration-count: infinite;
 }
 
+@media only screen and (max-width: 1404px) {
+    .nav-s-left, .nav-s-right, .nav-thin {
+        display: none !important;
+    }
+    .navbar {
+        width: 100%;
+        left: 0;
+    }
+    .toy-index {
+        margin-top: 3em;
+        h1 {
+            top: 2em;
+            color: var(--q-colour);
+        }
+    }
+}
+
 @media only screen and (max-width: 1106px) {
     .nav-s-left, .nav-s-right, .nav-thin {
-        display: none;
+        display: none !important;
     }
     .navbar {
         width: 100%;
