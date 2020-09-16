@@ -104,7 +104,8 @@ $.ajax({
 													document.body.appendChild(renderer.domElement);
 
 													var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-													camera.position.set(0, 1, 10);
+													camera.position.set(0, 2.5, 10);
+													//camera.lookAt(new THREE.Vector3(0,10,0));
 
 													const loadingManager = new THREE.LoadingManager( () => {
 														
@@ -127,6 +128,7 @@ $.ajax({
 													controls.enablePan = false;
 
 													controls.maxPolarAngle = Math.PI / 2;
+													controls.target = new THREE.Vector3(0,1.5,0);
 
 													var loader = new GLTFLoader(loadingManager);
 
@@ -661,7 +663,7 @@ $.ajax({
 
 														controls.update();
 														//renderer.render(scene, camera);
-														composer.render();
+														composer.render(scene, camera);
 													};
 													//--------------------------------------------------------------
 
