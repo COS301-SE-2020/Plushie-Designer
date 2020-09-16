@@ -297,7 +297,7 @@ body {
     overflow-y: hidden;
     .index-page {
         position: absolute;
-        top: 10%;
+        top: 11%;
         left: 0;
         overflow-y: hidden !important;
         background: transparent;
@@ -308,6 +308,15 @@ body {
         max-height: 100%;
         overflow: scroll;
         overflow-x: hidden;
+        .index-options-header{
+            background: var(--control-background) !important;
+            border: none !important;
+            border-radius: 5px !important;
+            padding: 1em;
+            width: 35em !important;
+            height: 9.5em !important;
+            margin-bottom: 1em;
+        }
         .options-header{
             background: var(--control-background) !important;
             border: none !important;
