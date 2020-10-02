@@ -9,7 +9,7 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
 import { UVsDebug } from './dynamicUV';
-import { ColorKeyframeTrack } from 'three/build/three.module';
+import { ColorKeyframeTrack, ImageUtils } from 'three/build/three.module';
 
 function readTextFile(file, callback) {
 	var rawFile = new XMLHttpRequest();
@@ -94,7 +94,7 @@ $.ajax({
 													var rlegposy = $("#toy_rleg_posy")[0].value;
 													var rlegposx = $("#toy_rleg_posx")[0].value;
 													var rlegposz = $("#toy_rleg_posz")[0].value;
-
+													
 													var ihead = 7;
 													var itorso = 8;
 													var ilarm = 3;
@@ -143,7 +143,7 @@ $.ajax({
 													controls.dampingFactor = 0.05;
 
 													controls.minDistance = 13;
-													controls.maxDistance = 13;
+													controls.maxDistance = 20;
 
 													controls.enablePan = false;
 
@@ -229,27 +229,27 @@ $.ajax({
 														switch(currentSelection)
 														{
 															case htemp:  $("#toy_head_tex")[0].value = tex;
-															$("#toy_head_uv")[0].value = UVsDebug(htemp.children[0].geometry, htemp.children[0].scale.x, htemp.children[0].scale.y,
+															$("#toy_head_uv")[0].value = UVsDebug(htemp.geometry, htemp.scale.x, htemp.scale.y,
 																tex, false).toDataURL("image/png");
 															break;
 															case ttemp:  $("#toy_torso_tex")[0].value = tex;
-															$("#toy_torso_uv")[0].value = UVsDebug(ttemp.children[0].geometry, ttemp.children[0].scale.x, ttemp.children[0].scale.y,
+															$("#toy_torso_uv")[0].value = UVsDebug(ttemp.geometry, ttemp.scale.x, ttemp.scale.y,
 																tex, false).toDataURL("image/png");
 															break;
 															case lltemp:  $("#toy_lleg_tex")[0].value = tex;
-															$("#toy_lleg_uv")[0].value = UVsDebug(lltemp.children[0].geometry, lltemp.children[0].scale.x, lltemp.children[0].scale.y,
+															$("#toy_lleg_uv")[0].value = UVsDebug(lltemp.geometry, lltemp.scale.x, lltemp.scale.y,
 																tex, false).toDataURL("image/png");
 															break;
 															case rltemp:  $("#toy_rleg_tex")[0].value = tex;
-															$("#toy_rleg_uv")[0].value = UVsDebug(rltemp.children[0].geometry, rltemp.children[0].scale.x, rltemp.children[0].scale.y,
+															$("#toy_rleg_uv")[0].value = UVsDebug(rltemp.geometry, rltemp.scale.x, rltemp.scale.y,
 																tex, false).toDataURL("image/png");
 															break;
 															case latemp:  $("#toy_larm_tex")[0].value = tex;
-															$("#toy_larm_uv")[0].value = UVsDebug(latemp.children[0].geometry, latemp.children[0].scale.x, latemp.children[0].scale.y,
+															$("#toy_larm_uv")[0].value = UVsDebug(latemp.geometry, latemp.scale.x, latemp.scale.y,
 																tex, false).toDataURL("image/png");
 															break;
 															case ratemp:  $("#toy_rarm_tex")[0].value = tex;
-															$("#toy_rarm_uv")[0].value = UVsDebug(ratemp.children[0].geometry, ratemp.children[0].scale.x, ratemp.children[0].scale.y,
+															$("#toy_rarm_uv")[0].value = UVsDebug(ratemp.geometry, ratemp.scale.x, ratemp.scale.y,
 																tex, false).toDataURL("image/png");
 															break;												
 														}
@@ -367,12 +367,12 @@ $.ajax({
 															switch(obj.name)
 															{
 																case "hair" : currentSelection = hhtemp; break;
-																case htemp.children[0].name : currentSelection = htemp; break;
-																case ttemp.children[0].name : currentSelection = ttemp; break;
-																case lltemp.children[0].name : currentSelection = lltemp; break;
-																case rltemp.children[0].name : currentSelection = rltemp; break;
-																case latemp.children[0].name : currentSelection = latemp; break;
-																case ratemp.children[0].name : currentSelection = ratemp; break;
+																case htemp.name : currentSelection = htemp; break;
+																case ttemp.name : currentSelection = ttemp; break;
+																case lltemp.name : currentSelection = lltemp; break;
+																case rltemp.name : currentSelection = rltemp; break;
+																case latemp.name : currentSelection = latemp; break;
+																case ratemp.name : currentSelection = ratemp; break;
 																default : return;
 															}
 															var selectedObject = obj;
@@ -407,77 +407,220 @@ $.ajax({
 													//---------------------------------------------------------------------------------
 													//----------------------------------ADD MODEL----------------------------------------
 													function add_model_to_scene(gltf, name)
-													{
+													{														
 														let color = colors[2].color;
 															
-														gltf.scene.position.setY(1.5);
+														// gltf.scene.position.setY(1.5);
 														gltf.scene.children[0].castShadow = true;
+														gltf.scene.children[0].name = name;
 														gltf.scene.name = name;
-														scene.add( gltf.scene );
+														scene.add( gltf.scene);
 														switch(name)
 														{
 															case "hair" : 
-																hhtemp = gltf.scene; 
-																gltf.scene.position.setY(headposy); 
-																gltf.scene.position.setX(headposx);
-																gltf.scene.position.setZ(headposz);  
+																console.log(gltf.scene);
+																hhtemp = gltf.scene;
+																if(headposy != 0.0){
+																	gltf.scene.children[0].position.setY(headposy);
+																	gltf.scene.children[1].position.setY(headposy);
+																	gltf.scene.children[2].position.setY(headposy);
+																	gltf.scene.children[3].position.setY(headposy);
+																}
+																if(headposx != 0.0){
+																	gltf.scene.children[0].position.setX(headposx);
+																	gltf.scene.children[1].position.setX(headposx);
+																	gltf.scene.children[2].position.setX(headposx);
+																	gltf.scene.children[3].position.setX(headposx);
+																}
+																if(headposz != 0.0){
+																	gltf.scene.children[0].position.setZ(headposz); 
+																	gltf.scene.children[1].position.setZ(headposz); 
+																	gltf.scene.children[2].position.setZ(headposz); 
+																	gltf.scene.children[3].position.setZ(headposz); 
+																}
 																break;
 															case "head" :
-																htemp = gltf.scene;																
+																htemp = gltf.scene.children[0];	
+																// console.log(gltf.scene.children[0]);																													
 																color = $("#toy_head_tex")[0].value;
-																gltf.scene.position.setY(headposy); 
-																gltf.scene.position.setX(headposx);
-																gltf.scene.position.setZ(headposz);  
-																console.log(gltf.scene.children[0]);
+																if(headposy != 0.0){
+																	gltf.scene.children[0].position.setY(headposy);
+																}else{
+																	headposy = gltf.scene.children[0].position.y;
+																}
+																if(headposx != 0.0){
+																	gltf.scene.children[0].position.setX(headposx);
+																}else{
+																	headposx = gltf.scene.children[0].position.x;
+																}
+																if(headposz != 0.0){
+																	gltf.scene.children[0].position.setZ(headposz); 
+																}else{
+																	headposz = gltf.scene.children[0].position.z;
+																}
+																// console.log(gltf.scene.children[0]);
 																$("#toy_head_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color, false).toDataURL("image/png");
+																camera.position.set(htemp.position.x, htemp.position.y, camera.position.z);
+																controls.target = new THREE.Vector3(htemp.position.x,htemp.position.y,htemp.position.z);
+																controls.minDistance = 6;
+																controls.dIn(0.1);
+																controls.update();	
+																$('#headup').attr("value",-headposy);	
+																$('#headleft').attr("value",headposx);
+																$('#headfront').attr("value",-headposz);	
+																// $('#headup').attr("max",htemp.position.y + 4);	
+																// $('#headleft').attr("max",htemp.position.x + 4);
+																// $('#headfront').attr("max",htemp.position.z + 4);	
+																// $('#headup').attr("min",-htemp.position.y-4);	
+																// $('#headleft').attr("min",-htemp.position.x-4);
+																// $('#headfront').attr("min",-htemp.position.z-4);													
 																break;
 															case "torso" : 
-																ttemp = gltf.scene;
+																ttemp = gltf.scene.children[0];
 																color = $("#toy_torso_tex")[0].value;
-																gltf.scene.position.setY(torsoposy); 
-																gltf.scene.position.setX(torsoposx);  
-																gltf.scene.position.setZ(torsoposz);
-																console.log(gltf.scene.children[0]);
+																if(torsoposy != 0.0){
+																	gltf.scene.children[0].position.setY(torsoposy);
+																}else{
+																	torsoposy = gltf.scene.children[0].position.y;
+																}
+																if(torsoposx != 0.0){
+																	gltf.scene.children[0].position.setX(torsoposx);
+																}else{
+																	torsoposx = gltf.scene.children[0].position.x;
+																}
+																if(torsoposz != 0.0){
+																	gltf.scene.children[0].position.setZ(torsoposz); 
+																}else{
+																	torsoposz = gltf.scene.children[0].position.z;
+																}
+																// console.log(gltf.scene.children[0]);
 																$("#toy_torso_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
-																	, color, false ).toDataURL("image/png");															
+																	, color, false ).toDataURL("image/png");
+																camera.position.set(ttemp.position.x, ttemp.position.y, camera.position.z);
+																controls.target = new THREE.Vector3(ttemp.position.x,ttemp.position.y,ttemp.position.z);
+																controls.minDistance = 6;
+																controls.dIn(0.1);
+																controls.update();		
+																$('#torsoup').attr("value",-torsoposy);
+																$('#torsoleft').attr("value",torsoposx);
+																$('#torsofront').attr("value",-torsoposz);													
 																break;
 															case "leftarm" : 
-																latemp = gltf.scene; 
+																latemp = gltf.scene.children[0]; 
 																color = $("#toy_larm_tex")[0].value;
-																gltf.scene.position.setY(larmposy); 
-																gltf.scene.position.setX(larmposx);
-																gltf.scene.position.setZ(larmposz);
+																if(larmposy != 0.0){
+																	gltf.scene.children[0].position.setY(larmposy);
+																}else{
+																	larmposy = gltf.scene.children[0].position.y;
+																}
+																if(larmposx != 0.0){
+																	gltf.scene.children[0].position.setX(larmposx);
+																}else{
+																	larmposx = gltf.scene.children[0].position.x;
+																}
+																if(larmposz != 0.0){
+																	gltf.scene.children[0].position.setZ(larmposz); 
+																}else{
+																	larmposz = gltf.scene.children[0].position.z;
+																}
 																$("#toy_larm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
 																	, color, false).toDataURL("image/png");
-																
+																camera.position.set(latemp.position.x, latemp.position.y, camera.position.z);
+																controls.target = new THREE.Vector3(latemp.position.x,latemp.position.y,latemp.position.z);
+																controls.minDistance = 6;
+																controls.dIn(0.1);
+																controls.update();	
+																$('#larmup').attr("value",-larmposy);
+																$('#larmleft').attr("value",larmposx);
+																$('#larmfront').attr("value",-larmposz);
 															break;
 															case "rightarm" : 
-																ratemp = gltf.scene;
+																ratemp = gltf.scene.children[0];
 																color = $("#toy_rarm_tex")[0].value;
-																gltf.scene.position.setY(rarmposy); 
-																gltf.scene.position.setX(rarmposx); 
-																gltf.scene.position.setZ(rarmposz);
+																if(rarmposy != 0.0){
+																	gltf.scene.children[0].position.setY(rarmposy);
+																}else{
+																	rarmposy = gltf.scene.children[0].position.y;
+																}
+																if(rarmposx != 0.0){
+																	gltf.scene.children[0].position.setX(rarmposx);
+																}else{
+																	rarmposx = gltf.scene.children[0].position.x;
+																}
+																if(rarmposz != 0.0){
+																	gltf.scene.children[0].position.setZ(rarmposz); 
+																}else{
+																	rarmposz = gltf.scene.children[0].position.z;
+																}
 																$("#toy_rarm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color , false).toDataURL("image/png");
+																camera.position.set(ratemp.position.x, ratemp.position.y, camera.position.z);
+																controls.target = new THREE.Vector3(ratemp.position.x,ratemp.position.y,ratemp.position.z);
+																controls.minDistance = 6;
+																controls.dIn(0.1);
+																controls.update();	
+																$('#rarmup').attr("value",-rarmposy);
+																$('#rarmleft').attr("value",rarmposx);
+																$('#rarmfront').attr("value",-rarmposz);	
 															break;
 															case "leftleg" : 
-																lltemp = gltf.scene;
+																lltemp = gltf.scene.children[0];
 																color = $("#toy_lleg_tex")[0].value;
-																gltf.scene.position.setY(llegposy); 
-																gltf.scene.position.setX(llegposx);  
-																gltf.scene.position.setZ(llegposz);
+																if(llegposy != 0.0){
+																	gltf.scene.children[0].position.setY(llegposy);
+																}else{
+																	llegposy = gltf.scene.children[0].position.y;
+																}
+																if(llegposx != 0.0){
+																	gltf.scene.children[0].position.setX(llegposx);
+																}else{
+																	llegposx = gltf.scene.children[0].position.x;
+																}
+																if(llegposz != 0.0){
+																	gltf.scene.children[0].position.setZ(llegposz); 
+																}else{
+																	llegposz = gltf.scene.children[0].position.z;
+																}
 																$("#toy_lleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
 																	,color , false).toDataURL("image/png");
+																camera.position.set(lltemp.position.x, lltemp.position.y, camera.position.z);
+																controls.target = new THREE.Vector3(lltemp.position.x,lltemp.position.y,lltemp.position.z);
+																controls.minDistance = 6;
+																controls.dIn(0.1);
+																controls.update();	
+																$('#llegup').attr("value",-llegposy);
+																$('#llegleft').attr("value",llegposx);
+																$('#llegfront').attr("value",-llegposz);
 															break;
 															case "rightleg" : 
-																rltemp = gltf.scene;
+																rltemp = gltf.scene.children[0];
 																color = $("#toy_rleg_tex")[0].value;
-																gltf.scene.position.setY(rlegposy); 
-																gltf.scene.position.setX(rlegposx);  
-																gltf.scene.position.setZ(rlegposz);
+																if(rlegposy != 0.0){
+																	gltf.scene.children[0].position.setY(rlegposy);
+																}else{
+																	rlegposy = gltf.scene.children[0].position.y;
+																}
+																if(rlegposx != 0.0){
+																	gltf.scene.children[0].position.setX(rlegposx);
+																}else{
+																	rlegposx = gltf.scene.children[0].position.x;
+																}
+																if(rlegposz != 0.0){
+																	gltf.scene.children[0].position.setZ(rlegposz); 
+																}else{
+																	rlegposz = gltf.scene.children[0].position.z;
+																}
 																$("#toy_rleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color , false).toDataURL("image/png");
+																camera.position.set(rltemp.position.x, rltemp.position.y, camera.position.z);
+																controls.target = new THREE.Vector3(rltemp.position.x,rltemp.position.y,rltemp.position.z);
+																controls.minDistance = 6;
+																controls.dIn(0.1);
+																controls.update();	
+																$('#rlegup').attr("value",-rlegposy);
+																$('#rlegleft').attr("value",rlegposx);
+																$('#rlegfront').attr("value",-rlegposz);
 															break;	
 														}
 														let new_mtl;
@@ -499,7 +642,7 @@ $.ajax({
 													//----------------------------------ADD ROOM----------------------------------------
 													function add_room_to_scene(gltf, name)
 													{
-														gltf.scene.name = name;
+														gltf.scene.name = name;														
 														gltf.scene.rotateY(-Math.PI/4);
 														switch(name)
 														{
@@ -643,40 +786,49 @@ $.ajax({
 
 													}
 
-													// var tempy;
 													// var tempx;
+													// var tempy;
 													// var tempz;
 													// //--------------------------DragControls-------------------------
 													// var Dcontrols = new DragControls( scene.children, camera, renderer.domElement );
 													// // Dcontrols.transformGroup = true;
 													// Dcontrols.addEventListener( 'dragstart', function ( event ) {
 
-													// 	if(event.object.name == "" || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
+													// 	if(event.object.name == "" || event.object.name == "Room_1" || event.object.name == "Room_2" || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
 													// 		Dcontrols.enabled = false;
 													// 	}
 													// 	else{
 													// 		event.object.material.emissive.set( 0xaaaaaa );
 													// 		controls.enableRotate = false;
-													// 		tempy = event.object.position.y;
 													// 		tempx = event.object.position.x;
+													// 		tempy = event.object.position.y;
 													// 		tempz = event.object.position.z;
 													// 	}
 													// } );
 
 													// Dcontrols.addEventListener( 'dragend', function ( event ) {
 
-													// 	if(event.object.name == "" || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
+													// 	if(event.object.name == "" || event.object.name == "Room_1" || event.object.name == "Room_2" || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
 													// 		Dcontrols.enabled = true;
 													// 	}
 													// 	else{
 													// 		event.object.material.emissive.set( 0x000000 );
-													// 		controls.enableRotate = true;
+													// 		controls.enableRotate = true;															
 													// 		if(event.object.name == "head"){
 													// 			updateIndexes();
-													// 			$("#toy_head_pos")[0].value = event.object.position.y - tempy;
+													// 			$("#toy_head_pos")[0].value = event.object.position.y;
 													// 			// console.log($("#toy_head_pos")[0].value);
-													// 			$("#toy_head_posx")[0].value = event.object.position.x - tempx;
-													// 			$("#toy_head_posz")[0].value = event.object.position.z - tempz;
+													// 			$("#toy_head_posx")[0].value = event.object.position.x;
+													// 			$("#toy_head_posz")[0].value = event.object.position.z;
+													// 			$('#headup').attr("value",-event.object.position.y);	
+													// 			$('#headleft').attr("value",event.object.position.x);
+													// 			$('#headfront').attr("value",-event.object.position.z);	
+													// 			$('#headup').attr("max",event.object.position.y + 4);	
+													// 			$('#headleft').attr("max",event.object.position.x + 4);
+													// 			$('#headfront').attr("max",event.object.position.z + 4);	
+													// 			$('#headup').attr("min",-event.object.position.y-4);	
+													// 			$('#headleft').attr("min",-event.object.position.x-4);
+													// 			$('#headfront').attr("min",-event.object.position.z-4);	
 													// 			if(ihair!=99){
 													// 				hhtemp.position.setY($("#toy_head_pos")[0].value);
 													// 				hhtemp.position.setX($("#toy_head_posx")[0].value);
@@ -685,36 +837,39 @@ $.ajax({
 													// 		}
 													// 		console.log(event.object.name);
 													// 		if(event.object.name == "body"){
-													// 			$("#toy_torso_posy")[0].value = event.object.position.y - tempy;
-													// 			$("#toy_torso_posx")[0].value = event.object.position.x - tempx;
-													// 			$("#toy_torso_posz")[0].value = event.object.position.z - tempz;
+													// 			$("#toy_torso_posy")[0].value = event.object.position.y;
+													// 			$("#toy_torso_posx")[0].value = event.object.position.x;
+													// 			$("#toy_torso_posz")[0].value = event.object.position.z;
 													// 		}
 													// 		if(event.object.name == "l_arm"){
-													// 			$("#toy_larm_posy")[0].value = event.object.position.y - tempy;
-													// 			$("#toy_larm_posx")[0].value = event.object.position.x - tempx;
-													// 			$("#toy_larm_posz")[0].value = event.object.position.z - tempz;
+													// 			$("#toy_larm_posy")[0].value = event.object.position.y;
+													// 			$("#toy_larm_posx")[0].value = event.object.position.x;
+													// 			$("#toy_larm_posz")[0].value = event.object.position.z;
 													// 		}
 													// 		if(event.object.name == "r_arm"){
-													// 			$("#toy_rarm_posy")[0].value = event.object.position.y - tempy;
-													// 			$("#toy_rarm_posx")[0].value = event.object.position.x - tempx;
-													// 			$("#toy_rarm_posz")[0].value = event.object.position.z - tempz;
+													// 			$("#toy_rarm_posy")[0].value = event.object.position.y;
+													// 			$("#toy_rarm_posx")[0].value = event.object.position.x;
+													// 			$("#toy_rarm_posz")[0].value = event.object.position.z;
 													// 		}
 
 													// 		if(event.object.name == "l_leg"){
-													// 			$("#toy_lleg_posy")[0].value = event.object.position.y - tempy;
+													// 			$("#toy_lleg_posy")[0].value = event.object.position.y;
 													// 			// console.log($("#toy_lleg_posy")[0].value);
-													// 			$("#toy_lleg_posx")[0].value = event.object.position.x - tempx;
-													// 			$("#toy_lleg_posz")[0].value = event.object.position.z - tempz;
+													// 			$("#toy_lleg_posx")[0].value = event.object.position.x;
+													// 			$("#toy_lleg_posz")[0].value = event.object.position.z;
 													// 		}
 													// 		if(event.object.name == "r_leg"){
-													// 			$("#toy_rleg_posy")[0].value = event.object.position.y - tempy;
-													// 			$("#toy_rleg_posx")[0].value = event.object.position.x - tempx;
-													// 			$("#toy_rleg_posz")[0].value = event.object.position.z - tempz;
+													// 			$("#toy_rleg_posy")[0].value = event.object.position.y;
+													// 			$("#toy_rleg_posx")[0].value = event.object.position.x;
+													// 			$("#toy_rleg_posz")[0].value = event.object.position.z;
 													// 		}
 													// 	}
 													// } );
 													//----------------------------------------------------------------
+
+													// console.log(htemp);
 													//-------------------------------ANIMATE---------------------------------
+													console.log(scene);
 													var animate = function () {
 														if(typechange){
 															clearcontrols();
@@ -748,8 +903,8 @@ $.ajax({
 														}
 
 														if(headchange){
-															updateIndexes();
-															var temp = scene.getObjectByName(scene.children[ihead].name);
+															updateIndexes();															
+															var temp = scene.getObjectByName(scene.children[ihead].children[0].name);
 															scene.remove(temp);
 															if(head != 1){
 																// alert(ihair);
@@ -771,7 +926,7 @@ $.ajax({
 															}else hurl = data.file_paths.models[head].head.url;
 															loader.load( hurl, (gltf) => add_model_to_scene(gltf , "head")
 																, undefined, function ( error ) { console.error( error );} );
-															headchange = false;
+															headchange = false;															
 														}
 
 														if(torsochange){
@@ -914,7 +1069,7 @@ $.ajax({
 																button.id = tid;
 																button.type = "button";
 																button.value = i;
-																button.onclick = function(){
+																button.onclick = function(){															
 																	if(head!=this.value){
 																		headchange = true;
 																		head = this.value;
@@ -1163,9 +1318,64 @@ $.ajax({
 																rlupsh.appendChild(button);
 															}
 														}
-													}
+													}	
 
 													$(document).ready(function(){	
+														$('.head-controls').click(function (){	
+															camera.position.set(htemp.position.x, htemp.position.y, camera.position.z);										
+															controls.target = new THREE.Vector3(htemp.position.x,htemp.position.y,htemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
+														});
+
+														$('.torso-controls').click(function (){		
+															camera.position.set(ttemp.position.x, ttemp.position.y, camera.position.z);										
+															controls.target = new THREE.Vector3(ttemp.position.x,ttemp.position.y,ttemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
+														});
+
+														$('.l-arms-controls').click(function (){		
+															camera.position.set(latemp.position.x, latemp.position.y, camera.position.z);										
+															controls.target = new THREE.Vector3(latemp.position.x,latemp.position.y,latemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
+														});
+
+														$('.r-arms-controls').click(function (){		
+															camera.position.set(ratemp.position.x, ratemp.position.y, camera.position.z);										
+															controls.target = new THREE.Vector3(ratemp.position.x,ratemp.position.y,ratemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
+														});
+
+														$('.l-legs-controls').click(function (){		
+															camera.position.set(lltemp.position.x, lltemp.position.y, camera.position.z);										
+															controls.target = new THREE.Vector3(lltemp.position.x,lltemp.position.y,lltemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
+														});
+
+														$('.r-legs-controls').click(function (){		
+															camera.position.set(rltemp.position.x, rltemp.position.y, camera.position.z);										
+															controls.target = new THREE.Vector3(rltemp.position.x,rltemp.position.y,rltemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
+														});
+
+														$('.type-controls').click(function (){
+															controls.target = new THREE.Vector3(0,0,0);
+															camera.position.set(0, 1, 10);	
+															controls.minDistance = 13;
+															controls.dIn(1);
+															controls.update();
+														});
 														$('#humanoid').click(function () {
 															if(type!=0){
 																type=0;
@@ -1265,28 +1475,6 @@ $.ajax({
 															}
 														});
 
-														$('#headup').attr("value",-headposy);
-														$('#headleft').attr("value",headposx);
-														$('#headfront').attr("value",-headposz);
-
-														$('#torsoup').attr("value",-torsoposy);
-														$('#torsoleft').attr("value",torsoposx);
-														$('#torsofront').attr("value",-torsoposz);
-
-														$('#larmup').attr("value",-larmposy);
-														$('#larmleft').attr("value",larmposx);
-														$('#larmfront').attr("value",-larmposz);
-														$('#rarmup').attr("value",-rarmposy);
-														$('#rarmleft').attr("value",rarmposx);
-														$('#rarmfront').attr("value",-rarmposz);
-
-														$('#llegup').attr("value",-llegposy);
-														$('#llegleft').attr("value",llegposx);
-														$('#llegfront').attr("value",-llegposz);
-														$('#rlegup').attr("value",-rlegposy);
-														$('#rlegleft').attr("value",rlegposx);
-														$('#rlegfront').attr("value",-rlegposz);
-
 														$('#share-btn').click(function () {
 															screensh();
 														});
@@ -1327,25 +1515,43 @@ $.ajax({
 														var hslideru = document.getElementById("headup");
 														var hsliderl = document.getElementById("headleft");
 														var hsliderf = document.getElementById("headfront");
+														
 														hslideru.oninput = function() {
-															//var temp = scene.getObjectByName(scene.children[ihead].name);
+															// var temp = scene.getObjectByName(scene.children[ihead].name);
 															var t = this.value;
 															htemp.position.setY(-t);
 															// console.log(t);
 															if(hhtemp!=null){
-																hhtemp.position.setY(-t);
+																hhtemp.children[0].position.setY(-t);
+																hhtemp.children[1].position.setY(-t);
+																hhtemp.children[2].position.setY(-t);
+																hhtemp.children[3].position.setY(-t);
 															}
-															$("#toy_head_pos")[0].value = -t;
+															$("#toy_head_pos")[0].value = -t;		
+															camera.position.set(htemp.position.x, htemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(htemp.position.x,htemp.position.y,htemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();																									
 														}
 														hsliderl.oninput = function() {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
 															var t = this.value;
 															htemp.position.setX(t);
+															console.log(htemp.position.x);
 															// console.log(t);
 															if(hhtemp!=null){
-																hhtemp.position.setX(t);
+																hhtemp.children[0].position.setX(t);
+																hhtemp.children[1].position.setX(t);
+																hhtemp.children[2].position.setX(t);
+																hhtemp.children[3].position.setX(t);
 															}
 															$("#toy_head_posx")[0].value = t;
+															camera.position.set(htemp.position.x, htemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(htemp.position.x,htemp.position.y,htemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();											
 														}
 														hsliderf.oninput = function() {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
@@ -1353,9 +1559,17 @@ $.ajax({
 															htemp.position.setZ(-t);
 															// console.log(t);
 															if(hhtemp!=null){
-																hhtemp.position.setZ(-t);
+																hhtemp.children[0].position.setZ(-t);
+																hhtemp.children[1].position.setZ(-t);
+																hhtemp.children[2].position.setZ(-t);
+																hhtemp.children[3].position.setZ(-t);
 															}
 															$("#toy_head_posz")[0].value = -t;
+															camera.position.set(htemp.position.x, htemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(htemp.position.x,htemp.position.y,htemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 														}
 
 														$('#larml').click(function () {
@@ -1403,6 +1617,11 @@ $.ajax({
 															latemp.position.setY(-t);
 															// console.log(t);
 															$("#toy_larm_posy")[0].value = -t;
+															camera.position.set(latemp.position.x, latemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(latemp.position.x,latemp.position.y,latemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 														}
 														lasliderl.oninput = function() {
 															// var latemp = scene.getObjectByName(scene.children[ilarm].name);
@@ -1410,12 +1629,22 @@ $.ajax({
 															latemp.position.setX(t);
 															// console.log(t);
 															$("#toy_larm_posx")[0].value = t;
+															camera.position.set(latemp.position.x, latemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(latemp.position.x,latemp.position.y,latemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 														}
 														lasliderf.oninput = function() {
 															// var latemp = scene.getObjectByName(scene.children[ilarm].name);
 															var t = this.value;
 															latemp.position.setZ(-t);
 															$("#toy_larm_posz")[0].value = -t;
+															camera.position.set(latemp.position.x, latemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(latemp.position.x,latemp.position.y,latemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 															// console.log(t);
 														}
 														raslideru.oninput = function() {
@@ -1424,6 +1653,11 @@ $.ajax({
 															ratemp.position.setY(-t);
 															// console.log(t);
 															$("#toy_rarm_posy")[0].value = -t;
+															camera.position.set(ratemp.position.x, ratemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(ratemp.position.x,ratemp.position.y,ratemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 														}
 														rasliderl.oninput = function() {
 															// var ratemp = scene.getObjectByName(scene.children[irarm].name);
@@ -1431,12 +1665,22 @@ $.ajax({
 															ratemp.position.setX(t);
 															// console.log(t);
 															$("#toy_rarm_posx")[0].value = t;
+															camera.position.set(ratemp.position.x, ratemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(ratemp.position.x,ratemp.position.y,ratemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 														}
 														rasliderf.oninput = function() {
 															// var ratemp = scene.getObjectByName(scene.children[irarm].name);
 															var t = this.value;
 															ratemp.position.setZ(-t);
 															$("#toy_rarm_posz")[0].value = -t;
+															camera.position.set(ratemp.position.x, ratemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(ratemp.position.x,ratemp.position.y,ratemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 															// console.log(t);
 														}
 
@@ -1465,6 +1709,11 @@ $.ajax({
 															ttemp.position.setY(-t);
 															// console.log(t);
 															$("#toy_torso_posy")[0].value = -t;
+															camera.position.set(ttemp.position.x, ttemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(ttemp.position.x,ttemp.position.y,ttemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 														}
 														tsliderl.oninput = function() {
 															// var ttemp = scene.getObjectByName(scene.children[itorso].name);
@@ -1472,12 +1721,22 @@ $.ajax({
 															ttemp.position.setX(t);
 															// console.log(t);
 															$("#toy_torso_posx")[0].value = t;
+															camera.position.set(ttemp.position.x, ttemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(ttemp.position.x,ttemp.position.y,ttemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 														}
 														tsliderf.oninput = function() {
 															// var ttemp = scene.getObjectByName(scene.children[itorso].name);
 															var t = this.value;
 															ttemp.position.setZ(-t);
 															$("#toy_torso_posz")[0].value = -t;
+															camera.position.set(ttemp.position.x, ttemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(ttemp.position.x,ttemp.position.y,ttemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 															// console.log(t);
 														}
 
@@ -1526,6 +1785,11 @@ $.ajax({
 															lltemp.position.setY(-t);
 															// console.log(t);
 															$("#toy_lleg_posy")[0].value = -t;
+															camera.position.set(lltemp.position.x, lltemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(lltemp.position.x,lltemp.position.y,lltemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 														}
 														llsliderl.oninput = function() {
 															// var lltemp = scene.getObjectByName(scene.children[illeg].name);
@@ -1533,12 +1797,22 @@ $.ajax({
 															lltemp.position.setX(t);
 															// console.log(t);
 															$("#toy_lleg_posx")[0].value = t;
+															camera.position.set(lltemp.position.x, lltemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(lltemp.position.x,lltemp.position.y,lltemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 														}
 														llsliderf.oninput = function() {
 															// var lltemp = scene.getObjectByName(scene.children[illeg].name);
 															var t = this.value;
 															lltemp.position.setZ(-t);
 															$("#toy_lleg_posz")[0].value = -t;
+															camera.position.set(lltemp.position.x, lltemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(lltemp.position.x,lltemp.position.y,lltemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 															// console.log(t);
 														}
 														rlslideru.oninput = function() {
@@ -1547,6 +1821,11 @@ $.ajax({
 															rltemp.position.setY(-t);
 															// console.log(t);
 															$("#toy_rleg_posy")[0].value = -t;
+															camera.position.set(rltemp.position.x, rltemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(rltemp.position.x,rltemp.position.y,rltemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 														}
 														rlsliderl.oninput = function() {
 															// var rltemp = scene.getObjectByName(scene.children[irleg].name);
@@ -1554,12 +1833,22 @@ $.ajax({
 															rltemp.position.setX(t);
 															// console.log(t);
 															$("#toy_rleg_posx")[0].value = t;
+															camera.position.set(rltemp.position.x, rltemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(rltemp.position.x,rltemp.position.y,rltemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 														}
 														rlsliderf.oninput = function() {
 															// var rltemp = scene.getObjectByName(scene.children[irleg].name);
 															var t = this.value;
 															rltemp.position.setZ(-t);
 															$("#toy_rleg_posz")[0].value = -t;
+															camera.position.set(rltemp.position.x, rltemp.position.y, camera.position.z);
+															controls.target = new THREE.Vector3(rltemp.position.x,rltemp.position.y,rltemp.position.z);
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
 															// console.log(t);
 														}
 
