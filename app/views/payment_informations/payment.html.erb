@@ -1,0 +1,57 @@
+<br><br><br><br>
+<%= form_for :payment_information, :url => make_payment_url, method: "get" do %>
+
+  <div class="form-inputs">
+    <%= label_tag(:q, "cardholder name:")%>
+    <%= text_field_tag(:q) %>
+    <%= label_tag(:q, "cardholder last name:")%>
+    <%= text_field_tag(:q) %>
+    <%= label_tag(:q, "cell no:")%>
+    <%= text_field_tag(:q) %>
+    <%= label_tag(:q, "payment method:")%>
+    <%= text_field_tag(:q) %>
+    <%= label_tag(:q, "card no:")%>
+    <%= text_field_tag(:q) %>
+    <%= label_tag(:q, "expiration month:")%>
+    <%= text_field_tag(:q) %>
+    <%= label_tag(:q, "expiration year:")%>
+    <%= text_field_tag(:q) %>
+    <%= label_tag(:q, "cardholder name:")%>
+    <%= text_field_tag(:q) %>
+    <%= label_tag(:q, "security code:")%>
+    <%= text_field_tag(:q) %>
+    <%= label_tag(:q, "address line 1:")%>
+    <%= text_field_tag(:q) %>
+    <%= label_tag(:q, "address line 2:")%>
+    <%= text_field_tag(:q) %>
+    <%= label_tag(:q, "city:")%>
+<%#= input :ch_surname %>
+    <%#= input :cell_no %>
+    <%#= input :payment_method %>
+    <%#= input :card_no %>
+    <%#= input :expiration_month %>
+    <%#= input :expiration_year %>
+    <%#= input :security_code %>
+    <%#= input :address_line1 %>
+    <%#= input :address_line2 %>
+    <%#= input :city %>
+    <%#= input :postal_code %>
+    <%#= input :country %>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag("pay") %>
+  </div>
+  <br><br><br><br>
+<% end %>
+
+<script>
+  var body;
+
+  document.onreadystatechange = () => {
+      if (document.readyState === 'complete') {
+          body = document.getElementsByTagName("BODY")[0];
+          body.style.overflowY = "scroll";
+      }
+  };
+</script>

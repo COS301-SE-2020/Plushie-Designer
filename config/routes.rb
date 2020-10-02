@@ -1,6 +1,7 @@
 
 Rails.application.routes.draw do 
   
+  resources :payment_informations
   namespace :admin do
       resources :users
       resources :body_models
@@ -29,5 +30,7 @@ Rails.application.routes.draw do
   get '/toys/:id', to: "toys#displayPDF", as: :displayPDF
   get '/toys/:id/contribute', to: "toys#contribute", as: :contribute
   patch '/toys/:id/submitcontribution', to: "toys#submitcontribution", as: :submitcontribution
+  get '/make_payment', to: "payment_informations#make_payment", as: :make_payment
+  get '/payment', to: "payment_informations#payment", as: :payment
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
