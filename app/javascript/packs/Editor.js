@@ -65,6 +65,8 @@ $.ajax({
 
 													var type = 0;
 													var typechange = false;
+													var bzoom = false;
+													var menuitem = "type";
 
 													var hair = $("#toy_head")[0].value;
 													var head = $("#toy_head")[0].value;
@@ -361,21 +363,39 @@ $.ajax({
 															composer.addPass( copyshader );
 														}
 														//----------------------------------------------------------------------------------------------
-														function zoomin(obj){
-															zoomreset();
-															controls.target = new THREE.Vector3(obj.position.x,obj.position.y,obj.position.z);
-															camera.position.set(obj.position.x, obj.position.y, 10);	
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+														function zoomin(obj, anim){
+															if(bzoom){
+																zoomreset();
+																controls.target = new THREE.Vector3(obj.position.x,obj.position.y,obj.position.z);
+																camera.position.set(obj.position.x, obj.position.y, 10);	
+																controls.minDistance = 6;
+																if(!anim){
+																	var i = 1;
+
+																	function myLoop() {
+																		setTimeout(function() {   
+																			controls.dIn(i);
+																			controls.update();
+																			i -= 0.1;                   
+																			if (i >= 0.1) {           
+																			myLoop();             
+																			}                       
+																		}, 15)																	
+																	}	
+																	myLoop(); 
+																}else{
+																	controls.dIn(0.1);
+																	controls.update();
+																}																												
+															}
 														}
 
 														function zoomreset(){
 															controls.target = new THREE.Vector3(0,0,0);
 															camera.position.set(0, 1, 10);	
-															controls.minDistance = 13;
+															controls.minDistance = 13; 
 															controls.dIn(1);
-															controls.update();
+															controls.update();													
 														}
 
 														function chooseBodyPart(obj)//TODO
@@ -384,32 +404,44 @@ $.ajax({
 															{
 																case "hair" : currentSelection = hhtemp; break;
 																case htemp.children[0].name : 
-																	$('.head-controls').click();
+																	if(menuitem != "head"){
+																		$('.head-controls').click();
+																	}
 																	currentSelection = htemp; 
 																	// zoomin(obj);
 																	break;
 																case ttemp.children[0].name : 
-																	$('.torso-controls').click();
+																	if(menuitem != "torso"){
+																		$('.torso-controls').click();
+																	}
 																	currentSelection = ttemp; 
 																	// zoomin(obj);
 																	break;
 																case lltemp.children[0].name :
-																	$('.l-legs-controls').click(); 
+																	if(menuitem != "l-legs"){
+																		$('.l-legs-controls').click(); 
+																	}
 																	currentSelection = lltemp; 
 																	// zoomin(obj);
 																	break;
 																case rltemp.children[0].name : 
-																	$('.r-legs-controls').click();
+																	if(menuitem != "r-legs"){
+																		$('.r-legs-controls').click();
+																	}
 																	currentSelection = rltemp; 
 																	// zoomin(obj);
 																	break;
 																case latemp.children[0].name : 
-																	$('.l-arms-controls').click();
+																	if(menuitem != "l-arms"){
+																		$('.l-arms-controls').click();
+																	}
 																	currentSelection = latemp; 
 																	// zoomin(obj);
 																	break;
 																case ratemp.children[0].name :
-																	$('.r-arms-controls').click(); 
+																	if(menuitem != "r-arms"){
+																		$('.r-arms-controls').click(); 
+																	}
 																	currentSelection = ratemp; 
 																	// zoomin(obj);
 																	break;
@@ -480,28 +512,27 @@ $.ajax({
 																}
 																break;
 															case "head" :
-																htemp = gltf.scene;	
-																// console.log(gltf.scene.children[0]);																													
+																htemp = gltf.scene;																													
 																color = $("#toy_head_tex")[0].value;
 																if(headposy != 0.0){
-																	gltf.scene.children[0].position.setY(headposy);
+																	gltf.scene.children[0].position.setY(headposy);																
 																}else{
 																	headposy = gltf.scene.children[0].position.y;
 																}
 																if(headposx != 0.0){
-																	gltf.scene.children[0].position.setX(headposx);
+																	gltf.scene.children[0].position.setY(headposx);
 																}else{
 																	headposx = gltf.scene.children[0].position.x;
 																}
 																if(headposz != 0.0){
-																	gltf.scene.children[0].position.setZ(headposz); 
+																	gltf.scene.children[0].position.setY(headposz);
 																}else{
 																	headposz = gltf.scene.children[0].position.z;
 																}
 																// console.log(gltf.scene.children[0]);
 																$("#toy_head_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color, false).toDataURL("image/png");
-																// zoomin(htemp.children[0]);	
+																zoomin(htemp.children[0], false);	
 																$('#headup').attr("value",-headposy);	
 																$('#headleft').attr("value",headposx);
 																$('#headfront').attr("value",-headposz);	
@@ -521,19 +552,19 @@ $.ajax({
 																	torsoposy = gltf.scene.children[0].position.y;
 																}
 																if(torsoposx != 0.0){
-																	gltf.scene.children[0].position.setX(torsoposx);
+																	gltf.scene.children[0].position.setY(torsoposx);
 																}else{
 																	torsoposx = gltf.scene.children[0].position.x;
 																}
 																if(torsoposz != 0.0){
-																	gltf.scene.children[0].position.setZ(torsoposz); 
+																	gltf.scene.children[0].position.setY(torsoposz);
 																}else{
 																	torsoposz = gltf.scene.children[0].position.z;
 																}
 																// console.log(gltf.scene.children[0]);
 																$("#toy_torso_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
 																	, color, false ).toDataURL("image/png");
-																// zoomin(ttemp.children[0]);		
+																zoomin(ttemp.children[0], false);		
 																$('#torsoup').attr("value",-torsoposy);
 																$('#torsoleft').attr("value",torsoposx);
 																$('#torsofront').attr("value",-torsoposz);													
@@ -547,18 +578,18 @@ $.ajax({
 																	larmposy = gltf.scene.children[0].position.y;
 																}
 																if(larmposx != 0.0){
-																	gltf.scene.children[0].position.setX(larmposx);
+																	gltf.scene.children[0].position.setY(larmposx);
 																}else{
 																	larmposx = gltf.scene.children[0].position.x;
 																}
 																if(larmposz != 0.0){
-																	gltf.scene.children[0].position.setZ(larmposz); 
+																	gltf.scene.children[0].position.setY(larmposz);
 																}else{
 																	larmposz = gltf.scene.children[0].position.z;
 																}
 																$("#toy_larm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
 																	, color, false).toDataURL("image/png");
-																// zoomin(latemp.children[0]);		
+																zoomin(latemp.children[0], false);		
 																$('#larmup').attr("value",-larmposy);
 																$('#larmleft').attr("value",larmposx);
 																$('#larmfront').attr("value",-larmposz);
@@ -572,18 +603,18 @@ $.ajax({
 																	rarmposy = gltf.scene.children[0].position.y;
 																}
 																if(rarmposx != 0.0){
-																	gltf.scene.children[0].position.setX(rarmposx);
+																	gltf.scene.children[0].position.setY(rarmposx);
 																}else{
 																	rarmposx = gltf.scene.children[0].position.x;
 																}
 																if(rarmposz != 0.0){
-																	gltf.scene.children[0].position.setZ(rarmposz); 
+																	gltf.scene.children[0].position.setY(rarmposz);
 																}else{
 																	rarmposz = gltf.scene.children[0].position.z;
 																}
 																$("#toy_rarm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color , false).toDataURL("image/png");
-																// zoomin(ratemp.children[0]);		
+																zoomin(ratemp.children[0], false);		
 																$('#rarmup').attr("value",-rarmposy);
 																$('#rarmleft').attr("value",rarmposx);
 																$('#rarmfront').attr("value",-rarmposz);	
@@ -597,18 +628,18 @@ $.ajax({
 																	llegposy = gltf.scene.children[0].position.y;
 																}
 																if(llegposx != 0.0){
-																	gltf.scene.children[0].position.setX(llegposx);
+																	gltf.scene.children[0].position.setY(llegposx);
 																}else{
 																	llegposx = gltf.scene.children[0].position.x;
 																}
 																if(llegposz != 0.0){
-																	gltf.scene.children[0].position.setZ(llegposz); 
+																	gltf.scene.children[0].position.setY(llegposz);
 																}else{
 																	llegposz = gltf.scene.children[0].position.z;
 																}
 																$("#toy_lleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
 																	,color , false).toDataURL("image/png");
-																// zoomin(lltemp.children[0]);	
+																zoomin(lltemp.children[0], false);	
 																$('#llegup').attr("value",-llegposy);
 																$('#llegleft').attr("value",llegposx);
 																$('#llegfront').attr("value",-llegposz);
@@ -622,18 +653,18 @@ $.ajax({
 																	rlegposy = gltf.scene.children[0].position.y;
 																}
 																if(rlegposx != 0.0){
-																	gltf.scene.children[0].position.setX(rlegposx);
+																	gltf.scene.children[0].position.setY(rlegposx);
 																}else{
 																	rlegposx = gltf.scene.children[0].position.x;
 																}
 																if(rlegposz != 0.0){
-																	gltf.scene.children[0].position.setZ(rlegposz); 
+																	gltf.scene.children[0].position.setY(rlegposz);
 																}else{
 																	rlegposz = gltf.scene.children[0].position.z;
 																}
 																$("#toy_rleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color , false).toDataURL("image/png");
-																// zoomin(rltemp.children[0]);		
+																zoomin(rltemp.children[0], false);		
 																$('#rlegup').attr("value",-rlegposy);
 																$('#rlegleft').attr("value",rlegposx);
 																$('#rlegfront').attr("value",-rlegposz);
@@ -1346,36 +1377,82 @@ $.ajax({
 														}
 													}	
 
-													$(document).ready(function(){	
+													$(document).ready(function(){
+														$('#check-zoom').click(function () {
+															bzoom = !bzoom;
+															if(!bzoom){
+																zoomreset();
+															}else {
+																switch(menuitem){
+																	case "head" : zoomin(htemp.children[0], false); break;
+																	case "torso" : zoomin(ttemp.children[0], false); break;
+																	case "l-arms" : zoomin(latemp.children[0], false); break;
+																	case "r-arms" : zoomin(ratemp.children[0], false); break;
+																	case "l-legs" : zoomin(lltemp.children[0], false); break;
+																	case "r-legs" : zoomin(rltemp.children[0], false); break;
+																	case "type" : zoomreset(); break;
+																}
+															}
+														});
+														
 														$('.head-controls').click(function (){
-															zoomin(htemp.children[0]);
+															zoomin(htemp.children[0], false);
+															menuitem = "head";
 														});
 
 														$('.torso-controls').click(function (){
-															zoomin(ttemp.children[0]);
+															zoomin(ttemp.children[0], false);
+															menuitem = "torso";
 														});
 
 														$('.l-arms-controls').click(function (){
-															zoomin(latemp.children[0]);	
+															zoomin(latemp.children[0], false);	
+															menuitem = "l-arms";
 														});
 
 														$('.r-arms-controls').click(function (){
-															zoomin(ratemp.children[0]);	
+															zoomin(ratemp.children[0], false);
+															menuitem = "r-arms";	
 														});
 
 														$('.l-legs-controls').click(function (){
-															zoomin(lltemp.children[0]);	
+															zoomin(lltemp.children[0], false);
+															menuitem = "l-legs";	
 														});
 
 														$('.r-legs-controls').click(function (){															
-															zoomin(rltemp.children[0]);	
+															zoomin(rltemp.children[0], false);	
+															menuitem = "r-legs";
 														});
 
 														$('.type-controls').click(function (){															
 															zoomreset();
+															menuitem = "type";
 														});
 														$('#humanoid').click(function () {
 															if(type!=0){
+																if(bzoom){
+																	$('#check-zoom').click();
+																}
+																headposy = 0.0;
+																headposx = 0.0;
+																headposz = 0.0;
+																torsoposy = 0.0;
+																torsoposx = 0.0;
+																torsoposz = 0.0;
+																larmposy = 0.0;
+																larmposx = 0.0;
+																larmposz = 0.0;
+																rarmposy = 0.0;
+																rarmposx = 0.0;
+																rarmposz = 0.0;
+																llegposy = 0.0;
+																llegposx = 0.0;
+																llegposz = 0.0;
+																rlegposy = 0.0;
+																rlegposx = 0.0;
+																rlegposz = 0.0;
+
 																type=0;
 																typechange=true;														
 																$('#lach').html('Left Arm');
@@ -1409,6 +1486,28 @@ $.ajax({
 														
 														$('#animal').click(function () {
 															if(type!=1){
+																if(bzoom){
+																	$('#check-zoom').click();
+																}
+																headposy = 0.0;
+																headposx = 0.0;
+																headposz = 0.0;
+																torsoposy = 0.0;
+																torsoposx = 0.0;
+																torsoposz = 0.0;
+																larmposy = 0.0;
+																larmposx = 0.0;
+																larmposz = 0.0;
+																rarmposy = 0.0;
+																rarmposx = 0.0;
+																rarmposz = 0.0;
+																llegposy = 0.0;
+																llegposx = 0.0;
+																llegposz = 0.0;
+																rlegposy = 0.0;
+																rlegposx = 0.0;
+																rlegposz = 0.0;
+
 																type=1;
 																typechange=true;
 																$('#lach').html('Left Arm');
@@ -1442,6 +1541,28 @@ $.ajax({
 														
 														$('#fish').click(function () {
 															if(type!=2){
+																if(bzoom){
+																	$('#check-zoom').click();
+																}
+																headposy = 0.0;
+																headposx = 0.0;
+																headposz = 0.0;
+																torsoposy = 0.0;
+																torsoposx = 0.0;
+																torsoposz = 0.0;
+																larmposy = 0.0;
+																larmposx = 0.0;
+																larmposz = 0.0;
+																rarmposy = 0.0;
+																rarmposx = 0.0;
+																rarmposz = 0.0;
+																llegposy = 0.0;
+																llegposx = 0.0;
+																llegposz = 0.0;
+																rlegposy = 0.0;
+																rlegposx = 0.0;
+																rlegposz = 0.0;
+
 																type=2;
 																typechange=true;
 																$('#lach').html('Left Fin');
@@ -1528,7 +1649,7 @@ $.ajax({
 																hhtemp.children[3].position.setY(-t);
 															}
 															$("#toy_head_pos")[0].value = -t;	
-															zoomin(htemp.children[0]);																								
+															zoomin(htemp.children[0], true);																								
 														}
 														hsliderl.oninput = function() {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
@@ -1544,7 +1665,7 @@ $.ajax({
 																hhtemp.children[3].position.setX(t);
 															}
 															$("#toy_head_posx")[0].value = t;
-															zoomin(htemp.children[0]);											
+															zoomin(htemp.children[0], true);											
 														}
 														hsliderf.oninput = function() {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
@@ -1560,7 +1681,7 @@ $.ajax({
 																hhtemp.children[3].position.setZ(-t);
 															}
 															$("#toy_head_posz")[0].value = -t;
-															zoomin(htemp.children[0]);
+															zoomin(htemp.children[0], true);
 														}
 
 														$('#larml').click(function () {
@@ -1610,7 +1731,7 @@ $.ajax({
 															latemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_larm_posy")[0].value = -t;
-															zoomin(latemp.children[0]);
+															zoomin(latemp.children[0], true);
 														}
 														lasliderl.oninput = function() {
 															// var latemp = scene.getObjectByName(scene.children[ilarm].name);
@@ -1620,7 +1741,7 @@ $.ajax({
 															latemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_larm_posx")[0].value = t;
-															zoomin(latemp.children[0]);
+															zoomin(latemp.children[0], true);
 														}
 														lasliderf.oninput = function() {
 															// var latemp = scene.getObjectByName(scene.children[ilarm].name);
@@ -1629,7 +1750,7 @@ $.ajax({
 															t = -t;
 															latemp.children[0].position.setZ(-t);
 															$("#toy_larm_posz")[0].value = -t;
-															zoomin(latemp.children[0]);
+															zoomin(latemp.children[0], true);
 															// console.log(t);
 														}
 														raslideru.oninput = function() {
@@ -1640,7 +1761,7 @@ $.ajax({
 															ratemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_rarm_posy")[0].value = -t;
-															zoomin(ratemp.children[0]);	
+															zoomin(ratemp.children[0], true);	
 														}
 														rasliderl.oninput = function() {
 															// var ratemp = scene.getObjectByName(scene.children[irarm].name);
@@ -1650,7 +1771,7 @@ $.ajax({
 															ratemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_rarm_posx")[0].value = t;
-															zoomin(ratemp.children[0]);
+															zoomin(ratemp.children[0], true);
 														}
 														rasliderf.oninput = function() {
 															// var ratemp = scene.getObjectByName(scene.children[irarm].name);
@@ -1659,7 +1780,7 @@ $.ajax({
 															t = -t;
 															ratemp.children[0].position.setZ(-t);
 															$("#toy_rarm_posz")[0].value = -t;
-															zoomin(ratemp.children[0]);
+															zoomin(ratemp.children[0], true);
 															// console.log(t);
 														}
 
@@ -1690,7 +1811,7 @@ $.ajax({
 															ttemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_torso_posy")[0].value = -t;
-															zoomin(ttemp.children[0]);
+															zoomin(ttemp.children[0], true);
 														}
 														tsliderl.oninput = function() {
 															// var ttemp = scene.getObjectByName(scene.children[itorso].name);
@@ -1700,7 +1821,7 @@ $.ajax({
 															ttemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_torso_posx")[0].value = t;
-															zoomin(ttemp.children[0]);
+															zoomin(ttemp.children[0], true);
 														}
 														tsliderf.oninput = function() {
 															// var ttemp = scene.getObjectByName(scene.children[itorso].name);
@@ -1709,7 +1830,7 @@ $.ajax({
 															t = -t;
 															ttemp.children[0].position.setZ(-t);
 															$("#toy_torso_posz")[0].value = -t;
-															zoomin(ttemp.children[0]);
+															zoomin(ttemp.children[0], true);
 															// console.log(t);
 														}
 
@@ -1760,7 +1881,7 @@ $.ajax({
 															lltemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_lleg_posy")[0].value = -t;
-															zoomin(lltemp.children[0]);
+															zoomin(lltemp.children[0], true);
 														}
 														llsliderl.oninput = function() {
 															// var lltemp = scene.getObjectByName(scene.children[illeg].name);
@@ -1770,7 +1891,7 @@ $.ajax({
 															lltemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_lleg_posx")[0].value = t;
-															zoomin(lltemp.children[0]);
+															zoomin(lltemp.children[0], true);
 														}
 														llsliderf.oninput = function() {
 															// var lltemp = scene.getObjectByName(scene.children[illeg].name);
@@ -1779,7 +1900,7 @@ $.ajax({
 															t = -t;
 															lltemp.children[0].position.setZ(-t);
 															$("#toy_lleg_posz")[0].value = -t;
-															zoomin(lltemp.children[0]);
+															zoomin(lltemp.children[0], true);
 															// console.log(t);
 														}
 														rlslideru.oninput = function() {
@@ -1790,7 +1911,7 @@ $.ajax({
 															rltemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_rleg_posy")[0].value = -t;
-															zoomin(rltemp.children[0]);
+															zoomin(rltemp.children[0], true);
 														}
 														rlsliderl.oninput = function() {
 															// var rltemp = scene.getObjectByName(scene.children[irleg].name);
@@ -1800,7 +1921,7 @@ $.ajax({
 															rltemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_rleg_posx")[0].value = t;
-															zoomin(rltemp.children[0]);
+															zoomin(rltemp.children[0], true);
 														}
 														rlsliderf.oninput = function() {
 															// var rltemp = scene.getObjectByName(scene.children[irleg].name);
@@ -1809,7 +1930,7 @@ $.ajax({
 															t = -t;
 															rltemp.children[0].position.setZ(-t);
 															$("#toy_rleg_posz")[0].value = -t;
-															zoomin(rltemp.children[0]);
+															zoomin(rltemp.children[0], true);
 															// console.log(t);
 														}
 
