@@ -229,27 +229,27 @@ $.ajax({
 														switch(currentSelection)
 														{
 															case htemp:  $("#toy_head_tex")[0].value = tex;
-															$("#toy_head_uv")[0].value = UVsDebug(htemp.geometry, htemp.scale.x, htemp.scale.y,
+															$("#toy_head_uv")[0].value = UVsDebug(htemp.children[0].geometry, htemp.children[0].scale.x, htemp.children[0].scale.y,
 																tex, false).toDataURL("image/png");
 															break;
 															case ttemp:  $("#toy_torso_tex")[0].value = tex;
-															$("#toy_torso_uv")[0].value = UVsDebug(ttemp.geometry, ttemp.scale.x, ttemp.scale.y,
+															$("#toy_torso_uv")[0].value = UVsDebug(ttemp.children[0].geometry, ttemp.children[0].scale.x, ttemp.children[0].scale.y,
 																tex, false).toDataURL("image/png");
 															break;
 															case lltemp:  $("#toy_lleg_tex")[0].value = tex;
-															$("#toy_lleg_uv")[0].value = UVsDebug(lltemp.geometry, lltemp.scale.x, lltemp.scale.y,
+															$("#toy_lleg_uv")[0].value = UVsDebug(lltemp.children[0].geometry, lltemp.children[0].scale.x, lltemp.children[0].scale.y,
 																tex, false).toDataURL("image/png");
 															break;
 															case rltemp:  $("#toy_rleg_tex")[0].value = tex;
-															$("#toy_rleg_uv")[0].value = UVsDebug(rltemp.geometry, rltemp.scale.x, rltemp.scale.y,
+															$("#toy_rleg_uv")[0].value = UVsDebug(rltemp.children[0].geometry, rltemp.children[0].scale.x, rltemp.children[0].scale.y,
 																tex, false).toDataURL("image/png");
 															break;
 															case latemp:  $("#toy_larm_tex")[0].value = tex;
-															$("#toy_larm_uv")[0].value = UVsDebug(latemp.geometry, latemp.scale.x, latemp.scale.y,
+															$("#toy_larm_uv")[0].value = UVsDebug(latemp.children[0].geometry, latemp.children[0].scale.x, latemp.children[0].scale.y,
 																tex, false).toDataURL("image/png");
 															break;
 															case ratemp:  $("#toy_rarm_tex")[0].value = tex;
-															$("#toy_rarm_uv")[0].value = UVsDebug(ratemp.geometry, ratemp.scale.x, ratemp.scale.y,
+															$("#toy_rarm_uv")[0].value = UVsDebug(ratemp.children[0].geometry, ratemp.children[0].scale.x, ratemp.children[0].scale.y,
 																tex, false).toDataURL("image/png");
 															break;												
 														}
@@ -361,23 +361,63 @@ $.ajax({
 															composer.addPass( copyshader );
 														}
 														//----------------------------------------------------------------------------------------------
+														function zoomin(obj){
+															zoomreset();
+															controls.target = new THREE.Vector3(obj.position.x,obj.position.y,obj.position.z);
+															camera.position.set(obj.position.x, obj.position.y, 10);	
+															controls.minDistance = 6;
+															controls.dIn(0.1);
+															controls.update();
+														}
+
+														function zoomreset(){
+															controls.target = new THREE.Vector3(0,0,0);
+															camera.position.set(0, 1, 10);	
+															controls.minDistance = 13;
+															controls.dIn(1);
+															controls.update();
+														}
 
 														function chooseBodyPart(obj)//TODO
 														{	
 															switch(obj.name)
 															{
 																case "hair" : currentSelection = hhtemp; break;
-																case htemp.name : currentSelection = htemp; break;
-																case ttemp.name : currentSelection = ttemp; break;
-																case lltemp.name : currentSelection = lltemp; break;
-																case rltemp.name : currentSelection = rltemp; break;
-																case latemp.name : currentSelection = latemp; break;
-																case ratemp.name : currentSelection = ratemp; break;
+																case htemp.children[0].name : 
+																	$('.head-controls').click();
+																	currentSelection = htemp; 
+																	// zoomin(obj);
+																	break;
+																case ttemp.children[0].name : 
+																	$('.torso-controls').click();
+																	currentSelection = ttemp; 
+																	// zoomin(obj);
+																	break;
+																case lltemp.children[0].name :
+																	$('.l-legs-controls').click(); 
+																	currentSelection = lltemp; 
+																	// zoomin(obj);
+																	break;
+																case rltemp.children[0].name : 
+																	$('.r-legs-controls').click();
+																	currentSelection = rltemp; 
+																	// zoomin(obj);
+																	break;
+																case latemp.children[0].name : 
+																	$('.l-arms-controls').click();
+																	currentSelection = latemp; 
+																	// zoomin(obj);
+																	break;
+																case ratemp.children[0].name :
+																	$('.r-arms-controls').click(); 
+																	currentSelection = ratemp; 
+																	// zoomin(obj);
+																	break;
 																default : return;
 															}
 															var selectedObject = obj;
 															addSelectedObject( selectedObject );
-															outlinePass.selectedObjects = selectedObjects;
+															outlinePass.selectedObjects = selectedObjects;															
 														}
 
 														function onMouseClick(event)
@@ -395,7 +435,7 @@ $.ajax({
 															intersects = raycaster.intersectObjects( scene.children , true );
 															if(intersects.length > 0)
 															{
-																chooseBodyPart(intersects[ 0 ].object);
+																chooseBodyPart(intersects[ 0 ].object);																																	
 															}
 															else{
 																outlinePass.selectedObjects = [];
@@ -412,13 +452,13 @@ $.ajax({
 															
 														// gltf.scene.position.setY(1.5);
 														gltf.scene.children[0].castShadow = true;
-														gltf.scene.children[0].name = name;
+														// gltf.scene.children[0].name = name;
 														gltf.scene.name = name;
 														scene.add( gltf.scene);
 														switch(name)
 														{
 															case "hair" : 
-																console.log(gltf.scene);
+																// console.log(gltf.scene);
 																hhtemp = gltf.scene;
 																if(headposy != 0.0){
 																	gltf.scene.children[0].position.setY(headposy);
@@ -440,7 +480,7 @@ $.ajax({
 																}
 																break;
 															case "head" :
-																htemp = gltf.scene.children[0];	
+																htemp = gltf.scene;	
 																// console.log(gltf.scene.children[0]);																													
 																color = $("#toy_head_tex")[0].value;
 																if(headposy != 0.0){
@@ -461,11 +501,7 @@ $.ajax({
 																// console.log(gltf.scene.children[0]);
 																$("#toy_head_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color, false).toDataURL("image/png");
-																camera.position.set(htemp.position.x, htemp.position.y, camera.position.z);
-																controls.target = new THREE.Vector3(htemp.position.x,htemp.position.y,htemp.position.z);
-																controls.minDistance = 6;
-																controls.dIn(0.1);
-																controls.update();	
+																// zoomin(htemp.children[0]);	
 																$('#headup').attr("value",-headposy);	
 																$('#headleft').attr("value",headposx);
 																$('#headfront').attr("value",-headposz);	
@@ -477,7 +513,7 @@ $.ajax({
 																// $('#headfront').attr("min",-htemp.position.z-4);													
 																break;
 															case "torso" : 
-																ttemp = gltf.scene.children[0];
+																ttemp = gltf.scene;
 																color = $("#toy_torso_tex")[0].value;
 																if(torsoposy != 0.0){
 																	gltf.scene.children[0].position.setY(torsoposy);
@@ -497,17 +533,13 @@ $.ajax({
 																// console.log(gltf.scene.children[0]);
 																$("#toy_torso_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
 																	, color, false ).toDataURL("image/png");
-																camera.position.set(ttemp.position.x, ttemp.position.y, camera.position.z);
-																controls.target = new THREE.Vector3(ttemp.position.x,ttemp.position.y,ttemp.position.z);
-																controls.minDistance = 6;
-																controls.dIn(0.1);
-																controls.update();		
+																// zoomin(ttemp.children[0]);		
 																$('#torsoup').attr("value",-torsoposy);
 																$('#torsoleft').attr("value",torsoposx);
 																$('#torsofront').attr("value",-torsoposz);													
 																break;
 															case "leftarm" : 
-																latemp = gltf.scene.children[0]; 
+																latemp = gltf.scene; 
 																color = $("#toy_larm_tex")[0].value;
 																if(larmposy != 0.0){
 																	gltf.scene.children[0].position.setY(larmposy);
@@ -526,17 +558,13 @@ $.ajax({
 																}
 																$("#toy_larm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
 																	, color, false).toDataURL("image/png");
-																camera.position.set(latemp.position.x, latemp.position.y, camera.position.z);
-																controls.target = new THREE.Vector3(latemp.position.x,latemp.position.y,latemp.position.z);
-																controls.minDistance = 6;
-																controls.dIn(0.1);
-																controls.update();	
+																// zoomin(latemp.children[0]);		
 																$('#larmup').attr("value",-larmposy);
 																$('#larmleft').attr("value",larmposx);
 																$('#larmfront').attr("value",-larmposz);
 															break;
 															case "rightarm" : 
-																ratemp = gltf.scene.children[0];
+																ratemp = gltf.scene;
 																color = $("#toy_rarm_tex")[0].value;
 																if(rarmposy != 0.0){
 																	gltf.scene.children[0].position.setY(rarmposy);
@@ -555,17 +583,13 @@ $.ajax({
 																}
 																$("#toy_rarm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color , false).toDataURL("image/png");
-																camera.position.set(ratemp.position.x, ratemp.position.y, camera.position.z);
-																controls.target = new THREE.Vector3(ratemp.position.x,ratemp.position.y,ratemp.position.z);
-																controls.minDistance = 6;
-																controls.dIn(0.1);
-																controls.update();	
+																// zoomin(ratemp.children[0]);		
 																$('#rarmup').attr("value",-rarmposy);
 																$('#rarmleft').attr("value",rarmposx);
 																$('#rarmfront').attr("value",-rarmposz);	
 															break;
 															case "leftleg" : 
-																lltemp = gltf.scene.children[0];
+																lltemp = gltf.scene;
 																color = $("#toy_lleg_tex")[0].value;
 																if(llegposy != 0.0){
 																	gltf.scene.children[0].position.setY(llegposy);
@@ -584,17 +608,13 @@ $.ajax({
 																}
 																$("#toy_lleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
 																	,color , false).toDataURL("image/png");
-																camera.position.set(lltemp.position.x, lltemp.position.y, camera.position.z);
-																controls.target = new THREE.Vector3(lltemp.position.x,lltemp.position.y,lltemp.position.z);
-																controls.minDistance = 6;
-																controls.dIn(0.1);
-																controls.update();	
+																// zoomin(lltemp.children[0]);	
 																$('#llegup').attr("value",-llegposy);
 																$('#llegleft').attr("value",llegposx);
 																$('#llegfront').attr("value",-llegposz);
 															break;
 															case "rightleg" : 
-																rltemp = gltf.scene.children[0];
+																rltemp = gltf.scene;
 																color = $("#toy_rleg_tex")[0].value;
 																if(rlegposy != 0.0){
 																	gltf.scene.children[0].position.setY(rlegposy);
@@ -613,11 +633,7 @@ $.ajax({
 																}
 																$("#toy_rleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color , false).toDataURL("image/png");
-																camera.position.set(rltemp.position.x, rltemp.position.y, camera.position.z);
-																controls.target = new THREE.Vector3(rltemp.position.x,rltemp.position.y,rltemp.position.z);
-																controls.minDistance = 6;
-																controls.dIn(0.1);
-																controls.update();	
+																// zoomin(rltemp.children[0]);		
 																$('#rlegup').attr("value",-rlegposy);
 																$('#rlegleft').attr("value",rlegposx);
 																$('#rlegfront').attr("value",-rlegposz);
@@ -789,12 +805,14 @@ $.ajax({
 													// var tempx;
 													// var tempy;
 													// var tempz;
+													// // console.log(scene.children);
+													// // console.log(scene.children.slice(3,10));
 													// //--------------------------DragControls-------------------------
 													// var Dcontrols = new DragControls( scene.children, camera, renderer.domElement );
 													// // Dcontrols.transformGroup = true;
 													// Dcontrols.addEventListener( 'dragstart', function ( event ) {
-
-													// 	if(event.object.name == "" || event.object.name == "Room_1" || event.object.name == "Room_2" || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
+													// 	// console.log(event.object);
+													// 	if(event.object.name == "" || event.object.name.match(/mesh_/) || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
 													// 		Dcontrols.enabled = false;
 													// 	}
 													// 	else{
@@ -808,7 +826,7 @@ $.ajax({
 
 													// Dcontrols.addEventListener( 'dragend', function ( event ) {
 
-													// 	if(event.object.name == "" || event.object.name == "Room_1" || event.object.name == "Room_2" || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
+													// 	if(event.object.name == "" || event.object.name.match(/mesh_/) || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
 													// 		Dcontrols.enabled = true;
 													// 	}
 													// 	else{
@@ -820,22 +838,30 @@ $.ajax({
 													// 			// console.log($("#toy_head_pos")[0].value);
 													// 			$("#toy_head_posx")[0].value = event.object.position.x;
 													// 			$("#toy_head_posz")[0].value = event.object.position.z;
-													// 			$('#headup').attr("value",-event.object.position.y);	
-													// 			$('#headleft').attr("value",event.object.position.x);
-													// 			$('#headfront').attr("value",-event.object.position.z);	
-													// 			$('#headup').attr("max",event.object.position.y + 4);	
-													// 			$('#headleft').attr("max",event.object.position.x + 4);
-													// 			$('#headfront').attr("max",event.object.position.z + 4);	
-													// 			$('#headup').attr("min",-event.object.position.y-4);	
-													// 			$('#headleft').attr("min",-event.object.position.x-4);
-													// 			$('#headfront').attr("min",-event.object.position.z-4);	
+													// 			// $('#headup').attr("value",-event.object.position.y);	
+													// 			// $('#headleft').attr("value",event.object.position.x);
+													// 			// $('#headfront').attr("value",-event.object.position.z);	
+													// 			// $('#headup').attr("max",event.object.position.y + 4);	
+													// 			// $('#headleft').attr("max",event.object.position.x + 4);
+													// 			// $('#headfront').attr("max",event.object.position.z + 4);	
+													// 			// $('#headup').attr("min",-event.object.position.y-4);	
+													// 			// $('#headleft').attr("min",-event.object.position.x-4);
+													// 			// $('#headfront').attr("min",-event.object.position.z-4);	
 													// 			if(ihair!=99){
-													// 				hhtemp.position.setY($("#toy_head_pos")[0].value);
-													// 				hhtemp.position.setX($("#toy_head_posx")[0].value);
-													// 				hhtemp.position.setZ($("#toy_head_posz")[0].value);
+													// 				hhtemp.children[0].position.setY($("#toy_head_pos")[0].value);
+													// 				hhtemp.children[1].position.setY($("#toy_head_pos")[0].value);
+													// 				hhtemp.children[2].position.setY($("#toy_head_pos")[0].value);
+													// 				hhtemp.children[3].position.setY($("#toy_head_pos")[0].value);
+													// 				hhtemp.children[0].position.setX($("#toy_head_posx")[0].value);
+													// 				hhtemp.children[1].position.setX($("#toy_head_posx")[0].value);
+													// 				hhtemp.children[2].position.setX($("#toy_head_posx")[0].value);
+													// 				hhtemp.children[3].position.setX($("#toy_head_posx")[0].value);
+													// 				hhtemp.children[0].position.setZ($("#toy_head_posz")[0].value);
+													// 				hhtemp.children[1].position.setZ($("#toy_head_posz")[0].value);
+													// 				hhtemp.children[2].position.setZ($("#toy_head_posz")[0].value);
+													// 				hhtemp.children[3].position.setZ($("#toy_head_posz")[0].value);
 													// 			}
 													// 		}
-													// 		console.log(event.object.name);
 													// 		if(event.object.name == "body"){
 													// 			$("#toy_torso_posy")[0].value = event.object.position.y;
 													// 			$("#toy_torso_posx")[0].value = event.object.position.x;
@@ -865,11 +891,11 @@ $.ajax({
 													// 		}
 													// 	}
 													// } );
-													//----------------------------------------------------------------
+													// // ----------------------------------------------------------------
 
 													// console.log(htemp);
 													//-------------------------------ANIMATE---------------------------------
-													console.log(scene);
+													// console.log(scene);
 													var animate = function () {
 														if(typechange){
 															clearcontrols();
@@ -904,7 +930,7 @@ $.ajax({
 
 														if(headchange){
 															updateIndexes();															
-															var temp = scene.getObjectByName(scene.children[ihead].children[0].name);
+															var temp = scene.getObjectByName(scene.children[ihead].name);
 															scene.remove(temp);
 															if(head != 1){
 																// alert(ihair);
@@ -1321,60 +1347,32 @@ $.ajax({
 													}	
 
 													$(document).ready(function(){	
-														$('.head-controls').click(function (){	
-															camera.position.set(htemp.position.x, htemp.position.y, camera.position.z);										
-															controls.target = new THREE.Vector3(htemp.position.x,htemp.position.y,htemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+														$('.head-controls').click(function (){
+															zoomin(htemp.children[0]);
 														});
 
-														$('.torso-controls').click(function (){		
-															camera.position.set(ttemp.position.x, ttemp.position.y, camera.position.z);										
-															controls.target = new THREE.Vector3(ttemp.position.x,ttemp.position.y,ttemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+														$('.torso-controls').click(function (){
+															zoomin(ttemp.children[0]);
 														});
 
-														$('.l-arms-controls').click(function (){		
-															camera.position.set(latemp.position.x, latemp.position.y, camera.position.z);										
-															controls.target = new THREE.Vector3(latemp.position.x,latemp.position.y,latemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+														$('.l-arms-controls').click(function (){
+															zoomin(latemp.children[0]);	
 														});
 
-														$('.r-arms-controls').click(function (){		
-															camera.position.set(ratemp.position.x, ratemp.position.y, camera.position.z);										
-															controls.target = new THREE.Vector3(ratemp.position.x,ratemp.position.y,ratemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+														$('.r-arms-controls').click(function (){
+															zoomin(ratemp.children[0]);	
 														});
 
-														$('.l-legs-controls').click(function (){		
-															camera.position.set(lltemp.position.x, lltemp.position.y, camera.position.z);										
-															controls.target = new THREE.Vector3(lltemp.position.x,lltemp.position.y,lltemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+														$('.l-legs-controls').click(function (){
+															zoomin(lltemp.children[0]);	
 														});
 
-														$('.r-legs-controls').click(function (){		
-															camera.position.set(rltemp.position.x, rltemp.position.y, camera.position.z);										
-															controls.target = new THREE.Vector3(rltemp.position.x,rltemp.position.y,rltemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+														$('.r-legs-controls').click(function (){															
+															zoomin(rltemp.children[0]);	
 														});
 
-														$('.type-controls').click(function (){
-															controls.target = new THREE.Vector3(0,0,0);
-															camera.position.set(0, 1, 10);	
-															controls.minDistance = 13;
-															controls.dIn(1);
-															controls.update();
+														$('.type-controls').click(function (){															
+															zoomreset();
 														});
 														$('#humanoid').click(function () {
 															if(type!=0){
@@ -1519,7 +1517,9 @@ $.ajax({
 														hslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[ihead].name);
 															var t = this.value;
-															htemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															htemp.children[0].position.setY(-t);
 															// console.log(t);
 															if(hhtemp!=null){
 																hhtemp.children[0].position.setY(-t);
@@ -1527,18 +1527,15 @@ $.ajax({
 																hhtemp.children[2].position.setY(-t);
 																hhtemp.children[3].position.setY(-t);
 															}
-															$("#toy_head_pos")[0].value = -t;		
-															camera.position.set(htemp.position.x, htemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(htemp.position.x,htemp.position.y,htemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();																									
+															$("#toy_head_pos")[0].value = -t;	
+															zoomin(htemp.children[0]);																								
 														}
 														hsliderl.oninput = function() {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
 															var t = this.value;
-															htemp.position.setX(t);
-															console.log(htemp.position.x);
+															t = -t;
+															t = -t;
+															htemp.children[0].position.setX(t);
 															// console.log(t);
 															if(hhtemp!=null){
 																hhtemp.children[0].position.setX(t);
@@ -1547,16 +1544,14 @@ $.ajax({
 																hhtemp.children[3].position.setX(t);
 															}
 															$("#toy_head_posx")[0].value = t;
-															camera.position.set(htemp.position.x, htemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(htemp.position.x,htemp.position.y,htemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();											
+															zoomin(htemp.children[0]);											
 														}
 														hsliderf.oninput = function() {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
 															var t = this.value;
-															htemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															htemp.children[0].position.setZ(-t);
 															// console.log(t);
 															if(hhtemp!=null){
 																hhtemp.children[0].position.setZ(-t);
@@ -1565,11 +1560,7 @@ $.ajax({
 																hhtemp.children[3].position.setZ(-t);
 															}
 															$("#toy_head_posz")[0].value = -t;
-															camera.position.set(htemp.position.x, htemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(htemp.position.x,htemp.position.y,htemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(htemp.children[0]);
 														}
 
 														$('#larml').click(function () {
@@ -1614,73 +1605,61 @@ $.ajax({
 														laslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[ilarm].name);
 															var t = this.value;
-															latemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															latemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_larm_posy")[0].value = -t;
-															camera.position.set(latemp.position.x, latemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(latemp.position.x,latemp.position.y,latemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(latemp.children[0]);
 														}
 														lasliderl.oninput = function() {
 															// var latemp = scene.getObjectByName(scene.children[ilarm].name);
 															var t = this.value;
-															latemp.position.setX(t);
+															t = -t;
+															t = -t;
+															latemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_larm_posx")[0].value = t;
-															camera.position.set(latemp.position.x, latemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(latemp.position.x,latemp.position.y,latemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(latemp.children[0]);
 														}
 														lasliderf.oninput = function() {
 															// var latemp = scene.getObjectByName(scene.children[ilarm].name);
 															var t = this.value;
-															latemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															latemp.children[0].position.setZ(-t);
 															$("#toy_larm_posz")[0].value = -t;
-															camera.position.set(latemp.position.x, latemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(latemp.position.x,latemp.position.y,latemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(latemp.children[0]);
 															// console.log(t);
 														}
 														raslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[irarm].name);
 															var t = this.value;
-															ratemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															ratemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_rarm_posy")[0].value = -t;
-															camera.position.set(ratemp.position.x, ratemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(ratemp.position.x,ratemp.position.y,ratemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(ratemp.children[0]);	
 														}
 														rasliderl.oninput = function() {
 															// var ratemp = scene.getObjectByName(scene.children[irarm].name);
 															var t = this.value;
-															ratemp.position.setX(t);
+															t = -t;
+															t = -t;
+															ratemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_rarm_posx")[0].value = t;
-															camera.position.set(ratemp.position.x, ratemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(ratemp.position.x,ratemp.position.y,ratemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(ratemp.children[0]);
 														}
 														rasliderf.oninput = function() {
 															// var ratemp = scene.getObjectByName(scene.children[irarm].name);
 															var t = this.value;
-															ratemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															ratemp.children[0].position.setZ(-t);
 															$("#toy_rarm_posz")[0].value = -t;
-															camera.position.set(ratemp.position.x, ratemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(ratemp.position.x,ratemp.position.y,ratemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(ratemp.children[0]);
 															// console.log(t);
 														}
 
@@ -1706,37 +1685,31 @@ $.ajax({
 														tslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[itorso].name);
 															var t = this.value;
-															ttemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															ttemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_torso_posy")[0].value = -t;
-															camera.position.set(ttemp.position.x, ttemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(ttemp.position.x,ttemp.position.y,ttemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(ttemp.children[0]);
 														}
 														tsliderl.oninput = function() {
 															// var ttemp = scene.getObjectByName(scene.children[itorso].name);
 															var t = this.value;
-															ttemp.position.setX(t);
+															t = -t;
+															t = -t;
+															ttemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_torso_posx")[0].value = t;
-															camera.position.set(ttemp.position.x, ttemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(ttemp.position.x,ttemp.position.y,ttemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(ttemp.children[0]);
 														}
 														tsliderf.oninput = function() {
 															// var ttemp = scene.getObjectByName(scene.children[itorso].name);
 															var t = this.value;
-															ttemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															ttemp.children[0].position.setZ(-t);
 															$("#toy_torso_posz")[0].value = -t;
-															camera.position.set(ttemp.position.x, ttemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(ttemp.position.x,ttemp.position.y,ttemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(ttemp.children[0]);
 															// console.log(t);
 														}
 
@@ -1782,73 +1755,61 @@ $.ajax({
 														llslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[illeg].name);
 															var t = this.value;
-															lltemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															lltemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_lleg_posy")[0].value = -t;
-															camera.position.set(lltemp.position.x, lltemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(lltemp.position.x,lltemp.position.y,lltemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(lltemp.children[0]);
 														}
 														llsliderl.oninput = function() {
 															// var lltemp = scene.getObjectByName(scene.children[illeg].name);
 															var t = this.value;
-															lltemp.position.setX(t);
+															t = -t;
+															t = -t;
+															lltemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_lleg_posx")[0].value = t;
-															camera.position.set(lltemp.position.x, lltemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(lltemp.position.x,lltemp.position.y,lltemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(lltemp.children[0]);
 														}
 														llsliderf.oninput = function() {
 															// var lltemp = scene.getObjectByName(scene.children[illeg].name);
 															var t = this.value;
-															lltemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															lltemp.children[0].position.setZ(-t);
 															$("#toy_lleg_posz")[0].value = -t;
-															camera.position.set(lltemp.position.x, lltemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(lltemp.position.x,lltemp.position.y,lltemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(lltemp.children[0]);
 															// console.log(t);
 														}
 														rlslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[irleg].name);
 															var t = this.value;
-															rltemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															rltemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_rleg_posy")[0].value = -t;
-															camera.position.set(rltemp.position.x, rltemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(rltemp.position.x,rltemp.position.y,rltemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(rltemp.children[0]);
 														}
 														rlsliderl.oninput = function() {
 															// var rltemp = scene.getObjectByName(scene.children[irleg].name);
 															var t = this.value;
-															rltemp.position.setX(t);
+															t = -t;
+															t = -t;
+															rltemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_rleg_posx")[0].value = t;
-															camera.position.set(rltemp.position.x, rltemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(rltemp.position.x,rltemp.position.y,rltemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(rltemp.children[0]);
 														}
 														rlsliderf.oninput = function() {
 															// var rltemp = scene.getObjectByName(scene.children[irleg].name);
 															var t = this.value;
-															rltemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															rltemp.children[0].position.setZ(-t);
 															$("#toy_rleg_posz")[0].value = -t;
-															camera.position.set(rltemp.position.x, rltemp.position.y, camera.position.z);
-															controls.target = new THREE.Vector3(rltemp.position.x,rltemp.position.y,rltemp.position.z);
-															controls.minDistance = 6;
-															controls.dIn(0.1);
-															controls.update();
+															zoomin(rltemp.children[0]);
 															// console.log(t);
 														}
 
