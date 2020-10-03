@@ -28,18 +28,13 @@ class ToysController < ApplicationController
 
   def displayPDF
     @toy = scope.find(params[:id])
-    
-    respond_to do |format|
-      format.html
-      format.pdf do
         render pdf: "Toy id: #{@toy.id}",
                page_size: 'A4',
                template: "toys/displayPDF.html.erb",
                layout: "pdf.html",
                orientation: "Portrait",
-               zoom: 1
-      end
-    end
+               zoom: 1,
+    target: "_blank"
   end
 
   # GET /toys/new

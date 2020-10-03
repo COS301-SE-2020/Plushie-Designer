@@ -1,7 +1,8 @@
 <br><br><br><br>
-<%= form_for :payment_information, :url => make_payment_url, method: "get" do %>
+<%= form_for :payment_information, :url => make_payment_url, method: "get", :html => {:target=>'_blank'} do %>
 
   <div class="form-inputs">
+    <%= hidden_field_tag :id, `@toy.id` %>
     <%= label_tag(:q, "cardholder name:")%>
     <%= text_field_tag(:q) %>
     <%= label_tag(:q, "cardholder last name:")%>
@@ -25,22 +26,10 @@
     <%= label_tag(:q, "address line 2:")%>
     <%= text_field_tag(:q) %>
     <%= label_tag(:q, "city:")%>
-<%#= input :ch_surname %>
-    <%#= input :cell_no %>
-    <%#= input :payment_method %>
-    <%#= input :card_no %>
-    <%#= input :expiration_month %>
-    <%#= input :expiration_year %>
-    <%#= input :security_code %>
-    <%#= input :address_line1 %>
-    <%#= input :address_line2 %>
-    <%#= input :city %>
-    <%#= input :postal_code %>
-    <%#= input :country %>
   </div>
 
   <div class="form-actions">
-    <%= submit_tag("pay") %>
+    <%= button_to 'DOWNLOAD PDF', make_payment_path(@toy.id), target: "_blank" %>
   </div>
   <br><br><br><br>
 <% end %>

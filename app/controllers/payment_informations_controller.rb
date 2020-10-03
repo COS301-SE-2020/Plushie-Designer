@@ -62,15 +62,13 @@ class PaymentInformationsController < ApplicationController
   end
 
   def make_payment
-    respond_to do |format|
-      format.html{ redirect_to new_toy_path }
-      format.json { render 'toys/new' }
-      puts "entered"
-    end
+    @toy = toys.find(params[:id])
+    redirect_to displayPDF_path(@toy.id), target: :"_blank"
   end
 
   def payment
     @payment_information = current_user.payment_informations.build(payment_information_params)
+    @toy = toys.find(params[:id])
     render :payment
   end
 
@@ -84,4 +82,8 @@ class PaymentInformationsController < ApplicationController
     def payment_information_params
       params.permit(:ch_name, :ch_surname, :cell_no, :payment_method, :card_no, :expiration_month, :expiration_year, :security_code, :address_line1, :address_line2, :city, :postal_code, :country, :user_id)
     end
+
+  def toys
+    ::Toy.all
+  end
 end
