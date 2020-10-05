@@ -4,8 +4,8 @@
 
   <div class="form-inputs">
     <div class="options-header">
-      <%= f.input :name, label_html: { class: 'name-label' }, placeholder: 'Plushie Name', required: false, input_html: { :autocomplete => "off" } %>
-      <%= f.input :shared, label: "Share"%>
+      <%= f.input :name, label_html: { class: 'name-label' }, placeholder: 'Give your plushie a name', required: false, input_html: { :autocomplete => "off" } %>
+      <%= f.input :shared, label: "Share", title: "Share your plushie with other people"%>
     </div>
     <div class="hinput">
       <%= f.input :head, input_html: {value: 0} %>
@@ -73,7 +73,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="head-div panel-heading panel-clr" title="The top part of the plushie">
+    <div class="head-div panel-heading panel-clr" title="Adjust the top part of the plushie">
       <h4 class="panel-title">
         <div class="head-controls comp-click-zone" id="Head" data-toggle="collapse" data-parent="#controls-parent" data-target="#collapse-head-controls">
             <!-- <button style="display: none;" id="hc-btn" type="hidden" data-toggle="collapse" data-target="#collapse-head-controls"></button> -->
@@ -391,6 +391,13 @@
           $(this).toggleClass('on');
         } )
       }); 
+
+      $('#Head').on('hover', () => {
+        console.log('hover');
+      });
+      $('.popover').popover(()=>{
+        console.log("ho")
+      });
     });
 </script>
 
