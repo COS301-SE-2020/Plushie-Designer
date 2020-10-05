@@ -1,119 +1,258 @@
 {
     "file_paths":{
         "models":{
-            "length":4,
+            "length":9,
             "0":{
                 "type": 0,
                 "hair": "" ,
                 "head": {
-                    "img": "/model/minecraft/images/steve_head.png",
-                    "url": "/model/minecraft/steve_head1.gltf"
+                    "img": "/model/humanoid/minecraft/images/steve_head.png",
+                    "url": "/model/humanoid/minecraft/steve_head1.gltf"
                 },
                 "body": {
-                    "img": "/model/minecraft/images/steve_body.png",
-                    "url": "/model/minecraft/steve_body1.gltf"
+                    "img": "/model/humanoid/minecraft/images/steve_body.png",
+                    "url": "/model/humanoid/minecraft/steve_body1.gltf"
                 },
                 "l_arm": {
-                    "img": "/model/minecraft/images/steve_l_arm.png",
-                    "url": "/model/minecraft/steve_l_arm1.gltf"
+                    "img": "/model/humanoid/minecraft/images/steve_l_arm.png",
+                    "url": "/model/humanoid/minecraft/steve_l_arm1.gltf"
                 },
                 "r_arm": {
-                    "img": "/model/minecraft/images/steve_r_arm.png",
-                    "url": "/model/minecraft/steve_r_arm1.gltf"
+                    "img": "/model/humanoid/minecraft/images/steve_r_arm.png",
+                    "url": "/model/humanoid/minecraft/steve_r_arm1.gltf"
                 },
                 "l_leg": {
-                    "img": "/model/minecraft/images/steve_l_leg.png",
-                    "url": "/model/minecraft/steve_l_leg1.gltf"
+                    "img": "/model/humanoid/minecraft/images/steve_l_leg.png",
+                    "url": "/model/humanoid/minecraft/steve_l_leg1.gltf"
                 },
                 "r_leg": {
-                    "img": "/model/minecraft/images/steve_r_leg.png",
-                    "url": "/model/minecraft/steve_r_leg1.gltf"
+                    "img": "/model/humanoid/minecraft/images/steve_r_leg.png",
+                    "url": "/model/humanoid/minecraft/steve_r_leg1.gltf"
                 }
             },
             "1":{
                 "type": 0,
-                "hair":"/model/chibi/chibi_hair.gltf",
+                "hair":"/model/humanoid/chibi/chibi_hair.gltf",
                 "head": {
-                    "img": "/model/chibi/images/chibi_head.png",
-                    "url": "/model/chibi/chibi_head.gltf"
+                    "img": "/model/humanoid/chibi/images/chibi_head.png",
+                    "url": "/model/humanoid/chibi/chibi_head.gltf"
                 },
                 "body": {
-                    "img": "/model/chibi/images/chibi_body.png",
-                    "url": "/model/chibi/chibi_body.gltf"
+                    "img": "/model/humanoid/chibi/images/chibi_body.png",
+                    "url": "/model/humanoid/chibi/chibi_body.gltf"
                 },
                 "l_arm": {
-                    "img": "/model/chibi/images/chibi_l_arm.png",
-                    "url": "/model/chibi/chibi_l_arm.gltf"
+                    "img": "/model/humanoid/chibi/images/chibi_l_arm.png",
+                    "url": "/model/humanoid/chibi/chibi_l_arm.gltf"
                 },
                 "r_arm": {
-                    "img": "/model/chibi/images/chibi_r_arm.png",
-                    "url": "/model/chibi/chibi_r_arm.gltf"
+                    "img": "/model/humanoid/chibi/images/chibi_r_arm.png",
+                    "url": "/model/humanoid/chibi/chibi_r_arm.gltf"
                 },
                 "l_leg": {
-                    "img": "/model/chibi/images/chibi_l_leg.png",
-                    "url": "/model/chibi/chibi_l_leg.gltf"
+                    "img": "/model/humanoid/chibi/images/chibi_l_leg.png",
+                    "url": "/model/humanoid/chibi/chibi_l_leg.gltf"
                 },
                 "r_leg": {
-                    "img": "/model/chibi/images/chibi_r_leg.png",
-                    "url": "/model/chibi/chibi_r_leg.gltf"
+                    "img": "/model/humanoid/chibi/images/chibi_r_leg.png",
+                    "url": "/model/humanoid/chibi/chibi_r_leg.gltf"
                 }
             },
             "2":{
-                "type": 1,
+                "type": 0,
                 "hair":"",
                 "head": {
-                    "img": "/model/animals/images/head.png",
-                    "url": "/model/animals/head3.gltf"
+                    "img": "/model/humanoid/cthulu/images/head.png",
+                    "url": "/model/humanoid/cthulu/head.gltf"
                 },
                 "body": {
-                    "img": "/model/animals/images/body.png",
-                    "url": "/model/animals/body1.gltf"
+                    "img": "/model/humanoid/cthulu/images/body.png",
+                    "url": "/model/humanoid/cthulu/body.gltf"
                 },
                 "l_arm": {
-                    "img": "/model/animals/images/flleg.png",
-                    "url": "/model/animals/flleg.gltf"
+                    "img": "/model/humanoid/cthulu/images/larm.png",
+                    "url": "/model/humanoid/cthulu/larm.gltf"
                 },
                 "r_arm": {
-                    "img": "/model/animals/images/frleg.png",
-                    "url": "/model/animals/frleg.gltf"
+                    "img": "/model/humanoid/cthulu/images/rarm.png",
+                    "url": "/model/humanoid/cthulu/rarm.gltf"
                 },
                 "l_leg": {
-                    "img": "/model/animals/images/blleg.png",
-                    "url": "/model/animals/blleg.gltf"
+                    "img": "/model/humanoid/cthulu/images/lleg.png",
+                    "url": "/model/humanoid/cthulu/lleg.gltf"
                 },
                 "r_leg": {
-                    "img": "/model/animals/images/brleg.png",
-                    "url": "/model/animals/brleg.gltf"
+                    "img": "/model/humanoid/cthulu/images/rleg.png",
+                    "url": "/model/humanoid/cthulu/rleg.gltf"
                 }
             },
             "3":{
+                "type": 1,
+                "hair":"",
+                "head": {
+                    "img": "/model/animals/corgi/images/head.png",
+                    "url": "/model/animals/corgi/head3.gltf"
+                },
+                "body": {
+                    "img": "/model/animals/corgi/images/body.png",
+                    "url": "/model/animals/corgi/body1.gltf"
+                },
+                "l_arm": {
+                    "img": "/model/animals/corgi/images/flleg.png",
+                    "url": "/model/animals/corgi/flleg.gltf"
+                },
+                "r_arm": {
+                    "img": "/model/animals/corgi/images/frleg.png",
+                    "url": "/model/animals/corgi/frleg.gltf"
+                },
+                "l_leg": {
+                    "img": "/model/animals/corgi/images/blleg.png",
+                    "url": "/model/animals/corgi/blleg.gltf"
+                },
+                "r_leg": {
+                    "img": "/model/animals/corgi/images/brleg.png",
+                    "url": "/model/animals/corgi/brleg.gltf"
+                }
+            },
+            "4":{
+                "type": 1,
+                "hair":"",
+                "head": {
+                    "img": "/model/animals/fox/images/head.png",
+                    "url": "/model/animals/fox/head.gltf"
+                },
+                "body": {
+                    "img": "/model/animals/fox/images/body.png",
+                    "url": "/model/animals/fox/body.gltf"
+                },
+                "l_arm": {
+                    "img": "/model/animals/fox/images/flleg.png",
+                    "url": "/model/animals/fox/flleg.gltf"
+                },
+                "r_arm": {
+                    "img": "/model/animals/fox/images/frleg.png",
+                    "url": "/model/animals/fox/frleg.gltf"
+                },
+                "l_leg": {
+                    "img": "/model/animals/fox/images/blleg.png",
+                    "url": "/model/animals/fox/blleg.gltf"
+                },
+                "r_leg": {
+                    "img": "/model/animals/fox/images/brleg.png",
+                    "url": "/model/animals/fox/brleg.gltf"
+                }
+            },
+            "5":{
+                "type": 1,
+                "hair":"",
+                "head": {
+                    "img": "/model/animals/lama/images/head.png",
+                    "url": "/model/animals/lama/head.gltf"
+                },
+                "body": {
+                    "img": "/model/animals/lama/images/body.png",
+                    "url": "/model/animals/lama/body.gltf"
+                },
+                "l_arm": {
+                    "img": "/model/animals/lama/images/flleg.png",
+                    "url": "/model/animals/lama/flleg.gltf"
+                },
+                "r_arm": {
+                    "img": "/model/animals/lama/images/frleg.png",
+                    "url": "/model/animals/lama/frleg.gltf"
+                },
+                "l_leg": {
+                    "img": "/model/animals/lama/images/blleg.png",
+                    "url": "/model/animals/lama/blleg.gltf"
+                },
+                "r_leg": {
+                    "img": "/model/animals/lama/images/brleg.png",
+                    "url": "/model/animals/lama/brleg.gltf"
+                }
+            },
+            "6":{
                 "type": 2,
                 "hair":"",
                 "head": {
-                    "img": "/model/fish/images/head.png",
-                    "url": "/model/fish/head2.gltf"
+                    "img": "/model/fish/nemo/images/head.png",
+                    "url": "/model/fish/nemo/head2.gltf"
                 },
                 "body": {
-                    "img": "/model/fish/images/body.png",
-                    "url": "/model/fish/body2.gltf"
+                    "img": "/model/fish/nemo/images/body.png",
+                    "url": "/model/fish/nemo/body2.gltf"
                 },
                 "l_arm": {
-                    "img": "/model/fish/images/lfin.png",
-                    "url": "/model/fish/lfin1.gltf"
+                    "img": "/model/fish/nemo/images/lfin.png",
+                    "url": "/model/fish/nemo/lfin1.gltf"
                 },
                 "r_arm": {
-                    "img": "/model/fish/images/rfin.png",
-                    "url": "/model/fish/rfin1.gltf"
+                    "img": "/model/fish/nemo/images/rfin.png",
+                    "url": "/model/fish/nemo/rfin1.gltf"
                 },
                 "l_leg": {
-                    "img": "/model/fish/images/bfin.png",
-                    "url": "/model/fish/bfin1.gltf"
+                    "img": "/model/fish/nemo/images/bfin.png",
+                    "url": "/model/fish/nemo/bfin1.gltf"
                 },
                 "r_leg": {
-                    "img": "/model/fish/images/tfin.png",
-                    "url": "/model/fish/tfin1.gltf"
+                    "img": "/model/fish/nemo/images/tfin.png",
+                    "url": "/model/fish/nemo/tfin1.gltf"
                 }
-            }
+            },
+            "7":{
+                "type": 2,
+                "hair":"",
+                "head": {
+                    "img": "/model/fish/manta/images/head.png",
+                    "url": "/model/fish/manta/head.gltf"
+                },
+                "body": {
+                    "img": "/model/fish/manta/images/body.png",
+                    "url": "/model/fish/manta/body.gltf"
+                },
+                "l_arm": {
+                    "img": "/model/fish/manta/images/lfin.png",
+                    "url": "/model/fish/manta/lfin.gltf"
+                },
+                "r_arm": {
+                    "img": "/model/fish/manta/images/rfin.png",
+                    "url": "/model/fish/manta/rfin.gltf"
+                },
+                "l_leg": {
+                    "img": "/model/fish/manta/images/tfin.png",
+                    "url": "/model/fish/manta/tfin.gltf"
+                },
+                "r_leg": {
+                    "img": "/model/fish/manta/images/bfin.png",
+                    "url": "/model/fish/manta/bfin.gltf"
+                }
+            },
+            "8":{
+                "type": 2,
+                "hair":"",
+                "head": {
+                    "img": "/model/fish/shark/images/head.png",
+                    "url": "/model/fish/shark/head.gltf"
+                },
+                "body": {
+                    "img": "/model/fish/shark/images/body.png",
+                    "url": "/model/fish/shark/body.gltf"
+                },
+                "l_arm": {
+                    "img": "/model/fish/shark/images/lfin.png",
+                    "url": "/model/fish/shark/lfin.gltf"
+                },
+                "r_arm": {
+                    "img": "/model/fish/shark/images/rfin.png",
+                    "url": "/model/fish/shark/rfin.gltf"
+                },
+                "l_leg": {
+                    "img": "/model/fish/shark/images/bfin.png",
+                    "url": "/model/fish/shark/bfin.gltf"
+                },
+                "r_leg": {
+                    "img": "/model/fish/shark/images/tfin.png",
+                    "url": "/model/fish/shark/tfin.gltf"
+                }
         },
         "rooms":{
             "room_1": "/background/Room/scene.gltf",   
