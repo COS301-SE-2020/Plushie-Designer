@@ -7,43 +7,43 @@
 
 
     <%= label_tag(:name_tag, "cardholder name:") %>
-    <%= text_field_tag(:ch_name, @found ? @cardHolder.ch_name : false) %>
+    <%= text_field_tag(:ch_name, @found ? @cardHolder.ch_name : '') %>
 
     <%= label_tag(:surname_tag, "cardholder last name:")%>
-    <%= text_field_tag(:ch_surname, @found ? @cardHolder.ch_surname : false) %>
+    <%= text_field_tag(:ch_surname, @found ? @cardHolder.ch_surname : '') %>
 
     <%= label_tag(:cell_tag, "cell no:")%>
-    <%= text_field_tag(:cell_no, @found ? @cardHolder.cell_no : false) %>
+    <%= text_field_tag(:cell_no, @found ? @cardHolder.cell_no : '') %>
 
     <%= label_tag(:payment_tag, "payment method:")%>
-    <%= text_field_tag(:payment_method, @found ? @cardHolder.payment_method : false) %>
+    <%= text_field_tag(:payment_method, @found ? @cardHolder.payment_method : '') %>
 
     <%= label_tag(:card_tag, "card no:")%>
-    <%= text_field_tag(:card_no, @found ? @cardHolder.card_no : false) %>
+    <%= text_field_tag(:card_no, @found ? @cardHolder.card_no : '') %>
 
     <%= label_tag(:expiration_m_tag, "expiration month:")%>
-    <%= number_field_tag :expiration_month, @found ? @cardHolder.expiration_month : false, min: 1, max: 12  %>
+    <%= number_field_tag :expiration_month, @found ? @cardHolder.expiration_month : 1, min: 1, max: 12  %>
 
     <%= label_tag(:expiration_y_tag, "expiration year:")%>
-    <%= number_field_tag :expiration_year, @found ? @cardHolder.expiration_year : false, min: 2020 %>
+    <%= number_field_tag :expiration_year, @found ? @cardHolder.expiration_year : 2020, min: 2020 %>
 
     <%= label_tag(:postal_tag, "postal code:")%>
-    <%= text_field_tag(:postal_code, @found ? @cardHolder.expiration_year : false) %>
+    <%= text_field_tag(:postal_code, @found ? @cardHolder.expiration_year : '') %>
 
     <%= label_tag(:sec_tag, "security code:")%>
-    <%= text_field_tag(:security_code, @found ? @cardHolder.security_code : false) %>
+    <%= text_field_tag(:security_code, @found ? @cardHolder.security_code : '') %>
 
     <%= label_tag(:address_1_tag, "address line 1:")%>
-    <%= text_field_tag(:address_line1, @found ? @cardHolder.address_line1 : false) %>
+    <%= text_field_tag(:address_line1, @found ? @cardHolder.address_line1 : '') %>
 
     <%= label_tag(:address_2_tag, "address line 2:")%>
-    <%= text_field_tag(:address_line2, @found ? @cardHolder.address_line2 : false) %>
+    <%= text_field_tag(:address_line2, @found ? @cardHolder.address_line2 : '') %>
 
     <%= label_tag(:city_tag, "city:")%>
-    <%= text_field_tag(:city, @found ? @cardHolder.city : false) %>
+    <%= text_field_tag(:city, @found ? @cardHolder.city : '') %>
 
     <%= label_tag(:country_tag, "country:") %>
-    <%= text_field_tag(:country, @found ? @cardHolder.country : false) %>
+    <%= text_field_tag(:country, @found ? @cardHolder.country : '') %>
     <%#= country_select(current_user, :country_selector, { priority_countries: %w(ZA), include_blank: true, selected: params[:country] }, {}) %>
     <%#= hidden_field_tag :country %>
 

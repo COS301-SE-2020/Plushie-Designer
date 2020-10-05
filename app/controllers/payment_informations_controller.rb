@@ -141,9 +141,8 @@ class PaymentInformationsController < ApplicationController
     if valid == true
       if sExpMonth < 1 || sExpMonth > 12
         error_message = "Enter expiration month between 1 and 12"
-        valid = false;
+        valid = false
       end
-
       if sExpMonth == ''
         error_message = "Please select expiration month"
         valid = false
@@ -156,16 +155,36 @@ class PaymentInformationsController < ApplicationController
       valid = false
     end
 
-    # postal code
-    if params[:postal_code] == '' && valid == true
-      error_message = 'Please insert postal code'
-      valid = false
+    # security code
+    if valid == true
+      if params[:security_code] == ''
+        error_message = 'Please insert security code'
+        valid = false
+      end
+      if params[:security_code].length != 3
+        error_message = 'Please insert valid security code (length 3)'
+        valid = false
+      end
+      unless is_number?(params[:security_code])
+        error_message = 'Please insert valid security code (the 3 digit number at the back of the card)'
+        valid = false
+      end
     end
 
-    # security code
-    if params[:security_code] == '' && valid == true
-      error_message = "Please insert security code"
-      valid = false
+    # postal code
+    if valid == true
+      if params[:postal_code] == ''
+        error_message = "Please insert postal code"
+        valid = false
+      end
+      if params[:postal_code].length != 4
+        error_message = 'Please insert valid postal code (length 4)'
+        valid = false
+      end
+      unless is_number?(params[:postal_code])
+        error_message = 'Please insert valid postal code (number)'
+        valid = false
+      end
     end
 
     # address line 1
@@ -182,7 +201,7 @@ class PaymentInformationsController < ApplicationController
 
     # city
     if params[:city] == '' && valid == true
-      error_message = 'Please insert message'
+      error_message = 'Please insert city'
       valid = false
     end
 
