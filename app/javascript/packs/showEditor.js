@@ -49,7 +49,7 @@ $.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
 											success:  function(r_leg_models){
-												readTextFile("/file_paths7.JSON", function(text){
+												readTextFile("/file_paths.JSON", function(text){
 													var data = JSON.parse(text);
 													// console.log(r_leg_models);
 													var hair = $(".head").data("head");
@@ -331,7 +331,7 @@ $.ajax({
 													{
 														let color = colors[2];
 
-														gltf.scene.position.setY(1.5);
+														// gltf.scene.position.setY(1.5);
 														gltf.scene.children[0].castShadow = true;
 														gltf.scene.name = name;
 														scene.add( gltf.scene );
@@ -339,53 +339,63 @@ $.ajax({
 														{
 															case "hair" : 
 																hhtemp = gltf.scene; 
-																gltf.scene.position.setY(headposy); 
-																gltf.scene.position.setX(headposx);
-																gltf.scene.position.setZ(headposz);  
+																gltf.scene.children[0].position.setY(headposy);
+																gltf.scene.children[1].position.setY(headposy);
+																gltf.scene.children[2].position.setY(headposy);
+																gltf.scene.children[3].position.setY(headposy);
+																gltf.scene.children[0].position.setX(headposx);
+																gltf.scene.children[1].position.setX(headposx);
+																gltf.scene.children[2].position.setX(headposx);
+																gltf.scene.children[3].position.setX(headposx);
+																gltf.scene.children[0].position.setZ(headposz); 
+																gltf.scene.children[1].position.setZ(headposz); 
+																gltf.scene.children[2].position.setZ(headposz); 
+																gltf.scene.children[3].position.setZ(headposz);
 																break;
 															case "head" :
 																htemp = gltf.scene;
 																color = $(".headtex").data("headtex");
-																gltf.scene.position.setY(headposy); 
-																gltf.scene.position.setX(headposx);
-																gltf.scene.position.setZ(headposz);  
+																gltf.scene.children[0].position.setY(headposy); 
+																gltf.scene.children[0].position.setX(headposx);
+																gltf.scene.children[0].position.setZ(headposz);  
 																console.log(gltf.scene.children[0]);
 																break;
 															case "torso" : 
 																ttemp = gltf.scene;
+																console.log(torsoposy);
 																color = $(".torsotex").data("torsotex");
-																gltf.scene.position.setY(torsoposy); 
-																gltf.scene.position.setX(torsoposx);  
-																gltf.scene.position.setZ(torsoposz);
+																gltf.scene.children[0].position.setY(torsoposy); 
+																gltf.scene.children[0].position.setX(torsoposx);  
+																gltf.scene.children[0].position.setZ(torsoposz);
 																console.log(gltf.scene.children[0]);
 															break;
 															case "leftarm" : 
 																latemp = gltf.scene; 
 																color = $(".larmtex").data("larmtex");
-																gltf.scene.position.setY(larmposy); 
-																gltf.scene.position.setX(larmposx);
-																gltf.scene.position.setZ(larmposz);
+																gltf.scene.children[0].position.setY(larmposy); 
+																gltf.scene.children[0].position.setX(larmposx);
+																gltf.scene.children[0].position.setZ(larmposz);
 															break;
 															case "rightarm" : 
 																ratemp = gltf.scene;
 																color = $(".rarmtex").data("rarmtex");
-																gltf.scene.position.setY(rarmposy); 
-																gltf.scene.position.setX(rarmposx); 
-																gltf.scene.position.setZ(rarmposz);
+																gltf.scene.children[0].position.setY(rarmposy); 
+																gltf.scene.children[0].position.setX(rarmposx); 
+																gltf.scene.children[0].position.setZ(rarmposz);
 															break;
 															case "leftleg" : 
 																lltemp = gltf.scene;
 																color = $(".llegtex").data("llegtex");
-																gltf.scene.position.setY(llegposy); 
-																gltf.scene.position.setX(llegposx);  
-																gltf.scene.position.setZ(llegposz);
+																gltf.scene.children[0].position.setY(llegposy); 
+																gltf.scene.children[0].position.setX(llegposx);  
+																gltf.scene.children[0].position.setZ(llegposz);
 															break;
 															case "rightleg" : 
 																rltemp = gltf.scene;
 																color = $(".rlegtex").data("rlegtex");
-																gltf.scene.position.setY(rlegposy); 
-																gltf.scene.position.setX(rlegposx);  
-																gltf.scene.position.setZ(rlegposz);
+																gltf.scene.children[0].position.setY(rlegposy); 
+																gltf.scene.children[0].position.setX(rlegposx);  
+																gltf.scene.children[0].position.setZ(rlegposz);
 															break;	
 														}
 														if(color == null) color = colors[2].color;

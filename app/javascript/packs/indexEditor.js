@@ -1,5 +1,5 @@
 var THREE = require('three');
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
@@ -8,6 +8,15 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
+import {
+	EventDispatcher,
+	MOUSE,
+	Quaternion,
+	Spherical,
+	TOUCH,
+	Vector2,
+	Vector3
+} from "three/build/three.module.js";
 
 function readTextFile(file, callback) {
 	var rawFile = new XMLHttpRequest();
@@ -63,6 +72,8 @@ $.ajax({
 
 													var type = 0;
 													var typechange = false;
+													var bzoom = false;
+													var menuitem = "type";
 
 													var hair = 0;
 													var head = 0;
@@ -73,6 +84,25 @@ $.ajax({
 													var rleg = 0;
 													var room = 0;
 													var rtmp = 0;
+
+													var headposy = 0.0;
+													var headposx = 0.0;
+													var headposz = 0.0;
+													var torsoposy = 0.0;
+													var torsoposx = 0.0;
+													var torsoposz = 0.0;
+													var larmposy = 0.0;
+													var larmposx = 0.0;
+													var larmposz = 0.0;
+													var rarmposy = 0.0;
+													var rarmposx = 0.0;
+													var rarmposz = 0.0;
+													var llegposy = 0.0;
+													var llegposx = 0.0;
+													var llegposz = 0.0;
+													var rlegposy = 0.0;
+													var rlegposx = 0.0;
+													var rlegposz = 0.0;
 
 													var ihead = 7;
 													var itorso = 8;
@@ -104,7 +134,7 @@ $.ajax({
 													document.body.appendChild(renderer.domElement);
 
 													var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-													camera.position.set(0, 2.5, 10);
+													camera.position.set(0, 1, 10);
 													//camera.lookAt(new THREE.Vector3(0,10,0));
 
 													const loadingManager = new THREE.LoadingManager( () => {
@@ -123,12 +153,12 @@ $.ajax({
 													controls.dampingFactor = 0.05;
 
 													controls.minDistance = 13;
-													controls.maxDistance = 13;
+													controls.maxDistance = 20;
 
 													controls.enablePan = false;
 
 													controls.maxPolarAngle = Math.PI / 2;
-													controls.target = new THREE.Vector3(0,1.5,0);
+													// controls.target = new THREE.Vector3(0,1.5,0);
 
 													var loader = new GLTFLoader(loadingManager);
 
@@ -307,18 +337,88 @@ $.ajax({
 															composer.addPass( copyshader );
 														}
 														//----------------------------------------------------------------------------------------------
+														function zoomin(obj, anim){
+															if(bzoom){
+																zoomreset();
+																controls.target = new THREE.Vector3(obj.position.x,obj.position.y,obj.position.z);
+																camera.position.set(obj.position.x, obj.position.y, 10);	
+																controls.minDistance = 6;
+																if(!anim){
+																	var i = 1;
+
+																	function myLoop() {
+																		setTimeout(function() {   
+																			controls.dIn(i);
+																			controls.update();
+																			i -= 0.1;                   
+																			if (i >= 0.1) {           
+																			myLoop();             
+																			}                       
+																		}, 15)																	
+																	}	
+																	myLoop(); 
+																}else{
+																	controls.dIn(0.1);
+																	controls.update();
+																}																												
+															}
+														}
+
+														function zoomreset(){
+															controls.target = new THREE.Vector3(0,0,0);
+															camera.position.set(0, 1, 10);	
+															controls.minDistance = 13; 
+															controls.dIn(1);
+															controls.update();													
+														}
 
 														function chooseBodyPart(obj)//TODO
 														{	
 															switch(obj.name)
 															{
 																case "hair" : currentSelection = hhtemp; break;
-																case htemp.children[0].name : currentSelection = htemp; break;
-																case ttemp.children[0].name : currentSelection = ttemp; break;
-																case lltemp.children[0].name : currentSelection = lltemp; break;
-																case rltemp.children[0].name : currentSelection = rltemp; break;
-																case latemp.children[0].name : currentSelection = latemp; break;
-																case ratemp.children[0].name : currentSelection = ratemp; break;
+																case htemp.children[0].name : 
+																	if(menuitem != "head"){
+																		$('.head-controls').click();
+																	}
+																	currentSelection = htemp; 
+																	// zoomin(obj);
+																	break;
+																case ttemp.children[0].name : 
+																	if(menuitem != "torso"){
+																		$('.torso-controls').click();
+																	}
+																	currentSelection = ttemp; 
+																	// zoomin(obj);
+																	break;
+																case lltemp.children[0].name :
+																	if(menuitem != "l-legs"){
+																		$('.l-legs-controls').click(); 
+																	}
+																	currentSelection = lltemp; 
+																	// zoomin(obj);
+																	break;
+																case rltemp.children[0].name : 
+																	if(menuitem != "r-legs"){
+																		$('.r-legs-controls').click();
+																	}
+																	currentSelection = rltemp; 
+																	// zoomin(obj);
+																	break;
+																case latemp.children[0].name : 
+																	if(menuitem != "l-arms"){
+																		$('.l-arms-controls').click();
+																	}
+																	currentSelection = latemp; 
+																	// zoomin(obj);
+																	break;
+																case ratemp.children[0].name :
+																	if(menuitem != "r-arms"){
+																		$('.r-arms-controls').click(); 
+																	}
+																	currentSelection = ratemp; 
+																	// zoomin(obj);
+																	break;
 																default : return;
 															}
 															var selectedObject = obj;
@@ -355,8 +455,171 @@ $.ajax({
 													function add_model_to_scene(gltf, name)
 													{
 
-														let color = colors[2];
-															let new_mtl;
+														let color = colors[2];														
+														// gltf.scene.position.setY(1.5);
+														gltf.scene.children[0].castShadow = true;
+														gltf.scene.name = name;
+														scene.add( gltf.scene );
+														switch(name)
+														{
+															case "hair" : 
+																// console.log(gltf.scene);
+																hhtemp = gltf.scene;
+																if(headposy != 0.0){
+																	gltf.scene.children[0].position.setY(headposy);
+																	gltf.scene.children[1].position.setY(headposy);
+																	gltf.scene.children[2].position.setY(headposy);
+																	gltf.scene.children[3].position.setY(headposy);
+																}
+																if(headposx != 0.0){
+																	gltf.scene.children[0].position.setX(headposx);
+																	gltf.scene.children[1].position.setX(headposx);
+																	gltf.scene.children[2].position.setX(headposx);
+																	gltf.scene.children[3].position.setX(headposx);
+																}
+																if(headposz != 0.0){
+																	gltf.scene.children[0].position.setZ(headposz); 
+																	gltf.scene.children[1].position.setZ(headposz); 
+																	gltf.scene.children[2].position.setZ(headposz); 
+																	gltf.scene.children[3].position.setZ(headposz); 
+																}
+																break;
+															case "head" :
+																htemp = gltf.scene;	
+																if(headposy != 0.0){
+																	gltf.scene.children[0].position.setY(headposy);																
+																}else{
+																	headposy = gltf.scene.children[0].position.y;
+																}
+																if(headposx != 0.0){
+																	gltf.scene.children[0].position.setX(headposx);
+																}else{
+																	headposx = gltf.scene.children[0].position.x;
+																}
+																if(headposz != 0.0){
+																	gltf.scene.children[0].position.setZ(headposz);
+																}else{
+																	headposz = gltf.scene.children[0].position.z;
+																}
+																zoomin(htemp.children[0], false);	
+																$('#headup').attr("value",-headposy);	
+																$('#headleft').attr("value",headposx);
+																$('#headfront').attr("value",-headposz);	
+																break;											
+															case "torso" : 
+																ttemp = gltf.scene;
+																if(torsoposy != 0.0){																	
+																	gltf.scene.children[0].position.setY(torsoposy);
+																}else{
+																	torsoposy = gltf.scene.children[0].position.y;
+																}
+																if(torsoposx != 0.0){
+																	gltf.scene.children[0].position.setX(torsoposx);
+																}else{
+																	torsoposx = gltf.scene.children[0].position.x;
+																}
+																if(torsoposz != 0.0){
+																	gltf.scene.children[0].position.setZ(torsoposz);
+																}else{
+																	torsoposz = gltf.scene.children[0].position.z;
+																}
+																zoomin(ttemp.children[0], false);		
+																$('#torsoup').attr("value",-torsoposy);
+																$('#torsoleft').attr("value",torsoposx);
+																$('#torsofront').attr("value",-torsoposz);													
+																break;
+															case "leftarm" : 
+																latemp = gltf.scene;
+																if(larmposy != 0.0){
+																	gltf.scene.children[0].position.setY(larmposy);
+																}else{
+																	larmposy = gltf.scene.children[0].position.y;
+																}
+																if(larmposx != 0.0){
+																	gltf.scene.children[0].position.setX(larmposx);
+																}else{
+																	larmposx = gltf.scene.children[0].position.x;
+																}
+																if(larmposz != 0.0){
+																	gltf.scene.children[0].position.setZ(larmposz);
+																}else{
+																	larmposz = gltf.scene.children[0].position.z;
+																}
+																zoomin(latemp.children[0], false);		
+																$('#larmup').attr("value",-larmposy);
+																$('#larmleft').attr("value",larmposx);
+																$('#larmfront').attr("value",-larmposz);
+																break;
+															case "rightarm" : 
+																ratemp = gltf.scene;
+																if(rarmposy != 0.0){
+																	gltf.scene.children[0].position.setY(rarmposy);
+																}else{
+																	rarmposy = gltf.scene.children[0].position.y;
+																}
+																if(rarmposx != 0.0){
+																	gltf.scene.children[0].position.setX(rarmposx);
+																}else{
+																	rarmposx = gltf.scene.children[0].position.x;
+																}
+																if(rarmposz != 0.0){
+																	gltf.scene.children[0].position.setZ(rarmposz);
+																}else{
+																	rarmposz = gltf.scene.children[0].position.z;
+																}
+																zoomin(ratemp.children[0], false);		
+																$('#rarmup').attr("value",-rarmposy);
+																$('#rarmleft').attr("value",rarmposx);
+																$('#rarmfront').attr("value",-rarmposz);	
+																break;
+															case "leftleg" : 
+																lltemp = gltf.scene;
+																if(llegposy != 0.0){
+																	gltf.scene.children[0].position.setY(llegposy);
+																}else{
+																	console.log(llegposy);
+																	llegposy = gltf.scene.children[0].position.y;
+																	console.log(llegposy);
+																}
+																if(llegposx != 0.0){
+																	gltf.scene.children[0].position.setX(llegposx);
+																}else{
+																	llegposx = gltf.scene.children[0].position.x;
+																}
+																if(llegposz != 0.0){
+																	gltf.scene.children[0].position.setZ(llegposz);
+																}else{
+																	llegposz = gltf.scene.children[0].position.z;
+																}
+																zoomin(lltemp.children[0], false);	
+																$('#llegup').attr("value",-llegposy);
+																$('#llegleft').attr("value",llegposx);
+																$('#llegfront').attr("value",-llegposz);
+																break;
+															case "rightleg" : 
+																rltemp = gltf.scene;
+																if(rlegposy != 0.0){
+																	gltf.scene.children[0].position.setY(rlegposy);
+																}else{
+																	rlegposy = gltf.scene.children[0].position.y;
+																}
+																if(rlegposx != 0.0){
+																	gltf.scene.children[0].position.setX(rlegposx);
+																}else{
+																	rlegposx = gltf.scene.children[0].position.x;
+																}
+																if(rlegposz != 0.0){
+																	gltf.scene.children[0].position.setZ(rlegposz);
+																}else{
+																	rlegposz = gltf.scene.children[0].position.z;
+																}
+																zoomin(rltemp.children[0], false);		
+																$('#rlegup').attr("value",-rlegposy);
+																$('#rlegleft').attr("value",rlegposx);
+																$('#rlegfront').attr("value",-rlegposz);
+																break;	
+														}
+														let new_mtl;
 															let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
 																bmp.repeat.set( 3, 3, 3);
 																bmp.wrapS = THREE.RepeatWrapping;
@@ -369,25 +632,6 @@ $.ajax({
 																bumpScale: 0.45
 															});
 														setMaterial(gltf.scene, new_mtl);
-
-														gltf.scene.position.setY(1.5);
-														gltf.scene.children[0].castShadow = true;
-														gltf.scene.name = name;
-														scene.add( gltf.scene );
-														switch(name)
-														{
-															case "hair" : hhtemp = gltf.scene; break;
-															case "head" : 
-															htemp = gltf.scene;
-															// test("head", gltf.scene.children[0].geometry);
-															break;
-															case "torso" : ttemp = gltf.scene; break;
-															case "leftarm" : latemp = gltf.scene; break;
-															case "rightarm" : ratemp = gltf.scene; break;
-															case "leftleg" : lltemp = gltf.scene; break;
-															case "rightleg" : rltemp = gltf.scene; break;	
-														}
-														
 													}
 													//---------------------------------------------------------------------------------
 
@@ -396,22 +640,22 @@ $.ajax({
 													{
 														gltf.scene.name = name;
 														gltf.scene.rotateY(-Math.PI/4);
-														gltf.scene.children.forEach(obj => {
-															obj.shininess = 0;
-															obj.receiveShadow = true;
-															obj.castShadow = true;
-														});
+														// gltf.scene.children.forEach(obj => {
+														// 	obj.shininess = 0;
+														// 	obj.receiveShadow = true;
+														// 	obj.castShadow = true;
+														// });
 														switch(name)
 														{
 															case "Room_1" : 
-																gltf.scene.position.setY(-22.5);
-																gltf.scene.position.setX(-3);
+																gltf.scene.position.setY(-24);
+																gltf.scene.position.setX(-4.5);
 																gltf.scene.scale.set(20,20,20);
 																break;
 															case "Room_2" : 
-																gltf.scene.position.setY(-2);
-																gltf.scene.position.setZ(35);
-																gltf.scene.position.setX(45);
+																gltf.scene.position.setY(-3.5);
+																gltf.scene.position.setZ(36.5);
+																gltf.scene.position.setX(46.5);
 																gltf.scene.scale.set(2,2,2);
 																break;
 														}
@@ -437,7 +681,7 @@ $.ajax({
 
 													//--------------------------------------------------------------------
 
-													//-------------------------------BODY---------------------------------
+													//-------------------------------BODY---------------------------------													
 													if(torso >= data.file_paths.models.length){
 														hurl = body_models[torso - data.file_paths.models.length].body_file.url;
 													}else hurl = data.file_paths.models[torso].body.url;
@@ -483,7 +727,7 @@ $.ajax({
 													var plane = new THREE.Mesh(geometry, material);
 													plane.castShadow = false;
 													plane.receiveShadow = true;
-													plane.position.setY(-3.7);
+													plane.position.setY(-5.2);
 													scene.add(plane);
 													//-----------------------------------------------------------------
 
@@ -724,19 +968,26 @@ $.ajax({
 														var laprsh = document.getElementById("larmprsh");
 														var raprsh = document.getElementById("rarmprsh");
 														var llprsh = document.getElementById("llegprsh");
-														var rlprsh = document.getElementById("rlegprsh");
-														
+														var rlprsh = document.getElementById("rlegprsh");								
+																																																						
 														for(var i=0;i<data.file_paths.models.length;++i){
 															if(data.file_paths.models[i].type==type){
 																var button = document.createElement('button');
 																//alert(data.file_paths.models.test);
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].head.img + '" />';
 																button.className = 'btn';
+																var tid = "head" + i;
+																button.id = tid;
+																button.type = "button";
 																button.value = i;
-																button.onclick = function(){
+																button.onclick = function(){															
 																	if(head!=this.value){
+																		headposy = 0.0;
+																		headposx = 0.0;
+																		headposz = 0.0;
 																		headchange = true;
 																		head = this.value;
+																		$("#toy_head")[0].value = head;
 																	}																
 																};
 																hprsh.appendChild(button);
@@ -748,11 +999,18 @@ $.ajax({
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].body.img + '" />';
 																button.className = 'btn';
+																var tid = "body" + i;
+																button.id = tid;
+																button.type = "button";
 																button.value = i;
 																button.onclick = function(){
 																	if(torso!=this.value){
+																		torsoposy = 0.0;
+																		torsoposx = 0.0;
+																		torsoposz = 0.0;
 																		torsochange = true;
 																		torso = this.value;
+																		$("#toy_torso")[0].value = torso;
 																	}
 																};
 																tprsh.appendChild(button);
@@ -764,11 +1022,18 @@ $.ajax({
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_arm.img + '" />';
 																button.className = 'btn';
+																var tid = "l_arm" + i;
+																button.id = tid;
+																button.type = "button";
 																button.value = i;
 																button.onclick = function(){
-																	if(larm!=this.value){
+																	if(larm!=this.value){																		
+																		larmposy = 0.0;
+																		larmposx = 0.0;
+																		larmposz = 0.0;
 																		larmchange = true;
 																		larm = this.value;
+																		$("#toy_arms")[0].value = larm;
 																	}																
 																};
 																laprsh.appendChild(button);
@@ -780,11 +1045,18 @@ $.ajax({
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_arm.img + '" />';
 																button.className = 'btn';
+																var tid = "r_arm" + i;
+																button.id = tid;
+																button.type = "button";
 																button.value = i;
 																button.onclick = function(){
 																	if(rarm!=this.value){
+																		rarmposy = 0.0;
+																		rarmposx = 0.0;
+																		rarmposz = 0.0;
 																		rarmchange = true;
 																		rarm = this.value;
+																		$("#toy_r_arm")[0].value = rarm;
 																	}																
 																};
 																raprsh.appendChild(button);
@@ -796,11 +1068,18 @@ $.ajax({
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_leg.img + '" />';
 																button.className = 'btn';
+																var tid = "l_leg" + i;
+																button.id = tid;
+																button.type = "button";
 																button.value = i;
 																button.onclick = function(){
 																	if(lleg!=this.value){
+																		llegposy = 0.0;
+																		llegposx = 0.0;
+																		llegposz = 0.0;
 																		llegchange = true;
 																		lleg = this.value;
+																		$("#toy_legs")[0].value = lleg;
 																	}															
 																};
 																llprsh.appendChild(button);
@@ -812,11 +1091,18 @@ $.ajax({
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_leg.img + '" />';
 																button.className = 'btn';
+																var tid = "r_leg" + i;
+																button.id = tid;
+																button.type = "button";
 																button.value = i;
 																button.onclick = function(){
 																	if(rleg!=this.value){
+																		rlegposy = 0.0;
+																		rlegposx = 0.0;
+																		rlegposz = 0.0;
 																		rlegchange = true;
 																		rleg = this.value;
+																		$("#toy_r_leg")[0].value = rleg;
 																	}																
 																};
 																rlprsh.appendChild(button);
@@ -839,11 +1125,16 @@ $.ajax({
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
+																button.type = "button";
 																button.value = i + data.file_paths.models.length;
 																button.onclick = function(){
 																	if(head!=this.value){
+																		headposy = 0.0;
+																		headposx = 0.0;
+																		headposz = 0.0;
 																		headchange = true;
 																		head = this.value;
+																		$("#toy_head")[0].value = head;
 																	}																
 																};
 																hupsh.appendChild(button);
@@ -859,11 +1150,16 @@ $.ajax({
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
+																button.type = "button";
 																button.value = i + data.file_paths.models.length;
 																button.onclick = function(){
-																	if(torso!=this.value){
+																	if(torso!=this.value){																		
+																		torsoposy = 0.0;
+																		torsoposx = 0.0;
+																		torsoposz = 0.0;
 																		torsochange = true;
 																		torso = this.value;
+																		$("#toy_torso")[0].value = torso;
 																	}
 																};
 																tupsh.appendChild(button);
@@ -879,11 +1175,16 @@ $.ajax({
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
+																button.type = "button";
 																button.value = i + data.file_paths.models.length;
 																button.onclick = function(){
-																	if(larm!=this.value){
+																	if(larm!=this.value){																		
+																		larmposy = 0.0;
+																		larmposx = 0.0;
+																		larmposz = 0.0;
 																		larmchange = true;
 																		larm = this.value;
+																		$("#toy_arms")[0].value = larm;
 																	}																
 																};
 																laupsh.appendChild(button);
@@ -899,11 +1200,16 @@ $.ajax({
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
+																button.type = "button";
 																button.value = i + data.file_paths.models.length;
 																button.onclick = function(){
 																	if(rarm!=this.value){
+																		rarmposy = 0.0;
+																		rarmposx = 0.0;
+																		rarmposz = 0.0;
 																		rarmchange = true;
 																		rarm = this.value;
+																		$("#toy_r_arm")[0].value = rarm;
 																	}																
 																};
 																raupsh.appendChild(button);
@@ -919,11 +1225,16 @@ $.ajax({
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
+																button.type = "button";
 																button.value = i + data.file_paths.models.length;
 																button.onclick = function(){
 																	if(lleg!=this.value){
+																		llegposy = 0.0;
+																		llegposx = 0.0;
+																		llegposz = 0.0;
 																		llegchange = true;
 																		lleg = this.value;
+																		$("#toy_legs")[0].value = lleg;
 																	}															
 																};
 																llupsh.appendChild(button);
@@ -939,11 +1250,16 @@ $.ajax({
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
+																button.type = "button";
 																button.value = i + data.file_paths.models.length;
 																button.onclick = function(){
 																	if(rleg!=this.value){
+																		rlegposy = 0.0;
+																		rlegposx = 0.0;
+																		rlegposz = 0.0;
 																		rlegchange = true;
 																		rleg = this.value;
+																		$("#toy_r_leg")[0].value = rleg;
 																	}																
 																};
 																rlupsh.appendChild(button);
@@ -953,8 +1269,79 @@ $.ajax({
 
 													//---------------------------HTML CUSTOMIZE PLUSH-----------------------
 													$(document).ready(function(){
+														$('#check-zoom').click(function () {
+															bzoom = !bzoom;
+															if(!bzoom){
+																zoomreset();
+															}else {
+																switch(menuitem){
+																	case "head" : zoomin(htemp.children[0], false); break;
+																	case "torso" : zoomin(ttemp.children[0], false); break;
+																	case "l-arms" : zoomin(latemp.children[0], false); break;
+																	case "r-arms" : zoomin(ratemp.children[0], false); break;
+																	case "l-legs" : zoomin(lltemp.children[0], false); break;
+																	case "r-legs" : zoomin(rltemp.children[0], false); break;
+																	case "type" : zoomreset(); break;
+																}
+															}
+														});
+														
+														$('.head-controls').click(function (){
+															zoomin(htemp.children[0], false);
+															menuitem = "head";
+														});
+
+														$('.torso-controls').click(function (){
+															zoomin(ttemp.children[0], false);
+															menuitem = "torso";
+														});
+
+														$('.l-arms-controls').click(function (){
+															zoomin(latemp.children[0], false);	
+															menuitem = "l-arms";
+														});
+
+														$('.r-arms-controls').click(function (){
+															zoomin(ratemp.children[0], false);
+															menuitem = "r-arms";	
+														});
+
+														$('.l-legs-controls').click(function (){
+															zoomin(lltemp.children[0], false);
+															menuitem = "l-legs";	
+														});
+
+														$('.r-legs-controls').click(function (){															
+															zoomin(rltemp.children[0], false);	
+															menuitem = "r-legs";
+														});
+
+														$('.type-controls').click(function (){															
+															zoomreset();
+															menuitem = "type";
+														});
+
 														$('#humanoid').click(function () {
 															if(type!=0){
+																headposy = 0.0;
+																headposx = 0.0;
+																headposz = 0.0;
+																torsoposy = 0.0;
+																torsoposx = 0.0;
+																torsoposz = 0.0;
+																larmposy = 0.0;
+																larmposx = 0.0;
+																larmposz = 0.0;
+																rarmposy = 0.0;
+																rarmposx = 0.0;
+																rarmposz = 0.0;
+																llegposy = 0.0;
+																llegposx = 0.0;
+																llegposz = 0.0;
+																rlegposy = 0.0;
+																rlegposx = 0.0;
+																rlegposz = 0.0;
+
 																type=0;
 																typechange=true;														
 																$('#lach').html('Left Arm');
@@ -981,6 +1368,25 @@ $.ajax({
 														
 														$('#animal').click(function () {
 															if(type!=1){
+																headposy = 0.0;
+																headposx = 0.0;
+																headposz = 0.0;
+																torsoposy = 0.0;
+																torsoposx = 0.0;
+																torsoposz = 0.0;
+																larmposy = 0.0;
+																larmposx = 0.0;
+																larmposz = 0.0;
+																rarmposy = 0.0;
+																rarmposx = 0.0;
+																rarmposz = 0.0;
+																llegposy = 0.0;
+																llegposx = 0.0;
+																llegposz = 0.0;
+																rlegposy = 0.0;
+																rlegposx = 0.0;
+																rlegposz = 0.0;
+
 																type=1;
 																typechange=true;
 																$('#lach').html('Left Arm');
@@ -1007,6 +1413,25 @@ $.ajax({
 														
 														$('#fish').click(function () {
 															if(type!=2){
+																headposy = 0.0;
+																headposx = 0.0;
+																headposz = 0.0;
+																torsoposy = 0.0;
+																torsoposx = 0.0;
+																torsoposz = 0.0;
+																larmposy = 0.0;
+																larmposx = 0.0;
+																larmposz = 0.0;
+																rarmposy = 0.0;
+																rarmposx = 0.0;
+																rarmposz = 0.0;
+																llegposy = 0.0;
+																llegposx = 0.0;
+																llegposz = 0.0;
+																rlegposy = 0.0;
+																rlegposx = 0.0;
+																rlegposz = 0.0;
+
 																type=2;
 																typechange=true;
 																$('#lach').html('Left Fin');
@@ -1075,29 +1500,47 @@ $.ajax({
 														hslideru.oninput = function() {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
 															var t = this.value;
-															htemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															htemp.children[0].position.setY(-t);
 															//console.log(t);
 															if(hhtemp!=null){
-																hhtemp.position.setY(-t);
+																hhtemp.children[0].position.setY(-t);
+																hhtemp.children[1].position.setY(-t);
+																hhtemp.children[2].position.setY(-t);
+																hhtemp.children[3].position.setY(-t);
 															}
+															zoomin(htemp.children[0], true);	
 														}
 														hsliderl.oninput = function() {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
 															var t = this.value;
-															htemp.position.setX(t);
+															t = -t;
+															t = -t;
+															htemp.children[0].position.setX(t);
 															// console.log(t);
 															if(hhtemp!=null){
-																hhtemp.position.setX(t);
+																hhtemp.children[0].position.setX(t);
+																hhtemp.children[1].position.setX(t);
+																hhtemp.children[2].position.setX(t);
+																hhtemp.children[3].position.setX(t);
 															}
+															zoomin(htemp.children[0], true);	
 														}
 														hsliderf.oninput = function() {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
-															var t = this.value;														
-															htemp.position.setZ(-t);
+															var t = this.value;	
+															t = -t;
+															t = -t;													
+															htemp.children[0].position.setZ(-t);
 															// console.log(t);
 															if(hhtemp!=null){
-																hhtemp.position.setZ(-t);
+																hhtemp.children[0].position.setZ(-t);
+																hhtemp.children[1].position.setZ(-t);
+																hhtemp.children[2].position.setZ(-t);
+																hhtemp.children[3].position.setZ(-t);
 															}
+															zoomin(htemp.children[0], true);	
 														}
 
 														// $('#larml').click(function () {
@@ -1142,38 +1585,56 @@ $.ajax({
 														laslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[ilarm].name);
 															var t = this.value;
-															latemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															latemp.children[0].position.setY(-t);
 															// console.log(t);
+															zoomin(latemp.children[0], true);
 														}
 														lasliderl.oninput = function() {
-															// var latemp = scene.getObjectByName(scene.children[ilarm].name);
+															// var latemp.children[0] = scene.getObjectByName(scene.children[ilarm].name);
 															var t = this.value;
-															latemp.position.setX(t);
+															t = -t;
+															t = -t;
+															latemp.children[0].position.setX(t);
 															// console.log(t);
+															zoomin(latemp.children[0], true);
 														}
 														lasliderf.oninput = function() {
-															// var latemp = scene.getObjectByName(scene.children[ilarm].name);
+															// var latemp.children[0] = scene.getObjectByName(scene.children[ilarm].name);
 															var t = this.value;
-															latemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															latemp.children[0].position.setZ(-t);
 															// console.log(t);
+															zoomin(latemp.children[0], true);
 														}
 														raslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[irarm].name);
 															var t = this.value;
-															ratemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															ratemp.children[0].position.setY(-t);
 															// console.log(t);
+															zoomin(ratemp.children[0], true);
 														}
 														rasliderl.oninput = function() {
-															// var ratemp = scene.getObjectByName(scene.children[irarm].name);
+															// var ratemp.children[0] = scene.getObjectByName(scene.children[irarm].name);
 															var t = this.value;
-															ratemp.position.setX(t);
+															t = -t;
+															t = -t;
+															ratemp.children[0].position.setX(t);
 															// console.log(t);
+															zoomin(ratemp.children[0], true);
 														}
 														rasliderf.oninput = function() {
-															// var ratemp = scene.getObjectByName(scene.children[irarm].name);
+															// var ratemp.children[0] = scene.getObjectByName(scene.children[irarm].name);
 															var t = this.value;
-															ratemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															ratemp.children[0].position.setZ(-t);
 															// console.log(t);
+															zoomin(ratemp.children[0], true);
 														}
 
 														// $('#torsol').click(function () {
@@ -1198,20 +1659,29 @@ $.ajax({
 														tslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[itorso].name);
 															var t = this.value;
-															ttemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															ttemp.children[0].position.setY(-t);
 															//console.log(t);
+															zoomin(ttemp.children[0], true);
 														}
 														tsliderl.oninput = function() {
-															// var ttemp = scene.getObjectByName(scene.children[itorso].name);
+															// var ttemp.children[0] = scene.getObjectByName(scene.children[itorso].name);
 															var t = this.value;
-															ttemp.position.setX(t);
+															t = -t;
+															t = -t;
+															ttemp.children[0].position.setX(t);
 															// console.log(t);
+															zoomin(ttemp.children[0], true);
 														}
 														tsliderf.oninput = function() {
-															// var ttemp = scene.getObjectByName(scene.children[itorso].name);
+															// var ttemp.children[0] = scene.getObjectByName(scene.children[itorso].name);
 															var t = this.value;
-															ttemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															ttemp.children[0].position.setZ(-t);
 															// console.log(t);
+															zoomin(ttemp.children[0], true);
 														}
 
 														// $('#llegl').click(function () {
@@ -1256,38 +1726,56 @@ $.ajax({
 														llslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[illeg].name);
 															var t = this.value;
-															lltemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															lltemp.children[0].position.setY(-t);
 															// console.log(t);
+															zoomin(lltemp.children[0], true);
 														}
 														llsliderl.oninput = function() {
-															// var lltemp = scene.getObjectByName(scene.children[illeg].name);
+															// var lltemp.children[0] = scene.getObjectByName(scene.children[illeg].name);
 															var t = this.value;
-															lltemp.position.setX(t);
+															t = -t;
+															t = -t;
+															lltemp.children[0].position.setX(t);
 															// console.log(t);
+															zoomin(lltemp.children[0], true);
 														}
 														llsliderf.oninput = function() {
-															// var lltemp = scene.getObjectByName(scene.children[illeg].name);
+															// var lltemp.children[0] = scene.getObjectByName(scene.children[illeg].name);
 															var t = this.value;
-															lltemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															lltemp.children[0].position.setZ(-t);
 															// console.log(t);
+															zoomin(lltemp.children[0], true);
 														}
 														rlslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[irleg].name);
 															var t = this.value;
-															rltemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															rltemp.children[0].position.setY(-t);
 															// console.log(t);
+															zoomin(rltemp.children[0], true);
 														}
 														rlsliderl.oninput = function() {
-															// var rltemp = scene.getObjectByName(scene.children[irleg].name);
+															// var rltemp.children[0] = scene.getObjectByName(scene.children[irleg].name);
 															var t = this.value;
-															rltemp.position.setX(t);
+															t = -t;
+															t = -t;
+															rltemp.children[0].position.setX(t);
 															// console.log(t);
+															zoomin(rltemp.children[0], true);
 														}
 														rlsliderf.oninput = function() {
-															// var rltemp = scene.getObjectByName(scene.children[irleg].name);
+															// var rltemp.children[0] = scene.getObjectByName(scene.children[irleg].name);
 															var t = this.value;
-															rltemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															rltemp.children[0].position.setZ(-t);
 															// console.log(t);
+															zoomin(raterltempmp.children[0], true);
 														}
 
 													})
@@ -1312,3 +1800,1114 @@ $.ajax({
 		});
 	}
 });
+var OrbitControls = function ( object, domElement ) {
+
+	if ( domElement === undefined ) console.warn( 'THREE.OrbitControls: The second parameter "domElement" is now mandatory.' );
+	if ( domElement === document ) console.error( 'THREE.OrbitControls: "document" should not be used as the target "domElement". Please use "renderer.domElement" instead.' );
+
+	this.object = object;
+	this.domElement = domElement;
+
+	this.enabled = true;
+
+	this.target = new Vector3();
+
+	this.minDistance = 0;
+	this.maxDistance = Infinity;
+
+	this.minZoom = 0;
+	this.maxZoom = Infinity;
+
+	this.minPolarAngle = 0;
+	this.maxPolarAngle = Math.PI;
+
+	this.minAzimuthAngle = - Infinity;
+	this.maxAzimuthAngle = Infinity;
+
+	this.enableDamping = false;
+	this.dampingFactor = 0.05;
+
+	this.enableZoom = true;
+	this.zoomSpeed = 1.0;
+	this.dIn = dollyIn
+
+	this.enableRotate = true;
+	this.rotateSpeed = 1.0;
+
+	this.enablePan = true;
+	this.panSpeed = 1.0;
+	this.screenSpacePanning = false;
+	this.keyPanSpeed = 7.0;
+
+	this.autoRotate = false;
+	this.autoRotateSpeed = 2.0; 
+
+	this.enableKeys = true;
+
+	this.keys = { LEFT: 37, UP: 38, RIGHT: 39, BOTTOM: 40 };
+
+	this.mouseButtons = { LEFT: MOUSE.ROTATE, MIDDLE: MOUSE.DOLLY, RIGHT: MOUSE.PAN };
+
+	this.touches = { ONE: TOUCH.ROTATE, TWO: TOUCH.DOLLY_PAN };
+
+	this.target0 = this.target.clone();
+	this.position0 = this.object.position.clone();
+	this.zoom0 = this.object.zoom;
+
+	this.getPolarAngle = function () {
+
+		return spherical.phi;
+
+	};
+
+	this.getAzimuthalAngle = function () {
+
+		return spherical.theta;
+
+	};
+
+	this.saveState = function () {
+
+		scope.target0.copy( scope.target );
+		scope.position0.copy( scope.object.position );
+		scope.zoom0 = scope.object.zoom;
+
+	};
+
+	this.reset = function () {
+
+		scope.target.copy( scope.target0 );
+		scope.object.position.copy( scope.position0 );
+		scope.object.zoom = scope.zoom0;
+
+		scope.object.updateProjectionMatrix();
+		scope.dispatchEvent( changeEvent );
+
+		scope.update();
+
+		state = STATE.NONE;
+
+	};
+
+	this.update = function () {
+
+		var offset = new Vector3();
+
+		// so camera.up is the orbit axis
+		var quat = new Quaternion().setFromUnitVectors( object.up, new Vector3( 0, 1, 0 ) );
+		var quatInverse = quat.clone().inverse();
+
+		var lastPosition = new Vector3();
+		var lastQuaternion = new Quaternion();
+
+		return function update() {
+
+			var position = scope.object.position;
+
+			offset.copy( position ).sub( scope.target );
+
+			// rotate offset to "y-axis-is-up" space
+			offset.applyQuaternion( quat );
+
+			// angle from z-axis around y-axis
+			spherical.setFromVector3( offset );
+
+			if ( scope.autoRotate && state === STATE.NONE ) {
+
+				rotateLeft( getAutoRotationAngle() );
+
+			}
+
+			if ( scope.enableDamping ) {
+
+				spherical.theta += sphericalDelta.theta * scope.dampingFactor;
+				spherical.phi += sphericalDelta.phi * scope.dampingFactor;
+
+			} else {
+
+				spherical.theta += sphericalDelta.theta;
+				spherical.phi += sphericalDelta.phi;
+
+			}
+
+			// restrict theta to be between desired limits
+			spherical.theta = Math.max( scope.minAzimuthAngle, Math.min( scope.maxAzimuthAngle, spherical.theta ) );
+
+			// restrict phi to be between desired limits
+			spherical.phi = Math.max( scope.minPolarAngle, Math.min( scope.maxPolarAngle, spherical.phi ) );
+
+			spherical.makeSafe();
+
+
+			spherical.radius *= scale;
+
+			// restrict radius to be between desired limits
+			spherical.radius = Math.max( scope.minDistance, Math.min( scope.maxDistance, spherical.radius ) );
+
+			// move target to panned location
+
+			if ( scope.enableDamping === true ) {
+
+				scope.target.addScaledVector( panOffset, scope.dampingFactor );
+
+			} else {
+
+				scope.target.add( panOffset );
+
+			}
+
+			offset.setFromSpherical( spherical );
+
+			// rotate offset back to "camera-up-vector-is-up" space
+			offset.applyQuaternion( quatInverse );
+
+			position.copy( scope.target ).add( offset );
+
+			scope.object.lookAt( scope.target );
+
+			if ( scope.enableDamping === true ) {
+
+				sphericalDelta.theta *= ( 1 - scope.dampingFactor );
+				sphericalDelta.phi *= ( 1 - scope.dampingFactor );
+
+				panOffset.multiplyScalar( 1 - scope.dampingFactor );
+
+			} else {
+
+				sphericalDelta.set( 0, 0, 0 );
+
+				panOffset.set( 0, 0, 0 );
+
+			}
+
+			scale = 1;
+
+			// update condition is:
+			// min(camera displacement, camera rotation in radians)^2 > EPS
+			// using small-angle approximation cos(x/2) = 1 - x^2 / 8
+
+			if ( zoomChanged ||
+				lastPosition.distanceToSquared( scope.object.position ) > EPS ||
+				8 * ( 1 - lastQuaternion.dot( scope.object.quaternion ) ) > EPS ) {
+
+				scope.dispatchEvent( changeEvent );
+
+				lastPosition.copy( scope.object.position );
+				lastQuaternion.copy( scope.object.quaternion );
+				zoomChanged = false;
+
+				return true;
+
+			}
+
+			return false;
+
+		};
+
+	}();
+
+	this.dispose = function () {
+
+		scope.domElement.removeEventListener( 'contextmenu', onContextMenu, false );
+		scope.domElement.removeEventListener( 'mousedown', onMouseDown, false );
+		scope.domElement.removeEventListener( 'wheel', onMouseWheel, false );
+
+		scope.domElement.removeEventListener( 'touchstart', onTouchStart, false );
+		scope.domElement.removeEventListener( 'touchend', onTouchEnd, false );
+		scope.domElement.removeEventListener( 'touchmove', onTouchMove, false );
+
+		document.removeEventListener( 'mousemove', onMouseMove, false );
+		document.removeEventListener( 'mouseup', onMouseUp, false );
+
+		scope.domElement.removeEventListener( 'keydown', onKeyDown, false );
+
+		//scope.dispatchEvent( { type: 'dispose' } ); // should this be added here?
+
+	};
+
+	//
+	// internals
+	//
+
+	var scope = this;
+
+	var changeEvent = { type: 'change' };
+	var startEvent = { type: 'start' };
+	var endEvent = { type: 'end' };
+
+	var STATE = {
+		NONE: - 1,
+		ROTATE: 0,
+		DOLLY: 1,
+		PAN: 2,
+		TOUCH_ROTATE: 3,
+		TOUCH_PAN: 4,
+		TOUCH_DOLLY_PAN: 5,
+		TOUCH_DOLLY_ROTATE: 6
+	};
+
+	var state = STATE.NONE;
+
+	var EPS = 0.000001;
+
+	// current position in spherical coordinates
+	var spherical = new Spherical();
+	var sphericalDelta = new Spherical();
+
+	var scale = 1;
+	var panOffset = new Vector3();
+	var zoomChanged = false;
+
+	var rotateStart = new Vector2();
+	var rotateEnd = new Vector2();
+	var rotateDelta = new Vector2();
+
+	var panStart = new Vector2();
+	var panEnd = new Vector2();
+	var panDelta = new Vector2();
+
+	var dollyStart = new Vector2();
+	var dollyEnd = new Vector2();
+	var dollyDelta = new Vector2();
+
+	function getAutoRotationAngle() {
+
+		return 2 * Math.PI / 60 / 60 * scope.autoRotateSpeed;
+
+	}
+
+	function getZoomScale() {
+
+		return Math.pow( 0.95, scope.zoomSpeed );
+
+	}
+
+	function rotateLeft( angle ) {
+
+		sphericalDelta.theta -= angle;
+
+	}
+
+	function rotateUp( angle ) {
+
+		sphericalDelta.phi -= angle;
+
+	}
+
+	var panLeft = function () {
+
+		var v = new Vector3();
+
+		return function panLeft( distance, objectMatrix ) {
+
+			v.setFromMatrixColumn( objectMatrix, 0 ); // get X column of objectMatrix
+			v.multiplyScalar( - distance );
+
+			panOffset.add( v );
+
+		};
+
+	}();
+
+	var panUp = function () {
+
+		var v = new Vector3();
+
+		return function panUp( distance, objectMatrix ) {
+
+			if ( scope.screenSpacePanning === true ) {
+
+				v.setFromMatrixColumn( objectMatrix, 1 );
+
+			} else {
+
+				v.setFromMatrixColumn( objectMatrix, 0 );
+				v.crossVectors( scope.object.up, v );
+
+			}
+
+			v.multiplyScalar( distance );
+
+			panOffset.add( v );
+
+		};
+
+	}();
+
+	// deltaX and deltaY are in pixels; right and down are positive
+	var pan = function () {
+
+		var offset = new Vector3();
+
+		return function pan( deltaX, deltaY ) {
+
+			var element = scope.domElement;
+
+			if ( scope.object.isPerspectiveCamera ) {
+
+				// perspective
+				var position = scope.object.position;
+				offset.copy( position ).sub( scope.target );
+				var targetDistance = offset.length();
+
+				// half of the fov is center to top of screen
+				targetDistance *= Math.tan( ( scope.object.fov / 2 ) * Math.PI / 180.0 );
+
+				// we use only clientHeight here so aspect ratio does not distort speed
+				panLeft( 2 * deltaX * targetDistance / element.clientHeight, scope.object.matrix );
+				panUp( 2 * deltaY * targetDistance / element.clientHeight, scope.object.matrix );
+
+			} else if ( scope.object.isOrthographicCamera ) {
+
+				// orthographic
+				panLeft( deltaX * ( scope.object.right - scope.object.left ) / scope.object.zoom / element.clientWidth, scope.object.matrix );
+				panUp( deltaY * ( scope.object.top - scope.object.bottom ) / scope.object.zoom / element.clientHeight, scope.object.matrix );
+
+			} else {
+
+				// camera neither orthographic nor perspective
+				console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - pan disabled.' );
+				scope.enablePan = false;
+
+			}
+
+		};
+
+	}();
+
+	function dollyOut( dollyScale ) {
+
+		if ( scope.object.isPerspectiveCamera ) {
+
+			scale /= dollyScale;
+
+		} else if ( scope.object.isOrthographicCamera ) {
+
+			scope.object.zoom = Math.max( scope.minZoom, Math.min( scope.maxZoom, scope.object.zoom * dollyScale ) );
+			scope.object.updateProjectionMatrix();
+			zoomChanged = true;
+
+		} else {
+
+			console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.' );
+			scope.enableZoom = false;
+
+		}
+
+	}
+
+	function dollyIn( dollyScale ) {
+
+		if ( scope.object.isPerspectiveCamera ) {
+
+			scale *= dollyScale;
+
+		} else if ( scope.object.isOrthographicCamera ) {
+
+			scope.object.zoom = Math.max( scope.minZoom, Math.min( scope.maxZoom, scope.object.zoom / dollyScale ) );
+			scope.object.updateProjectionMatrix();
+			zoomChanged = true;
+
+		} else {
+
+			console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.' );
+			scope.enableZoom = false;
+
+		}
+
+	}
+
+	//
+	// event callbacks - update the object state
+	//
+
+	function handleMouseDownRotate( event ) {
+
+		rotateStart.set( event.clientX, event.clientY );
+
+	}
+
+	function handleMouseDownDolly( event ) {
+
+		dollyStart.set( event.clientX, event.clientY );
+
+	}
+
+	function handleMouseDownPan( event ) {
+
+		panStart.set( event.clientX, event.clientY );
+
+	}
+
+	function handleMouseMoveRotate( event ) {
+
+		rotateEnd.set( event.clientX, event.clientY );
+
+		rotateDelta.subVectors( rotateEnd, rotateStart ).multiplyScalar( scope.rotateSpeed );
+
+		var element = scope.domElement;
+
+		rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientHeight ); // yes, height
+
+		rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight );
+
+		rotateStart.copy( rotateEnd );
+
+		scope.update();
+
+	}
+
+	function handleMouseMoveDolly( event ) {
+
+		dollyEnd.set( event.clientX, event.clientY );
+
+		dollyDelta.subVectors( dollyEnd, dollyStart );
+
+		if ( dollyDelta.y > 0 ) {
+
+			dollyOut( getZoomScale() );
+
+		} else if ( dollyDelta.y < 0 ) {
+
+			dollyIn( getZoomScale() );
+
+		}
+
+		dollyStart.copy( dollyEnd );
+
+		scope.update();
+
+	}
+
+	function handleMouseMovePan( event ) {
+
+		panEnd.set( event.clientX, event.clientY );
+
+		panDelta.subVectors( panEnd, panStart ).multiplyScalar( scope.panSpeed );
+
+		pan( panDelta.x, panDelta.y );
+
+		panStart.copy( panEnd );
+
+		scope.update();
+
+	}
+
+	function handleMouseUp( /*event*/ ) {
+
+		// no-op
+
+	}
+
+	function handleMouseWheel( event ) {
+
+		if ( event.deltaY < 0 ) {
+
+			dollyIn( getZoomScale() );
+
+		} else if ( event.deltaY > 0 ) {
+
+			dollyOut( getZoomScale() );
+
+		}
+
+		scope.update();
+
+	}
+
+	function handleKeyDown( event ) {
+
+		var needsUpdate = false;
+
+		switch ( event.keyCode ) {
+
+			case scope.keys.UP:
+				pan( 0, scope.keyPanSpeed );
+				needsUpdate = true;
+				break;
+
+			case scope.keys.BOTTOM:
+				pan( 0, - scope.keyPanSpeed );
+				needsUpdate = true;
+				break;
+
+			case scope.keys.LEFT:
+				pan( scope.keyPanSpeed, 0 );
+				needsUpdate = true;
+				break;
+
+			case scope.keys.RIGHT:
+				pan( - scope.keyPanSpeed, 0 );
+				needsUpdate = true;
+				break;
+
+		}
+
+		if ( needsUpdate ) {
+
+			// prevent the browser from scrolling on cursor keys
+			event.preventDefault();
+
+			scope.update();
+
+		}
+
+
+	}
+
+	function handleTouchStartRotate( event ) {
+
+		if ( event.touches.length == 1 ) {
+
+			rotateStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+
+		} else {
+
+			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
+			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
+
+			rotateStart.set( x, y );
+
+		}
+
+	}
+
+	function handleTouchStartPan( event ) {
+
+		if ( event.touches.length == 1 ) {
+
+			panStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+
+		} else {
+
+			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
+			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
+
+			panStart.set( x, y );
+
+		}
+
+	}
+
+	function handleTouchStartDolly( event ) {
+
+		var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
+		var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
+
+		var distance = Math.sqrt( dx * dx + dy * dy );
+
+		dollyStart.set( 0, distance );
+
+	}
+
+	function handleTouchStartDollyPan( event ) {
+
+		if ( scope.enableZoom ) handleTouchStartDolly( event );
+
+		if ( scope.enablePan ) handleTouchStartPan( event );
+
+	}
+
+	function handleTouchStartDollyRotate( event ) {
+
+		if ( scope.enableZoom ) handleTouchStartDolly( event );
+
+		if ( scope.enableRotate ) handleTouchStartRotate( event );
+
+	}
+
+	function handleTouchMoveRotate( event ) {
+
+		if ( event.touches.length == 1 ) {
+
+			rotateEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+
+		} else {
+
+			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
+			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
+
+			rotateEnd.set( x, y );
+
+		}
+
+		rotateDelta.subVectors( rotateEnd, rotateStart ).multiplyScalar( scope.rotateSpeed );
+
+		var element = scope.domElement;
+
+		rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientHeight ); // yes, height
+
+		rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight );
+
+		rotateStart.copy( rotateEnd );
+
+	}
+
+	function handleTouchMovePan( event ) {
+
+		if ( event.touches.length == 1 ) {
+
+			panEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+
+		} else {
+
+			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
+			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
+
+			panEnd.set( x, y );
+
+		}
+
+		panDelta.subVectors( panEnd, panStart ).multiplyScalar( scope.panSpeed );
+
+		pan( panDelta.x, panDelta.y );
+
+		panStart.copy( panEnd );
+
+	}
+
+	function handleTouchMoveDolly( event ) {
+
+		var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
+		var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
+
+		var distance = Math.sqrt( dx * dx + dy * dy );
+
+		dollyEnd.set( 0, distance );
+
+		dollyDelta.set( 0, Math.pow( dollyEnd.y / dollyStart.y, scope.zoomSpeed ) );
+
+		dollyOut( dollyDelta.y );
+
+		dollyStart.copy( dollyEnd );
+
+	}
+
+	function handleTouchMoveDollyPan( event ) {
+
+		if ( scope.enableZoom ) handleTouchMoveDolly( event );
+
+		if ( scope.enablePan ) handleTouchMovePan( event );
+
+	}
+
+	function handleTouchMoveDollyRotate( event ) {
+
+		if ( scope.enableZoom ) handleTouchMoveDolly( event );
+
+		if ( scope.enableRotate ) handleTouchMoveRotate( event );
+
+	}
+
+	function handleTouchEnd( /*event*/ ) {
+
+		// no-op
+
+	}
+
+	//
+	// event handlers - FSM: listen for events and reset state
+	//
+
+	function onMouseDown( event ) {
+
+		if ( scope.enabled === false ) return;
+
+		// Prevent the browser from scrolling.
+		event.preventDefault();
+
+		// Manually set the focus since calling preventDefault above
+		// prevents the browser from setting it automatically.
+
+		scope.domElement.focus ? scope.domElement.focus() : window.focus();
+
+		var mouseAction;
+
+		switch ( event.button ) {
+
+			case 0:
+
+				mouseAction = scope.mouseButtons.LEFT;
+				break;
+
+			case 1:
+
+				mouseAction = scope.mouseButtons.MIDDLE;
+				break;
+
+			case 2:
+
+				mouseAction = scope.mouseButtons.RIGHT;
+				break;
+
+			default:
+
+				mouseAction = - 1;
+
+		}
+
+		switch ( mouseAction ) {
+
+			case MOUSE.DOLLY:
+
+				if ( scope.enableZoom === false ) return;
+
+				handleMouseDownDolly( event );
+
+				state = STATE.DOLLY;
+
+				break;
+
+			case MOUSE.ROTATE:
+
+				if ( event.ctrlKey || event.metaKey || event.shiftKey ) {
+
+					if ( scope.enablePan === false ) return;
+
+					handleMouseDownPan( event );
+
+					state = STATE.PAN;
+
+				} else {
+
+					if ( scope.enableRotate === false ) return;
+
+					handleMouseDownRotate( event );
+
+					state = STATE.ROTATE;
+
+				}
+
+				break;
+
+			case MOUSE.PAN:
+
+				if ( event.ctrlKey || event.metaKey || event.shiftKey ) {
+
+					if ( scope.enableRotate === false ) return;
+
+					handleMouseDownRotate( event );
+
+					state = STATE.ROTATE;
+
+				} else {
+
+					if ( scope.enablePan === false ) return;
+
+					handleMouseDownPan( event );
+
+					state = STATE.PAN;
+
+				}
+
+				break;
+
+			default:
+
+				state = STATE.NONE;
+
+		}
+
+		if ( state !== STATE.NONE ) {
+
+			document.addEventListener( 'mousemove', onMouseMove, false );
+			document.addEventListener( 'mouseup', onMouseUp, false );
+
+			scope.dispatchEvent( startEvent );
+
+		}
+
+	}
+
+	function onMouseMove( event ) {
+
+		if ( scope.enabled === false ) return;
+
+		event.preventDefault();
+
+		switch ( state ) {
+
+			case STATE.ROTATE:
+
+				if ( scope.enableRotate === false ) return;
+
+				handleMouseMoveRotate( event );
+
+				break;
+
+			case STATE.DOLLY:
+
+				if ( scope.enableZoom === false ) return;
+
+				handleMouseMoveDolly( event );
+
+				break;
+
+			case STATE.PAN:
+
+				if ( scope.enablePan === false ) return;
+
+				handleMouseMovePan( event );
+
+				break;
+
+		}
+
+	}
+
+	function onMouseUp( event ) {
+
+		if ( scope.enabled === false ) return;
+
+		handleMouseUp( event );
+
+		document.removeEventListener( 'mousemove', onMouseMove, false );
+		document.removeEventListener( 'mouseup', onMouseUp, false );
+
+		scope.dispatchEvent( endEvent );
+
+		state = STATE.NONE;
+
+	}
+
+	function onMouseWheel( event ) {
+
+		if ( scope.enabled === false || scope.enableZoom === false || ( state !== STATE.NONE && state !== STATE.ROTATE ) ) return;
+
+		event.preventDefault();
+		event.stopPropagation();
+
+		scope.dispatchEvent( startEvent );
+
+		handleMouseWheel( event );
+
+		scope.dispatchEvent( endEvent );
+
+	}
+
+	function onKeyDown( event ) {
+
+		if ( scope.enabled === false || scope.enableKeys === false || scope.enablePan === false ) return;
+
+		handleKeyDown( event );
+
+	}
+
+	function onTouchStart( event ) {
+
+		if ( scope.enabled === false ) return;
+
+		event.preventDefault(); // prevent scrolling
+
+		switch ( event.touches.length ) {
+
+			case 1:
+
+				switch ( scope.touches.ONE ) {
+
+					case TOUCH.ROTATE:
+
+						if ( scope.enableRotate === false ) return;
+
+						handleTouchStartRotate( event );
+
+						state = STATE.TOUCH_ROTATE;
+
+						break;
+
+					case TOUCH.PAN:
+
+						if ( scope.enablePan === false ) return;
+
+						handleTouchStartPan( event );
+
+						state = STATE.TOUCH_PAN;
+
+						break;
+
+					default:
+
+						state = STATE.NONE;
+
+				}
+
+				break;
+
+			case 2:
+
+				switch ( scope.touches.TWO ) {
+
+					case TOUCH.DOLLY_PAN:
+
+						if ( scope.enableZoom === false && scope.enablePan === false ) return;
+
+						handleTouchStartDollyPan( event );
+
+						state = STATE.TOUCH_DOLLY_PAN;
+
+						break;
+
+					case TOUCH.DOLLY_ROTATE:
+
+						if ( scope.enableZoom === false && scope.enableRotate === false ) return;
+
+						handleTouchStartDollyRotate( event );
+
+						state = STATE.TOUCH_DOLLY_ROTATE;
+
+						break;
+
+					default:
+
+						state = STATE.NONE;
+
+				}
+
+				break;
+
+			default:
+
+				state = STATE.NONE;
+
+		}
+
+		if ( state !== STATE.NONE ) {
+
+			scope.dispatchEvent( startEvent );
+
+		}
+
+	}
+
+	function onTouchMove( event ) {
+
+		if ( scope.enabled === false ) return;
+
+		event.preventDefault(); // prevent scrolling
+		event.stopPropagation();
+
+		switch ( state ) {
+
+			case STATE.TOUCH_ROTATE:
+
+				if ( scope.enableRotate === false ) return;
+
+				handleTouchMoveRotate( event );
+
+				scope.update();
+
+				break;
+
+			case STATE.TOUCH_PAN:
+
+				if ( scope.enablePan === false ) return;
+
+				handleTouchMovePan( event );
+
+				scope.update();
+
+				break;
+
+			case STATE.TOUCH_DOLLY_PAN:
+
+				if ( scope.enableZoom === false && scope.enablePan === false ) return;
+
+				handleTouchMoveDollyPan( event );
+
+				scope.update();
+
+				break;
+
+			case STATE.TOUCH_DOLLY_ROTATE:
+
+				if ( scope.enableZoom === false && scope.enableRotate === false ) return;
+
+				handleTouchMoveDollyRotate( event );
+
+				scope.update();
+
+				break;
+
+			default:
+
+				state = STATE.NONE;
+
+		}
+
+	}
+
+	function onTouchEnd( event ) {
+
+		if ( scope.enabled === false ) return;
+
+		handleTouchEnd( event );
+
+		scope.dispatchEvent( endEvent );
+
+		state = STATE.NONE;
+
+	}
+
+	function onContextMenu( event ) {
+
+		if ( scope.enabled === false ) return;
+
+		event.preventDefault();
+
+	}
+
+	//
+
+	scope.domElement.addEventListener( 'contextmenu', onContextMenu, false );
+
+	scope.domElement.addEventListener( 'mousedown', onMouseDown, false );
+	scope.domElement.addEventListener( 'wheel', onMouseWheel, false );
+
+	scope.domElement.addEventListener( 'touchstart', onTouchStart, false );
+	scope.domElement.addEventListener( 'touchend', onTouchEnd, false );
+	scope.domElement.addEventListener( 'touchmove', onTouchMove, false );
+
+	scope.domElement.addEventListener( 'keydown', onKeyDown, false );
+
+	// make sure element can receive keys.
+
+	if ( scope.domElement.tabIndex === - 1 ) {
+
+		scope.domElement.tabIndex = 0;
+
+	}
+
+	// force an update at start
+
+	this.update();
+
+};
+
+OrbitControls.prototype = Object.create( EventDispatcher.prototype );
+OrbitControls.prototype.constructor = OrbitControls;
+
+
+// This set of controls performs orbiting, dollying (zooming), and panning.
+// Unlike TrackballControls, it maintains the "up" direction object.up (+Y by default).
+// This is very similar to OrbitControls, another set of touch behavior
+//
+//    Orbit - right mouse, or left mouse + ctrl/meta/shiftKey / touch: two-finger rotate
+//    Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish
+//    Pan - left mouse, or arrow keys / touch: one-finger move
+
+var MapControls = function ( object, domElement ) {
+
+	OrbitControls.call( this, object, domElement );
+
+	this.mouseButtons.LEFT = MOUSE.PAN;
+	this.mouseButtons.RIGHT = MOUSE.ROTATE;
+
+	this.touches.ONE = TOUCH.PAN;
+	this.touches.TWO = TOUCH.DOLLY_ROTATE;
+
+};
+
+MapControls.prototype = Object.create( EventDispatcher.prototype );
+MapControls.prototype.constructor = MapControls;
+
+export { OrbitControls, MapControls };

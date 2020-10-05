@@ -527,16 +527,19 @@ $.ajax({
 																	gltf.scene.children[0].position.setY(headposy);																
 																}else{
 																	headposy = gltf.scene.children[0].position.y;
+																	$("#toy_head_pos")[0].value = headposy;	
 																}
 																if(headposx != 0.0){
-																	gltf.scene.children[0].position.setY(headposx);
+																	gltf.scene.children[0].position.setX(headposx);
 																}else{
 																	headposx = gltf.scene.children[0].position.x;
+																	$("#toy_head_posx")[0].value = headposx;	
 																}
 																if(headposz != 0.0){
-																	gltf.scene.children[0].position.setY(headposz);
+																	gltf.scene.children[0].position.setZ(headposz);
 																}else{
 																	headposz = gltf.scene.children[0].position.z;
+																	$("#toy_head_posz")[0].value = headposz;	
 																}
 																// console.log(gltf.scene.children[0]);
 																$("#toy_head_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
@@ -544,13 +547,7 @@ $.ajax({
 																zoomin(htemp.children[0], false);	
 																$('#headup').attr("value",-headposy);	
 																$('#headleft').attr("value",headposx);
-																$('#headfront').attr("value",-headposz);	
-																// $('#headup').attr("max",htemp.position.y + 4);	
-																// $('#headleft').attr("max",htemp.position.x + 4);
-																// $('#headfront').attr("max",htemp.position.z + 4);	
-																// $('#headup').attr("min",-htemp.position.y-4);	
-																// $('#headleft').attr("min",-htemp.position.x-4);
-																// $('#headfront').attr("min",-htemp.position.z-4);													
+																$('#headfront').attr("value",-headposz);												
 																break;
 															case "torso" : 
 																ttemp = gltf.scene;
@@ -559,16 +556,19 @@ $.ajax({
 																	gltf.scene.children[0].position.setY(torsoposy);
 																}else{
 																	torsoposy = gltf.scene.children[0].position.y;
+																	$("#toy_torso_posy")[0].value = torsoposy;
 																}
 																if(torsoposx != 0.0){
-																	gltf.scene.children[0].position.setY(torsoposx);
+																	gltf.scene.children[0].position.setX(torsoposx);
 																}else{
 																	torsoposx = gltf.scene.children[0].position.x;
+																	$("#toy_torso_posx")[0].value = torsoposx;
 																}
 																if(torsoposz != 0.0){
-																	gltf.scene.children[0].position.setY(torsoposz);
+																	gltf.scene.children[0].position.setZ(torsoposz);
 																}else{
 																	torsoposz = gltf.scene.children[0].position.z;
+																	$("#toy_torso_posz")[0].value = torsoposz;
 																}
 																// console.log(gltf.scene.children[0]);
 																$("#toy_torso_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
@@ -585,16 +585,19 @@ $.ajax({
 																	gltf.scene.children[0].position.setY(larmposy);
 																}else{
 																	larmposy = gltf.scene.children[0].position.y;
+																	$("#toy_larm_posy")[0].value = larmposy;
 																}
 																if(larmposx != 0.0){
-																	gltf.scene.children[0].position.setY(larmposx);
+																	gltf.scene.children[0].position.setX(larmposx);
 																}else{
 																	larmposx = gltf.scene.children[0].position.x;
+																	$("#toy_larm_posx")[0].value = larmposx;
 																}
 																if(larmposz != 0.0){
-																	gltf.scene.children[0].position.setY(larmposz);
+																	gltf.scene.children[0].position.setZ(larmposz);
 																}else{
 																	larmposz = gltf.scene.children[0].position.z;
+																	$("#toy_larm_posz")[0].value = larmposz;
 																}
 																$("#toy_larm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
 																	, color, false).toDataURL("image/png");
@@ -610,16 +613,19 @@ $.ajax({
 																	gltf.scene.children[0].position.setY(rarmposy);
 																}else{
 																	rarmposy = gltf.scene.children[0].position.y;
+																	$("#toy_rarm_posy")[0].value = rarmposy;
 																}
 																if(rarmposx != 0.0){
-																	gltf.scene.children[0].position.setY(rarmposx);
+																	gltf.scene.children[0].position.setX(rarmposx);
 																}else{
 																	rarmposx = gltf.scene.children[0].position.x;
+																	$("#toy_rarm_posx")[0].value = rarmposx;
 																}
 																if(rarmposz != 0.0){
-																	gltf.scene.children[0].position.setY(rarmposz);
+																	gltf.scene.children[0].position.setZ(rarmposz);
 																}else{
 																	rarmposz = gltf.scene.children[0].position.z;
+																	$("#toy_rarm_posz")[0].value = rarmposz;
 																}
 																$("#toy_rarm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color , false).toDataURL("image/png");
@@ -634,19 +640,20 @@ $.ajax({
 																if(llegposy != 0.0){
 																	gltf.scene.children[0].position.setY(llegposy);
 																}else{
-																	console.log(llegposy);
 																	llegposy = gltf.scene.children[0].position.y;
-																	console.log(llegposy);
+																	$("#toy_lleg_posy")[0].value = llegposy;
 																}
 																if(llegposx != 0.0){
-																	gltf.scene.children[0].position.setY(llegposx);
+																	gltf.scene.children[0].position.setX(llegposx);
 																}else{
 																	llegposx = gltf.scene.children[0].position.x;
+																	$("#toy_lleg_posx")[0].value = llegposx;
 																}
 																if(llegposz != 0.0){
-																	gltf.scene.children[0].position.setY(llegposz);
+																	gltf.scene.children[0].position.setZ(llegposz);
 																}else{
 																	llegposz = gltf.scene.children[0].position.z;
+																	$("#toy_lleg_posz")[0].value = llegposz;
 																}
 																$("#toy_lleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
 																	,color , false).toDataURL("image/png");
@@ -662,16 +669,19 @@ $.ajax({
 																	gltf.scene.children[0].position.setY(rlegposy);
 																}else{
 																	rlegposy = gltf.scene.children[0].position.y;
+																	$("#toy_rleg_posy")[0].value = rlegposy;
 																}
 																if(rlegposx != 0.0){
-																	gltf.scene.children[0].position.setY(rlegposx);
+																	gltf.scene.children[0].position.setX(rlegposx);
 																}else{
 																	rlegposx = gltf.scene.children[0].position.x;
+																	$("#toy_rleg_posx")[0].value = rlegposx;
 																}
 																if(rlegposz != 0.0){
-																	gltf.scene.children[0].position.setY(rlegposz);
+																	gltf.scene.children[0].position.setZ(rlegposz);
 																}else{
 																	rlegposz = gltf.scene.children[0].position.z;
+																	$("#toy_rleg_posz")[0].value = rlegposz;
 																}
 																$("#toy_rleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color , false).toDataURL("image/png");
@@ -1286,6 +1296,9 @@ $.ajax({
 																button.value = i + data.file_paths.models.length;
 																button.onclick = function(){
 																	if(head!=this.value){
+																		headposy = 0.0;
+																		headposx = 0.0;
+																		headposz = 0.0;
 																		headchange = true;
 																		head = this.value;
 																		$("#toy_head")[0].value = head;
@@ -1307,7 +1320,10 @@ $.ajax({
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
 																button.onclick = function(){
-																	if(torso!=this.value){
+																	if(torso!=this.value){																		
+																		torsoposy = 0.0;
+																		torsoposx = 0.0;
+																		torsoposz = 0.0;
 																		torsochange = true;
 																		torso = this.value;
 																		$("#toy_torso")[0].value = torso;
@@ -1329,7 +1345,10 @@ $.ajax({
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
 																button.onclick = function(){
-																	if(larm!=this.value){
+																	if(larm!=this.value){																		
+																		larmposy = 0.0;
+																		larmposx = 0.0;
+																		larmposz = 0.0;
 																		larmchange = true;
 																		larm = this.value;
 																		$("#toy_arms")[0].value = larm;
@@ -1352,6 +1371,9 @@ $.ajax({
 																button.value = i + data.file_paths.models.length;
 																button.onclick = function(){
 																	if(rarm!=this.value){
+																		rarmposy = 0.0;
+																		rarmposx = 0.0;
+																		rarmposz = 0.0;
 																		rarmchange = true;
 																		rarm = this.value;
 																		$("#toy_r_arm")[0].value = rarm;
@@ -1374,6 +1396,9 @@ $.ajax({
 																button.value = i + data.file_paths.models.length;
 																button.onclick = function(){
 																	if(lleg!=this.value){
+																		llegposy = 0.0;
+																		llegposx = 0.0;
+																		llegposz = 0.0;
 																		llegchange = true;
 																		lleg = this.value;
 																		$("#toy_legs")[0].value = lleg;
@@ -1396,6 +1421,9 @@ $.ajax({
 																button.value = i + data.file_paths.models.length;
 																button.onclick = function(){
 																	if(rleg!=this.value){
+																		rlegposy = 0.0;
+																		rlegposx = 0.0;
+																		rlegposz = 0.0;
 																		rlegchange = true;
 																		rleg = this.value;
 																		$("#toy_r_leg")[0].value = rleg;
@@ -1405,7 +1433,7 @@ $.ajax({
 															}
 														}
 													}	
-													console.log(lltemp);
+
 													$(document).ready(function(){
 														$('#check-zoom').click(function () {
 															bzoom = !bzoom;
@@ -1644,22 +1672,22 @@ $.ajax({
 															}
 														});
 
-														$('#headl').click(function () {
-															if($("#toy_head")[0].value > 0){
-																headchange = true;
-																$("#toy_head")[0].value -= 1;
-																head = $("#toy_head")[0].value;
-															}
-														});
-														$('#headr').click(function () {
-															var tmp = $("#toy_head")[0].value;
-															if(tmp < 1 + head_models.length){
-																headchange = true;
-																tmp = +tmp + +1;
-																$("#toy_head")[0].value = tmp;
-																head = $("#toy_head")[0].value;
-															}
-														});
+														// $('#headl').click(function () {
+														// 	if($("#toy_head")[0].value > 0){
+														// 		headchange = true;
+														// 		$("#toy_head")[0].value -= 1;
+														// 		head = $("#toy_head")[0].value;
+														// 	}
+														// });
+														// $('#headr').click(function () {
+														// 	var tmp = $("#toy_head")[0].value;
+														// 	if(tmp < 1 + head_models.length){
+														// 		headchange = true;
+														// 		tmp = +tmp + +1;
+														// 		$("#toy_head")[0].value = tmp;
+														// 		head = $("#toy_head")[0].value;
+														// 	}
+														// });
 														var hslideru = document.getElementById("headup");
 														var hsliderl = document.getElementById("headleft");
 														var hsliderf = document.getElementById("headfront");
@@ -1713,39 +1741,39 @@ $.ajax({
 															zoomin(htemp.children[0], true);
 														}
 
-														$('#larml').click(function () {
-															if($("#toy_arms")[0].value > 0){
-																larmchange = true;
-																$("#toy_arms")[0].value -= 1;
-																larm = $("#toy_arms")[0].value;
-															}
-														});
-														$('#larmr').click(function () {
-															var tmp = $("#toy_arms")[0].value;
-															if(tmp < 1 + l_arm_models.length){
-																larmchange = true;
-																tmp = +tmp + +1;
-																$("#toy_arms")[0].value = tmp;
-																larm = $("#toy_arms")[0].value;
-															}
-														});
+														// $('#larml').click(function () {
+														// 	if($("#toy_arms")[0].value > 0){
+														// 		larmchange = true;
+														// 		$("#toy_arms")[0].value -= 1;
+														// 		larm = $("#toy_arms")[0].value;
+														// 	}
+														// });
+														// $('#larmr').click(function () {
+														// 	var tmp = $("#toy_arms")[0].value;
+														// 	if(tmp < 1 + l_arm_models.length){
+														// 		larmchange = true;
+														// 		tmp = +tmp + +1;
+														// 		$("#toy_arms")[0].value = tmp;
+														// 		larm = $("#toy_arms")[0].value;
+														// 	}
+														// });
 
-														$('#rarml').click(function () {
-															if($("#toy_r_arm")[0].value > 0){
-																rarmchange = true;
-																$("#toy_r_arm")[0].value -= 1;
-																rarm = $("#toy_r_arm")[0].value;
-															}
-														});
-														$('#rarmr').click(function () {
-															var tmp = $("#toy_r_arm")[0].value;
-															if(tmp < 1 + r_arm_models.length){
-																rarmchange = true;
-																tmp = +tmp + +1;
-																$("#toy_r_arm")[0].value = tmp;
-																rarm = $("#toy_r_arm")[0].value;
-															}
-														});
+														// $('#rarml').click(function () {
+														// 	if($("#toy_r_arm")[0].value > 0){
+														// 		rarmchange = true;
+														// 		$("#toy_r_arm")[0].value -= 1;
+														// 		rarm = $("#toy_r_arm")[0].value;
+														// 	}
+														// });
+														// $('#rarmr').click(function () {
+														// 	var tmp = $("#toy_r_arm")[0].value;
+														// 	if(tmp < 1 + r_arm_models.length){
+														// 		rarmchange = true;
+														// 		tmp = +tmp + +1;
+														// 		$("#toy_r_arm")[0].value = tmp;
+														// 		rarm = $("#toy_r_arm")[0].value;
+														// 	}
+														// });
 														var laslideru = document.getElementById("larmup");
 														var lasliderl = document.getElementById("larmleft");
 														var lasliderf = document.getElementById("larmfront");
@@ -1813,22 +1841,22 @@ $.ajax({
 															// console.log(t);
 														}
 
-														$('#torsol').click(function () {
-															if($("#toy_torso")[0].value > 0){
-																torsochange = true;
-																$("#toy_torso")[0].value -= 1;
-																torso = $("#toy_torso")[0].value;
-															}
-														});
-														$('#torsor').click(function () {
-															var tmp = $("#toy_torso")[0].value;
-															if(tmp < 1  + body_models.length){
-																torsochange =  true;
-																tmp = +tmp + +1;
-																$("#toy_torso")[0].value = tmp;
-																torso = $("#toy_torso")[0].value;
-															}
-														});
+														// $('#torsol').click(function () {
+														// 	if($("#toy_torso")[0].value > 0){
+														// 		torsochange = true;
+														// 		$("#toy_torso")[0].value -= 1;
+														// 		torso = $("#toy_torso")[0].value;
+														// 	}
+														// });
+														// $('#torsor').click(function () {
+														// 	var tmp = $("#toy_torso")[0].value;
+														// 	if(tmp < 1  + body_models.length){
+														// 		torsochange =  true;
+														// 		tmp = +tmp + +1;
+														// 		$("#toy_torso")[0].value = tmp;
+														// 		torso = $("#toy_torso")[0].value;
+														// 	}
+														// });
 														var tslideru = document.getElementById("torsoup");
 														var tsliderl = document.getElementById("torsoleft");
 														var tsliderf = document.getElementById("torsofront");
@@ -1863,39 +1891,39 @@ $.ajax({
 															// console.log(t);
 														}
 
-														$('#llegl').click(function () {
-															if($("#toy_legs")[0].value > 0){
-																llegchange = true;
-																$("#toy_legs")[0].value -= 1;
-																lleg = $("#toy_legs")[0].value;
-															}
-														});
-														$('#llegr').click(function () {
-															var tmp = $("#toy_legs")[0].value;
-															if(tmp < 1 + l_leg_models.length){
-																llegchange = true;
-																tmp = +tmp + +1;
-																$("#toy_legs")[0].value = tmp;
-																lleg = $("#toy_legs")[0].value;
-															}
-														});
+														// $('#llegl').click(function () {
+														// 	if($("#toy_legs")[0].value > 0){
+														// 		llegchange = true;
+														// 		$("#toy_legs")[0].value -= 1;
+														// 		lleg = $("#toy_legs")[0].value;
+														// 	}
+														// });
+														// $('#llegr').click(function () {
+														// 	var tmp = $("#toy_legs")[0].value;
+														// 	if(tmp < 1 + l_leg_models.length){
+														// 		llegchange = true;
+														// 		tmp = +tmp + +1;
+														// 		$("#toy_legs")[0].value = tmp;
+														// 		lleg = $("#toy_legs")[0].value;
+														// 	}
+														// });
 
-														$('#rlegl').click(function () {
-															if($("#toy_r_leg")[0].value > 0){
-																rlegchange = true;
-																$("#toy_r_leg")[0].value -= 1;
-																rleg = $("#toy_r_leg")[0].value;
-															}
-														});
-														$('#rlegr').click(function () {
-															var tmp = $("#toy_r_leg")[0].value;
-															if(tmp < 1 + r_leg_models.length){
-																rlegchange = true;
-																tmp = +tmp + +1;
-																$("#toy_r_leg")[0].value = tmp;
-																rleg = $("#toy_r_leg")[0].value;
-															}
-														});
+														// $('#rlegl').click(function () {
+														// 	if($("#toy_r_leg")[0].value > 0){
+														// 		rlegchange = true;
+														// 		$("#toy_r_leg")[0].value -= 1;
+														// 		rleg = $("#toy_r_leg")[0].value;
+														// 	}
+														// });
+														// $('#rlegr').click(function () {
+														// 	var tmp = $("#toy_r_leg")[0].value;
+														// 	if(tmp < 1 + r_leg_models.length){
+														// 		rlegchange = true;
+														// 		tmp = +tmp + +1;
+														// 		$("#toy_r_leg")[0].value = tmp;
+														// 		rleg = $("#toy_r_leg")[0].value;
+														// 	}
+														// });
 														var llslideru = document.getElementById("llegup");
 														var llsliderl = document.getElementById("llegleft");
 														var llsliderf = document.getElementById("llegfront");
