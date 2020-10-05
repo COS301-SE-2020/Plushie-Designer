@@ -1,74 +1,111 @@
 <br><br><br><br>
-<%= form_for :payment_information, :url => make_payment_url, method: "get" do %>
+<div class="user-form">
+    <div class="user-form-back">
+    </div>
+    <%= form_for :payment_information, :url => make_payment_url, method: "get" do %>
 
-  <div class="form-inputs">
+    <div class="form-inputs">
 
-    <%= hidden_field_tag :id, `@toy.id` %>
+        <%= hidden_field_tag :id, `@toy.id` %>
+
+        <div class="container">
+                <form class="mt-5">
+                    <div class="row">
+                        <div class="col-5">
+                            <%= label_tag(:payment_tag, "payment method:")%>
+                            <%= text_field_tag(:payment_method, @found ? @cardHolder.payment_method : '') %>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                    <div class="col-3">
+                        <%= label_tag(:card_tag, "card no:")%>
+                        <%= text_field_tag(:card_no, @found ? @cardHolder.card_no : '') %>
+                    </div>
+                    <div class="col-4">
+                        <%= label_tag(:expiration_m_tag, "expiration date and security code:")%>
+                        <div class="row">
+                            <div class="col-4">
+                                <%= number_field_tag :expiration_month, @found ? @cardHolder.expiration_month : 1, min: 1, max: 12  %>
+                            </div>
+                            <div class="col-4">
+                                <%= number_field_tag :expiration_year, @found ? @cardHolder.expiration_year : 2020, min: 2020 %>
+                            </div>
+                            <div class="col-4">
+                                <%= text_field_tag(:security_code, @found ? @cardHolder.security_code : '') %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <h2>Billing Information</h2>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <%= label_tag(:name_tag, "Name:") %>
+                                <%= text_field_tag(:ch_name, @found ? @cardHolder.ch_name : '') %>
+                            </div>
+                            <div class="col-6">
+                                <%= label_tag(:surname_tag, "Last Name:")%>
+                                <%= text_field_tag(:ch_surname, @found ? @cardHolder.ch_surname : '') %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <%= label_tag(:city_tag, "city:")%>
+                        <%= text_field_tag(:city, @found ? @cardHolder.city : '') %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <%= label_tag(:address_1_tag, "address line 1:")%>
+                        <%= text_field_tag(:address_line1, @found ? @cardHolder.address_line1 : '') %>
+                    </div>
+                    <div class="col-3">
+                        <%= label_tag(:postal_tag, "postal code:")%>
+                        <%= text_field_tag(:postal_code, @found ? @cardHolder.expiration_year : '') %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <%= label_tag(:address_2_tag, "address line 2:")%>
+                        <%= text_field_tag(:address_line2, @found ? @cardHolder.address_line2 : '') %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <%= label_tag(:country_tag, "country:") %>
+                        <%= text_field_tag(:country, @found ? @cardHolder.country : '') %>
+                    </div>
+                    <div class="col-3">
+                        <%= label_tag(:cell_tag, "cell no:")%>
+                        <%= text_field_tag(:cell_no, @found ? @cardHolder.cell_no : '') %>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <% if @found != true %>
+                        <%= label_tag(:save_information_tag, "save information:") %>
+                        <%= check_box_tag(:save_info) %>
+                    <% end %>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        
+                    </div>
+                    <div class="col-3">
+                        <div class="form-actions">
+                            <%= button_to 'DOWNLOAD PDF', make_payment_path(@toy.id), target: "_blank", id: "pay-button"%>
+                        </div>
+                    </div>
+                </div>
+
+    </div>
 
 
-    <%= label_tag(:name_tag, "cardholder name:") %>
-    <%= text_field_tag(:ch_name, @found ? @cardHolder.ch_name : '') %>
+    <br><br><br><br>
 
-    <%= label_tag(:surname_tag, "cardholder last name:")%>
-    <%= text_field_tag(:ch_surname, @found ? @cardHolder.ch_surname : '') %>
-
-    <%= label_tag(:cell_tag, "cell no:")%>
-    <%= text_field_tag(:cell_no, @found ? @cardHolder.cell_no : '') %>
-
-    <%= label_tag(:payment_tag, "payment method:")%>
-    <%= text_field_tag(:payment_method, @found ? @cardHolder.payment_method : '') %>
-
-    <%= label_tag(:card_tag, "card no:")%>
-    <%= text_field_tag(:card_no, @found ? @cardHolder.card_no : '') %>
-
-    <%= label_tag(:expiration_m_tag, "expiration month:")%>
-    <%= number_field_tag :expiration_month, @found ? @cardHolder.expiration_month : 1, min: 1, max: 12  %>
-
-    <%= label_tag(:expiration_y_tag, "expiration year:")%>
-    <%= number_field_tag :expiration_year, @found ? @cardHolder.expiration_year : 2020, min: 2020 %>
-
-    <%= label_tag(:postal_tag, "postal code:")%>
-    <%= text_field_tag(:postal_code, @found ? @cardHolder.expiration_year : '') %>
-
-    <%= label_tag(:sec_tag, "security code:")%>
-    <%= text_field_tag(:security_code, @found ? @cardHolder.security_code : '') %>
-
-    <%= label_tag(:address_1_tag, "address line 1:")%>
-    <%= text_field_tag(:address_line1, @found ? @cardHolder.address_line1 : '') %>
-
-    <%= label_tag(:address_2_tag, "address line 2:")%>
-    <%= text_field_tag(:address_line2, @found ? @cardHolder.address_line2 : '') %>
-
-    <%= label_tag(:city_tag, "city:")%>
-    <%= text_field_tag(:city, @found ? @cardHolder.city : '') %>
-
-    <%= label_tag(:country_tag, "country:") %>
-    <%= text_field_tag(:country, @found ? @cardHolder.country : '') %>
-    <%#= country_select(current_user, :country_selector, { priority_countries: %w(ZA), include_blank: true, selected: params[:country] }, {}) %>
-    <%#= hidden_field_tag :country %>
-
-    <% if @found != true %>
-      <%= label_tag(:save_information_tag, "save information:") %>
-      <%= check_box_tag(:save_info) %>
     <% end %>
+</div>
 
-
-  </div>
-
-  <div class="form-actions">
-    <%= button_to 'DOWNLOAD PDF', make_payment_path(@toy.id), target: "_blank" %>
-  </div>
-  <br><br><br><br>
-
-<% end %>
-
-<script>
-  var body;
-
-  document.onreadystatechange = () => {
-      if (document.readyState === 'complete') {
-          body = document.getElementsByTagName("BODY")[0];
-          body.style.overflowY = "scroll";
-      }
-  };
-</script>
