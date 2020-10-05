@@ -52,7 +52,7 @@ $.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
 											success:  function(r_leg_models){
-												readTextFile("/file_paths7.JSON", function(text){
+												readTextFile("/file_paths.JSON", function(text){
 													var data = JSON.parse(text);
 													// console.log(r_leg_models);
 													var headchange = false;
@@ -1515,13 +1515,13 @@ $.ajax({
 																$('#llch').html('Left Leg');
 																$('#rlch').html('Right Leg');
 
-																hair = 2;
-																head = 2;
-																torso = 2;
-																larm = 2;
-																rarm = 2;
-																lleg = 2;
-																rleg = 2;
+																hair = 3;
+																head = 3;
+																torso = 3;
+																larm = 3;
+																rarm = 3;
+																lleg = 3;
+																rleg = 3;
 
 																$("#toy_head")[0].value = head;
 																$("#toy_torso")[0].value = torso;
@@ -1570,13 +1570,13 @@ $.ajax({
 																$('#llch').html('Back Fin');
 																$('#rlch').html('Tail Fin');
 
-																hair = 3;
-																head = 3;
-																torso = 3;
-																larm = 3;
-																rarm = 3;
-																lleg = 3;
-																rleg = 3;
+																hair = 6;
+																head = 6;
+																torso = 6;
+																larm = 6;
+																rarm = 6;
+																lleg = 6;
+																rleg = 6;
 
 																$("#toy_head")[0].value = head;
 																$("#toy_torso")[0].value = torso;
