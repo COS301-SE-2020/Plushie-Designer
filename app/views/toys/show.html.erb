@@ -119,10 +119,10 @@
           <!-- Title -->
           <h1 style="font-size: 30.5px;">
               <%= @toy.name %>
-               <%= link_to "", displayPDF_path(@toy.id, format: :pdf), class:"downloadthis-inline-download-buttons glyphicon glyphicon-save-file", target: :_blank %>
+               <%= link_to "", displayPDF_path(@toy.id, format: :pdf), class:"downloadthis-inline-download-buttons glyphicon glyphicon-save-file", target: :_blank, :title => "Click here to download instructions to make this plushie" %>
           
                
-               <div class="sharethis-inline-share-buttons"></div>
+               <div class="sharethis-inline-share-buttons" title="Click here to share this plushie with other people"></div>
           </h1>
           <!-- Author -->
           <hr>
