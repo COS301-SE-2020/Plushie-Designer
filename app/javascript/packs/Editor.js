@@ -9,7 +9,7 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
 import { UVsDebug } from './dynamicUV';
-import { ColorKeyframeTrack } from 'three/build/three.module';
+import { ColorKeyframeTrack, ImageUtils } from 'three/build/three.module';
 
 function readTextFile(file, callback) {
 	var rawFile = new XMLHttpRequest();
@@ -65,6 +65,8 @@ $.ajax({
 
 													var type = 0;
 													var typechange = false;
+													var bzoom = false;
+													var menuitem = "type";
 
 													var hair = $("#toy_head")[0].value;
 													var head = $("#toy_head")[0].value;
@@ -94,7 +96,7 @@ $.ajax({
 													var rlegposy = $("#toy_rleg_posy")[0].value;
 													var rlegposx = $("#toy_rleg_posx")[0].value;
 													var rlegposz = $("#toy_rleg_posz")[0].value;
-
+													
 													var ihead = 7;
 													var itorso = 8;
 													var ilarm = 3;
@@ -143,7 +145,7 @@ $.ajax({
 													controls.dampingFactor = 0.05;
 
 													controls.minDistance = 13;
-													controls.maxDistance = 13;
+													controls.maxDistance = 20;
 
 													controls.enablePan = false;
 
@@ -361,23 +363,93 @@ $.ajax({
 															composer.addPass( copyshader );
 														}
 														//----------------------------------------------------------------------------------------------
+														function zoomin(obj, anim){
+															if(bzoom){
+																zoomreset();
+																controls.target = new THREE.Vector3(obj.position.x,obj.position.y,obj.position.z);
+																camera.position.set(obj.position.x, obj.position.y, 10);	
+																controls.minDistance = 6;
+																if(!anim){
+																	var i = 1;
+
+																	function myLoop() {
+																		setTimeout(function() {   
+																			controls.dIn(i);
+																			controls.update();
+																			i -= 0.1;                   
+																			if (i >= 0.1) {           
+																			myLoop();             
+																			}                       
+																		}, 15)																	
+																	}	
+																	myLoop(); 
+																}else{
+																	controls.dIn(0.1);
+																	controls.update();
+																}																												
+															}
+														}
+
+														function zoomreset(){
+															controls.target = new THREE.Vector3(0,0,0);
+															camera.position.set(0, 1, 10);	
+															controls.minDistance = 13; 
+															controls.dIn(1);
+															controls.update();													
+														}
 
 														function chooseBodyPart(obj)//TODO
 														{	
 															switch(obj.name)
 															{
 																case "hair" : currentSelection = hhtemp; break;
-																case htemp.children[0].name : currentSelection = htemp; break;
-																case ttemp.children[0].name : currentSelection = ttemp; break;
-																case lltemp.children[0].name : currentSelection = lltemp; break;
-																case rltemp.children[0].name : currentSelection = rltemp; break;
-																case latemp.children[0].name : currentSelection = latemp; break;
-																case ratemp.children[0].name : currentSelection = ratemp; break;
+																case htemp.children[0].name : 
+																	if(menuitem != "head"){
+																		$('.head-controls').click();
+																	}
+																	currentSelection = htemp; 
+																	// zoomin(obj);
+																	break;
+																case ttemp.children[0].name : 
+																	if(menuitem != "torso"){
+																		$('.torso-controls').click();
+																	}
+																	currentSelection = ttemp; 
+																	// zoomin(obj);
+																	break;
+																case lltemp.children[0].name :
+																	if(menuitem != "l-legs"){
+																		$('.l-legs-controls').click(); 
+																	}
+																	currentSelection = lltemp; 
+																	// zoomin(obj);
+																	break;
+																case rltemp.children[0].name : 
+																	if(menuitem != "r-legs"){
+																		$('.r-legs-controls').click();
+																	}
+																	currentSelection = rltemp; 
+																	// zoomin(obj);
+																	break;
+																case latemp.children[0].name : 
+																	if(menuitem != "l-arms"){
+																		$('.l-arms-controls').click();
+																	}
+																	currentSelection = latemp; 
+																	// zoomin(obj);
+																	break;
+																case ratemp.children[0].name :
+																	if(menuitem != "r-arms"){
+																		$('.r-arms-controls').click(); 
+																	}
+																	currentSelection = ratemp; 
+																	// zoomin(obj);
+																	break;
 																default : return;
 															}
 															var selectedObject = obj;
 															addSelectedObject( selectedObject );
-															outlinePass.selectedObjects = selectedObjects;
+															outlinePass.selectedObjects = selectedObjects;															
 														}
 
 														function onMouseClick(event)
@@ -395,7 +467,7 @@ $.ajax({
 															intersects = raycaster.intersectObjects( scene.children , true );
 															if(intersects.length > 0)
 															{
-																chooseBodyPart(intersects[ 0 ].object);
+																chooseBodyPart(intersects[ 0 ].object);																																	
 															}
 															else{
 																outlinePass.selectedObjects = [];
@@ -407,77 +479,195 @@ $.ajax({
 													//---------------------------------------------------------------------------------
 													//----------------------------------ADD MODEL----------------------------------------
 													function add_model_to_scene(gltf, name)
-													{
+													{														
 														let color = colors[2].color;
 															
-														gltf.scene.position.setY(1.5);
+														// gltf.scene.position.setY(1.5);
 														gltf.scene.children[0].castShadow = true;
+														// gltf.scene.children[0].name = name;
 														gltf.scene.name = name;
-														scene.add( gltf.scene );
+														scene.add( gltf.scene);
 														switch(name)
 														{
 															case "hair" : 
-																hhtemp = gltf.scene; 
-																gltf.scene.position.setY(headposy); 
-																gltf.scene.position.setX(headposx);
-																gltf.scene.position.setZ(headposz);  
+																// console.log(gltf.scene);
+																hhtemp = gltf.scene;
+																if(headposy != 0.0){
+																	gltf.scene.children[0].position.setY(headposy);
+																	gltf.scene.children[1].position.setY(headposy);
+																	gltf.scene.children[2].position.setY(headposy);
+																	gltf.scene.children[3].position.setY(headposy);
+																}
+																if(headposx != 0.0){
+																	gltf.scene.children[0].position.setX(headposx);
+																	gltf.scene.children[1].position.setX(headposx);
+																	gltf.scene.children[2].position.setX(headposx);
+																	gltf.scene.children[3].position.setX(headposx);
+																}
+																if(headposz != 0.0){
+																	gltf.scene.children[0].position.setZ(headposz); 
+																	gltf.scene.children[1].position.setZ(headposz); 
+																	gltf.scene.children[2].position.setZ(headposz); 
+																	gltf.scene.children[3].position.setZ(headposz); 
+																}
 																break;
 															case "head" :
-																htemp = gltf.scene;																
+																htemp = gltf.scene;																													
 																color = $("#toy_head_tex")[0].value;
-																gltf.scene.position.setY(headposy); 
-																gltf.scene.position.setX(headposx);
-																gltf.scene.position.setZ(headposz);  
-																console.log(gltf.scene.children[0]);
+																if(headposy != 0.0){
+																	gltf.scene.children[0].position.setY(headposy);																
+																}else{
+																	headposy = gltf.scene.children[0].position.y;
+																}
+																if(headposx != 0.0){
+																	gltf.scene.children[0].position.setY(headposx);
+																}else{
+																	headposx = gltf.scene.children[0].position.x;
+																}
+																if(headposz != 0.0){
+																	gltf.scene.children[0].position.setY(headposz);
+																}else{
+																	headposz = gltf.scene.children[0].position.z;
+																}
+																// console.log(gltf.scene.children[0]);
 																$("#toy_head_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color, false).toDataURL("image/png");
+																zoomin(htemp.children[0], false);	
+																$('#headup').attr("value",-headposy);	
+																$('#headleft').attr("value",headposx);
+																$('#headfront').attr("value",-headposz);	
+																// $('#headup').attr("max",htemp.position.y + 4);	
+																// $('#headleft').attr("max",htemp.position.x + 4);
+																// $('#headfront').attr("max",htemp.position.z + 4);	
+																// $('#headup').attr("min",-htemp.position.y-4);	
+																// $('#headleft').attr("min",-htemp.position.x-4);
+																// $('#headfront').attr("min",-htemp.position.z-4);													
 																break;
 															case "torso" : 
 																ttemp = gltf.scene;
 																color = $("#toy_torso_tex")[0].value;
-																gltf.scene.position.setY(torsoposy); 
-																gltf.scene.position.setX(torsoposx);  
-																gltf.scene.position.setZ(torsoposz);
-																console.log(gltf.scene.children[0]);
+																if(torsoposy != 0.0){
+																	gltf.scene.children[0].position.setY(torsoposy);
+																}else{
+																	torsoposy = gltf.scene.children[0].position.y;
+																}
+																if(torsoposx != 0.0){
+																	gltf.scene.children[0].position.setY(torsoposx);
+																}else{
+																	torsoposx = gltf.scene.children[0].position.x;
+																}
+																if(torsoposz != 0.0){
+																	gltf.scene.children[0].position.setY(torsoposz);
+																}else{
+																	torsoposz = gltf.scene.children[0].position.z;
+																}
+																// console.log(gltf.scene.children[0]);
 																$("#toy_torso_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
-																	, color, false ).toDataURL("image/png");															
+																	, color, false ).toDataURL("image/png");
+																zoomin(ttemp.children[0], false);		
+																$('#torsoup').attr("value",-torsoposy);
+																$('#torsoleft').attr("value",torsoposx);
+																$('#torsofront').attr("value",-torsoposz);													
 																break;
 															case "leftarm" : 
 																latemp = gltf.scene; 
 																color = $("#toy_larm_tex")[0].value;
-																gltf.scene.position.setY(larmposy); 
-																gltf.scene.position.setX(larmposx);
-																gltf.scene.position.setZ(larmposz);
+																if(larmposy != 0.0){
+																	gltf.scene.children[0].position.setY(larmposy);
+																}else{
+																	larmposy = gltf.scene.children[0].position.y;
+																}
+																if(larmposx != 0.0){
+																	gltf.scene.children[0].position.setY(larmposx);
+																}else{
+																	larmposx = gltf.scene.children[0].position.x;
+																}
+																if(larmposz != 0.0){
+																	gltf.scene.children[0].position.setY(larmposz);
+																}else{
+																	larmposz = gltf.scene.children[0].position.z;
+																}
 																$("#toy_larm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
 																	, color, false).toDataURL("image/png");
-																
+																zoomin(latemp.children[0], false);		
+																$('#larmup').attr("value",-larmposy);
+																$('#larmleft').attr("value",larmposx);
+																$('#larmfront').attr("value",-larmposz);
 															break;
 															case "rightarm" : 
 																ratemp = gltf.scene;
 																color = $("#toy_rarm_tex")[0].value;
-																gltf.scene.position.setY(rarmposy); 
-																gltf.scene.position.setX(rarmposx); 
-																gltf.scene.position.setZ(rarmposz);
+																if(rarmposy != 0.0){
+																	gltf.scene.children[0].position.setY(rarmposy);
+																}else{
+																	rarmposy = gltf.scene.children[0].position.y;
+																}
+																if(rarmposx != 0.0){
+																	gltf.scene.children[0].position.setY(rarmposx);
+																}else{
+																	rarmposx = gltf.scene.children[0].position.x;
+																}
+																if(rarmposz != 0.0){
+																	gltf.scene.children[0].position.setY(rarmposz);
+																}else{
+																	rarmposz = gltf.scene.children[0].position.z;
+																}
 																$("#toy_rarm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color , false).toDataURL("image/png");
+																zoomin(ratemp.children[0], false);		
+																$('#rarmup').attr("value",-rarmposy);
+																$('#rarmleft').attr("value",rarmposx);
+																$('#rarmfront').attr("value",-rarmposz);	
 															break;
 															case "leftleg" : 
 																lltemp = gltf.scene;
 																color = $("#toy_lleg_tex")[0].value;
-																gltf.scene.position.setY(llegposy); 
-																gltf.scene.position.setX(llegposx);  
-																gltf.scene.position.setZ(llegposz);
+																if(llegposy != 0.0){
+																	gltf.scene.children[0].position.setY(llegposy);
+																}else{
+																	llegposy = gltf.scene.children[0].position.y;
+																}
+																if(llegposx != 0.0){
+																	gltf.scene.children[0].position.setY(llegposx);
+																}else{
+																	llegposx = gltf.scene.children[0].position.x;
+																}
+																if(llegposz != 0.0){
+																	gltf.scene.children[0].position.setY(llegposz);
+																}else{
+																	llegposz = gltf.scene.children[0].position.z;
+																}
 																$("#toy_lleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
 																	,color , false).toDataURL("image/png");
+																zoomin(lltemp.children[0], false);	
+																$('#llegup').attr("value",-llegposy);
+																$('#llegleft').attr("value",llegposx);
+																$('#llegfront').attr("value",-llegposz);
 															break;
 															case "rightleg" : 
 																rltemp = gltf.scene;
 																color = $("#toy_rleg_tex")[0].value;
-																gltf.scene.position.setY(rlegposy); 
-																gltf.scene.position.setX(rlegposx);  
-																gltf.scene.position.setZ(rlegposz);
+																if(rlegposy != 0.0){
+																	gltf.scene.children[0].position.setY(rlegposy);
+																}else{
+																	rlegposy = gltf.scene.children[0].position.y;
+																}
+																if(rlegposx != 0.0){
+																	gltf.scene.children[0].position.setY(rlegposx);
+																}else{
+																	rlegposx = gltf.scene.children[0].position.x;
+																}
+																if(rlegposz != 0.0){
+																	gltf.scene.children[0].position.setY(rlegposz);
+																}else{
+																	rlegposz = gltf.scene.children[0].position.z;
+																}
 																$("#toy_rleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
 																	color , false).toDataURL("image/png");
+																zoomin(rltemp.children[0], false);		
+																$('#rlegup').attr("value",-rlegposy);
+																$('#rlegleft').attr("value",rlegposx);
+																$('#rlegfront').attr("value",-rlegposz);
 															break;	
 														}
 														let new_mtl;
@@ -499,7 +689,7 @@ $.ajax({
 													//----------------------------------ADD ROOM----------------------------------------
 													function add_room_to_scene(gltf, name)
 													{
-														gltf.scene.name = name;
+														gltf.scene.name = name;														
 														gltf.scene.rotateY(-Math.PI/4);
 														switch(name)
 														{
@@ -643,78 +833,100 @@ $.ajax({
 
 													}
 
-													// var tempy;
 													// var tempx;
+													// var tempy;
 													// var tempz;
+													// // console.log(scene.children);
+													// // console.log(scene.children.slice(3,10));
 													// //--------------------------DragControls-------------------------
 													// var Dcontrols = new DragControls( scene.children, camera, renderer.domElement );
 													// // Dcontrols.transformGroup = true;
 													// Dcontrols.addEventListener( 'dragstart', function ( event ) {
-
-													// 	if(event.object.name == "" || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
+													// 	// console.log(event.object);
+													// 	if(event.object.name == "" || event.object.name.match(/mesh_/) || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
 													// 		Dcontrols.enabled = false;
 													// 	}
 													// 	else{
 													// 		event.object.material.emissive.set( 0xaaaaaa );
 													// 		controls.enableRotate = false;
-													// 		tempy = event.object.position.y;
 													// 		tempx = event.object.position.x;
+													// 		tempy = event.object.position.y;
 													// 		tempz = event.object.position.z;
 													// 	}
 													// } );
 
 													// Dcontrols.addEventListener( 'dragend', function ( event ) {
 
-													// 	if(event.object.name == "" || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
+													// 	if(event.object.name == "" || event.object.name.match(/mesh_/) || event.object.name == "hair" || event.object.name == "HeadBow008" || event.object.name == "HeadBow007" || event.object.name == "HairBow_base003" ){
 													// 		Dcontrols.enabled = true;
 													// 	}
 													// 	else{
 													// 		event.object.material.emissive.set( 0x000000 );
-													// 		controls.enableRotate = true;
+													// 		controls.enableRotate = true;															
 													// 		if(event.object.name == "head"){
 													// 			updateIndexes();
-													// 			$("#toy_head_pos")[0].value = event.object.position.y - tempy;
+													// 			$("#toy_head_pos")[0].value = event.object.position.y;
 													// 			// console.log($("#toy_head_pos")[0].value);
-													// 			$("#toy_head_posx")[0].value = event.object.position.x - tempx;
-													// 			$("#toy_head_posz")[0].value = event.object.position.z - tempz;
+													// 			$("#toy_head_posx")[0].value = event.object.position.x;
+													// 			$("#toy_head_posz")[0].value = event.object.position.z;
+													// 			// $('#headup').attr("value",-event.object.position.y);	
+													// 			// $('#headleft').attr("value",event.object.position.x);
+													// 			// $('#headfront').attr("value",-event.object.position.z);	
+													// 			// $('#headup').attr("max",event.object.position.y + 4);	
+													// 			// $('#headleft').attr("max",event.object.position.x + 4);
+													// 			// $('#headfront').attr("max",event.object.position.z + 4);	
+													// 			// $('#headup').attr("min",-event.object.position.y-4);	
+													// 			// $('#headleft').attr("min",-event.object.position.x-4);
+													// 			// $('#headfront').attr("min",-event.object.position.z-4);	
 													// 			if(ihair!=99){
-													// 				hhtemp.position.setY($("#toy_head_pos")[0].value);
-													// 				hhtemp.position.setX($("#toy_head_posx")[0].value);
-													// 				hhtemp.position.setZ($("#toy_head_posz")[0].value);
+													// 				hhtemp.children[0].position.setY($("#toy_head_pos")[0].value);
+													// 				hhtemp.children[1].position.setY($("#toy_head_pos")[0].value);
+													// 				hhtemp.children[2].position.setY($("#toy_head_pos")[0].value);
+													// 				hhtemp.children[3].position.setY($("#toy_head_pos")[0].value);
+													// 				hhtemp.children[0].position.setX($("#toy_head_posx")[0].value);
+													// 				hhtemp.children[1].position.setX($("#toy_head_posx")[0].value);
+													// 				hhtemp.children[2].position.setX($("#toy_head_posx")[0].value);
+													// 				hhtemp.children[3].position.setX($("#toy_head_posx")[0].value);
+													// 				hhtemp.children[0].position.setZ($("#toy_head_posz")[0].value);
+													// 				hhtemp.children[1].position.setZ($("#toy_head_posz")[0].value);
+													// 				hhtemp.children[2].position.setZ($("#toy_head_posz")[0].value);
+													// 				hhtemp.children[3].position.setZ($("#toy_head_posz")[0].value);
 													// 			}
 													// 		}
-													// 		console.log(event.object.name);
 													// 		if(event.object.name == "body"){
-													// 			$("#toy_torso_posy")[0].value = event.object.position.y - tempy;
-													// 			$("#toy_torso_posx")[0].value = event.object.position.x - tempx;
-													// 			$("#toy_torso_posz")[0].value = event.object.position.z - tempz;
+													// 			$("#toy_torso_posy")[0].value = event.object.position.y;
+													// 			$("#toy_torso_posx")[0].value = event.object.position.x;
+													// 			$("#toy_torso_posz")[0].value = event.object.position.z;
 													// 		}
 													// 		if(event.object.name == "l_arm"){
-													// 			$("#toy_larm_posy")[0].value = event.object.position.y - tempy;
-													// 			$("#toy_larm_posx")[0].value = event.object.position.x - tempx;
-													// 			$("#toy_larm_posz")[0].value = event.object.position.z - tempz;
+													// 			$("#toy_larm_posy")[0].value = event.object.position.y;
+													// 			$("#toy_larm_posx")[0].value = event.object.position.x;
+													// 			$("#toy_larm_posz")[0].value = event.object.position.z;
 													// 		}
 													// 		if(event.object.name == "r_arm"){
-													// 			$("#toy_rarm_posy")[0].value = event.object.position.y - tempy;
-													// 			$("#toy_rarm_posx")[0].value = event.object.position.x - tempx;
-													// 			$("#toy_rarm_posz")[0].value = event.object.position.z - tempz;
+													// 			$("#toy_rarm_posy")[0].value = event.object.position.y;
+													// 			$("#toy_rarm_posx")[0].value = event.object.position.x;
+													// 			$("#toy_rarm_posz")[0].value = event.object.position.z;
 													// 		}
 
 													// 		if(event.object.name == "l_leg"){
-													// 			$("#toy_lleg_posy")[0].value = event.object.position.y - tempy;
+													// 			$("#toy_lleg_posy")[0].value = event.object.position.y;
 													// 			// console.log($("#toy_lleg_posy")[0].value);
-													// 			$("#toy_lleg_posx")[0].value = event.object.position.x - tempx;
-													// 			$("#toy_lleg_posz")[0].value = event.object.position.z - tempz;
+													// 			$("#toy_lleg_posx")[0].value = event.object.position.x;
+													// 			$("#toy_lleg_posz")[0].value = event.object.position.z;
 													// 		}
 													// 		if(event.object.name == "r_leg"){
-													// 			$("#toy_rleg_posy")[0].value = event.object.position.y - tempy;
-													// 			$("#toy_rleg_posx")[0].value = event.object.position.x - tempx;
-													// 			$("#toy_rleg_posz")[0].value = event.object.position.z - tempz;
+													// 			$("#toy_rleg_posy")[0].value = event.object.position.y;
+													// 			$("#toy_rleg_posx")[0].value = event.object.position.x;
+													// 			$("#toy_rleg_posz")[0].value = event.object.position.z;
 													// 		}
 													// 	}
 													// } );
-													//----------------------------------------------------------------
+													// // ----------------------------------------------------------------
+
+													// console.log(htemp);
 													//-------------------------------ANIMATE---------------------------------
+													// console.log(scene);
 													var animate = function () {
 														if(typechange){
 															clearcontrols();
@@ -748,7 +960,7 @@ $.ajax({
 														}
 
 														if(headchange){
-															updateIndexes();
+															updateIndexes();															
 															var temp = scene.getObjectByName(scene.children[ihead].name);
 															scene.remove(temp);
 															if(head != 1){
@@ -771,7 +983,7 @@ $.ajax({
 															}else hurl = data.file_paths.models[head].head.url;
 															loader.load( hurl, (gltf) => add_model_to_scene(gltf , "head")
 																, undefined, function ( error ) { console.error( error );} );
-															headchange = false;
+															headchange = false;															
 														}
 
 														if(torsochange){
@@ -914,7 +1126,7 @@ $.ajax({
 																button.id = tid;
 																button.type = "button";
 																button.value = i;
-																button.onclick = function(){
+																button.onclick = function(){															
 																	if(head!=this.value){
 																		headchange = true;
 																		head = this.value;
@@ -1163,11 +1375,84 @@ $.ajax({
 																rlupsh.appendChild(button);
 															}
 														}
-													}
+													}	
 
-													$(document).ready(function(){	
+													$(document).ready(function(){
+														$('#check-zoom').click(function () {
+															bzoom = !bzoom;
+															if(!bzoom){
+																zoomreset();
+															}else {
+																switch(menuitem){
+																	case "head" : zoomin(htemp.children[0], false); break;
+																	case "torso" : zoomin(ttemp.children[0], false); break;
+																	case "l-arms" : zoomin(latemp.children[0], false); break;
+																	case "r-arms" : zoomin(ratemp.children[0], false); break;
+																	case "l-legs" : zoomin(lltemp.children[0], false); break;
+																	case "r-legs" : zoomin(rltemp.children[0], false); break;
+																	case "type" : zoomreset(); break;
+																}
+															}
+														});
+														
+														$('.head-controls').click(function (){
+															zoomin(htemp.children[0], false);
+															menuitem = "head";
+														});
+
+														$('.torso-controls').click(function (){
+															zoomin(ttemp.children[0], false);
+															menuitem = "torso";
+														});
+
+														$('.l-arms-controls').click(function (){
+															zoomin(latemp.children[0], false);	
+															menuitem = "l-arms";
+														});
+
+														$('.r-arms-controls').click(function (){
+															zoomin(ratemp.children[0], false);
+															menuitem = "r-arms";	
+														});
+
+														$('.l-legs-controls').click(function (){
+															zoomin(lltemp.children[0], false);
+															menuitem = "l-legs";	
+														});
+
+														$('.r-legs-controls').click(function (){															
+															zoomin(rltemp.children[0], false);	
+															menuitem = "r-legs";
+														});
+
+														$('.type-controls').click(function (){															
+															zoomreset();
+															menuitem = "type";
+														});
 														$('#humanoid').click(function () {
 															if(type!=0){
+																if(bzoom){
+																	$('#check-zoom').click();
+																}
+																headposy = 0.0;
+																headposx = 0.0;
+																headposz = 0.0;
+																torsoposy = 0.0;
+																torsoposx = 0.0;
+																torsoposz = 0.0;
+																larmposy = 0.0;
+																larmposx = 0.0;
+																larmposz = 0.0;
+																rarmposy = 0.0;
+																rarmposx = 0.0;
+																rarmposz = 0.0;
+																llegposy = 0.0;
+																llegposx = 0.0;
+																llegposz = 0.0;
+																rlegposy = 0.0;
+																rlegposx = 0.0;
+																rlegposz = 0.0;
+
 																type=0;
 																typechange=true;														
 																$('#lach').html('Left Arm');
@@ -1201,6 +1486,28 @@ $.ajax({
 														
 														$('#animal').click(function () {
 															if(type!=1){
+																if(bzoom){
+																	$('#check-zoom').click();
+																}
+																headposy = 0.0;
+																headposx = 0.0;
+																headposz = 0.0;
+																torsoposy = 0.0;
+																torsoposx = 0.0;
+																torsoposz = 0.0;
+																larmposy = 0.0;
+																larmposx = 0.0;
+																larmposz = 0.0;
+																rarmposy = 0.0;
+																rarmposx = 0.0;
+																rarmposz = 0.0;
+																llegposy = 0.0;
+																llegposx = 0.0;
+																llegposz = 0.0;
+																rlegposy = 0.0;
+																rlegposx = 0.0;
+																rlegposz = 0.0;
+
 																type=1;
 																typechange=true;
 																$('#lach').html('Left Arm');
@@ -1234,6 +1541,28 @@ $.ajax({
 														
 														$('#fish').click(function () {
 															if(type!=2){
+																if(bzoom){
+																	$('#check-zoom').click();
+																}
+																headposy = 0.0;
+																headposx = 0.0;
+																headposz = 0.0;
+																torsoposy = 0.0;
+																torsoposx = 0.0;
+																torsoposz = 0.0;
+																larmposy = 0.0;
+																larmposx = 0.0;
+																larmposz = 0.0;
+																rarmposy = 0.0;
+																rarmposx = 0.0;
+																rarmposz = 0.0;
+																llegposy = 0.0;
+																llegposx = 0.0;
+																llegposz = 0.0;
+																rlegposy = 0.0;
+																rlegposx = 0.0;
+																rlegposz = 0.0;
+
 																type=2;
 																typechange=true;
 																$('#lach').html('Left Fin');
@@ -1264,28 +1593,6 @@ $.ajax({
 																rlegchange = true;
 															}
 														});
-
-														$('#headup').attr("value",-headposy);
-														$('#headleft').attr("value",headposx);
-														$('#headfront').attr("value",-headposz);
-
-														$('#torsoup').attr("value",-torsoposy);
-														$('#torsoleft').attr("value",torsoposx);
-														$('#torsofront').attr("value",-torsoposz);
-
-														$('#larmup').attr("value",-larmposy);
-														$('#larmleft').attr("value",larmposx);
-														$('#larmfront').attr("value",-larmposz);
-														$('#rarmup').attr("value",-rarmposy);
-														$('#rarmleft').attr("value",rarmposx);
-														$('#rarmfront').attr("value",-rarmposz);
-
-														$('#llegup').attr("value",-llegposy);
-														$('#llegleft').attr("value",llegposx);
-														$('#llegfront').attr("value",-llegposz);
-														$('#rlegup').attr("value",-rlegposy);
-														$('#rlegleft').attr("value",rlegposx);
-														$('#rlegfront').attr("value",-rlegposz);
 
 														$('#share-btn').click(function () {
 															screensh();
@@ -1327,35 +1634,54 @@ $.ajax({
 														var hslideru = document.getElementById("headup");
 														var hsliderl = document.getElementById("headleft");
 														var hsliderf = document.getElementById("headfront");
+														
 														hslideru.oninput = function() {
-															//var temp = scene.getObjectByName(scene.children[ihead].name);
+															// var temp = scene.getObjectByName(scene.children[ihead].name);
 															var t = this.value;
-															htemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															htemp.children[0].position.setY(-t);
 															// console.log(t);
 															if(hhtemp!=null){
-																hhtemp.position.setY(-t);
+																hhtemp.children[0].position.setY(-t);
+																hhtemp.children[1].position.setY(-t);
+																hhtemp.children[2].position.setY(-t);
+																hhtemp.children[3].position.setY(-t);
 															}
-															$("#toy_head_pos")[0].value = -t;
+															$("#toy_head_pos")[0].value = -t;	
+															zoomin(htemp.children[0], true);																								
 														}
 														hsliderl.oninput = function() {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
 															var t = this.value;
-															htemp.position.setX(t);
+															t = -t;
+															t = -t;
+															htemp.children[0].position.setX(t);
 															// console.log(t);
 															if(hhtemp!=null){
-																hhtemp.position.setX(t);
+																hhtemp.children[0].position.setX(t);
+																hhtemp.children[1].position.setX(t);
+																hhtemp.children[2].position.setX(t);
+																hhtemp.children[3].position.setX(t);
 															}
 															$("#toy_head_posx")[0].value = t;
+															zoomin(htemp.children[0], true);											
 														}
 														hsliderf.oninput = function() {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
 															var t = this.value;
-															htemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															htemp.children[0].position.setZ(-t);
 															// console.log(t);
 															if(hhtemp!=null){
-																hhtemp.position.setZ(-t);
+																hhtemp.children[0].position.setZ(-t);
+																hhtemp.children[1].position.setZ(-t);
+																hhtemp.children[2].position.setZ(-t);
+																hhtemp.children[3].position.setZ(-t);
 															}
 															$("#toy_head_posz")[0].value = -t;
+															zoomin(htemp.children[0], true);
 														}
 
 														$('#larml').click(function () {
@@ -1400,43 +1726,61 @@ $.ajax({
 														laslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[ilarm].name);
 															var t = this.value;
-															latemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															latemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_larm_posy")[0].value = -t;
+															zoomin(latemp.children[0], true);
 														}
 														lasliderl.oninput = function() {
 															// var latemp = scene.getObjectByName(scene.children[ilarm].name);
 															var t = this.value;
-															latemp.position.setX(t);
+															t = -t;
+															t = -t;
+															latemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_larm_posx")[0].value = t;
+															zoomin(latemp.children[0], true);
 														}
 														lasliderf.oninput = function() {
 															// var latemp = scene.getObjectByName(scene.children[ilarm].name);
 															var t = this.value;
-															latemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															latemp.children[0].position.setZ(-t);
 															$("#toy_larm_posz")[0].value = -t;
+															zoomin(latemp.children[0], true);
 															// console.log(t);
 														}
 														raslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[irarm].name);
 															var t = this.value;
-															ratemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															ratemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_rarm_posy")[0].value = -t;
+															zoomin(ratemp.children[0], true);	
 														}
 														rasliderl.oninput = function() {
 															// var ratemp = scene.getObjectByName(scene.children[irarm].name);
 															var t = this.value;
-															ratemp.position.setX(t);
+															t = -t;
+															t = -t;
+															ratemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_rarm_posx")[0].value = t;
+															zoomin(ratemp.children[0], true);
 														}
 														rasliderf.oninput = function() {
 															// var ratemp = scene.getObjectByName(scene.children[irarm].name);
 															var t = this.value;
-															ratemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															ratemp.children[0].position.setZ(-t);
 															$("#toy_rarm_posz")[0].value = -t;
+															zoomin(ratemp.children[0], true);
 															// console.log(t);
 														}
 
@@ -1462,22 +1806,31 @@ $.ajax({
 														tslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[itorso].name);
 															var t = this.value;
-															ttemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															ttemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_torso_posy")[0].value = -t;
+															zoomin(ttemp.children[0], true);
 														}
 														tsliderl.oninput = function() {
 															// var ttemp = scene.getObjectByName(scene.children[itorso].name);
 															var t = this.value;
-															ttemp.position.setX(t);
+															t = -t;
+															t = -t;
+															ttemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_torso_posx")[0].value = t;
+															zoomin(ttemp.children[0], true);
 														}
 														tsliderf.oninput = function() {
 															// var ttemp = scene.getObjectByName(scene.children[itorso].name);
 															var t = this.value;
-															ttemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															ttemp.children[0].position.setZ(-t);
 															$("#toy_torso_posz")[0].value = -t;
+															zoomin(ttemp.children[0], true);
 															// console.log(t);
 														}
 
@@ -1523,43 +1876,61 @@ $.ajax({
 														llslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[illeg].name);
 															var t = this.value;
-															lltemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															lltemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_lleg_posy")[0].value = -t;
+															zoomin(lltemp.children[0], true);
 														}
 														llsliderl.oninput = function() {
 															// var lltemp = scene.getObjectByName(scene.children[illeg].name);
 															var t = this.value;
-															lltemp.position.setX(t);
+															t = -t;
+															t = -t;
+															lltemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_lleg_posx")[0].value = t;
+															zoomin(lltemp.children[0], true);
 														}
 														llsliderf.oninput = function() {
 															// var lltemp = scene.getObjectByName(scene.children[illeg].name);
 															var t = this.value;
-															lltemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															lltemp.children[0].position.setZ(-t);
 															$("#toy_lleg_posz")[0].value = -t;
+															zoomin(lltemp.children[0], true);
 															// console.log(t);
 														}
 														rlslideru.oninput = function() {
 															// var temp = scene.getObjectByName(scene.children[irleg].name);
 															var t = this.value;
-															rltemp.position.setY(-t);
+															t = -t;
+															t = -t;
+															rltemp.children[0].position.setY(-t);
 															// console.log(t);
 															$("#toy_rleg_posy")[0].value = -t;
+															zoomin(rltemp.children[0], true);
 														}
 														rlsliderl.oninput = function() {
 															// var rltemp = scene.getObjectByName(scene.children[irleg].name);
 															var t = this.value;
-															rltemp.position.setX(t);
+															t = -t;
+															t = -t;
+															rltemp.children[0].position.setX(t);
 															// console.log(t);
 															$("#toy_rleg_posx")[0].value = t;
+															zoomin(rltemp.children[0], true);
 														}
 														rlsliderf.oninput = function() {
 															// var rltemp = scene.getObjectByName(scene.children[irleg].name);
 															var t = this.value;
-															rltemp.position.setZ(-t);
+															t = -t;
+															t = -t;
+															rltemp.children[0].position.setZ(-t);
 															$("#toy_rleg_posz")[0].value = -t;
+															zoomin(rltemp.children[0], true);
 															// console.log(t);
 														}
 
