@@ -71,6 +71,7 @@ body {
     background-color: var(--background);
     overflow-x: hidden;
     overflow-y: hidden;
+    height: 0.75em;
 }
 
 .dropdown-menu {
@@ -290,11 +291,12 @@ body {
     left: 0;
     height: 100%;
     color: var(--primary-colour);
+    overflow-y: hidden;
     .index-page {
         position: absolute;
         top: 10%;
         left: 0;
-        // background: rgba($color: #000000, $alpha: 0.5);
+        overflow-y: hidden !important;
         background: transparent;
         border-radius: 0.5em;
         width: 100%;
@@ -303,7 +305,6 @@ body {
         max-height: 100%;
         overflow: scroll;
         overflow-x: hidden;
-
         .options-header{
             background: var(--control-background) !important;
             border: none !important;
@@ -723,14 +724,14 @@ body {
 .Ratings {
     overflow: scroll;
     overflow-x: hidden;
+    overflow-y: scroll;
     max-height: 20vh;
-
     .media {
         background-color: rgb(221, 221, 221);
         border-radius: 0.5em;
         padding: 0.5em;
         max-height: 9em;
-
+        width: 98%;
         .username {
             font-weight: 700;
         }
@@ -2160,8 +2161,9 @@ fieldset.toy_shared {
 
 #back {
     background: url(http://www.tranexnet.com/img/back.png) repeat 20% 20%;
-    position: fixed;
-    top: 0;
+    position: absolute;
+    // position: fixed;
+    top: -5em;
     left: 0;
     right: 0;
     bottom: 0;
@@ -2187,7 +2189,8 @@ fieldset.toy_shared {
 
 #front {
     background: url(http://www.tranexnet.com/img/front.png) repeat 35% 35%;
-    position: fixed;
+    position: absolute;
+    // position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -2437,4 +2440,32 @@ fieldset.toy_shared {
     .btn:hover{
         background-color: var(--primary-colour);
     }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    cursor: pointer;
+}
+
+.login-background {
+    position: absolute;
+    top: 0;
 }
