@@ -34,6 +34,12 @@
       <%= f.input :rarm_posz, input_html: {value: 0.0} %>
       <%= f.input :lleg_posz, input_html: {value: 0.0} %>
       <%= f.input :rleg_posz, input_html: {value: 0.0} %>
+      <%= f.input :head_tex, input_html: {value: "27548D"} %>
+      <%= f.input :torso_tex, input_html: {value: "27548D"} %>
+      <%= f.input :larm_tex, input_html: {value: "27548D"} %>
+      <%= f.input :rarm_tex, input_html: {value: "27548D"} %>
+      <%= f.input :lleg_tex, input_html: {value: "27548D"} %>
+      <%= f.input :rleg_tex, input_html: {value: "27548D"} %>
       <%= f.input :head_uv, input_html: {value: ""} %>
       <%= f.input :torso_uv, input_html: {value: ""} %>
       <%= f.input :larm_uv, input_html: {value: ""} %>
@@ -159,7 +165,7 @@
       <h4 class="panel-title">
         <div class="arms-controls comp-click-zone" id="Left-Arm" data-toggle="collapse" data-parent="#controls-parent" data-target="#arms-collapse">
         <!-- <button style="display: none;" id="ac-btn" type="hidden" data-toggle="collapse" data-target="#arms-collapse"></button> -->
-          <span class="control-header">Left Arm</span>
+          <span class="control-header" id="lach">Left Arm</span>
         </div>
       </h4>
     </div>
@@ -201,7 +207,7 @@
     <div class="panel-heading panel-clr">
       <h4 class="panel-title">
         <div class="r-arms-controls comp-click-zone" id="Right-Arm" data-toggle="collapse" data-parent="#controls-parent" data-target="#r-arms-collapse">
-          <span class="control-header">Right Arm</span>
+          <span class="control-header" id="rach">Right Arm</span>
         </div>
       </h4>
     </div>
@@ -244,7 +250,7 @@
       <h4 class="panel-title">
         <div class="legs-controls comp-click-zone" id="Left-Leg" data-toggle="collapse" data-parent="#controls-parent" data-target="#legs-collapse">
         <!-- <button style="display: none;" id="lc-btn" type="hidden" data-toggle="collapse" data-target="#legs-collapse"></button> -->
-          <span class="control-header">Left Leg</span>
+          <span class="control-header" id="llch">Left Leg</span>
         </div>
       </h4>
     </div>
@@ -287,7 +293,7 @@
     <div class="panel-heading panel-clr">
       <h4 class="panel-title">
         <div class="r-legs-controls comp-click-zone" id="Right-Leg" data-toggle="collapse" data-parent="#controls-parent" data-target="#r-legs-collapse">
-          <span class="control-header">Right Leg</span>
+          <span class="control-header" id="rlch">Right Leg</span>
         </div>
       </h4>
     </div>

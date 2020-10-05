@@ -9,6 +9,7 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
 import { TAARenderPass } from 'three/examples/jsm/postprocessing/TAARenderPass.js';
 import { UVsDebug } from './dynamicUV';
+import { ColorKeyframeTrack } from 'three/build/three.module';
 
 function readTextFile(file, callback) {
 	var rawFile = new XMLHttpRequest();
@@ -51,7 +52,7 @@ $.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
 											success:  function(r_leg_models){
-												readTextFile("/file_paths1.JSON", function(text){
+												readTextFile("/file_paths7.JSON", function(text){
 													var data = JSON.parse(text);
 													// console.log(r_leg_models);
 													var headchange = false;
@@ -61,6 +62,9 @@ $.ajax({
 													var llegchange = false;
 													var rlegchange = false;
 													var bchange = false;
+
+													var type = 0;
+													var typechange = false;
 
 													var hair = $("#toy_head")[0].value;
 													var head = $("#toy_head")[0].value;
@@ -219,6 +223,38 @@ $.ajax({
 
 														//--------------------SETUP SWATCHES-------------------------------------
 														const swatches = document.querySelectorAll(".tray__swatch");
+														//---------------------SAVE TO DB----------------------
+														function saveTextureToDB(tex)
+													{
+														switch(currentSelection)
+														{
+															case htemp:  $("#toy_head_tex")[0].value = tex;
+															$("#toy_head_uv")[0].value = UVsDebug(htemp.children[0].geometry, htemp.children[0].scale.x, htemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
+															break;
+															case ttemp:  $("#toy_torso_tex")[0].value = tex;
+															$("#toy_torso_uv")[0].value = UVsDebug(ttemp.children[0].geometry, ttemp.children[0].scale.x, ttemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
+															break;
+															case lltemp:  $("#toy_lleg_tex")[0].value = tex;
+															$("#toy_lleg_uv")[0].value = UVsDebug(lltemp.children[0].geometry, lltemp.children[0].scale.x, lltemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
+															break;
+															case rltemp:  $("#toy_rleg_tex")[0].value = tex;
+															$("#toy_rleg_uv")[0].value = UVsDebug(rltemp.children[0].geometry, rltemp.children[0].scale.x, rltemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
+															break;
+															case latemp:  $("#toy_larm_tex")[0].value = tex;
+															$("#toy_larm_uv")[0].value = UVsDebug(latemp.children[0].geometry, latemp.children[0].scale.x, latemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
+															break;
+															case ratemp:  $("#toy_rarm_tex")[0].value = tex;
+															$("#toy_rarm_uv")[0].value = UVsDebug(ratemp.children[0].geometry, ratemp.children[0].scale.x, ratemp.children[0].scale.y,
+																tex, false).toDataURL("image/png");
+															break;												
+														}
+													}
+													//------------------------------------------------------
 
 														for (const swatch of swatches) {
 														swatch.addEventListener('click', selectSwatch);
@@ -234,7 +270,7 @@ $.ajax({
 
 
 															if (color.texture) {
-														
+																saveTextureToDB(color.texture);														
 																let txt = new THREE.TextureLoader().load(color.texture);
 																
 																txt.repeat.set( color.size[0], color.size[1], color.size[2]);
@@ -250,6 +286,7 @@ $.ajax({
 															} 
 															else
 															{
+																saveTextureToDB(color.color);
 																new_mtl = new THREE.MeshPhongMaterial({
 																	color: parseInt('0x' + color.color),
 																	shininess: color.shininess ? color.shininess : 10,
@@ -267,8 +304,9 @@ $.ajax({
 																alert("Select a body part before selecting a texture.");
 																return;
 															}
-
-															parent.children[0].material = mtl;
+															parent.children.forEach(obj => {
+																obj.material = mtl;
+															});
 														}
 														//------------------------------------------------------------------------
 
@@ -329,12 +367,12 @@ $.ajax({
 															switch(obj.name)
 															{
 																case "hair" : currentSelection = hhtemp; break;
-																case "head" : currentSelection = htemp; break;
-																case "body" : currentSelection = ttemp; break;
-																case "l_leg" : currentSelection = lltemp; break;
-																case "r_leg" : currentSelection = rltemp; break;
-																case "l_arm" : currentSelection = latemp; break;
-																case "r_arm" : currentSelection = ratemp; break;
+																case htemp.children[0].name : currentSelection = htemp; break;
+																case ttemp.children[0].name : currentSelection = ttemp; break;
+																case lltemp.children[0].name : currentSelection = lltemp; break;
+																case rltemp.children[0].name : currentSelection = rltemp; break;
+																case latemp.children[0].name : currentSelection = latemp; break;
+																case ratemp.children[0].name : currentSelection = ratemp; break;
 																default : return;
 															}
 															var selectedObject = obj;
@@ -370,21 +408,8 @@ $.ajax({
 													//----------------------------------ADD MODEL----------------------------------------
 													function add_model_to_scene(gltf, name)
 													{
-														let color = colors[2];
-															let new_mtl;
-															let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
-																bmp.repeat.set( 3, 3, 3);
-																bmp.wrapS = THREE.RepeatWrapping;
-																bmp.wrapT = THREE.RepeatWrapping;
-
-														new_mtl = new THREE.MeshPhongMaterial({
-																color: parseInt('0x' + color.color),
-																shininess: color.shininess ? color.shininess : 10,
-																bumpMap: bmp,
-																bumpScale: 0.45
-															});
-														setMaterial(gltf.scene, new_mtl);
-
+														let color = colors[2].color;
+															
 														gltf.scene.position.setY(1.5);
 														gltf.scene.children[0].castShadow = true;
 														gltf.scene.name = name;
@@ -398,50 +423,76 @@ $.ajax({
 																gltf.scene.position.setZ(headposz);  
 																break;
 															case "head" :
-																htemp = gltf.scene;
+																htemp = gltf.scene;																
+																color = $("#toy_head_tex")[0].value;
 																gltf.scene.position.setY(headposy); 
 																gltf.scene.position.setX(headposx);
 																gltf.scene.position.setZ(headposz);  
 																console.log(gltf.scene.children[0]);
-																$("#toy_head_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
+																$("#toy_head_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
+																	color, false).toDataURL("image/png");
 																break;
 															case "torso" : 
 																ttemp = gltf.scene;
+																color = $("#toy_torso_tex")[0].value;
 																gltf.scene.position.setY(torsoposy); 
 																gltf.scene.position.setX(torsoposx);  
 																gltf.scene.position.setZ(torsoposz);
 																console.log(gltf.scene.children[0]);
-																$("#toy_torso_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
-															break;
+																$("#toy_torso_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
+																	, color, false ).toDataURL("image/png");															
+																break;
 															case "leftarm" : 
 																latemp = gltf.scene; 
+																color = $("#toy_larm_tex")[0].value;
 																gltf.scene.position.setY(larmposy); 
 																gltf.scene.position.setX(larmposx);
 																gltf.scene.position.setZ(larmposz);
-																$("#toy_larm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
+																$("#toy_larm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
+																	, color, false).toDataURL("image/png");
+																
 															break;
 															case "rightarm" : 
 																ratemp = gltf.scene;
+																color = $("#toy_rarm_tex")[0].value;
 																gltf.scene.position.setY(rarmposy); 
 																gltf.scene.position.setX(rarmposx); 
 																gltf.scene.position.setZ(rarmposz);
-																$("#toy_rarm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
+																$("#toy_rarm_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
+																	color , false).toDataURL("image/png");
 															break;
 															case "leftleg" : 
 																lltemp = gltf.scene;
+																color = $("#toy_lleg_tex")[0].value;
 																gltf.scene.position.setY(llegposy); 
 																gltf.scene.position.setX(llegposx);  
 																gltf.scene.position.setZ(llegposz);
-																$("#toy_lleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
+																$("#toy_lleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y
+																	,color , false).toDataURL("image/png");
 															break;
 															case "rightleg" : 
 																rltemp = gltf.scene;
+																color = $("#toy_rleg_tex")[0].value;
 																gltf.scene.position.setY(rlegposy); 
 																gltf.scene.position.setX(rlegposx);  
 																gltf.scene.position.setZ(rlegposz);
-																$("#toy_rleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y).toDataURL("image/png");
+																$("#toy_rleg_uv")[0].value = UVsDebug(gltf.scene.children[0].geometry, gltf.scene.children[0].scale.x, gltf.scene.children[0].scale.y,
+																	color , false).toDataURL("image/png");
 															break;	
 														}
+														let new_mtl;
+															let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
+																bmp.repeat.set( 3, 3, 3);
+																bmp.wrapS = THREE.RepeatWrapping;
+																bmp.wrapT = THREE.RepeatWrapping;
+
+														new_mtl = new THREE.MeshPhongMaterial({
+																color: parseInt('0x' + color),
+																shininess: 10,
+																bumpMap: bmp,
+																bumpScale: 0.45
+															});
+														setMaterial(gltf.scene, new_mtl);
 														
 													}
 													//---------------------------------------------------------------------------------
@@ -665,6 +716,12 @@ $.ajax({
 													//----------------------------------------------------------------
 													//-------------------------------ANIMATE---------------------------------
 													var animate = function () {
+														if(typechange){
+															clearcontrols();
+															populateControls();
+															typechange=false;
+														}
+
 														if(bchange){
 															updateIndexes();
 															if(rtmp != 2){
@@ -809,6 +866,36 @@ $.ajax({
 														$("#toy_image")[0].value = img.src;
 													}
 
+													function clearcontrols(){
+														var hprsh = document.getElementById("headprsh");
+														var tprsh = document.getElementById("torsoprsh");
+														var laprsh = document.getElementById("larmprsh");
+														var raprsh = document.getElementById("rarmprsh");
+														var llprsh = document.getElementById("llegprsh");
+														var rlprsh = document.getElementById("rlegprsh");
+													
+														hprsh.innerHTML = "";
+														tprsh.innerHTML = "";
+														laprsh.innerHTML = "";
+														raprsh.innerHTML = "";
+														llprsh.innerHTML = "";
+														rlprsh.innerHTML = "";
+													
+														var hupsh = document.getElementById("headupsh");
+														var tupsh = document.getElementById("torsoupsh");
+														var laupsh = document.getElementById("larmupsh");
+														var raupsh = document.getElementById("rarmupsh");
+														var llupsh = document.getElementById("llegupsh");
+														var rlupsh = document.getElementById("rlegupsh");
+													
+														hupsh.innerHTML = "";
+														tupsh.innerHTML = "";
+														laupsh.innerHTML = "";
+														raupsh.innerHTML = "";
+														llupsh.innerHTML = "";
+														rlupsh.innerHTML = "";
+													}
+
 													function populateControls(){
 														var hprsh = document.getElementById("headprsh");
 														var tprsh = document.getElementById("torsoprsh");
@@ -818,100 +905,124 @@ $.ajax({
 														var rlprsh = document.getElementById("rlegprsh");
 														
 														for(var i=0;i<data.file_paths.models.length;++i){
-															var button = document.createElement('button');
-															//alert(data.file_paths.models.test);
-															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].head.img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i;
-															button.onclick = function(){
-																if(head!=this.value){
-																	headchange = true;
-																	head = this.value;
-																	$("#toy_head")[0].value = head;
-																}																
-															};
-															hprsh.appendChild(button);
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																//alert(data.file_paths.models.test);
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].head.img + '" />';
+																button.className = 'btn';
+																var tid = "head" + i;
+																button.id = tid;
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){
+																	if(head!=this.value){
+																		headchange = true;
+																		head = this.value;
+																		$("#toy_head")[0].value = head;
+																	}																
+																};
+																hprsh.appendChild(button);
+															}
 														}
 																																									
 														for(var i=0;i<data.file_paths.models.length;++i){
-															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].body.img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i;
-															button.onclick = function(){
-																if(torso!=this.value){
-																	torsochange = true;
-																	torso = this.value;
-																	$("#toy_torso")[0].value = torso;
-																}
-															};
-															tprsh.appendChild(button);
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].body.img + '" />';
+																button.className = 'btn';
+																var tid = "body" + i;
+																button.id = tid;
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){
+																	if(torso!=this.value){
+																		torsochange = true;
+																		torso = this.value;
+																		$("#toy_torso")[0].value = torso;
+																	}
+																};
+																tprsh.appendChild(button);
+															}
 														}
 																								
 														for(var i=0;i<data.file_paths.models.length;++i){
-															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_arm.img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i;
-															button.onclick = function(){
-																if(larm!=this.value){
-																	larmchange = true;
-																	larm = this.value;
-																	$("#toy_arms")[0].value = larm;
-																}																
-															};
-															laprsh.appendChild(button);
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_arm.img + '" />';
+																button.className = 'btn';
+																var tid = "l_arm" + i;
+																button.id = tid;
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){
+																	if(larm!=this.value){
+																		larmchange = true;
+																		larm = this.value;
+																		$("#toy_arms")[0].value = larm;
+																	}																
+																};
+																laprsh.appendChild(button);
+															}
 														}
 
 														for(var i=0;i<data.file_paths.models.length;++i){
-															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_arm.img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i;
-															button.onclick = function(){
-																if(rarm!=this.value){
-																	rarmchange = true;
-																	rarm = this.value;
-																	$("#toy_r_arm")[0].value = rarm;
-																}																
-															};
-															raprsh.appendChild(button);
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_arm.img + '" />';
+																button.className = 'btn';
+																var tid = "r_arm" + i;
+																button.id = tid;
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){
+																	if(rarm!=this.value){
+																		rarmchange = true;
+																		rarm = this.value;
+																		$("#toy_r_arm")[0].value = rarm;
+																	}																
+																};
+																raprsh.appendChild(button);
+															}
 														}
 
 														for(var i=0;i<data.file_paths.models.length;++i){
-															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_leg.img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i;
-															button.onclick = function(){
-																if(lleg!=this.value){
-																	llegchange = true;
-																	lleg = this.value;
-																	$("#toy_legs")[0].value = lleg;
-																}															
-															};
-															llprsh.appendChild(button);
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_leg.img + '" />';
+																button.className = 'btn';
+																var tid = "l_leg" + i;
+																button.id = tid;
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){
+																	if(lleg!=this.value){
+																		llegchange = true;
+																		lleg = this.value;
+																		$("#toy_legs")[0].value = lleg;
+																	}															
+																};
+																llprsh.appendChild(button);
+															}
 														}
 
 														for(var i=0;i<data.file_paths.models.length;++i){
-															var button = document.createElement('button');
-															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_leg.img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i;
-															button.onclick = function(){
-																if(rleg!=this.value){
-																	rlegchange = true;
-																	rleg = this.value;
-																	$("#toy_r_leg")[0].value = rleg;
-																}																
-															};
-															rlprsh.appendChild(button);
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_leg.img + '" />';
+																button.className = 'btn';
+																var tid = "r_leg" + i;
+																button.id = tid;
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){
+																	if(rleg!=this.value){
+																		rlegchange = true;
+																		rleg = this.value;
+																		$("#toy_r_leg")[0].value = rleg;
+																	}																
+																};
+																rlprsh.appendChild(button);
+															}
 														}
 
 														var hupsh = document.getElementById("headupsh");
@@ -922,127 +1033,238 @@ $.ajax({
 														var rlupsh = document.getElementById("rlegupsh");
 														
 														for(var i=0;i<head_models.length;++i){
-															var button = document.createElement('button');
-															var img = head_models[i].head_image.url;
-															if (img == null){
-																img = "/images/Default_Upl.png";
+															if(head_models[i].model_type == type){
+																var button = document.createElement('button');
+																var img = head_models[i].head_image.url;
+																if (img == null){
+																	img = "/images/Default_Upl.png";
+																}
+																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
+																button.className = 'btn';
+																button.type = "button";
+																button.value = i + data.file_paths.models.length;
+																button.onclick = function(){
+																	if(head!=this.value){
+																		headchange = true;
+																		head = this.value;
+																		$("#toy_head")[0].value = head;
+																	}																
+																};
+																hupsh.appendChild(button);
 															}
-															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i + data.file_paths.models.length;
-															button.onclick = function(){
-																if(head!=this.value){
-																	headchange = true;
-																	head = this.value;
-																	$("#toy_head")[0].value = head;
-																}																
-															};
-															hupsh.appendChild(button);
 														}
 																																									
 														for(var i=0;i<body_models.length;++i){
-															var button = document.createElement('button');
-															var img = body_models[i].body_image.url;
-															if (img == null){
-																img = "/images/Default_Upl.png";
-															}
-															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i + data.file_paths.models.length;
-															button.onclick = function(){
-																if(torso!=this.value){
-																	torsochange = true;
-																	torso = this.value;
-																	$("#toy_torso")[0].value = torso;
+															if(body_models[i].model_type == type){
+																var button = document.createElement('button');
+																var img = body_models[i].body_image.url;
+																if (img == null){
+																	img = "/images/Default_Upl.png";
 																}
-															};
-															tupsh.appendChild(button);
+																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
+																button.className = 'btn';
+																button.type = "button";
+																button.value = i + data.file_paths.models.length;
+																button.onclick = function(){
+																	if(torso!=this.value){
+																		torsochange = true;
+																		torso = this.value;
+																		$("#toy_torso")[0].value = torso;
+																	}
+																};
+																tupsh.appendChild(button);
+															}
 														}
 																								
 														for(var i=0;i<l_arm_models.length;++i){
-															var button = document.createElement('button');
-															var img = l_arm_models[i].l_arm_image.url;
-															if (img == null){
-																img = "/images/Default_Upl.png";
+															if(l_arm_models[i].model_type == type){
+																var button = document.createElement('button');
+																var img = l_arm_models[i].l_arm_image.url;
+																if (img == null){
+																	img = "/images/Default_Upl.png";
+																}
+																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
+																button.className = 'btn';
+																button.type = "button";
+																button.value = i + data.file_paths.models.length;
+																button.onclick = function(){
+																	if(larm!=this.value){
+																		larmchange = true;
+																		larm = this.value;
+																		$("#toy_arms")[0].value = larm;
+																	}																
+																};
+																laupsh.appendChild(button);
 															}
-															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i + data.file_paths.models.length;
-															button.onclick = function(){
-																if(larm!=this.value){
-																	larmchange = true;
-																	larm = this.value;
-																	$("#toy_arms")[0].value = larm;
-																}																
-															};
-															laupsh.appendChild(button);
 														}
 
 														for(var i=0;i<r_arm_models.length;++i){
-															var button = document.createElement('button');
-															var img = r_arm_models[i].r_arm_image.url;
-															if (img == null){
-																img = "/images/Default_Upl.png";
+															if(r_arm_models[i].model_type == type){
+																var button = document.createElement('button');
+																var img = r_arm_models[i].r_arm_image.url;
+																if (img == null){
+																	img = "/images/Default_Upl.png";
+																}
+																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
+																button.className = 'btn';
+																button.type = "button";
+																button.value = i + data.file_paths.models.length;
+																button.onclick = function(){
+																	if(rarm!=this.value){
+																		rarmchange = true;
+																		rarm = this.value;
+																		$("#toy_r_arm")[0].value = rarm;
+																	}																
+																};
+																raupsh.appendChild(button);
 															}
-															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i + data.file_paths.models.length;
-															button.onclick = function(){
-																if(rarm!=this.value){
-																	rarmchange = true;
-																	rarm = this.value;
-																	$("#toy_r_arm")[0].value = rarm;
-																}																
-															};
-															raupsh.appendChild(button);
 														}
 
 														for(var i=0;i<l_leg_models.length;++i){
-															var button = document.createElement('button');
-															var img = l_leg_models[i].l_leg_image.url;
-															if (img == null){
-																img = "/images/Default_Upl.png";
+															if(l_leg_models[i].model_type == type){
+																var button = document.createElement('button');
+																var img = l_leg_models[i].l_leg_image.url;
+																if (img == null){
+																	img = "/images/Default_Upl.png";
+																}
+																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
+																button.className = 'btn';
+																button.type = "button";
+																button.value = i + data.file_paths.models.length;
+																button.onclick = function(){
+																	if(lleg!=this.value){
+																		llegchange = true;
+																		lleg = this.value;
+																		$("#toy_legs")[0].value = lleg;
+																	}															
+																};
+																llupsh.appendChild(button);
 															}
-															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i + data.file_paths.models.length;
-															button.onclick = function(){
-																if(lleg!=this.value){
-																	llegchange = true;
-																	lleg = this.value;
-																	$("#toy_legs")[0].value = lleg;
-																}															
-															};
-															llupsh.appendChild(button);
 														}
 
 														for(var i=0;i<r_leg_models.length;++i){
-															var button = document.createElement('button');
-															var img = r_leg_models[i].r_leg_image.url;
-															if (img == null){
-																img = "/images/Default_Upl.png";
+															if(r_leg_models[i].model_type == type){
+																var button = document.createElement('button');
+																var img = r_leg_models[i].r_leg_image.url;
+																if (img == null){
+																	img = "/images/Default_Upl.png";
+																}
+																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
+																button.className = 'btn';
+																button.type = "button";
+																button.value = i + data.file_paths.models.length;
+																button.onclick = function(){
+																	if(rleg!=this.value){
+																		rlegchange = true;
+																		rleg = this.value;
+																		$("#toy_r_leg")[0].value = rleg;
+																	}																
+																};
+																rlupsh.appendChild(button);
 															}
-															button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
-															button.className = 'btn';
-															button.type = "button";
-															button.value = i + data.file_paths.models.length;
-															button.onclick = function(){
-																if(rleg!=this.value){
-																	rlegchange = true;
-																	rleg = this.value;
-																	$("#toy_r_leg")[0].value = rleg;
-																}																
-															};
-															rlupsh.appendChild(button);
 														}
 													}
 
-													$(document).ready(function(){										
+													$(document).ready(function(){	
+														$('#humanoid').click(function () {
+															if(type!=0){
+																type=0;
+																typechange=true;														
+																$('#lach').html('Left Arm');
+																$('#rach').html('Right Arm');
+																$('#llch').html('Left Leg');
+																$('#rlch').html('Right Leg');
+
+																hair = 0;
+																head = 0;
+																torso = 0;
+																larm = 0;
+																rarm = 0;
+																lleg = 0;
+																rleg = 0;
+
+																$("#toy_head")[0].value = head;
+																$("#toy_torso")[0].value = torso;
+																$("#toy_arms")[0].value = larm;
+																$("#toy_r_leg")[0].value = rarm;
+																$("#toy_r_arm")[0].value = lleg;
+																$("#toy_legs")[0].value = rleg;
+
+																headchange = true;
+																torsochange = true;
+																larmchange = true; 
+																rarmchange = true; 
+																llegchange = true;
+																rlegchange = true;
+															}
+														});
+														
+														$('#animal').click(function () {
+															if(type!=1){
+																type=1;
+																typechange=true;
+																$('#lach').html('Left Arm');
+																$('#rach').html('Right Arm');
+																$('#llch').html('Left Leg');
+																$('#rlch').html('Right Leg');
+
+																hair = 2;
+																head = 2;
+																torso = 2;
+																larm = 2;
+																rarm = 2;
+																lleg = 2;
+																rleg = 2;
+
+																$("#toy_head")[0].value = head;
+																$("#toy_torso")[0].value = torso;
+																$("#toy_arms")[0].value = larm;
+																$("#toy_r_leg")[0].value = rarm;
+																$("#toy_r_arm")[0].value = lleg;
+																$("#toy_legs")[0].value = rleg;
+
+																headchange = true;
+																torsochange = true;
+																larmchange = true; 
+																rarmchange = true; 
+																llegchange = true;
+																rlegchange = true;
+															}
+														});
+														
+														$('#fish').click(function () {
+															if(type!=2){
+																type=2;
+																typechange=true;
+																$('#lach').html('Left Fin');
+																$('#rach').html('Right Fin');
+																$('#llch').html('Back Fin');
+																$('#rlch').html('Tail Fin');
+
+																hair = 3;
+																head = 3;
+																torso = 3;
+																larm = 3;
+																rarm = 3;
+																lleg = 3;
+																rleg = 3;
+
+																$("#toy_head")[0].value = head;
+																$("#toy_torso")[0].value = torso;
+																$("#toy_arms")[0].value = larm;
+																$("#toy_r_leg")[0].value = rarm;
+																$("#toy_r_arm")[0].value = lleg;
+																$("#toy_legs")[0].value = rleg;
+
+																headchange = true;
+																torsochange = true;
+																larmchange = true; 
+																rarmchange = true; 
+																llegchange = true;
+																rlegchange = true;
+															}
+														});
+
 														$('#headup').attr("value",-headposy);
 														$('#headleft').attr("value",headposx);
 														$('#headfront').attr("value",-headposz);

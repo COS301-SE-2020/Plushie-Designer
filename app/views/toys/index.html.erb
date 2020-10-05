@@ -10,7 +10,7 @@
                 <% if toy.shared || current_user == toy.user%>
                     <div class="toy-card">
                         <!-- <div class="toy-download-pdf"> -->
-                            <%= link_to '<span class="glyphicon glyphicon-download-alt"></span>'.html_safe, displayPDF_path(toy.id, format: :pdf),target: :_blank, :class => "toy-download-pdf" %>
+                            <%= link_to '<span class="glyphicon glyphicon-download-alt"></span>'.html_safe, displayPDF_path(toy.id, format: :pdf),target: :_blank, :class => "toy-download-pdf", :id => "download-pdf" %>
                         <!-- </div> -->
                         <div class="card-content">
                             <img class="PlushImg" src=<%= toy.image %>>
@@ -34,12 +34,16 @@
                                     
                                     <p class="toy-rating">
                                         <% toy.rating = 0 %>
-                                        <% toy.ratings.each do |r| %>
-                                            <% toy.rating = toy.rating + r.value %>
-                                            <% @num = @num + 1 %>
+                                        <% if toy.ratings.length > 0 %>
+                                            <% toy.ratings.each do |r| %>
+                                                <% toy.rating = toy.rating + r.value %>
+                                                <% @num = @num + 1 %>
+                                            <% end %>
+                                            Rating:<strong> <%= toy.rating/@num %>/5</strong>
+                                            <% @num = 0 %>
+                                        <% else%>
+                                            <strong> No Ratings</strong>
                                         <% end %>
-                                        Rating:<strong> <%= toy.rating/@num %>/5</strong>
-                                        <% @num = 0 %>
                                     </p>
                                 </div>
                             </div>

@@ -14,20 +14,19 @@ import {
 	Vector2
 } from "three/build/three.module.js";
 
-var UVsDebug = function ( geometry, w, h) {
+var UVsDebug = function ( geometry, w, h, tex, isTex) {
 
 	// handles wrapping of uv.x > 1 only
 
-	var abc = 'abc';
 	var a = new Vector2();
-	var b = new Vector2();
+	var isTexture = isTex;
 
 	var face = [];
 	var uvs = [];
 
 	var canvas = document.createElement( 'canvas' );
-	var width = 1024 * w; // power of 2 required for wrapping
-	var height = 1024 * h;
+	var width = 1024 * 1; // power of 2 required for wrapping
+	var height = 1024 * 1;
 	canvas.width = width;
 	canvas.height = height;
 
@@ -59,7 +58,7 @@ var UVsDebug = function ( geometry, w, h) {
 			uvs[ 1 ].copy( uv[ 1 ] );
 			uvs[ 2 ].copy( uv[ 2 ] );
 
-			processFace( face, uvs, i);
+			processFace(uvs, tex);
 
 		}
 
@@ -75,7 +74,7 @@ var UVsDebug = function ( geometry, w, h) {
 			for ( var i = 0, il = index.count; i < il; i ++ ) {
 				uvs.push(new Vector2().fromBufferAttribute( uvAttribute, index.getX( i )));
 			}
-			processFace( face, uvs, 3 );
+			processFace(uvs, tex);
 		} else {
 
 			// non-indexed geometry
@@ -90,7 +89,7 @@ var UVsDebug = function ( geometry, w, h) {
 				uvs[ 1 ].fromBufferAttribute( uvAttribute, face[ 1 ] );
 				uvs[ 2 ].fromBufferAttribute( uvAttribute, face[ 2 ] );
 
-				processFace( face, uvs, i / 3 );
+				processFace( uvs, tex );
 
 			}
 
@@ -140,7 +139,13 @@ var UVsDebug = function ( geometry, w, h) {
 		
    }
 
-	function processFace( face, uvs, index ) {
+   function drawColor(tex)
+   {
+		ctx.fillStyle = tex;
+		ctx.fill();
+   }
+
+	function processFace(uvs, tex ) {
 
 		// draw contour of face
 
@@ -167,9 +172,16 @@ var UVsDebug = function ( geometry, w, h) {
 		}
 		
 		ctx.closePath();
-		var img = new Image();
-		img.src = '/images/head.png';
-		drawPattern(img, 256, 256);	
+	
+		if(isTexture)
+		{
+			var img = new Image();
+			img.src = tex;
+			drawPattern(img, 256, 256);	
+		}
+		else{
+			drawColor('#' + tex);
+		}
 /*
 		ctx.beginPath();
 

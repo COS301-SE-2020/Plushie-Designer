@@ -87,6 +87,25 @@
 <%= content_tag :div, class: "rlegposz", data: {rlegposz: @toy.rleg_posz} do %>
 <% end %>
 
+
+<%= content_tag :div, class: "headtex", data: {headtex: @toy.head_tex} do %>
+  <% end %>
+
+  <%= content_tag :div, class: "larmtex", data: {larmtex: @toy.larm_tex} do %>
+  <% end %>
+  
+  <%= content_tag :div, class: "rarmtex", data: {rarmtex: @toy.rarm_tex} do %>
+  <% end %>
+  
+  <%= content_tag :div, class: "torsotex", data: {torsotex: @toy.torso_tex} do %>
+  <% end %>
+  
+  <%= content_tag :div, class: "llegtex", data: {llegtex: @toy.lleg_tex} do %>
+  <% end %>
+  
+  <%= content_tag :div, class: "rlegtex", data: {rlegtex: @toy.rleg_tex} do %>
+  <% end %>
+
 <meta property="og:title" content=<%= @toy.name %> />
 <meta property="og:image" content=<%= @toy.image %> />
 <meta property="og:description" content="Test" />
@@ -139,7 +158,7 @@
       <span><%= button_to 'Delete', @toy, method: :delete, data: { confirm: 'Are you sure?' }, :id => "delete-p", :class => "btn ed-button" %></span>
     </div>
   <% else %>
-    <span><%= button_to 'Contribute', contribute_path(@toy), method: "get", :id => "edit-p", :class => "btn ed-button"%></span>
+    <span><%= button_to 'Clone', contribute_path(@toy), method: "get", :id => "edit-p", :class => "btn ed-button"%></span>
   <% end %>
 
 </div>
@@ -153,7 +172,7 @@
     <div id="loader"></div>
 </section>
 
-<%# <script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function(){    
     //Check if the current URL contains '#'
     if(document.URL.indexOf("#")==-1){
@@ -165,4 +184,4 @@ $(document).ready(function(){
         location.reload(true);
     }
 });
-</script> %>
+</script>
