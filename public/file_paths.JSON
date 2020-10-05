@@ -253,6 +253,7 @@
                     "img": "/model/fish/shark/images/tfin.png",
                     "url": "/model/fish/shark/tfin.gltf"
                 }
+            }
         },
         "rooms":{
             "room_1": "/background/Room/scene.gltf",   
