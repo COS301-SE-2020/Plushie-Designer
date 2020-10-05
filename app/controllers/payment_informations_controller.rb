@@ -61,14 +61,168 @@ class PaymentInformationsController < ApplicationController
     end
   end
 
+
+
+  def is_number? string
+    true if Float(string) rescue false
+  end
+  ####MAKE PAYMENT####
   def make_payment
     @toy = toys.find(params[:id])
-    redirect_to displayPDF_path(@toy.id), target: :"_blank"
-  end
+    save_info = params[:save_info]
+    valid = true
+    error_message = ""
+
+    #doing card validation here
+    # cardholder name
+    if params[:ch_name] == ""
+      error_message = "Please insert cardholder name"
+      valid = false
+    end
+  
+  
+    # cardholder surname
+    sSurname = params[:ch_surname]
+    if params[:ch_surname] == '' && valid == true
+      error_message = "Please insert cardholder surname"
+      valid = false
+    end
+
+  
+    # cell no
+    sCellNo = params[:cell_no]
+    if valid == true
+      if sCellNo == ''
+        error_message = "Please insert cardholder cellphone number"
+        valid = false
+      end
+      if sCellNo.length < 10
+        error_message = "Please insert valid cellphone number"
+        valid = false
+      end
+    end
+
+
+    # payment method
+    if params[:payment_method] == '' && valid == true
+      error_message = "Please select payment method"
+      valid = false
+    end
+
+
+    # card no
+    sCardNo = params[:card_no]
+    if valid == true
+      if sCardNo == ''
+          error_message = "Please insert card number"
+          valid = false
+      end
+      sActualCardNo = ""
+      for i in 0..(sCardNo.length-1)
+        if sCardNo[i] != ' '
+          sActualCardNo += sCardNo[i]
+        end
+      end
+
+      if sActualCardNo.length != 12
+        error_message = "Please insert card number of length 12"
+        valid = false
+      end
+
+      unless is_number?(sActualCardNo)
+        error_message = 'Please insert valid card number'
+        valid = false
+      end
+    end
+
+
+    # expiration month
+    sExpMonth = params[:expiration_month].to_i
+    if valid == true
+      if sExpMonth < 1 || sExpMonth > 12
+        error_message = "Enter expiration month between 1 and 12"
+        valid = false;
+      end
+
+      if sExpMonth == ''
+        error_message = "Please select expiration month"
+        valid = false
+      end
+    end
+
+    # expiration year
+    if params[:expiration_year] == '' && valid == true
+      error_message = "Please insert expiration year"
+      valid = false
+    end
+
+    # postal code
+    if params[:postal_code] == '' && valid == true
+      error_message = 'Please insert postal code'
+      valid = false
+    end
+
+    # security code
+    if params[:security_code] == '' && valid == true
+      error_message = "Please insert security code"
+      valid = false
+    end
+
+    # address line 1
+    if params[:address_line1] == '' && valid == true
+      error_message = 'Please insert address line 1'
+      valid = false
+    end
+
+    # address line 2
+    if params[:address_line2] == '' && valid == true
+      error_message = 'Please insert address line 2'
+      valid = false
+    end
+
+    # city
+    if params[:city] == '' && valid == true
+      error_message = 'Please insert message'
+      valid = false
+    end
+
+    # country
+    if params[:country] == '' && valid == true
+      error_message = 'Please insert country'
+      valid = false
+    end
+
+    # end of card validation
+    if valid == true
+      if save_info
+        @payment_information = current_user.payment_informations.build(payment_information_params)
+        @payment_information.save
+      end
+      redirect_to displayPDF_path(@toy.id)
+    end
+    if valid == false
+      respond_to do |format|
+        format.html{ redirect_to payment_url, alert: error_message }
+      end
+    end
+end
 
   def payment
     @payment_information = current_user.payment_informations.build(payment_information_params)
     @toy = toys.find(params[:id])
+    @found = false
+
+    #card details
+    #
+
+
+
+    card_details.each do |n|
+      if n.user_id == current_user.id
+        @cardHolder = n
+        @found = true
+      end
+    end
     render :payment
   end
 
@@ -85,5 +239,9 @@ class PaymentInformationsController < ApplicationController
 
   def toys
     ::Toy.all
+  end
+
+  def card_details
+    ::PaymentInformation.all
   end
 end

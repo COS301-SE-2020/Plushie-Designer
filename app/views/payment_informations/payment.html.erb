@@ -1,37 +1,65 @@
 <br><br><br><br>
-<%= form_for :payment_information, :url => make_payment_url, method: "get", :html => {:target=>'_blank'} do %>
+<%= form_for :payment_information, :url => make_payment_url, method: "get" do %>
 
   <div class="form-inputs">
+
     <%= hidden_field_tag :id, `@toy.id` %>
-    <%= label_tag(:q, "cardholder name:")%>
-    <%= text_field_tag(:q) %>
-    <%= label_tag(:q, "cardholder last name:")%>
-    <%= text_field_tag(:q) %>
-    <%= label_tag(:q, "cell no:")%>
-    <%= text_field_tag(:q) %>
-    <%= label_tag(:q, "payment method:")%>
-    <%= text_field_tag(:q) %>
-    <%= label_tag(:q, "card no:")%>
-    <%= text_field_tag(:q) %>
-    <%= label_tag(:q, "expiration month:")%>
-    <%= text_field_tag(:q) %>
-    <%= label_tag(:q, "expiration year:")%>
-    <%= text_field_tag(:q) %>
-    <%= label_tag(:q, "cardholder name:")%>
-    <%= text_field_tag(:q) %>
-    <%= label_tag(:q, "security code:")%>
-    <%= text_field_tag(:q) %>
-    <%= label_tag(:q, "address line 1:")%>
-    <%= text_field_tag(:q) %>
-    <%= label_tag(:q, "address line 2:")%>
-    <%= text_field_tag(:q) %>
-    <%= label_tag(:q, "city:")%>
+
+
+    <%= label_tag(:name_tag, "cardholder name:") %>
+    <%= text_field_tag(:ch_name, @found ? @cardHolder.ch_name : false) %>
+
+    <%= label_tag(:surname_tag, "cardholder last name:")%>
+    <%= text_field_tag(:ch_surname, @found ? @cardHolder.ch_surname : false) %>
+
+    <%= label_tag(:cell_tag, "cell no:")%>
+    <%= text_field_tag(:cell_no, @found ? @cardHolder.cell_no : false) %>
+
+    <%= label_tag(:payment_tag, "payment method:")%>
+    <%= text_field_tag(:payment_method, @found ? @cardHolder.payment_method : false) %>
+
+    <%= label_tag(:card_tag, "card no:")%>
+    <%= text_field_tag(:card_no, @found ? @cardHolder.card_no : false) %>
+
+    <%= label_tag(:expiration_m_tag, "expiration month:")%>
+    <%= number_field_tag :expiration_month, @found ? @cardHolder.expiration_month : false, min: 1, max: 12  %>
+
+    <%= label_tag(:expiration_y_tag, "expiration year:")%>
+    <%= number_field_tag :expiration_year, @found ? @cardHolder.expiration_year : false, min: 2020 %>
+
+    <%= label_tag(:postal_tag, "postal code:")%>
+    <%= text_field_tag(:postal_code, @found ? @cardHolder.expiration_year : false) %>
+
+    <%= label_tag(:sec_tag, "security code:")%>
+    <%= text_field_tag(:security_code, @found ? @cardHolder.security_code : false) %>
+
+    <%= label_tag(:address_1_tag, "address line 1:")%>
+    <%= text_field_tag(:address_line1, @found ? @cardHolder.address_line1 : false) %>
+
+    <%= label_tag(:address_2_tag, "address line 2:")%>
+    <%= text_field_tag(:address_line2, @found ? @cardHolder.address_line2 : false) %>
+
+    <%= label_tag(:city_tag, "city:")%>
+    <%= text_field_tag(:city, @found ? @cardHolder.city : false) %>
+
+    <%= label_tag(:country_tag, "country:") %>
+    <%= text_field_tag(:country, @found ? @cardHolder.country : false) %>
+    <%#= country_select(current_user, :country_selector, { priority_countries: %w(ZA), include_blank: true, selected: params[:country] }, {}) %>
+    <%#= hidden_field_tag :country %>
+
+    <% if @found != true %>
+      <%= label_tag(:save_information_tag, "save information:") %>
+      <%= check_box_tag(:save_info) %>
+    <% end %>
+
+
   </div>
 
   <div class="form-actions">
     <%= button_to 'DOWNLOAD PDF', make_payment_path(@toy.id), target: "_blank" %>
   </div>
   <br><br><br><br>
+
 <% end %>
 
 <script>
