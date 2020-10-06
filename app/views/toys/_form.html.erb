@@ -68,6 +68,8 @@
             <button class="typebtn" id="animal" type="button" aria-label="Create a plushie that can walk on all four legs">Land Animal</button>
             <button class="typebtn" id="fish" type="button" aria-label="Create a plushie that can swim">Sea Creature</button>
           </div>
+          <br><hr><br>
+          <div class="preshapes" id="fullmodels"></div>
       </div>
     </div>
   </div>
@@ -382,12 +384,26 @@
     </div>
   </div>
 </div>
-<div class="toggle-zoom">
-  <label class="switch-zoom">
-    <input id="check-zoom" type="checkbox">
-    <span class="slider-zoom round-zoom"></span>
-  </label>
+<div id="toggle-buttons">
+  <div id="toggle-info">
+    <button type='button' id="info-btn" class="btn">Show Info</button>
+  </div>
+  <div class="toggle-zoom">
+    <label class="switch-zoom">
+      <input id="check-zoom" type="checkbox">
+      <span class="slider-zoom round-zoom"></span>
+    </label>
+  </div>
 </div>
+
+<div id="info-card">
+  <div id="info-border">
+    <div id="info-title"></div>
+    <div id="info-description">Click on a part of the Plushie to get information.</div>
+    <div id="info-image"></div>
+  </div>
+</div>
+
  <script>
     $(document).ready(() => {
       $( function() {
