@@ -159,7 +159,7 @@ body {
         }
     }
     .navbar-nav {
-        width: 60%;
+        width: 50%;
         height: inherit;
         left: 56%;
         position: absolute;
@@ -399,6 +399,28 @@ body {
 
         .control-header:hover {
             cursor: pointer;
+        }
+
+        .panel-heading:hover {
+            position: relative;
+        }
+
+        .typebtn[aria-label]:hover:after, .panel-heading[aria-label]:hover:after {
+            content: attr(aria-label);
+            padding: 5px 5px;
+            position: absolute;
+            left: 75%;
+            top: 100%;
+            border-radius: 5px;
+            border: 1px solid var(--q-colour);
+            white-space: nowrap;
+            z-index: 20;
+            background:rgb(35, 34, 36);
+            color: var(--q-colour);
+        }
+
+        .typebtn[aria-label]:hover:after {
+            left: 0;
         }
 
         .controls {
