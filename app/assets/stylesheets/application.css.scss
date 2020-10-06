@@ -25,7 +25,7 @@
     --tertiary-colour: rgb(47, 56, 86);
     --q-colour: rgb(241, 213, 186);
     --p-colour: #cf3f46;
-    --background : #6c768d;
+    --background : #c8ccd6;
     --alert-color: rgba(47, 56, 86, 0.7);
     --danger-color: rgba(207, 63, 70, 0.7);
     --control-background: rgba(0, 0, 0, 0.8);
@@ -75,6 +75,12 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
     height: 0.75em;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
 }
 
 .dropdown-menu {
@@ -102,11 +108,12 @@ body {
     width: 45%;
     margin-bottom: 2vh;
     border-radius: 0;
+    height: 7.5rem;
     border: 3px solid var(--secondary-colour);
     .nav-s-left {
         position: absolute;
         left:-10em;
-        top:-64%;
+        top:-66.5%;
         fill: var(--secondary-colour);
         // top:22.1%;
         height: 12.3em;
@@ -116,7 +123,7 @@ body {
     .nav-s-right {
         position: absolute;
         right: -10em;
-        top: -64%;
+        top: -66.5%;
         // left:-18%;
         // top:-64%;
         height: 12.3em;
@@ -154,13 +161,17 @@ body {
     .navbar-nav {
         width: 50%;
         height: inherit;
-        padding-left: 5%;
+        left: 56%;
+        position: absolute;
+        display: inline-table;
+        list-style: none;
+        margin: 0;
         li {
+            width: 30%;
             a {
+                // display: inherit !important;
                 color: var(--primary-colour);
-                //background-color: var(--primary-colour);
                 border-radius: 7px;
-                //margin-left: 1%;
                 transition: background-color 0.3s ease;
             }
             a:hover {
@@ -169,9 +180,6 @@ body {
                 transition: background-color 0.3s ease;
             }
         }
-        //.dropdown-toggle:active {
-        //    background-color: var(--secondary-colour);
-        //}
         .dropdown-menu {
             background-color: var(--secondary-colour);
         }
@@ -431,6 +439,9 @@ body {
             #toy_shared:focus{
                 background-color: var(--primary-colour);
             }
+            [for="toy_shared"] {
+                margin-left: 1.5em;
+            }
         }
 
         .slider {
@@ -469,6 +480,28 @@ body {
 
         .control-header:hover {
             cursor: pointer;
+        }
+
+        .panel-heading:hover {
+            position: relative;
+        }
+
+        .typebtn[aria-label]:hover:after, .panel-heading[aria-label]:hover:after {
+            content: attr(aria-label);
+            padding: 5px 5px;
+            position: absolute;
+            left: 75%;
+            top: 100%;
+            border-radius: 5px;
+            border: 1px solid var(--q-colour);
+            white-space: nowrap;
+            z-index: 20;
+            background:rgb(35, 34, 36);
+            color: var(--q-colour);
+        }
+
+        .typebtn[aria-label]:hover:after {
+            left: 0;
         }
 
         .controls {

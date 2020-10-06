@@ -4,8 +4,8 @@
 
   <div class="form-inputs">
     <div class="options-header">
-      <%= f.input :name, label_html: { class: 'name-label' }, placeholder: 'Plushie Name', required: false, input_html: { :autocomplete => "off" } %>
-      <%= f.input :shared, label: "Share"%>
+      <%= f.input :name, label_html: { class: 'name-label' }, placeholder: 'Give your plushie a name', required: false, input_html: { :autocomplete => "off" } %>
+      <%= f.input :shared, label: "Share", title: "Share your plushie with other people"%>
     </div>
     <div class="hinput">
       <%= f.input :head, input_html: {value: 0} %>
@@ -64,16 +64,16 @@
       <div class="panel-body">
          <div class="types">
             <%# onthou om die buttons se functions te code %>
-            <button class="typebtn" id="humanoid" type="button">Humanoid</button>
-            <button class="typebtn" id="animal" type="button">Land Animal</button>
-            <button class="typebtn" id="fish" type="button">Sea Creature</button>            
+            <button class="typebtn" id="humanoid" type="button" aria-label="Create a plushie with a body in the shape of a person">Humanoid</button>
+            <button class="typebtn" id="animal" type="button" aria-label="Create a plushie that can walk on all four legs">Land Animal</button>
+            <button class="typebtn" id="fish" type="button" aria-label="Create a plushie that can swim">Sea Creature</button>
           </div>
       </div>
     </div>
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="head-div panel-heading panel-clr">
+    <div class="head-div panel-heading panel-clr" aria-label="Adjust the top part of the plushie"><!-- title="Adjust the top part of the plushie">-->
       <h4 class="panel-title">
         <div class="head-controls comp-click-zone" id="Head" data-toggle="collapse" data-parent="#controls-parent" data-target="#collapse-head-controls">
             <!-- <button style="display: none;" id="hc-btn" type="hidden" data-toggle="collapse" data-target="#collapse-head-controls"></button> -->
@@ -116,7 +116,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="torso-div panel-heading panel-clr">
+    <div class="torso-div panel-heading panel-clr" aria-label="The middle part of the plushie">
       <h4 class="panel-title">
         <div class="torso-controls comp-click-zone" id="Torso" data-toggle="collapse" data-parent="#controls-parent" data-target="#torso-collapse">
           <!-- <button style="display: none;" id="tc-btn" type="hidden" data-toggle="collapse" data-target="#torso-collapse"></button> -->
@@ -161,7 +161,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="arms-div panel-heading panel-clr">
+    <div class="arms-div panel-heading panel-clr" aria-label="The upper left part of the plushie">
       <h4 class="panel-title">
         <div class="l-arms-controls comp-click-zone" id="Left-Arm" data-toggle="collapse" data-parent="#controls-parent" data-target="#arms-collapse">
         <!-- <button style="display: none;" id="ac-btn" type="hidden" data-toggle="collapse" data-target="#arms-collapse"></button> -->
@@ -204,7 +204,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="panel-heading panel-clr">
+    <div class="panel-heading panel-clr" aria-label="The upper right part of the plushie">
       <h4 class="panel-title">
         <div class="r-arms-controls comp-click-zone" id="Right-Arm" data-toggle="collapse" data-parent="#controls-parent" data-target="#r-arms-collapse">
           <span class="control-header" id="rach">Right Arm</span>
@@ -246,7 +246,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="legs-div panel-heading panel-clr">
+    <div class="legs-div panel-heading panel-clr" aria-label="The lower left part of the plushie">
       <h4 class="panel-title">
         <div class="l-legs-controls comp-click-zone" id="Left-Leg" data-toggle="collapse" data-parent="#controls-parent" data-target="#legs-collapse">
         <!-- <button style="display: none;" id="lc-btn" type="hidden" data-toggle="collapse" data-target="#legs-collapse"></button> -->
@@ -290,7 +290,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="panel-heading panel-clr">
+    <div class="panel-heading panel-clr" aria-label="The lower right part of the plushie">
       <h4 class="panel-title">
         <div class="r-legs-controls comp-click-zone" id="Right-Leg" data-toggle="collapse" data-parent="#controls-parent" data-target="#r-legs-collapse">
           <span class="control-header" id="rlch">Right Leg</span>
@@ -332,7 +332,7 @@
   </div>
 
   <div class="buttons panel panel-default">
-    <div class="panel-heading panel-clr">
+    <div class="panel-heading panel-clr" aria-label="Change the room that the plushie is in in (change the background area)">
       <h4 class="panel-title">
         <div class="rooms-controls comp-click-zone" id="Room" data-toggle="collapse" data-parent="#controls-parent" data-target="#rooms-collapse">
           <%# <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> %>
@@ -351,7 +351,7 @@
   </div>
   
   <div class="buttons panel panel-default">
-    <div class="panel-heading panel-clr">
+    <div class="panel-heading panel-clr" aria-label="Change the look of the selected part of the plushie">
       <h4 class="panel-title">
         <div class="textures comp-click-zone" data-toggle="collapse" data-parent="#controls-parent" data-target="#texture-collapse">
           <%# <button class="btn" id="rooml" type="button"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></button> %>
@@ -398,6 +398,13 @@
           $(this).toggleClass('on');
         } )
       }); 
+
+      $('#Head').on('hover', () => {
+        console.log('hover');
+      });
+      $('.popover').popover(()=>{
+        console.log("ho")
+      });
     });
 </script>
 

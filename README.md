@@ -1,14 +1,20 @@
 # Plushie-Designer
 [![Build Status](https://travis-ci.com/COS301-SE-2020/Plushie-Designer.svg?branch=Development)](https://travis-ci.com/COS301-SE-2020/Plushie-Designer)
 
+<p align="center"><img src="https://github.com/COS301-SE-2020/Plushie-Designer/blob/master/Logo.png" width="450" height="450"></p>
+
 ## Description
 Plushie-Designer is a website that allows users to create and share their plushie creations. A plushie is a soft toy with an outer fabric sewn from a textile and stuffed with flexible material. Users will be able to create their plushies with an editor that contains predefined shapes for the different parts for the Plushie. A sewing pattern will be generated and can be downloaded by the user.
 
 ## Links
+- Web Application(Website): https://plushiedesigner.herokuapp.com/
+
 ### Recorded Demos
 - Fellowship of the Git-Demo1: https://drive.google.com/file/d/1JpnnY9vtae2aD1KbY4ggvWpKldu4WIaB/view?usp=sharing
 - Fellowship of the Git-Demo2: https://drive.google.com/file/d/1EoU4EENJ5skr0TJVAl-AKe7ErZUtQ_fV/view?usp=sharing
 - Fellowship of the Git-Demo3: https://drive.google.com/file/d/1kvlkRrOY88Ug7q9-YVltW_GOlmuDenIL/view?usp=sharing
+- Fellowship of the Git-Demo4: https://drive.google.com/file/d/1BA8G7SqMot4vk1-M_iI_YRa0f-N3beEU/view?usp=sharing
+
 ### Documentation
 - SRS Document Version 1: https://www.overleaf.com/read/hckdrnmzwdwm
 - SRS Document Version 2: https://www.overleaf.com/read/pyyxfxtkxmxm
