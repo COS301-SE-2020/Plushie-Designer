@@ -61,7 +61,7 @@ $.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
 											success:  function(r_leg_models){
-												readTextFile("/file_paths.JSON", function(text){
+												readTextFile("/file_paths1.JSON", function(text){
 													var data = JSON.parse(text);
 													// console.log(r_leg_models);
 													var headchange = false;
@@ -136,7 +136,7 @@ $.ajax({
 													document.body.appendChild(renderer.domElement);
 
 													var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-													camera.position.set(0, 1, 10);
+													camera.position.set(0, 1, 13);
 
 													const loadingManager = new THREE.LoadingManager( () => {
 														
@@ -153,7 +153,7 @@ $.ajax({
 													controls.enableDamping = true;
 													controls.dampingFactor = 0.05;
 
-													controls.minDistance = 13;
+													controls.minDistance = 6;
 													controls.maxDistance = 20;
 
 													controls.enablePan = false;
@@ -376,7 +376,7 @@ $.ajax({
 															if(bzoom){
 																zoomreset();
 																controls.target = new THREE.Vector3(obj.position.x,obj.position.y,obj.position.z);
-																camera.position.set(obj.position.x, obj.position.y, 10);	
+																camera.position.set(obj.position.x, obj.position.y, 13);	
 																controls.minDistance = 6;
 																if(!anim){
 																	var i = 1;
@@ -401,8 +401,8 @@ $.ajax({
 
 														function zoomreset(){
 															controls.target = new THREE.Vector3(0,0,0);
-															camera.position.set(0, 1, 10);	
-															controls.minDistance = 13; 
+															camera.position.set(0, 1, 13);	
+															controls.minDistance = 6; 
 															controls.dIn(1);
 															controls.update();													
 														}
@@ -414,43 +414,49 @@ $.ajax({
 																case "hair" : currentSelection = hhtemp; break;
 																case htemp.children[0].name : 
 																	if(menuitem != "head"){
-																		$('.head-controls').click();
+																		$('.head-controls').click();																		
 																	}
+																	populateInfoCard(data.file_paths.models[head].head.title,data.file_paths.models[head].head.desc,data.file_paths.models[head].head.img);
 																	currentSelection = htemp; 
 																	// zoomin(obj);
 																	break;
 																case ttemp.children[0].name : 
 																	if(menuitem != "torso"){
-																		$('.torso-controls').click();
+																		$('.torso-controls').click();																		
 																	}
+																	populateInfoCard(data.file_paths.models[torso].body.title,data.file_paths.models[torso].body.desc,data.file_paths.models[torso].body.img);
 																	currentSelection = ttemp; 
 																	// zoomin(obj);
 																	break;
 																case lltemp.children[0].name :
 																	if(menuitem != "l-legs"){
-																		$('.l-legs-controls').click(); 
+																		$('.l-legs-controls').click();																		
 																	}
+																	populateInfoCard(data.file_paths.models[lleg].l_leg.title,data.file_paths.models[lleg].l_leg.desc,data.file_paths.models[lleg].l_leg.img);
 																	currentSelection = lltemp; 
 																	// zoomin(obj);
 																	break;
 																case rltemp.children[0].name : 
 																	if(menuitem != "r-legs"){
-																		$('.r-legs-controls').click();
+																		$('.r-legs-controls').click();																		
 																	}
+																	populateInfoCard(data.file_paths.models[rleg].r_leg.title,data.file_paths.models[rleg].r_leg.desc,data.file_paths.models[rleg].r_leg.img);
 																	currentSelection = rltemp; 
 																	// zoomin(obj);
 																	break;
 																case latemp.children[0].name : 
 																	if(menuitem != "l-arms"){
-																		$('.l-arms-controls').click();
+																		$('.l-arms-controls').click();																		
 																	}
+																	populateInfoCard(data.file_paths.models[larm].l_arm.title,data.file_paths.models[larm].l_arm.desc,data.file_paths.models[larm].l_arm.img);
 																	currentSelection = latemp; 
 																	// zoomin(obj);
 																	break;
 																case ratemp.children[0].name :
 																	if(menuitem != "r-arms"){
-																		$('.r-arms-controls').click(); 
+																		$('.r-arms-controls').click();																		
 																	}
+																	populateInfoCard(data.file_paths.models[rarm].r_arm.title,data.file_paths.models[rarm].r_arm.desc,data.file_paths.models[rarm].r_arm.img);
 																	currentSelection = ratemp; 
 																	// zoomin(obj);
 																	break;
@@ -1154,8 +1160,9 @@ $.ajax({
 																		headposz = 0.0;
 																		headchange = true;
 																		head = this.value;
-																		$("#toy_head")[0].value = head;
-																	}																
+																		$("#toy_head")[0].value = head;																		
+																	}
+																	populateInfoCard(data.file_paths.models[head].head.title,data.file_paths.models[head].head.desc,data.file_paths.models[head].head.img);															
 																};
 																hprsh.appendChild(button);
 															}
@@ -1177,8 +1184,9 @@ $.ajax({
 																		torsoposz = 0.0;
 																		torsochange = true;
 																		torso = this.value;
-																		$("#toy_torso")[0].value = torso;
+																		$("#toy_torso")[0].value = torso;																		
 																	}
+																	populateInfoCard(data.file_paths.models[torso].body.title,data.file_paths.models[torso].body.desc,data.file_paths.models[torso].body.img);
 																};
 																tprsh.appendChild(button);
 															}
@@ -1200,8 +1208,9 @@ $.ajax({
 																		larmposz = 0.0;
 																		larmchange = true;
 																		larm = this.value;
-																		$("#toy_arms")[0].value = larm;
-																	}																
+																		$("#toy_arms")[0].value = larm;																		
+																	}
+																	populateInfoCard(data.file_paths.models[larm].l_arm.title,data.file_paths.models[larm].l_arm.desc,data.file_paths.models[larm].l_arm.img);																
 																};
 																laprsh.appendChild(button);
 															}
@@ -1223,8 +1232,9 @@ $.ajax({
 																		rarmposz = 0.0;
 																		rarmchange = true;
 																		rarm = this.value;
-																		$("#toy_r_arm")[0].value = rarm;
-																	}																
+																		$("#toy_r_arm")[0].value = rarm;																		
+																	}
+																	populateInfoCard(data.file_paths.models[rarm].r_arm.title,data.file_paths.models[rarm].r_arm.desc,data.file_paths.models[rarm].r_arm.img);															
 																};
 																raprsh.appendChild(button);
 															}
@@ -1246,8 +1256,9 @@ $.ajax({
 																		llegposz = 0.0;
 																		llegchange = true;
 																		lleg = this.value;
-																		$("#toy_legs")[0].value = lleg;
-																	}															
+																		$("#toy_legs")[0].value = lleg;																		
+																	}
+																	populateInfoCard(data.file_paths.models[lleg].l_leg.title,data.file_paths.models[lleg].l_leg.desc,data.file_paths.models[lleg].l_leg.img);														
 																};
 																llprsh.appendChild(button);
 															}
@@ -1269,8 +1280,9 @@ $.ajax({
 																		rlegposz = 0.0;
 																		rlegchange = true;
 																		rleg = this.value;
-																		$("#toy_r_leg")[0].value = rleg;
-																	}																
+																		$("#toy_r_leg")[0].value = rleg;																		
+																	}
+																	populateInfoCard(data.file_paths.models[rleg].r_leg.title,data.file_paths.models[rleg].r_leg.desc,data.file_paths.models[rleg].r_leg.img);															
 																};
 																rlprsh.appendChild(button);
 															}
@@ -1434,7 +1446,23 @@ $.ajax({
 														}
 													}	
 
+													function populateInfoCard(title, desc, image){
+														$('#info-title').html(title);
+														$('#info-description').html(desc);
+														$('#info-image').html('<img src="'+image+'" alt="A113">');
+													}
+
 													$(document).ready(function(){
+														$('#info-card').fadeToggle(0);
+														$('#info-btn').click(function () {
+															if($('#info-btn').text()=="Show Info"){
+																$('#info-btn').html('Hide Info');																
+															}else{
+																$('#info-btn').html('Show Info');
+															}
+															$('#info-card').fadeToggle(300);
+														});
+
 														$('#check-zoom').click(function () {
 															bzoom = !bzoom;
 															if(!bzoom){

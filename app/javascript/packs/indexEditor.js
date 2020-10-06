@@ -59,7 +59,7 @@ $.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
 											success:  function(r_leg_models){
-												readTextFile("/file_paths.JSON", function(text){
+												readTextFile("/file_paths1.JSON", function(text){
 													var data = JSON.parse(text);
 													// console.log(r_leg_models);
 													var headchange = false;
@@ -134,7 +134,7 @@ $.ajax({
 													document.body.appendChild(renderer.domElement);
 
 													var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-													camera.position.set(0, 1, 10);
+													camera.position.set(0, 1, 13);
 													//camera.lookAt(new THREE.Vector3(0,10,0));
 
 													const loadingManager = new THREE.LoadingManager( () => {
@@ -152,7 +152,7 @@ $.ajax({
 													controls.enableDamping = true;
 													controls.dampingFactor = 0.05;
 
-													controls.minDistance = 13;
+													controls.minDistance = 6;
 													controls.maxDistance = 20;
 
 													controls.enablePan = false;
@@ -341,7 +341,7 @@ $.ajax({
 															if(bzoom){
 																zoomreset();
 																controls.target = new THREE.Vector3(obj.position.x,obj.position.y,obj.position.z);
-																camera.position.set(obj.position.x, obj.position.y, 10);	
+																camera.position.set(obj.position.x, obj.position.y, 13);	
 																controls.minDistance = 6;
 																if(!anim){
 																	var i = 1;
@@ -366,8 +366,8 @@ $.ajax({
 
 														function zoomreset(){
 															controls.target = new THREE.Vector3(0,0,0);
-															camera.position.set(0, 1, 10);	
-															controls.minDistance = 13; 
+															camera.position.set(0, 1, 13);	
+															controls.minDistance = 6; 
 															controls.dIn(1);
 															controls.update();													
 														}

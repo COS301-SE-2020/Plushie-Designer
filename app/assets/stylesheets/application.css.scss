@@ -317,83 +317,148 @@ body {
         overflow: scroll;
         overflow-x: hidden;
 
-        .toggle-zoom{
-            // z-index: 99;
+        #info-card{
+            // visibility: hidden;
             display: flex;
+            flex-direction: column;
+            background-color: var(--primary-colour);
+            color: var(--secondary-colour);
+            position: fixed;
+            right: 5em;
+            top: 9.5em;
+            width: 25em;
+            padding: 0.3em;
+            border-radius: 0.5em;
+
+            #info-border{
+                border-radius: 0.5em;
+                border-color: var(--secondary-colour);
+                border-width: 2px;
+                border-style: solid;
+                padding: 1em;
+                padding-top: 1.5em;
+            
+                #info-title{
+                    position: relative;
+                    bottom: 0.5em;
+                    font-size: xx-large;
+                }
+
+                #info-description{
+                    position: relative;
+                    bottom: 0.5em;
+                    font-size: larger;
+                }
+
+                #info-image{
+                    width: fit-content;
+                    position: relative;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+        }
+
+        #toggle-buttons{
+            display: flex;
+            flex-direction: row;
             justify-content: center;
-            // position: relative;
-            left: 0;
-            // background-color: black;
-            // margin-left: auto;
-            // margin-right: auto;
-        
-            .switch-zoom {
-                position: relative;
-                display: inline-block;
-                width: 124px;
-                height: 42px;
-            }
-        
-            .switch-zoom input {
-                opacity: 0;
-                width: 0;
-                height: 0;
-            }
-        
-            .slider-zoom {
-                display: flex;
-                justify-content: center;
-                position: absolute;
-                cursor: pointer;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                padding: 7px;
-                background-color: var(--secondary-colour);
-                -webkit-transition: .4s;
-                transition: .4s;
-            }
-            
-            .slider-zoom:before {
-                display: flex;
-                justify-content: center;
-                position: absolute;
-                content: "Focus OFF";
+            width: 90%;
+
+            #toggle-info{
                 color: var(--secondary-colour);
-                height: 35px;
-                width: 90px;
-                left: 4px;
-                bottom: 4px;
-                padding: 7px;
-                background-color: var(--primary-colour);
-                -webkit-transition: .4s;
-                transition: .4s;
+                margin-top: 3px;
+
+                #info-btn{
+                    font-weight: bold;
+                    width: 105px;
+                }
+
+                #info-btn:hover{
+                    color: var(--primary-colour);
+                    background-color: var(--secondary-colour);
+                }
             }
-        
-            input:checked + .slider-zoom {
-                background-color: var(--primary-colour);
-            }
+
+            .toggle-zoom{
+                // z-index: 99;
+                display: flex;
+                justify-content: center;
+                // position: relative;
+                left: 0;
+                margin-left: 2em;
+                // background-color: black;
+                // margin-left: auto;
+                // margin-right: auto;
             
-            // input:focus + .slider-zoom {
-            //     box-shadow: 0 0 1px var(--primary-colour);
-            // }
+                .switch-zoom {
+                    position: relative;
+                    display: inline-block;
+                    width: 124px;
+                    height: 42px;
+                }
             
-            input:checked + .slider-zoom:before {
-                -webkit-transform: translateX(26px);
-                -ms-transform: translateX(26px);
-                transform: translateX(26px);
-                background-color: var(--secondary-colour);
-                content: "Focus ON";
-                color: var(--primary-colour);
-            }
+                .switch-zoom input {
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
+                }
             
-            .slider-zoom.round-zoom {
-                border-radius: 20px;
-            }
+                .slider-zoom {
+                    display: flex;
+                    justify-content: center;
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    padding: 7px;
+                    background-color: var(--secondary-colour);
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
+                
+                .slider-zoom:before {
+                    display: flex;
+                    justify-content: center;
+                    position: absolute;
+                    content: "Focus OFF";
+                    color: var(--secondary-colour);
+                    height: 35px;
+                    width: 90px;
+                    left: 4px;
+                    bottom: 4px;
+                    padding: 7px;
+                    background-color: var(--primary-colour);
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
             
-            .slider-zoom.round-zoom:before {
-                border-radius: 20px;
+                input:checked + .slider-zoom {
+                    background-color: var(--primary-colour);
+                }
+                
+                // input:focus + .slider-zoom {
+                //     box-shadow: 0 0 1px var(--primary-colour);
+                // }
+                
+                input:checked + .slider-zoom:before {
+                    -webkit-transform: translateX(26px);
+                    -ms-transform: translateX(26px);
+                    transform: translateX(26px);
+                    background-color: var(--secondary-colour);
+                    content: "Focus ON";
+                    color: var(--primary-colour);
+                }
+                
+                .slider-zoom.round-zoom {
+                    border-radius: 20px;
+                }
+                
+                .slider-zoom.round-zoom:before {
+                    border-radius: 20px;
+                }
             }
         }
 
