@@ -2605,8 +2605,13 @@ fieldset.toy_shared {
     position: relative;
     display: flexbox;
     width: 15em;
-    top: 6.5em;
+    top: 1em;
     left: 4.35em;
+}
+
+#fullmodels{
+    display: flex;
+    justify-content: center;
 }
 
 .typebtn{

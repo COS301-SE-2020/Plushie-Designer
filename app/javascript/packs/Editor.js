@@ -416,7 +416,11 @@ $.ajax({
 																	if(menuitem != "head"){
 																		$('.head-controls').click();																		
 																	}
-																	populateInfoCard(data.file_paths.models[head].head.title,data.file_paths.models[head].head.desc,data.file_paths.models[head].head.img);
+																	if(head < data.file_paths.models.length-1)
+																		populateInfoCard(data.file_paths.models[head].head.title,data.file_paths.models[head].head.desc,data.file_paths.models[head].head.img);
+																	else
+																		populateInfoCard("Coming Soon", "No Information for uploaded models.", head_models[head-data.file_paths.models.length].head_image.url);
+
 																	currentSelection = htemp; 
 																	// zoomin(obj);
 																	break;
@@ -424,7 +428,10 @@ $.ajax({
 																	if(menuitem != "torso"){
 																		$('.torso-controls').click();																		
 																	}
-																	populateInfoCard(data.file_paths.models[torso].body.title,data.file_paths.models[torso].body.desc,data.file_paths.models[torso].body.img);
+																	if(torso < data.file_paths.models.length-1)
+																		populateInfoCard(data.file_paths.models[torso].body.title,data.file_paths.models[torso].body.desc,data.file_paths.models[torso].body.img);
+																	else
+																		populateInfoCard("Coming Soon", "No Information for uploaded models.", body_models[torso-data.file_paths.models.length].body_image.url);
 																	currentSelection = ttemp; 
 																	// zoomin(obj);
 																	break;
@@ -432,7 +439,10 @@ $.ajax({
 																	if(menuitem != "l-legs"){
 																		$('.l-legs-controls').click();																		
 																	}
-																	populateInfoCard(data.file_paths.models[lleg].l_leg.title,data.file_paths.models[lleg].l_leg.desc,data.file_paths.models[lleg].l_leg.img);
+																	if(lleg < data.file_paths.models.length-1)
+																		populateInfoCard(data.file_paths.models[lleg].l_leg.title,data.file_paths.models[lleg].l_leg.desc,data.file_paths.models[lleg].l_leg.img);
+																	else
+																		populateInfoCard("Coming Soon", "No Information for uploaded models.", l_leg_models[lleg-data.file_paths.models.length].l_leg_image.url);
 																	currentSelection = lltemp; 
 																	// zoomin(obj);
 																	break;
@@ -440,7 +450,10 @@ $.ajax({
 																	if(menuitem != "r-legs"){
 																		$('.r-legs-controls').click();																		
 																	}
-																	populateInfoCard(data.file_paths.models[rleg].r_leg.title,data.file_paths.models[rleg].r_leg.desc,data.file_paths.models[rleg].r_leg.img);
+																	if(rleg < data.file_paths.models.length-1)
+																		populateInfoCard(data.file_paths.models[rleg].r_leg.title,data.file_paths.models[rleg].r_leg.desc,data.file_paths.models[rleg].r_leg.img);
+																	else
+																		populateInfoCard("Coming Soon", "No Information for uploaded models.", r_leg_models[rleg-data.file_paths.models.length].r_leg_image.url);
 																	currentSelection = rltemp; 
 																	// zoomin(obj);
 																	break;
@@ -448,7 +461,10 @@ $.ajax({
 																	if(menuitem != "l-arms"){
 																		$('.l-arms-controls').click();																		
 																	}
-																	populateInfoCard(data.file_paths.models[larm].l_arm.title,data.file_paths.models[larm].l_arm.desc,data.file_paths.models[larm].l_arm.img);
+																	if(larm < data.file_paths.models.length-1)
+																		populateInfoCard(data.file_paths.models[larm].l_arm.title,data.file_paths.models[larm].l_arm.desc,data.file_paths.models[larm].l_arm.img);
+																	else
+																		populateInfoCard("Coming Soon", "No Information for uploaded models.", l_arm_models[larm-data.file_paths.models.length].l_arm_image.url);
 																	currentSelection = latemp; 
 																	// zoomin(obj);
 																	break;
@@ -456,7 +472,10 @@ $.ajax({
 																	if(menuitem != "r-arms"){
 																		$('.r-arms-controls').click();																		
 																	}
-																	populateInfoCard(data.file_paths.models[rarm].r_arm.title,data.file_paths.models[rarm].r_arm.desc,data.file_paths.models[rarm].r_arm.img);
+																	if(rarm < data.file_paths.models.length-1)
+																		populateInfoCard(data.file_paths.models[rarm].r_arm.title,data.file_paths.models[rarm].r_arm.desc,data.file_paths.models[rarm].r_arm.img);
+																	else
+																		populateInfoCard("Coming Soon", "No Information for uploaded models.", r_arm_models[rarm-data.file_paths.models.length].r_arm_image.url);
 																	currentSelection = ratemp; 
 																	// zoomin(obj);
 																	break;
@@ -1314,7 +1333,8 @@ $.ajax({
 																		headchange = true;
 																		head = this.value;
 																		$("#toy_head")[0].value = head;
-																	}																
+																	}
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);														
 																};
 																hupsh.appendChild(button);
 															}
@@ -1340,6 +1360,7 @@ $.ajax({
 																		torso = this.value;
 																		$("#toy_torso")[0].value = torso;
 																	}
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
 																};
 																tupsh.appendChild(button);
 															}
@@ -1364,7 +1385,8 @@ $.ajax({
 																		larmchange = true;
 																		larm = this.value;
 																		$("#toy_arms")[0].value = larm;
-																	}																
+																	}	
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);															
 																};
 																laupsh.appendChild(button);
 															}
@@ -1389,7 +1411,8 @@ $.ajax({
 																		rarmchange = true;
 																		rarm = this.value;
 																		$("#toy_r_arm")[0].value = rarm;
-																	}																
+																	}	
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);															
 																};
 																raupsh.appendChild(button);
 															}
@@ -1414,7 +1437,8 @@ $.ajax({
 																		llegchange = true;
 																		lleg = this.value;
 																		$("#toy_legs")[0].value = lleg;
-																	}															
+																	}	
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);														
 																};
 																llupsh.appendChild(button);
 															}
@@ -1439,12 +1463,79 @@ $.ajax({
 																		rlegchange = true;
 																		rleg = this.value;
 																		$("#toy_r_leg")[0].value = rleg;
-																	}																
+																	}	
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);															
 																};
 																rlupsh.appendChild(button);
 															}
 														}
-													}	
+													}
+													
+													function populateFullModels(){
+														var fm = document.getElementById("fullmodels");
+														fm.innerHTML="";
+																																																						
+														for(var i=0;i<data.file_paths.models.length;++i){
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																//alert(data.file_paths.models.test);
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].img + '" />';
+																button.className = 'btn';
+																var tid = "fullmodel" + i;
+																button.id = tid;
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){															
+																	if(head!=this.value){
+																		headposy = 0.0;
+																		headposx = 0.0;
+																		headposz = 0.0;
+																		torsoposy = 0.0;
+																		torsoposx = 0.0;
+																		torsoposz = 0.0;
+																		larmposy = 0.0;
+																		larmposx = 0.0;
+																		larmposz = 0.0;
+																		rarmposy = 0.0;
+																		rarmposx = 0.0;
+																		rarmposz = 0.0;
+																		llegposy = 0.0;
+																		llegposx = 0.0;
+																		llegposz = 0.0;
+																		rlegposy = 0.0;
+																		rlegposx = 0.0;
+																		rlegposz = 0.0;
+
+																		// type=this.value;
+																		// typechange=true;
+
+																		hair = this.value;
+																		head = this.value;
+																		torso = this.value;
+																		larm = this.value;
+																		rarm = this.value;
+																		lleg = this.value;
+																		rleg = this.value;
+
+																		$("#toy_head")[0].value = head;
+																		$("#toy_torso")[0].value = torso;
+																		$("#toy_arms")[0].value = larm;
+																		$("#toy_r_leg")[0].value = rarm;
+																		$("#toy_r_arm")[0].value = lleg;
+																		$("#toy_legs")[0].value = rleg;
+
+																		headchange = true;
+																		torsochange = true;
+																		larmchange = true; 
+																		rarmchange = true; 
+																		llegchange = true;
+																		rlegchange = true;
+																	}														
+																};
+																fm.appendChild(button);
+															}
+														}
+													}
 
 													function populateInfoCard(title, desc, image){
 														$('#info-title').html(title);
@@ -1453,6 +1544,7 @@ $.ajax({
 													}
 
 													$(document).ready(function(){
+														populateFullModels();
 														$('#info-card').fadeToggle(0);
 														$('#info-btn').click(function () {
 															if($('#info-btn').text()=="Show Info"){
@@ -1566,7 +1658,9 @@ $.ajax({
 																rarmchange = true; 
 																llegchange = true;
 																rlegchange = true;
-															}
+
+																populateFullModels();
+															}															
 														});
 														
 														$('#animal').click(function () {
@@ -1621,6 +1715,8 @@ $.ajax({
 																rarmchange = true; 
 																llegchange = true;
 																rlegchange = true;
+
+																populateFullModels();
 															}
 														});
 														
@@ -1676,6 +1772,8 @@ $.ajax({
 																rarmchange = true; 
 																llegchange = true;
 																rlegchange = true;
+
+																populateFullModels();
 															}
 														});
 
