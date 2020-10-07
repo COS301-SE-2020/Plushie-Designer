@@ -19,6 +19,7 @@ function readTextFile(file, callback) {
 		}
 	}
 	rawFile.send(null);
+	
 }
 
 $.ajax({

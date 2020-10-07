@@ -173,7 +173,7 @@ $.ajax({
 															}
 														}
 														//----------------------------------------------------------------------
-														buildColors(colors);
+														// buildColors(colors);
 
 														//--------------------SETUP SWATCHES-------------------------------------
 														const swatches = document.querySelectorAll(".tray__swatch");
