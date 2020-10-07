@@ -549,18 +549,24 @@ $.ajax({
 																htemp = gltf.scene;																													
 																color = $("#toy_head_tex")[0].value;
 																if(headposy != 0.0){
+																	headposy = -headposy;
+																	headposy = -headposy;
 																	gltf.scene.children[0].position.setY(headposy);																
 																}else{
 																	headposy = gltf.scene.children[0].position.y;
 																	$("#toy_head_pos")[0].value = headposy;	
 																}
 																if(headposx != 0.0){
+																	headposx = -headposx;
+																	headposx = -headposx;
 																	gltf.scene.children[0].position.setX(headposx);
 																}else{
 																	headposx = gltf.scene.children[0].position.x;
 																	$("#toy_head_posx")[0].value = headposx;	
 																}
 																if(headposz != 0.0){
+																	headposz = -headposz;
+																	headposz = -headposz;
 																	gltf.scene.children[0].position.setZ(headposz);
 																}else{
 																	headposz = gltf.scene.children[0].position.z;
@@ -578,18 +584,24 @@ $.ajax({
 																ttemp = gltf.scene;
 																color = $("#toy_torso_tex")[0].value;
 																if(torsoposy != 0.0){
+																	torsoposy = -torsoposy;
+																	torsoposy = -torsoposy;
 																	gltf.scene.children[0].position.setY(torsoposy);
 																}else{
 																	torsoposy = gltf.scene.children[0].position.y;
 																	$("#toy_torso_posy")[0].value = torsoposy;
 																}
 																if(torsoposx != 0.0){
+																	torsoposx = -torsoposx;
+																	torsoposx = -torsoposx;
 																	gltf.scene.children[0].position.setX(torsoposx);
 																}else{
 																	torsoposx = gltf.scene.children[0].position.x;
 																	$("#toy_torso_posx")[0].value = torsoposx;
 																}
 																if(torsoposz != 0.0){
+																	torsoposz = -torsoposz;
+																	torsoposz = -torsoposz;
 																	gltf.scene.children[0].position.setZ(torsoposz);
 																}else{
 																	torsoposz = gltf.scene.children[0].position.z;
@@ -607,18 +619,24 @@ $.ajax({
 																latemp = gltf.scene; 
 																color = $("#toy_larm_tex")[0].value;
 																if(larmposy != 0.0){
+																	larmposy = -larmposy;
+																	larmposy = -larmposy;
 																	gltf.scene.children[0].position.setY(larmposy);
 																}else{
 																	larmposy = gltf.scene.children[0].position.y;
 																	$("#toy_larm_posy")[0].value = larmposy;
 																}
 																if(larmposx != 0.0){
+																	larmposx = -larmposx;
+																	larmposx = -larmposx;
 																	gltf.scene.children[0].position.setX(larmposx);
 																}else{
 																	larmposx = gltf.scene.children[0].position.x;
 																	$("#toy_larm_posx")[0].value = larmposx;
 																}
 																if(larmposz != 0.0){
+																	larmposz = -larmposz;
+																	larmposz = -larmposz;
 																	gltf.scene.children[0].position.setZ(larmposz);
 																}else{
 																	larmposz = gltf.scene.children[0].position.z;
@@ -635,18 +653,24 @@ $.ajax({
 																ratemp = gltf.scene;
 																color = $("#toy_rarm_tex")[0].value;
 																if(rarmposy != 0.0){
+																	rarmposy = -rarmposy;
+																	rarmposy = -rarmposy;
 																	gltf.scene.children[0].position.setY(rarmposy);
 																}else{
 																	rarmposy = gltf.scene.children[0].position.y;
 																	$("#toy_rarm_posy")[0].value = rarmposy;
 																}
 																if(rarmposx != 0.0){
+																	rarmposx = -rarmposx;
+																	rarmposx = -rarmposx;
 																	gltf.scene.children[0].position.setX(rarmposx);
 																}else{
 																	rarmposx = gltf.scene.children[0].position.x;
 																	$("#toy_rarm_posx")[0].value = rarmposx;
 																}
 																if(rarmposz != 0.0){
+																	rarmposz = -rarmposz;
+																	rarmposz = -rarmposz;
 																	gltf.scene.children[0].position.setZ(rarmposz);
 																}else{
 																	rarmposz = gltf.scene.children[0].position.z;
@@ -663,18 +687,24 @@ $.ajax({
 																lltemp = gltf.scene;
 																color = $("#toy_lleg_tex")[0].value;
 																if(llegposy != 0.0){
+																	llegposy = -llegposy;
+																	llegposy = -llegposy;
 																	gltf.scene.children[0].position.setY(llegposy);
 																}else{
 																	llegposy = gltf.scene.children[0].position.y;
 																	$("#toy_lleg_posy")[0].value = llegposy;
 																}
 																if(llegposx != 0.0){
+																	llegposx = -llegposx;
+																	llegposx = -llegposx;
 																	gltf.scene.children[0].position.setX(llegposx);
 																}else{
 																	llegposx = gltf.scene.children[0].position.x;
 																	$("#toy_lleg_posx")[0].value = llegposx;
 																}
 																if(llegposz != 0.0){
+																	llegposz = -llegposz;
+																	llegposz = -llegposz;
 																	gltf.scene.children[0].position.setZ(llegposz);
 																}else{
 																	llegposz = gltf.scene.children[0].position.z;
@@ -691,18 +721,24 @@ $.ajax({
 																rltemp = gltf.scene;
 																color = $("#toy_rleg_tex")[0].value;
 																if(rlegposy != 0.0){
+																	rlegposy = -rlegposy;
+																	rlegposy = -rlegposy;
 																	gltf.scene.children[0].position.setY(rlegposy);
 																}else{
 																	rlegposy = gltf.scene.children[0].position.y;
 																	$("#toy_rleg_posy")[0].value = rlegposy;
 																}
 																if(rlegposx != 0.0){
+																	rlegposx = -rlegposx;
+																	rlegposx = -rlegposx;
 																	gltf.scene.children[0].position.setX(rlegposx);
 																}else{
 																	rlegposx = gltf.scene.children[0].position.x;
 																	$("#toy_rleg_posx")[0].value = rlegposx;
 																}
 																if(rlegposz != 0.0){
+																	rlegposz = -rlegposz;
+																	rlegposz = -rlegposz;
 																	gltf.scene.children[0].position.setZ(rlegposz);
 																}else{
 																	rlegposz = gltf.scene.children[0].position.z;
