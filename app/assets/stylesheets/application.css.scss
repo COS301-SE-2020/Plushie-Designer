@@ -774,23 +774,45 @@ body {
     overflow: scroll;
     overflow-x: hidden;
     .tray__slide {
-        //display: inline-block;
-        height: 100%;
-        width: 100%;
-        .tray__swatch {
-            height: 40px;
-            min-width: 50px;
-            margin-left: 2.5%;
-            // margin-bottom: 2.5%;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-            display: inline-block;
-            border-radius: 2px;
-        }
-        .tray__swatch:hover {
-            cursor: pointer;
-        }
+      //display: inline-block;
+      height: 100%;
+      width: 100%;
+      .tray__swatch {
+          height: 40px;
+          min-width: 50px;
+          margin-left: 2.5%;
+          // margin-bottom: 2.5%;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+          display: inline-block;
+          border-radius: 2px;
+          border: 1px solid var(--q-colour);
+      }
+      .tray__swatch:hover {
+          cursor: pointer;
+      }
+      #color-picker {
+        height: 40px;
+        width: 50px;
+        position: relative;
+        // margin-left: -14px;
+        top: -5px;
+        margin-left: 2.5%;
+        display: inline-block;
+        padding: 0;
+      }
+      .glyphicon-plus {
+        position: relative;
+        font-size: 45px;
+        top: -5px;
+        left: -37px;
+        // color: var(--secondary-colour);
+        pointer-events: none;
+      }
+    }
+    .tray__swatch:nth-child(3) {
+      margin-left: -22px !important;
     }
 }
 .texture-controls {

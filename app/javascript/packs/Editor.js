@@ -187,7 +187,7 @@ $.ajax({
 													// } );
 													// //----------------------------------------------------------------------
 													//--------------------------------TEXTURE CHANGES---------------------------------------------
-													const colors = [
+													var colors = [
 														{
 															color: 'E3A668',
 														},
@@ -209,6 +209,22 @@ $.ajax({
 
 
 														const TRAY = document.getElementById('js-tray-slide');
+														const color_picker = document.getElementById('color-picker');
+														color_picker.onchange = addColorSwatch;
+														
+														function addColorSwatch()
+														{
+															let swatch = document.createElement('div');
+															swatch.classList.add('tray__swatch');
+															swatch.style.background = color_picker.value;
+															
+															swatch.setAttribute('data-key', colors.length);
+															colors.push({
+																color: color_picker.value.replace('#','')
+															});
+															swatch.addEventListener('click', selectSwatch);
+															TRAY.append(swatch);
+														}
 
 														//---------------------------------TO CHANGE TO JPG--------------------
 														// Function - Build Colors
@@ -226,6 +242,7 @@ $.ajax({
 															}
 														
 															swatch.setAttribute('data-key', i);
+															
 															TRAY.append(swatch);
 															}
 														}
@@ -270,7 +287,9 @@ $.ajax({
 														for (const swatch of swatches) {
 														swatch.addEventListener('click', selectSwatch);
 														}
+
 														var currentSelection;
+
 														function selectSwatch(e) {
 															let color = colors[parseInt(e.target.dataset.key)];
 															let new_mtl;
