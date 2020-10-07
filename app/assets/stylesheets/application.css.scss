@@ -1379,6 +1379,25 @@ hr {
   }
 }
 
+.payment-form {
+  max-width: 55em;
+  .half-field {
+    width: 40%;
+    display: inline-block;
+  }
+  .third-field {
+    width: 25%;
+    display: inline-block;
+  }
+  .two-third-field {
+    width: 65%;
+    display: inline-block;
+  }
+  .space-left {
+    margin-left: 7%;
+  }
+}
+
 /* Change Autocomplete styles in Chrome*/
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
