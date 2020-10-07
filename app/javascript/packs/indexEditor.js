@@ -379,43 +379,68 @@ $.ajax({
 																case "hair" : currentSelection = hhtemp; break;
 																case htemp.children[0].name : 
 																	if(menuitem != "head"){
-																		$('.head-controls').click();
+																		$('.head-controls').click();																		
 																	}
+																	if(head < data.file_paths.models.length-1)
+																		populateInfoCard(data.file_paths.models[head].head.title,data.file_paths.models[head].head.desc,data.file_paths.models[head].head.img);
+																	else
+																		populateInfoCard("Coming Soon", "No Information for uploaded models.", head_models[head-data.file_paths.models.length].head_image.url);
+
 																	currentSelection = htemp; 
 																	// zoomin(obj);
 																	break;
 																case ttemp.children[0].name : 
 																	if(menuitem != "torso"){
-																		$('.torso-controls').click();
+																		$('.torso-controls').click();																		
 																	}
+																	if(torso < data.file_paths.models.length-1)
+																		populateInfoCard(data.file_paths.models[torso].body.title,data.file_paths.models[torso].body.desc,data.file_paths.models[torso].body.img);
+																	else
+																		populateInfoCard("Coming Soon", "No Information for uploaded models.", body_models[torso-data.file_paths.models.length].body_image.url);
 																	currentSelection = ttemp; 
 																	// zoomin(obj);
 																	break;
 																case lltemp.children[0].name :
 																	if(menuitem != "l-legs"){
-																		$('.l-legs-controls').click(); 
+																		$('.l-legs-controls').click();																		
 																	}
+																	if(lleg < data.file_paths.models.length-1)
+																		populateInfoCard(data.file_paths.models[lleg].l_leg.title,data.file_paths.models[lleg].l_leg.desc,data.file_paths.models[lleg].l_leg.img);
+																	else
+																		populateInfoCard("Coming Soon", "No Information for uploaded models.", l_leg_models[lleg-data.file_paths.models.length].l_leg_image.url);
 																	currentSelection = lltemp; 
 																	// zoomin(obj);
 																	break;
 																case rltemp.children[0].name : 
 																	if(menuitem != "r-legs"){
-																		$('.r-legs-controls').click();
+																		$('.r-legs-controls').click();																		
 																	}
+																	if(rleg < data.file_paths.models.length-1)
+																		populateInfoCard(data.file_paths.models[rleg].r_leg.title,data.file_paths.models[rleg].r_leg.desc,data.file_paths.models[rleg].r_leg.img);
+																	else
+																		populateInfoCard("Coming Soon", "No Information for uploaded models.", r_leg_models[rleg-data.file_paths.models.length].r_leg_image.url);
 																	currentSelection = rltemp; 
 																	// zoomin(obj);
 																	break;
 																case latemp.children[0].name : 
 																	if(menuitem != "l-arms"){
-																		$('.l-arms-controls').click();
+																		$('.l-arms-controls').click();																		
 																	}
+																	if(larm < data.file_paths.models.length-1)
+																		populateInfoCard(data.file_paths.models[larm].l_arm.title,data.file_paths.models[larm].l_arm.desc,data.file_paths.models[larm].l_arm.img);
+																	else
+																		populateInfoCard("Coming Soon", "No Information for uploaded models.", l_arm_models[larm-data.file_paths.models.length].l_arm_image.url);
 																	currentSelection = latemp; 
 																	// zoomin(obj);
 																	break;
 																case ratemp.children[0].name :
 																	if(menuitem != "r-arms"){
-																		$('.r-arms-controls').click(); 
+																		$('.r-arms-controls').click();																		
 																	}
+																	if(rarm < data.file_paths.models.length-1)
+																		populateInfoCard(data.file_paths.models[rarm].r_arm.title,data.file_paths.models[rarm].r_arm.desc,data.file_paths.models[rarm].r_arm.img);
+																	else
+																		populateInfoCard("Coming Soon", "No Information for uploaded models.", r_arm_models[rarm-data.file_paths.models.length].r_arm_image.url);
 																	currentSelection = ratemp; 
 																	// zoomin(obj);
 																	break;
@@ -455,7 +480,7 @@ $.ajax({
 													function add_model_to_scene(gltf, name)
 													{
 
-														let color = colors[2];														
+														let color = colors[3].color;														
 														// gltf.scene.position.setY(1.5);
 														gltf.scene.children[0].castShadow = true;
 														gltf.scene.name = name;
@@ -577,9 +602,9 @@ $.ajax({
 																if(llegposy != 0.0){
 																	gltf.scene.children[0].position.setY(llegposy);
 																}else{
-																	console.log(llegposy);
+																	// console.log(llegposy);
 																	llegposy = gltf.scene.children[0].position.y;
-																	console.log(llegposy);
+																	// console.log(llegposy);
 																}
 																if(llegposx != 0.0){
 																	gltf.scene.children[0].position.setX(llegposx);
@@ -626,8 +651,8 @@ $.ajax({
 																bmp.wrapT = THREE.RepeatWrapping;
 
 														new_mtl = new THREE.MeshPhongMaterial({
-																color: parseInt('0x' + color.color),
-																shininess: color.shininess ? color.shininess : 10,
+																color: parseInt('0x' + color),
+																shininess: 10,
 																bumpMap: bmp,
 																bumpScale: 0.45
 															});
@@ -771,7 +796,7 @@ $.ajax({
 														}
 													}
 													//--------------------------------------------------------
-													console.log(scene.children);
+													// console.log(scene.children);
 
 													window.addEventListener( 'resize', onWindowResize, false );
 
@@ -986,9 +1011,9 @@ $.ajax({
 																		headposx = 0.0;
 																		headposz = 0.0;
 																		headchange = true;
-																		head = this.value;
-																		$("#toy_head")[0].value = head;
-																	}																
+																		head = this.value;																	
+																	}
+																	populateInfoCard(data.file_paths.models[head].head.title,data.file_paths.models[head].head.desc,data.file_paths.models[head].head.img);															
 																};
 																hprsh.appendChild(button);
 															}
@@ -1009,9 +1034,9 @@ $.ajax({
 																		torsoposx = 0.0;
 																		torsoposz = 0.0;
 																		torsochange = true;
-																		torso = this.value;
-																		$("#toy_torso")[0].value = torso;
+																		torso = this.value;																	
 																	}
+																	populateInfoCard(data.file_paths.models[torso].body.title,data.file_paths.models[torso].body.desc,data.file_paths.models[torso].body.img);
 																};
 																tprsh.appendChild(button);
 															}
@@ -1032,9 +1057,9 @@ $.ajax({
 																		larmposx = 0.0;
 																		larmposz = 0.0;
 																		larmchange = true;
-																		larm = this.value;
-																		$("#toy_arms")[0].value = larm;
-																	}																
+																		larm = this.value;																	
+																	}
+																	populateInfoCard(data.file_paths.models[larm].l_arm.title,data.file_paths.models[larm].l_arm.desc,data.file_paths.models[larm].l_arm.img);																
 																};
 																laprsh.appendChild(button);
 															}
@@ -1055,9 +1080,9 @@ $.ajax({
 																		rarmposx = 0.0;
 																		rarmposz = 0.0;
 																		rarmchange = true;
-																		rarm = this.value;
-																		$("#toy_r_arm")[0].value = rarm;
-																	}																
+																		rarm = this.value;																		
+																	}
+																	populateInfoCard(data.file_paths.models[rarm].r_arm.title,data.file_paths.models[rarm].r_arm.desc,data.file_paths.models[rarm].r_arm.img);															
 																};
 																raprsh.appendChild(button);
 															}
@@ -1078,9 +1103,9 @@ $.ajax({
 																		llegposx = 0.0;
 																		llegposz = 0.0;
 																		llegchange = true;
-																		lleg = this.value;
-																		$("#toy_legs")[0].value = lleg;
-																	}															
+																		lleg = this.value;																	
+																	}
+																	populateInfoCard(data.file_paths.models[lleg].l_leg.title,data.file_paths.models[lleg].l_leg.desc,data.file_paths.models[lleg].l_leg.img);														
 																};
 																llprsh.appendChild(button);
 															}
@@ -1101,9 +1126,9 @@ $.ajax({
 																		rlegposx = 0.0;
 																		rlegposz = 0.0;
 																		rlegchange = true;
-																		rleg = this.value;
-																		$("#toy_r_leg")[0].value = rleg;
-																	}																
+																		rleg = this.value;																	
+																	}
+																	populateInfoCard(data.file_paths.models[rleg].r_leg.title,data.file_paths.models[rleg].r_leg.desc,data.file_paths.models[rleg].r_leg.img);															
 																};
 																rlprsh.appendChild(button);
 															}
@@ -1134,8 +1159,8 @@ $.ajax({
 																		headposz = 0.0;
 																		headchange = true;
 																		head = this.value;
-																		$("#toy_head")[0].value = head;
-																	}																
+																	}
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);														
 																};
 																hupsh.appendChild(button);
 															}
@@ -1159,8 +1184,8 @@ $.ajax({
 																		torsoposz = 0.0;
 																		torsochange = true;
 																		torso = this.value;
-																		$("#toy_torso")[0].value = torso;
 																	}
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
 																};
 																tupsh.appendChild(button);
 															}
@@ -1184,8 +1209,8 @@ $.ajax({
 																		larmposz = 0.0;
 																		larmchange = true;
 																		larm = this.value;
-																		$("#toy_arms")[0].value = larm;
-																	}																
+																	}	
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);															
 																};
 																laupsh.appendChild(button);
 															}
@@ -1209,8 +1234,8 @@ $.ajax({
 																		rarmposz = 0.0;
 																		rarmchange = true;
 																		rarm = this.value;
-																		$("#toy_r_arm")[0].value = rarm;
-																	}																
+																	}	
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);															
 																};
 																raupsh.appendChild(button);
 															}
@@ -1234,8 +1259,8 @@ $.ajax({
 																		llegposz = 0.0;
 																		llegchange = true;
 																		lleg = this.value;
-																		$("#toy_legs")[0].value = lleg;
-																	}															
+																	}	
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);														
 																};
 																llupsh.appendChild(button);
 															}
@@ -1259,16 +1284,91 @@ $.ajax({
 																		rlegposz = 0.0;
 																		rlegchange = true;
 																		rleg = this.value;
-																		$("#toy_r_leg")[0].value = rleg;
-																	}																
+																	}	
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);															
 																};
 																rlupsh.appendChild(button);
 															}
 														}
 													}
 
+													function populateFullModels(){
+														var fm = document.getElementById("fullmodels");
+														fm.innerHTML="";
+																																																						
+														for(var i=0;i<data.file_paths.models.length;++i){
+															if(data.file_paths.models[i].type==type){
+																var button = document.createElement('button');
+																//alert(data.file_paths.models.test);
+																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].img + '" />';
+																button.className = 'btn';
+																var tid = "fullmodel" + i;
+																button.id = tid;
+																button.type = "button";
+																button.value = i;
+																button.onclick = function(){															
+																	if(head!=this.value){
+																		headposy = 0.0;
+																		headposx = 0.0;
+																		headposz = 0.0;
+																		torsoposy = 0.0;
+																		torsoposx = 0.0;
+																		torsoposz = 0.0;
+																		larmposy = 0.0;
+																		larmposx = 0.0;
+																		larmposz = 0.0;
+																		rarmposy = 0.0;
+																		rarmposx = 0.0;
+																		rarmposz = 0.0;
+																		llegposy = 0.0;
+																		llegposx = 0.0;
+																		llegposz = 0.0;
+																		rlegposy = 0.0;
+																		rlegposx = 0.0;
+																		rlegposz = 0.0;
+
+																		// type=this.value;
+																		// typechange=true;
+
+																		hair = this.value;
+																		head = this.value;
+																		torso = this.value;
+																		larm = this.value;
+																		rarm = this.value;
+																		lleg = this.value;
+																		rleg = this.value;
+
+																		headchange = true;
+																		torsochange = true;
+																		larmchange = true; 
+																		rarmchange = true; 
+																		llegchange = true;
+																		rlegchange = true;
+																	}														
+																};
+																fm.appendChild(button);
+															}
+														}
+													}
+
+													function populateInfoCard(title, desc, image){
+														$('#info-title').html(title);
+														$('#info-description').html(desc);
+														$('#info-image').html('<img src="'+image+'" alt="A113">');
+													}
+
 													//---------------------------HTML CUSTOMIZE PLUSH-----------------------
 													$(document).ready(function(){
+														populateFullModels();
+														$('#info-card').fadeToggle(0);
+														$('#info-btn').click(function () {
+															if($('#info-btn').text()=="Show Info"){
+																$('#info-btn').html('Hide Info');																
+															}else{
+																$('#info-btn').html('Show Info');
+															}
+															$('#info-card').fadeToggle(300);
+														});
 														$('#check-zoom').click(function () {
 															bzoom = !bzoom;
 															if(!bzoom){
@@ -1363,6 +1463,8 @@ $.ajax({
 																rarmchange = true; 
 																llegchange = true;
 																rlegchange = true;
+
+																populateFullModels();
 															}
 														});
 														
@@ -1408,6 +1510,8 @@ $.ajax({
 																rarmchange = true; 
 																llegchange = true;
 																rlegchange = true;
+
+																populateFullModels();
 															}
 														});
 														
@@ -1453,6 +1557,8 @@ $.ajax({
 																rarmchange = true; 
 																llegchange = true;
 																rlegchange = true;
+
+																populateFullModels();
 															}
 														});
 

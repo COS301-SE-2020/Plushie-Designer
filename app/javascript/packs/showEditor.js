@@ -358,16 +358,16 @@ $.ajax({
 																gltf.scene.children[0].position.setY(headposy); 
 																gltf.scene.children[0].position.setX(headposx);
 																gltf.scene.children[0].position.setZ(headposz);  
-																console.log(gltf.scene.children[0]);
+																// console.log(gltf.scene.children[0]);
 																break;
 															case "torso" : 
 																ttemp = gltf.scene;
-																console.log(torsoposy);
+																// console.log(torsoposy);
 																color = $(".torsotex").data("torsotex");
 																gltf.scene.children[0].position.setY(torsoposy); 
 																gltf.scene.children[0].position.setX(torsoposx);  
 																gltf.scene.children[0].position.setZ(torsoposz);
-																console.log(gltf.scene.children[0]);
+																// console.log(gltf.scene.children[0]);
 															break;
 															case "leftarm" : 
 																latemp = gltf.scene; 
