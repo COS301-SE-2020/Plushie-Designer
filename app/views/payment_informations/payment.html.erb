@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="col-3 third-field">
                                 <%= label_tag(:card_tag, "card no:")%>
-                                <%= text_field_tag(:card_no, @found ? @cardHolder.card_no : '') %>
+                                <%= text_field_tag(:card_no, @found ? @cardHolder.card_no : '', maxlength: 16) %>
                             </div>
                             <div class="col-4 two-third-field space-left">
                                 <%= label_tag(:expiration_m_tag, "expiration date and security code:")%>

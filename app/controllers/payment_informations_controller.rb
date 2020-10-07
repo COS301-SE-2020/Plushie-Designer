@@ -124,8 +124,8 @@ class PaymentInformationsController < ApplicationController
         end
       end
 
-      if sActualCardNo.length != 12
-        error_message = "Please insert card number of length 12"
+      if sActualCardNo.length != 16
+        error_message = "Please insert card number of length 16"
         valid = false
       end
 
