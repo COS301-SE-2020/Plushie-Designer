@@ -2695,3 +2695,14 @@ fieldset.toy_shared {
     position: absolute;
     top: 0;
 }
+
+#upload-disc{
+    color: var(--primary-colour);
+    text-align: center;
+    position: fixed;
+    width: 50%;
+    bottom: 3em;
+    height: 5em;
+    left: 25%;
+    font-size: larger;
+}
