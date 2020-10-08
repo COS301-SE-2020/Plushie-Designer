@@ -9,7 +9,7 @@
 # https://github.com/mileszs/wicked_pdf/blob/master/README.md
 
 WickedPdf.config = {
-  :exe_path => Rails.root.join('bin', 'wkhtmltox\bin\wkhtmltopdf-linux-amd64').to_s,
+  :exe_path => Rails.root.join('bin', 'wkhtmltox/bin/wkhtmltopdf-linux-amd64').to_s,
   :margin => {      :top=> 0,
                     :bottom => 10,
                     :left=> 0,
