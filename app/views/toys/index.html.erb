@@ -11,7 +11,7 @@
                 <% if toy.shared || current_user == toy.user%>
                     <div class="toy-card">
                         <!-- <div class="toy-download-pdf"> -->
-                            <%= link_to '<span class="glyphicon glyphicon-download-alt"></span>'.html_safe, payment_path(toy.id), :class => "toy-download-pdf", :id => "download-pdf" if current_user != nil%>
+                            <%= link_to '<span class="glyphicon glyphicon-download-alt"></span>'.html_safe, displayPDF_path(toy.id, format: :pdf),target: :_blank, :class => "toy-download-pdf", :id => "download-pdf", :title => "Click here to download instructions to make this plushie" %>
                         <!-- </div> -->
                         <div class="card-content">
                             <img class="PlushImg" src=<%= toy.image %>>
@@ -70,7 +70,7 @@
                                 Rating:<strong> <%= toy.rating/@num %>/5</strong>
                                 <% @num = 0 %>
                             </p>
-                            <%= link_to 'DOWNLOAD PDF', payment_path(toy.id)%> -->
+                            <%= link_to 'DOWNLOAD PDF', displayPDF_path(toy.id, format: :pdf),target: :_blank %> -->
                         </div>
                     </div>
                     <!-- <hr> -->
