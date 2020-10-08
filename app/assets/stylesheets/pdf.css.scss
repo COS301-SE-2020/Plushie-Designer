@@ -144,5 +144,24 @@
 }
 
 .instruction {
-  font-size: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+
+.center-instruction-image{
+  text-align: center;
+}
+
+.instruction_image{
+  height: 25em;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid, 5px;
+  margin-bottom: 5em;
+  margin-top: 2em;
+  border-radius: 1em;
 }
