@@ -340,17 +340,17 @@ $.ajax({
 															case "hair" : 
 																hhtemp = gltf.scene; 
 																gltf.scene.children[0].position.setY(headposy);
-																gltf.scene.children[1].position.setY(headposy);
-																gltf.scene.children[2].position.setY(headposy);
-																gltf.scene.children[3].position.setY(headposy);
+																// gltf.scene.children[1].position.setY(headposy);
+																// gltf.scene.children[2].position.setY(headposy);
+																// gltf.scene.children[3].position.setY(headposy);
 																gltf.scene.children[0].position.setX(headposx);
-																gltf.scene.children[1].position.setX(headposx);
-																gltf.scene.children[2].position.setX(headposx);
-																gltf.scene.children[3].position.setX(headposx);
+																// gltf.scene.children[1].position.setX(headposx);
+																// gltf.scene.children[2].position.setX(headposx);
+																// gltf.scene.children[3].position.setX(headposx);
 																gltf.scene.children[0].position.setZ(headposz); 
-																gltf.scene.children[1].position.setZ(headposz); 
-																gltf.scene.children[2].position.setZ(headposz); 
-																gltf.scene.children[3].position.setZ(headposz);
+																// gltf.scene.children[1].position.setZ(headposz); 
+																// gltf.scene.children[2].position.setZ(headposz); 
+																// gltf.scene.children[3].position.setZ(headposz);
 																break;
 															case "head" :
 																htemp = gltf.scene;
