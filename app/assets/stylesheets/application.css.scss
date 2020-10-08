@@ -96,95 +96,93 @@
  }
  
  .navbar {
-     z-index: 990;
-     padding: 10px;
-     background-color: var(--secondary-colour);
-     color: var(--primary-colour);
-     //background-color: var(--primary-colour);
-     //color: var(--secondary-colour);
-     left: 27.5%;
-     right: 27.5%;
-     position: fixed;
-     width: 45%;
-     margin-bottom: 2vh;
-     border-radius: 0;
-     height: 7.5rem;
-     border: 3px solid var(--secondary-colour);
-     .nav-s-left {
-         position: absolute;
-         left:-10em;
-         top:-66.5%;
-         fill: var(--secondary-colour);
-         // top:22.1%;
-         height: 12.3em;
-         padding: 0;
-         // border: 1px solid white;
-     }
-     .nav-s-right {
-         position: absolute;
-         right: -10em;
-         top: -66.5%;
-         // left:-18%;
-         // top:-64%;
-         height: 12.3em;
-         padding: 0;
-     }
-     .navbar-header {
-         width: 50%;
-         height: inherit;
-         .navbar-brand {
-             float: right;
-             margin-right: 9%;
-             border-radius: 7px;
-             color: var(--primary-colour);
-             //background-color: var(--primary-colour);
-             transition: background-color 0.3s ease;
-         }
-         .navbar-brand:hover {
-             color: var(--q-colour);
-             //background-color: var(--secondary-colour);
-             transition: background-color 0.3s ease;
-         }
-     }
-     .center {
-         .logo {
-             position: absolute;
-             width: 8%;
-             height: 200%;
-             top: 0;
-             left: 0;
-             right: 0;
-             margin-left: auto;
-             margin-right: auto;
-         }
-     }
-     .navbar-nav {
-         width: 50%;
-         height: inherit;
-         left: 56%;
-         position: absolute;
-         display: inline-table;
-         list-style: none;
-         margin: 0;
-         li {
-             width: 30%;
-             a {
-                 // display: inherit !important;
-                 color: var(--primary-colour);
-                 border-radius: 7px;
-                 transition: background-color 0.3s ease;
-             }
-             a:hover {
-                 color: var(--q-colour);
-                 background-color: var(--secondary-colour);
-                 transition: background-color 0.3s ease;
-             }
-         }
-         .dropdown-menu {
-             background-color: var(--secondary-colour);
-         }
-     }
- }
+    z-index: 990;
+    padding: 10px;
+    background-color: var(--secondary-colour);
+    color: var(--primary-colour);
+    //background-color: var(--primary-colour);
+    //color: var(--secondary-colour);
+    left: 27.5%;
+    right: 27.5%;
+    position: fixed;
+    width: 45%;
+    margin-bottom: 2vh;
+    border-radius: 0;
+    border: 3px solid var(--secondary-colour);
+    .nav-s-left {
+        position: absolute;
+        left:-10em;
+        top:-64%;
+        fill: var(--secondary-colour);
+        // top:22.1%;
+        height: 12.3em;
+        padding: 0;
+        // border: 1px solid white;
+    }
+    .nav-s-right {
+        position: absolute;
+        right: -10em;
+        top: -64%;
+        // left:-18%;
+        // top:-64%;
+        height: 12.3em;
+        padding: 0;
+    }
+    .navbar-header {
+        width: 50%;
+        height: inherit;
+        .navbar-brand {
+            float: right;
+            margin-right: 9%;
+            border-radius: 7px;
+            color: var(--primary-colour);
+            //background-color: var(--primary-colour);
+            transition: background-color 0.3s ease;
+        }
+        .navbar-brand:hover {
+            color: var(--q-colour);
+            //background-color: var(--secondary-colour);
+            transition: background-color 0.3s ease;
+        }
+    }
+    .center {
+        .logo {
+            position: absolute;
+            width: 8%;
+            height: 200%;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    .navbar-nav {
+        width: 50%;
+        height: inherit;
+        padding-left: 5%;
+        li {
+            a {
+                color: var(--primary-colour);
+                //background-color: var(--primary-colour);
+                border-radius: 7px;
+                //margin-left: 1%;
+                transition: background-color 0.3s ease;
+            }
+            a:hover {
+                color: var(--q-colour);
+                background-color: var(--secondary-colour);
+                transition: background-color 0.3s ease;
+            }
+        }
+        //.dropdown-toggle:active {
+        //    background-color: var(--secondary-colour);
+        //}
+        .dropdown-menu {
+            background-color: var(--secondary-colour);
+        }
+    }
+}
  
  .footer-distributed {
      background-color: var(--secondary-colour);
