@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :username, presence: true
   has_many :toys
   has_many :ratings
+  has_many :payment_informations
 end

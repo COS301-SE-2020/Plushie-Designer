@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_14_173819) do
+ActiveRecord::Schema.define(version: 2020_10_02_122156) do
 
   create_table "body_models", force: :cascade do |t|
     t.string "body_file"
@@ -46,6 +46,25 @@ ActiveRecord::Schema.define(version: 2020_09_14_173819) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "l_leg_image"
     t.integer "model_type"
+  end
+
+  create_table "payment_informations", force: :cascade do |t|
+    t.string "ch_name"
+    t.string "ch_surname"
+    t.integer "cell_no"
+    t.string "payment_method"
+    t.string "card_no"
+    t.integer "expiration_month"
+    t.integer "expiration_year"
+    t.string "security_code"
+    t.string "address_line1"
+    t.string "address_line2"
+    t.string "city"
+    t.string "postal_code"
+    t.string "country"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "r_arm_models", force: :cascade do |t|

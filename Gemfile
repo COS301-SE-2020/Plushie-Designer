@@ -24,6 +24,7 @@ gem 'simple_form', '~> 5.0', '>= 5.0.1'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.3'
 gem 'wicked_pdf'
+gem 'country_select'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
