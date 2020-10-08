@@ -1,0 +1,105 @@
+<br><br><br><br>
+<div class="user-form">
+    <div class="user-form-back"></div>
+    <%= form_for :payment_information, :url => make_payment_url, method: "get" do %>
+
+        <div class="payment-form">
+            <div class="form-inputs">
+                <%= hidden_field_tag :id, `@toy.id` %>
+                <div class="form-container">
+                    <form class="mt-5">
+                        <div class="row">
+                            <div class="col-5 half-field">
+                                <%= label_tag(:payment_tag, "payment method:")%>
+                                <%= text_field_tag(:payment_method, @found ? @cardHolder.payment_method : '') %>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 third-field">
+                                <%= label_tag(:card_tag, "card no:")%>
+                                <%= text_field_tag(:card_no, @found ? @cardHolder.card_no : '', maxlength: 16) %>
+                            </div>
+                            <div class="col-4 two-third-field space-left">
+                                <%= label_tag(:expiration_m_tag, "expiration date and security code:")%>
+                                <div class="row">
+                                    <div class="col-4 third-field space-left">
+                                        <%= number_field_tag :expiration_month, @found ? @cardHolder.expiration_month : 1, min: 1, max: 12  %>
+                                    </div>
+                                    <div class="col-4 third-field space-left">
+                                        <%= number_field_tag :expiration_year, @found ? @cardHolder.expiration_year : 2020, min: 2020 %>
+                                    </div>
+                                    <div class="col-4 third-field space-left">
+                                        <%= text_field_tag(:security_code, @found ? @cardHolder.security_code : '') %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <h2>Billing Information</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 two-third-field">
+                                <!-- <div class="row"> -->
+                                    <div class="col-6 half-field">
+                                        <%= label_tag(:name_tag, "Name:") %>
+                                        <%= text_field_tag(:ch_name, @found ? @cardHolder.ch_name : '') %>
+                                    </div>
+                                    <div class="col-6 half-field space-left">
+                                        <%= label_tag(:surname_tag, "Last Name:")%>
+                                        <%= text_field_tag(:ch_surname, @found ? @cardHolder.ch_surname : '') %>
+                                    </div>
+                                <!-- </div> -->
+                            </div>
+                            <div class="col-3 third-field space-left">
+                                <%= label_tag(:city_tag, "city:")%>
+                                <%= text_field_tag(:city, @found ? @cardHolder.city : '') %>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 two-third-field">
+                                <%= label_tag(:address_1_tag, "address line 1:")%>
+                                <%= text_field_tag(:address_line1, @found ? @cardHolder.address_line1 : '') %>
+                            </div>
+                            <div class="col-3 third-field space-left">
+                                <%= label_tag(:postal_tag, "postal code:")%>
+                                <%= text_field_tag(:postal_code, @found ? @cardHolder.expiration_year : '') %>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 two-third-field">
+                                <%= label_tag(:address_2_tag, "address line 2:")%>
+                                <%= text_field_tag(:address_line2, @found ? @cardHolder.address_line2 : '') %>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 two-third-field">
+                                <%= label_tag(:country_tag, "country:") %>
+                                <%= text_field_tag(:country, @found ? @cardHolder.country : '') %>
+                            </div>
+                            <div class="col-3 third-field space-left">
+                                <%= label_tag(:cell_tag, "cell no:")%>
+                                <%= text_field_tag(:cell_no, @found ? @cardHolder.cell_no : '') %>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <% if @found != true %>
+                                <%= label_tag(:save_information_tag, "save information:") %>
+                                <%= check_box_tag(:save_info) %>
+                            <% end %>
+                        </div>
+                        <div class="row">
+                            <div class="col-5 two-third-field">
+                                
+                            </div>
+                            <div class="col-3 third-field space-left">
+                                <div class="form-actions">
+                                    <%= button_to 'DOWNLOAD PDF', make_payment_path(@toy.id), target: "_blank", id: "pay-button"%>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    <% end %>
+</div>
+
