@@ -22,51 +22,51 @@ function readTextFile(file, callback) {
 	var rawFile = new XMLHttpRequest();
 	rawFile.overrideMimeType("application/json");
 	rawFile.open("GET", file, true);
-	rawFile.onreadystatechange = function() {
+	rawFile.onreadystatechange = function () {
 		if (rawFile.readyState === 4 && rawFile.status == "200") {
 			callback(rawFile.responseText);
 		}
 	}
 	rawFile.send(null);
-	
+
 }
 
 $.ajax({
 	url: "/head_models",
 	dataType: "json",
-	success:  function(head_models){
+	success: function (head_models) {
 		// console.log(head_models);
 		$.ajax({
 			url: "/body_models",
 			dataType: "json",
-			success:  function(body_models){
+			success: function (body_models) {
 				// console.log(body_models);
 				$.ajax({
 					url: "/l_arm_models",
 					dataType: "json",
-					success:  function(l_arm_models){
+					success: function (l_arm_models) {
 						// console.log(l_arm_models);
 						$.ajax({
 							url: "/r_arm_models",
 							dataType: "json",
-							success:  function(r_arm_models){
+							success: function (r_arm_models) {
 								// console.log(r_arm_models);
 								$.ajax({
 									url: "/l_leg_models",
 									dataType: "json",
-									success:  function(l_leg_models){
+									success: function (l_leg_models) {
 										// console.log(l_leg_models);
 										$.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
-											success:  function(r_leg_models){
-												readTextFile("/file_paths1.JSON", function(text){
+											success: function (r_leg_models) {
+												readTextFile("/file_paths1.JSON", function (text) {
 													var data = JSON.parse(text);
 													// console.log(r_leg_models);
 													var headchange = false;
 													var torsochange = false;
-													var larmchange = false; 
-													var rarmchange = false; 
+													var larmchange = false;
+													var rarmchange = false;
 													var llegchange = false;
 													var rlegchange = false;
 													var bchange = false;
@@ -138,15 +138,15 @@ $.ajax({
 													camera.position.set(0, 1, 13);
 													//camera.lookAt(new THREE.Vector3(0,10,0));
 
-													const loadingManager = new THREE.LoadingManager( () => {
-														
-														const loadingScreen = document.getElementById( 'loading-screen' );
-														loadingScreen.classList.add( 'fade-out' );
-														
+													const loadingManager = new THREE.LoadingManager(() => {
+
+														const loadingScreen = document.getElementById('loading-screen');
+														loadingScreen.classList.add('fade-out');
+
 														// optional: remove loader from DOM via event listener
-														loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
-														
-													} );
+														loadingScreen.addEventListener('transitionend', onTransitionEnd);
+
+													});
 
 													var controls = new OrbitControls(camera, renderer.domElement);
 
@@ -184,587 +184,574 @@ $.ajax({
 													// }
 
 													//--------------------------------TEXTURE CHANGES---------------------------------------------
-														const colors = [
-															{
-																color: 'E3A668',
-															},
-															{
-																texture: '/images/head.png',
-																size: [3, 3, 3],
-																shininess: 0
-															},
-															{
-																color: '438AAC'
-															},
-															{
-																color: '27548D'
-															},
-															{
-																color: '153944'
-															}  
-															];
-
-														const TRAY = document.getElementById('js-tray-slide');
-														const color_picker = document.getElementById('color-picker');
-														color_picker.onchange = addColorSwatch;
-														
-														function addColorSwatch()
+													const colors = [
 														{
-															let swatch = document.createElement('div');
-															swatch.classList.add('tray__swatch');
-															swatch.style.background = color_picker.value;
-															
-															swatch.setAttribute('data-key', colors.length);
-															colors.push({
-																color: color_picker.value.replace('#','')
-															});
-															swatch.addEventListener('click', selectSwatch);
-															TRAY.append(swatch);
+															color: 'E3A668',
+														},
+														{
+															texture: '/images/head.png',
+															size: [3, 3, 3],
+															shininess: 0
+														},
+														{
+															color: '438AAC'
+														},
+														{
+															color: '27548D'
+														},
+														{
+															color: '153944'
 														}
+													];
 
-														//---------------------------------TO CHANGE TO JPG--------------------
-														// Function - Build Colors
-														function buildColors(colors) {
-															for (let [i, color] of colors.entries()) {
-															let swatch = document.createElement('div');
-															swatch.classList.add('tray__swatch');
-														
-															if (color.texture)
-															{
-															swatch.style.backgroundImage = "url(" + color.texture + ")";   
-															} else
-															{
-															swatch.style.background = "#" + color.color;
-															}
-														
-															swatch.setAttribute('data-key', i);
-															TRAY.append(swatch);
-															}
-														}
-														
-														buildColors(colors);
-														//----------------------------------------------------------------------
+													const TRAY = document.getElementById('js-tray-slide');
+													const color_picker = document.getElementById('color-picker');
+													color_picker.onchange = addColorSwatch;
 
-														//--------------------SETUP SWATCHES-------------------------------------
-														const swatches = document.querySelectorAll(".tray__swatch");
+													function addColorSwatch() {
+														let swatch = document.createElement('div');
+														swatch.classList.add('tray__swatch');
+														swatch.style.background = color_picker.value;
 
-														for (const swatch of swatches) {
+														swatch.setAttribute('data-key', colors.length);
+														colors.push({
+															color: color_picker.value.replace('#', '')
+														});
 														swatch.addEventListener('click', selectSwatch);
-														}
-														var currentSelection;
-														function selectSwatch(e) {
-															let color = colors[parseInt(e.target.dataset.key)];
-															let new_mtl;
-															let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
-																bmp.repeat.set( 3, 3, 3);
-																bmp.wrapS = THREE.RepeatWrapping;
-																bmp.wrapT = THREE.RepeatWrapping;
+														TRAY.append(swatch);
+													}
 
+													//---------------------------------TO CHANGE TO JPG--------------------
+													// Function - Build Colors
+													function buildColors(colors) {
+														for (let [i, color] of colors.entries()) {
+															let swatch = document.createElement('div');
+															swatch.classList.add('tray__swatch');
 
 															if (color.texture) {
-														
-																let txt = new THREE.TextureLoader().load(color.texture);
-																
-																txt.repeat.set( color.size[0], color.size[1], color.size[2]);
-																txt.wrapS = THREE.RepeatWrapping;
-																txt.wrapT = THREE.RepeatWrapping;
-																
-																new_mtl = new THREE.MeshPhongMaterial( {
+																swatch.style.backgroundImage = "url(" + color.texture + ")";
+															} else {
+																swatch.style.background = "#" + color.color;
+															}
+
+															swatch.setAttribute('data-key', i);
+															TRAY.append(swatch);
+														}
+													}
+
+													buildColors(colors);
+													//----------------------------------------------------------------------
+
+													//--------------------SETUP SWATCHES-------------------------------------
+													const swatches = document.querySelectorAll(".tray__swatch");
+
+													for (const swatch of swatches) {
+														swatch.addEventListener('click', selectSwatch);
+													}
+													var currentSelection;
+													function selectSwatch(e) {
+														let color = colors[parseInt(e.target.dataset.key)];
+														let new_mtl;
+														let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
+														bmp.repeat.set(3, 3, 3);
+														bmp.wrapS = THREE.RepeatWrapping;
+														bmp.wrapT = THREE.RepeatWrapping;
+
+
+														if (color.texture) {
+
+															let txt = new THREE.TextureLoader().load(color.texture);
+
+															txt.repeat.set(color.size[0], color.size[1], color.size[2]);
+															txt.wrapS = THREE.RepeatWrapping;
+															txt.wrapT = THREE.RepeatWrapping;
+
+															new_mtl = new THREE.MeshPhongMaterial({
 																map: txt,
 																shininess: color.shininess ? color.shininess : 10,
 																bumpMap: bmp,
 																bumpScale: 0.45
-																});    
-															} 
-															else
-															{
-																new_mtl = new THREE.MeshPhongMaterial({
-																	color: parseInt('0x' + color.color),
-																	shininess: color.shininess ? color.shininess : 10,
-																	bumpMap: bmp,
-																	bumpScale: 0.45
-																});
-															}
-														
-														setMaterial(currentSelection, new_mtl);
-														}
-
-														function setMaterial(parent, mtl) {
-															if(parent == null)
-															{
-																alert("Select a body part before selecting a texture.");
-																return;
-															}
-
-															// parent.children[0].material = mtl;
-															parent.children.forEach(obj => {
-																obj.material = mtl;
 															});
 														}
-														//------------------------------------------------------------------------
-
-
-														document.addEventListener("click", onMouseClick, false);
-														var mouse = new THREE.Vector2();
-														var raycaster = new THREE.Raycaster();
-
-														//------------------------------OUTLINE PASS SETUP------------------------------------------------
-														var selectedObjects = [];
-
-														var composer, copyshader, outlinePass;
-														function addSelectedObject( object ) {
-
-															selectedObjects = [];
-															selectedObjects.push( object );
-
+														else {
+															new_mtl = new THREE.MeshPhongMaterial({
+																color: parseInt('0x' + color.color),
+																shininess: color.shininess ? color.shininess : 10,
+																bumpMap: bmp,
+																bumpScale: 0.45
+															});
 														}
-														var outlinePass = new OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), scene, camera);
-														outlinePass.edgeStrength = Number( 10 );
-														outlinePass.edgeGlow = Number( 0);
-														outlinePass.edgeThickness = Number( 1 );
-														outlinePass.pulsePeriod = Number( 0 );
-														outlinePass.visibleEdgeColor.set( "#ffffff" );
-														outlinePass.hiddenEdgeColor.set( "#000000" );
 
-														//-------------------------TAA + FXAA SETUP---------------------------
-														var renderPass, taaRenderPass;
-														ConfigureCanvas();
+														setMaterial(currentSelection, new_mtl);
+													}
 
-														function ConfigureCanvas()
-														{
-															camera.aspect = window.innerWidth / window.innerHeight;
-															camera.updateProjectionMatrix();
-
-															renderer.setSize( window.innerWidth, window.innerHeight );
-
-															composer = new EffectComposer( renderer );
-															renderPass = new RenderPass( scene, camera );
-															composer.addPass( renderPass );
-
-															taaRenderPass = new TAARenderPass( scene, camera );
-															taaRenderPass.unbiased = true;
-															taaRenderPass.enabled = true;
-															taaRenderPass.sampleLevel = 3;
-															composer.addPass( taaRenderPass );
-															outlinePass = new OutlinePass( new THREE.Vector2( window.innerWidth, window.innerHeight ), scene, camera );
-															composer.addPass( outlinePass );
-															
-															copyshader = new ShaderPass( FXAAShader );
-															copyshader.uniforms[ 'resolution' ].value.set( 1 / window.innerWidth, 1 / window.innerHeight );
-															composer.addPass( copyshader );
+													function setMaterial(parent, mtl) {
+														if (parent == null) {
+															alert("Select a body part before selecting a texture.");
+															return;
 														}
-														//----------------------------------------------------------------------------------------------
-														function zoomin(obj, anim){
-															if(bzoom){
-																zoomreset();
-																controls.target = new THREE.Vector3(obj.position.x,obj.position.y,obj.position.z);
-																camera.position.set(obj.position.x, obj.position.y, 13);	
-																controls.minDistance = 6;
-																if(!anim){
-																	var i = 1;
 
-																	function myLoop() {
-																		setTimeout(function() {   
-																			controls.dIn(i);
-																			controls.update();
-																			i -= 0.1;                   
-																			if (i >= 0.1) {           
-																			myLoop();             
-																			}                       
-																		}, 15)																	
-																	}	
-																	myLoop(); 
-																}else{
-																	controls.dIn(0.1);
-																	controls.update();
-																}																												
+														// parent.children[0].material = mtl;
+														parent.children.forEach(obj => {
+															obj.material = mtl;
+														});
+													}
+													//------------------------------------------------------------------------
+
+
+													document.addEventListener("click", onMouseClick, false);
+													var mouse = new THREE.Vector2();
+													var raycaster = new THREE.Raycaster();
+
+													//------------------------------OUTLINE PASS SETUP------------------------------------------------
+													var selectedObjects = [];
+
+													var composer, copyshader, outlinePass;
+													function addSelectedObject(object) {
+
+														selectedObjects = [];
+														selectedObjects.push(object);
+
+													}
+													var outlinePass = new OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), scene, camera);
+													outlinePass.edgeStrength = Number(10);
+													outlinePass.edgeGlow = Number(0);
+													outlinePass.edgeThickness = Number(1);
+													outlinePass.pulsePeriod = Number(0);
+													outlinePass.visibleEdgeColor.set("#ffffff");
+													outlinePass.hiddenEdgeColor.set("#000000");
+
+													//-------------------------TAA + FXAA SETUP---------------------------
+													var renderPass, taaRenderPass;
+													ConfigureCanvas();
+
+													function ConfigureCanvas() {
+														camera.aspect = window.innerWidth / window.innerHeight;
+														camera.updateProjectionMatrix();
+
+														renderer.setSize(window.innerWidth, window.innerHeight);
+
+														composer = new EffectComposer(renderer);
+														renderPass = new RenderPass(scene, camera);
+														composer.addPass(renderPass);
+
+														taaRenderPass = new TAARenderPass(scene, camera);
+														taaRenderPass.unbiased = true;
+														taaRenderPass.enabled = true;
+														taaRenderPass.sampleLevel = 3;
+														composer.addPass(taaRenderPass);
+														outlinePass = new OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), scene, camera);
+														composer.addPass(outlinePass);
+
+														copyshader = new ShaderPass(FXAAShader);
+														copyshader.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight);
+														composer.addPass(copyshader);
+													}
+													//----------------------------------------------------------------------------------------------
+													function zoomin(obj, anim) {
+														if (bzoom) {
+															zoomreset();
+															controls.target = new THREE.Vector3(obj.position.x, obj.position.y, obj.position.z);
+															camera.position.set(obj.position.x, obj.position.y, 13);
+															controls.minDistance = 6;
+															if (!anim) {
+																var i = 1;
+
+																function myLoop() {
+																	setTimeout(function () {
+																		controls.dIn(i);
+																		controls.update();
+																		i -= 0.1;
+																		if (i >= 0.1) {
+																			myLoop();
+																		}
+																	}, 15)
+																}
+																myLoop();
+															} else {
+																controls.dIn(0.1);
+																controls.update();
 															}
 														}
+													}
 
-														function zoomreset(){
-															controls.target = new THREE.Vector3(0,0,0);
-															camera.position.set(0, 1, 13);	
-															controls.minDistance = 6; 
-															controls.dIn(1);
-															controls.update();													
+													function zoomreset() {
+														controls.target = new THREE.Vector3(0, 0, 0);
+														camera.position.set(0, 1, 13);
+														controls.minDistance = 6;
+														controls.dIn(1);
+														controls.update();
+													}
+
+													function chooseBodyPart(obj)//TODO
+													{
+														switch (obj.name) {
+															case "hair": currentSelection = hhtemp; break;
+															case htemp.children[0].name:
+																if (menuitem != "head") {
+																	$('.head-controls').click();
+																}
+																if (head < data.file_paths.models.length - 1)
+																	populateInfoCard(data.file_paths.models[head].head.title, data.file_paths.models[head].head.desc, data.file_paths.models[head].head.img);
+																else
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", head_models[head - data.file_paths.models.length].head_image.url);
+
+																currentSelection = htemp;
+																// zoomin(obj);
+																break;
+															case ttemp.children[0].name:
+																if (menuitem != "torso") {
+																	$('.torso-controls').click();
+																}
+																if (torso < data.file_paths.models.length - 1)
+																	populateInfoCard(data.file_paths.models[torso].body.title, data.file_paths.models[torso].body.desc, data.file_paths.models[torso].body.img);
+																else
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", body_models[torso - data.file_paths.models.length].body_image.url);
+																currentSelection = ttemp;
+																// zoomin(obj);
+																break;
+															case lltemp.children[0].name:
+																if (menuitem != "l-legs") {
+																	$('.l-legs-controls').click();
+																}
+																if (lleg < data.file_paths.models.length - 1)
+																	populateInfoCard(data.file_paths.models[lleg].l_leg.title, data.file_paths.models[lleg].l_leg.desc, data.file_paths.models[lleg].l_leg.img);
+																else
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", l_leg_models[lleg - data.file_paths.models.length].l_leg_image.url);
+																currentSelection = lltemp;
+																// zoomin(obj);
+																break;
+															case rltemp.children[0].name:
+																if (menuitem != "r-legs") {
+																	$('.r-legs-controls').click();
+																}
+																if (rleg < data.file_paths.models.length - 1)
+																	populateInfoCard(data.file_paths.models[rleg].r_leg.title, data.file_paths.models[rleg].r_leg.desc, data.file_paths.models[rleg].r_leg.img);
+																else
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", r_leg_models[rleg - data.file_paths.models.length].r_leg_image.url);
+																currentSelection = rltemp;
+																// zoomin(obj);
+																break;
+															case latemp.children[0].name:
+																if (menuitem != "l-arms") {
+																	$('.l-arms-controls').click();
+																}
+																if (larm < data.file_paths.models.length - 1)
+																	populateInfoCard(data.file_paths.models[larm].l_arm.title, data.file_paths.models[larm].l_arm.desc, data.file_paths.models[larm].l_arm.img);
+																else
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", l_arm_models[larm - data.file_paths.models.length].l_arm_image.url);
+																currentSelection = latemp;
+																// zoomin(obj);
+																break;
+															case ratemp.children[0].name:
+																if (menuitem != "r-arms") {
+																	$('.r-arms-controls').click();
+																}
+																if (rarm < data.file_paths.models.length - 1)
+																	populateInfoCard(data.file_paths.models[rarm].r_arm.title, data.file_paths.models[rarm].r_arm.desc, data.file_paths.models[rarm].r_arm.img);
+																else
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", r_arm_models[rarm - data.file_paths.models.length].r_arm_image.url);
+																currentSelection = ratemp;
+																// zoomin(obj);
+																break;
+															default: return;
 														}
+														var selectedObject = obj;
+														addSelectedObject(selectedObject);
+														outlinePass.selectedObjects = selectedObjects;
+													}
 
-														function chooseBodyPart(obj)//TODO
-														{	
-															switch(obj.name)
-															{
-																case "hair" : currentSelection = hhtemp; break;
-																case htemp.children[0].name : 
-																	if(menuitem != "head"){
-																		$('.head-controls').click();																		
-																	}
-																	if(head < data.file_paths.models.length-1)
-																		populateInfoCard(data.file_paths.models[head].head.title,data.file_paths.models[head].head.desc,data.file_paths.models[head].head.img);
-																	else
-																		populateInfoCard("Coming Soon", "No Information for uploaded models.", head_models[head-data.file_paths.models.length].head_image.url);
+													function onMouseClick(event) {
+														// event.preventDefault();
 
-																	currentSelection = htemp; 
-																	// zoomin(obj);
-																	break;
-																case ttemp.children[0].name : 
-																	if(menuitem != "torso"){
-																		$('.torso-controls').click();																		
-																	}
-																	if(torso < data.file_paths.models.length-1)
-																		populateInfoCard(data.file_paths.models[torso].body.title,data.file_paths.models[torso].body.desc,data.file_paths.models[torso].body.img);
-																	else
-																		populateInfoCard("Coming Soon", "No Information for uploaded models.", body_models[torso-data.file_paths.models.length].body_image.url);
-																	currentSelection = ttemp; 
-																	// zoomin(obj);
-																	break;
-																case lltemp.children[0].name :
-																	if(menuitem != "l-legs"){
-																		$('.l-legs-controls').click();																		
-																	}
-																	if(lleg < data.file_paths.models.length-1)
-																		populateInfoCard(data.file_paths.models[lleg].l_leg.title,data.file_paths.models[lleg].l_leg.desc,data.file_paths.models[lleg].l_leg.img);
-																	else
-																		populateInfoCard("Coming Soon", "No Information for uploaded models.", l_leg_models[lleg-data.file_paths.models.length].l_leg_image.url);
-																	currentSelection = lltemp; 
-																	// zoomin(obj);
-																	break;
-																case rltemp.children[0].name : 
-																	if(menuitem != "r-legs"){
-																		$('.r-legs-controls').click();																		
-																	}
-																	if(rleg < data.file_paths.models.length-1)
-																		populateInfoCard(data.file_paths.models[rleg].r_leg.title,data.file_paths.models[rleg].r_leg.desc,data.file_paths.models[rleg].r_leg.img);
-																	else
-																		populateInfoCard("Coming Soon", "No Information for uploaded models.", r_leg_models[rleg-data.file_paths.models.length].r_leg_image.url);
-																	currentSelection = rltemp; 
-																	// zoomin(obj);
-																	break;
-																case latemp.children[0].name : 
-																	if(menuitem != "l-arms"){
-																		$('.l-arms-controls').click();																		
-																	}
-																	if(larm < data.file_paths.models.length-1)
-																		populateInfoCard(data.file_paths.models[larm].l_arm.title,data.file_paths.models[larm].l_arm.desc,data.file_paths.models[larm].l_arm.img);
-																	else
-																		populateInfoCard("Coming Soon", "No Information for uploaded models.", l_arm_models[larm-data.file_paths.models.length].l_arm_image.url);
-																	currentSelection = latemp; 
-																	// zoomin(obj);
-																	break;
-																case ratemp.children[0].name :
-																	if(menuitem != "r-arms"){
-																		$('.r-arms-controls').click();																		
-																	}
-																	if(rarm < data.file_paths.models.length-1)
-																		populateInfoCard(data.file_paths.models[rarm].r_arm.title,data.file_paths.models[rarm].r_arm.desc,data.file_paths.models[rarm].r_arm.img);
-																	else
-																		populateInfoCard("Coming Soon", "No Information for uploaded models.", r_arm_models[rarm-data.file_paths.models.length].r_arm_image.url);
-																	currentSelection = ratemp; 
-																	// zoomin(obj);
-																	break;
-																default : return;
-															}
-															var selectedObject = obj;
-															addSelectedObject( selectedObject );
-															outlinePass.selectedObjects = selectedObjects;
+														mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+														mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
+														//---------------------PICK BODY PART----------------------
+														// update the picking ray with the camera and mouse position
+														raycaster.setFromCamera(mouse, camera);
+														var intersects = [];
+														// calculate objects intersecting the picking ray
+														intersects = raycaster.intersectObjects(scene.children, true);
+														if (intersects.length > 0) {
+															chooseBodyPart(intersects[0].object);
 														}
-
-														function onMouseClick(event)
-														{
-															// event.preventDefault();
-
-															mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-															mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-
-															//---------------------PICK BODY PART----------------------
-															// update the picking ray with the camera and mouse position
-															raycaster.setFromCamera( mouse, camera );
-															var intersects = [];
-															// calculate objects intersecting the picking ray
-															intersects = raycaster.intersectObjects( scene.children , true );
-															if(intersects.length > 0)
-															{
-																chooseBodyPart(intersects[ 0 ].object);
-															}
-															else{
-																outlinePass.selectedObjects = [];
-															}
+														else {
+															outlinePass.selectedObjects = [];
 														}
+													}
 													//---------------------------------------------------------------------------------
 													//-----------------------------Populate the controls with models-------------------
 													populateControls();
 													//---------------------------------------------------------------------------------
 													//----------------------------------ADD MODEL----------------------------------------
-													function add_model_to_scene(gltf, name)
-													{
+													function add_model_to_scene(gltf, name) {
 
-														let color = colors[3].color;														
+														let color = colors[3].color;
 														// gltf.scene.position.setY(1.5);
 														gltf.scene.children[0].castShadow = true;
 														gltf.scene.name = name;
-														scene.add( gltf.scene );
-														switch(name)
-														{
-															case "hair" : 
+														scene.add(gltf.scene);
+														switch (name) {
+															case "hair":
 																// console.log(gltf.scene);
 																hhtemp = gltf.scene;
-																if(headposy != 0.0){
+																if (headposy != 0.0) {
 																	gltf.scene.children[0].position.setY(headposy);
 																	gltf.scene.children[1].position.setY(headposy);
 																	gltf.scene.children[2].position.setY(headposy);
 																	gltf.scene.children[3].position.setY(headposy);
 																}
-																if(headposx != 0.0){
+																if (headposx != 0.0) {
 																	gltf.scene.children[0].position.setX(headposx);
 																	gltf.scene.children[1].position.setX(headposx);
 																	gltf.scene.children[2].position.setX(headposx);
 																	gltf.scene.children[3].position.setX(headposx);
 																}
-																if(headposz != 0.0){
-																	gltf.scene.children[0].position.setZ(headposz); 
-																	gltf.scene.children[1].position.setZ(headposz); 
-																	gltf.scene.children[2].position.setZ(headposz); 
-																	gltf.scene.children[3].position.setZ(headposz); 
+																if (headposz != 0.0) {
+																	gltf.scene.children[0].position.setZ(headposz);
+																	gltf.scene.children[1].position.setZ(headposz);
+																	gltf.scene.children[2].position.setZ(headposz);
+																	gltf.scene.children[3].position.setZ(headposz);
 																}
 																break;
-															case "head" :
-																htemp = gltf.scene;	
-																if(headposy != 0.0){
-																	gltf.scene.children[0].position.setY(headposy);																
-																}else{
+															case "head":
+																htemp = gltf.scene;
+																if (headposy != 0.0) {
+																	gltf.scene.children[0].position.setY(headposy);
+																} else {
 																	headposy = gltf.scene.children[0].position.y;
 																}
-																if(headposx != 0.0){
+																if (headposx != 0.0) {
 																	gltf.scene.children[0].position.setX(headposx);
-																}else{
+																} else {
 																	headposx = gltf.scene.children[0].position.x;
 																}
-																if(headposz != 0.0){
+																if (headposz != 0.0) {
 																	gltf.scene.children[0].position.setZ(headposz);
-																}else{
+																} else {
 																	headposz = gltf.scene.children[0].position.z;
 																}
-																zoomin(htemp.children[0], false);	
-																$('#headup').attr("value",-headposy);	
-																$('#headleft').attr("value",headposx);
-																$('#headfront').attr("value",-headposz);	
-																break;											
-															case "torso" : 
+																zoomin(htemp.children[0], false);
+																$('#headup').attr("value", -headposy);
+																$('#headleft').attr("value", headposx);
+																$('#headfront').attr("value", -headposz);
+																break;
+															case "torso":
 																ttemp = gltf.scene;
-																if(torsoposy != 0.0){																	
+																if (torsoposy != 0.0) {
 																	gltf.scene.children[0].position.setY(torsoposy);
-																}else{
+																} else {
 																	torsoposy = gltf.scene.children[0].position.y;
 																}
-																if(torsoposx != 0.0){
+																if (torsoposx != 0.0) {
 																	gltf.scene.children[0].position.setX(torsoposx);
-																}else{
+																} else {
 																	torsoposx = gltf.scene.children[0].position.x;
 																}
-																if(torsoposz != 0.0){
+																if (torsoposz != 0.0) {
 																	gltf.scene.children[0].position.setZ(torsoposz);
-																}else{
+																} else {
 																	torsoposz = gltf.scene.children[0].position.z;
 																}
-																zoomin(ttemp.children[0], false);		
-																$('#torsoup').attr("value",-torsoposy);
-																$('#torsoleft').attr("value",torsoposx);
-																$('#torsofront').attr("value",-torsoposz);													
+																zoomin(ttemp.children[0], false);
+																$('#torsoup').attr("value", -torsoposy);
+																$('#torsoleft').attr("value", torsoposx);
+																$('#torsofront').attr("value", -torsoposz);
 																break;
-															case "leftarm" : 
+															case "leftarm":
 																latemp = gltf.scene;
-																if(larmposy != 0.0){
+																if (larmposy != 0.0) {
 																	gltf.scene.children[0].position.setY(larmposy);
-																}else{
+																} else {
 																	larmposy = gltf.scene.children[0].position.y;
 																}
-																if(larmposx != 0.0){
+																if (larmposx != 0.0) {
 																	gltf.scene.children[0].position.setX(larmposx);
-																}else{
+																} else {
 																	larmposx = gltf.scene.children[0].position.x;
 																}
-																if(larmposz != 0.0){
+																if (larmposz != 0.0) {
 																	gltf.scene.children[0].position.setZ(larmposz);
-																}else{
+																} else {
 																	larmposz = gltf.scene.children[0].position.z;
 																}
-																zoomin(latemp.children[0], false);		
-																$('#larmup').attr("value",-larmposy);
-																$('#larmleft').attr("value",larmposx);
-																$('#larmfront').attr("value",-larmposz);
+																zoomin(latemp.children[0], false);
+																$('#larmup').attr("value", -larmposy);
+																$('#larmleft').attr("value", larmposx);
+																$('#larmfront').attr("value", -larmposz);
 																break;
-															case "rightarm" : 
+															case "rightarm":
 																ratemp = gltf.scene;
-																if(rarmposy != 0.0){
+																if (rarmposy != 0.0) {
 																	gltf.scene.children[0].position.setY(rarmposy);
-																}else{
+																} else {
 																	rarmposy = gltf.scene.children[0].position.y;
 																}
-																if(rarmposx != 0.0){
+																if (rarmposx != 0.0) {
 																	gltf.scene.children[0].position.setX(rarmposx);
-																}else{
+																} else {
 																	rarmposx = gltf.scene.children[0].position.x;
 																}
-																if(rarmposz != 0.0){
+																if (rarmposz != 0.0) {
 																	gltf.scene.children[0].position.setZ(rarmposz);
-																}else{
+																} else {
 																	rarmposz = gltf.scene.children[0].position.z;
 																}
-																zoomin(ratemp.children[0], false);		
-																$('#rarmup').attr("value",-rarmposy);
-																$('#rarmleft').attr("value",rarmposx);
-																$('#rarmfront').attr("value",-rarmposz);	
+																zoomin(ratemp.children[0], false);
+																$('#rarmup').attr("value", -rarmposy);
+																$('#rarmleft').attr("value", rarmposx);
+																$('#rarmfront').attr("value", -rarmposz);
 																break;
-															case "leftleg" : 
+															case "leftleg":
 																lltemp = gltf.scene;
-																if(llegposy != 0.0){
+																if (llegposy != 0.0) {
 																	gltf.scene.children[0].position.setY(llegposy);
-																}else{
+																} else {
 																	// console.log(llegposy);
 																	llegposy = gltf.scene.children[0].position.y;
 																	// console.log(llegposy);
 																}
-																if(llegposx != 0.0){
+																if (llegposx != 0.0) {
 																	gltf.scene.children[0].position.setX(llegposx);
-																}else{
+																} else {
 																	llegposx = gltf.scene.children[0].position.x;
 																}
-																if(llegposz != 0.0){
+																if (llegposz != 0.0) {
 																	gltf.scene.children[0].position.setZ(llegposz);
-																}else{
+																} else {
 																	llegposz = gltf.scene.children[0].position.z;
 																}
-																zoomin(lltemp.children[0], false);	
-																$('#llegup').attr("value",-llegposy);
-																$('#llegleft').attr("value",llegposx);
-																$('#llegfront').attr("value",-llegposz);
+																zoomin(lltemp.children[0], false);
+																$('#llegup').attr("value", -llegposy);
+																$('#llegleft').attr("value", llegposx);
+																$('#llegfront').attr("value", -llegposz);
 																break;
-															case "rightleg" : 
+															case "rightleg":
 																rltemp = gltf.scene;
-																if(rlegposy != 0.0){
+																if (rlegposy != 0.0) {
 																	gltf.scene.children[0].position.setY(rlegposy);
-																}else{
+																} else {
 																	rlegposy = gltf.scene.children[0].position.y;
 																}
-																if(rlegposx != 0.0){
+																if (rlegposx != 0.0) {
 																	gltf.scene.children[0].position.setX(rlegposx);
-																}else{
+																} else {
 																	rlegposx = gltf.scene.children[0].position.x;
 																}
-																if(rlegposz != 0.0){
+																if (rlegposz != 0.0) {
 																	gltf.scene.children[0].position.setZ(rlegposz);
-																}else{
+																} else {
 																	rlegposz = gltf.scene.children[0].position.z;
 																}
-																zoomin(rltemp.children[0], false);		
-																$('#rlegup').attr("value",-rlegposy);
-																$('#rlegleft').attr("value",rlegposx);
-																$('#rlegfront').attr("value",-rlegposz);
-																break;	
+																zoomin(rltemp.children[0], false);
+																$('#rlegup').attr("value", -rlegposy);
+																$('#rlegleft').attr("value", rlegposx);
+																$('#rlegfront').attr("value", -rlegposz);
+																break;
 														}
 														let new_mtl;
-															let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
-																bmp.repeat.set( 3, 3, 3);
-																bmp.wrapS = THREE.RepeatWrapping;
-																bmp.wrapT = THREE.RepeatWrapping;
+														let bmp = new THREE.TextureLoader().load('/images/cloth_map.jpg');
+														bmp.repeat.set(3, 3, 3);
+														bmp.wrapS = THREE.RepeatWrapping;
+														bmp.wrapT = THREE.RepeatWrapping;
 
 														new_mtl = new THREE.MeshPhongMaterial({
-																color: parseInt('0x' + color),
-																shininess: 10,
-																bumpMap: bmp,
-																bumpScale: 0.45
-															});
+															color: parseInt('0x' + color),
+															shininess: 10,
+															bumpMap: bmp,
+															bumpScale: 0.45
+														});
 														setMaterial(gltf.scene, new_mtl);
 													}
 													//---------------------------------------------------------------------------------
 
 													//----------------------------------ADD ROOM----------------------------------------
-													function add_room_to_scene(gltf, name)
-													{
+													function add_room_to_scene(gltf, name) {
 														gltf.scene.name = name;
-														gltf.scene.rotateY(-Math.PI/4);
+														gltf.scene.rotateY(-Math.PI / 4);
 														// gltf.scene.children.forEach(obj => {
 														// 	obj.shininess = 0;
 														// 	obj.receiveShadow = true;
 														// 	obj.castShadow = true;
 														// });
-														switch(name)
-														{
-															case "Room_1" : 
+														switch (name) {
+															case "Room_1":
 																gltf.scene.position.setY(-24);
 																gltf.scene.position.setX(-4.5);
-																gltf.scene.scale.set(20,20,20);
+																gltf.scene.scale.set(20, 20, 20);
 																break;
-															case "Room_2" : 
+															case "Room_2":
 																gltf.scene.position.setY(-3.5);
 																gltf.scene.position.setZ(36.5);
 																gltf.scene.position.setX(46.5);
-																gltf.scene.scale.set(2,2,2);
+																gltf.scene.scale.set(2, 2, 2);
 																break;
 														}
 														//------------------------------------------------------------------------
 
-														scene.add( gltf.scene );
+														scene.add(gltf.scene);
 														btemp = gltf.scene;
 													}
 													//---------------------------------------------------------------------------------
 													//---------------------------------HAIR-------------------------------------------
 													hurl = data.file_paths.models[hair].hair;
-													if(hurl != "")// model has hair
-													loader.load( hurl,  (gltf) => add_model_to_scene(gltf , "hair")
-														, undefined, function ( error ) { console.error( error );} );
+													if (hurl != "")// model has hair
+														loader.load(hurl, (gltf) => add_model_to_scene(gltf, "hair")
+															, undefined, function (error) { console.error(error); });
 													//--------------------------------------------------------------------------------
 
 													//---------------------------------HEAD-------------------------------------------
-													if(head >= data.file_paths.models.length){
+													if (head >= data.file_paths.models.length) {
 														hurl = head_models[head - data.file_paths.models.length].head_file.url;
-													}else hurl = data.file_paths.models[head].head.url;
-													loader.load( hurl, (gltf) => add_model_to_scene(gltf , "head")
-														, undefined, function ( error ) { console.error( error );} );
+													} else hurl = data.file_paths.models[head].head.url;
+													loader.load(hurl, (gltf) => add_model_to_scene(gltf, "head")
+														, undefined, function (error) { console.error(error); });
 
 													//--------------------------------------------------------------------
 
 													//-------------------------------BODY---------------------------------													
-													if(torso >= data.file_paths.models.length){
+													if (torso >= data.file_paths.models.length) {
 														hurl = body_models[torso - data.file_paths.models.length].body_file.url;
-													}else hurl = data.file_paths.models[torso].body.url;
-													loader.load( hurl, (gltf) => add_model_to_scene(gltf , "torso")
-														, undefined, function ( error ) { console.error( error );} );
+													} else hurl = data.file_paths.models[torso].body.url;
+													loader.load(hurl, (gltf) => add_model_to_scene(gltf, "torso")
+														, undefined, function (error) { console.error(error); });
 													//----------------------------------------------------------------
 
 													//------------------------------ARMS---------------------------------
-													if(larm >= data.file_paths.models.length){
+													if (larm >= data.file_paths.models.length) {
 														hurl = l_arm_models[larm - data.file_paths.models.length].l_arm_file.url;
-													}else hurl = data.file_paths.models[larm].l_arm.url;
-													if(rarm >= data.file_paths.models.length){
+													} else hurl = data.file_paths.models[larm].l_arm.url;
+													if (rarm >= data.file_paths.models.length) {
 														hurl1 = r_arm_models[rarm - data.file_paths.models.length].r_arm_file.url;
-													}else hurl1 = data.file_paths.models[rarm].r_arm.url;
-													loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftarm")
-														, undefined, function ( error ) { console.error( error );} );
-													loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightarm")
-														, undefined, function ( error ) { console.error( error );} );
+													} else hurl1 = data.file_paths.models[rarm].r_arm.url;
+													loader.load(hurl, (gltf) => add_model_to_scene(gltf, "leftarm")
+														, undefined, function (error) { console.error(error); });
+													loader.load(hurl1, (gltf) => add_model_to_scene(gltf, "rightarm")
+														, undefined, function (error) { console.error(error); });
 													//---------------------------------------------------------------------
 
 													//---------------------------LEGS--------------------------------------
-													if(lleg >= data.file_paths.models.length){
+													if (lleg >= data.file_paths.models.length) {
 														hurl = l_leg_models[lleg - data.file_paths.models.length].l_leg_file.url;
-													}else hurl = data.file_paths.models[lleg].l_leg.url;
-													if(rleg >= data.file_paths.models.length){
+													} else hurl = data.file_paths.models[lleg].l_leg.url;
+													if (rleg >= data.file_paths.models.length) {
 														hurl1 = r_leg_models[rleg - data.file_paths.models.length].r_leg_file.url;
-													}else hurl1 = data.file_paths.models[rleg].r_leg.url;
-													loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
-														, undefined, function ( error ) { console.error( error );} );
-													loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
-														, undefined, function ( error ) { console.error( error );} );
+													} else hurl1 = data.file_paths.models[rleg].r_leg.url;
+													loader.load(hurl, (gltf) => add_model_to_scene(gltf, "leftleg")
+														, undefined, function (error) { console.error(error); });
+													loader.load(hurl1, (gltf) => add_model_to_scene(gltf, "rightleg")
+														, undefined, function (error) { console.error(error); });
 													//---------------------------------------------------------------------
 													//---------------------------------Background-------------------------------------
 													burl = data.file_paths.rooms.room_1;
-													loader.load( burl,  (gltf) => add_room_to_scene(gltf , "Room_1")
-														, undefined, function ( error ) { console.error( error );} );
+													loader.load(burl, (gltf) => add_room_to_scene(gltf, "Room_1")
+														, undefined, function (error) { console.error(error); });
 													//--------------------------------------------------------------------------------
 													//---------------------------PLANE--------------------------------
 													var geometry = new THREE.PlaneBufferGeometry(1000, 1000, 1000);
 													geometry.rotateX(-Math.PI * 0.5); // set horizontal since default is vertical
-													var material = new THREE.MeshPhongMaterial({ color: 0x3b4252});
+													var material = new THREE.MeshPhongMaterial({ color: 0x3b4252 });
 													material.shininess = 0;
 													var plane = new THREE.Mesh(geometry, material);
 													plane.castShadow = false;
@@ -778,16 +765,16 @@ $.ajax({
 													light.intensity = 0.3;
 													scene.add(light);
 
-													var light = new THREE.DirectionalLight( 0xffffff, 0.5, 100 );
-													light.position.set( -2.5, 5, 5); 			//default; light shining from top
+													var light = new THREE.DirectionalLight(0xffffff, 0.5, 100);
+													light.position.set(-2.5, 5, 5); 			//default; light shining from top
 													light.castShadow = true;            // default false
-													scene.add( light );
+													scene.add(light);
 
-													var light = new THREE.DirectionalLight( 0xffffff, 0.5, 100 );
-													light.position.set( 5, 2, -10); 			//default; light shining from top
+													var light = new THREE.DirectionalLight(0xffffff, 0.5, 100);
+													light.position.set(5, 2, -10); 			//default; light shining from top
 													light.castShadow = false;            // default false
 													light.intensity = 0.15;
-													scene.add( light );
+													scene.add(light);
 
 													light.shadow.mapSize.width = 512;  // default
 													light.shadow.mapSize.height = 512; // default
@@ -796,26 +783,25 @@ $.ajax({
 													//----------------------------------------------------------------
 
 													//------------------------------INDEX UPDATER----------------------------
-													function updateIndexes(){
-														for(var i=0;i< scene.children.length;++i){
-															switch(scene.children[i].name)
-															{
-																case "head" : ihead = i; break;
-																case "torso" : itorso = i; break;
-																case "leftarm" : ilarm = i; break;
-																case "rightarm" : irarm = i; break;
-																case "leftleg" : illeg = i; break;
-																case "rightleg" : irleg = i; break;
-																case "hair" : ihair = i; break;
-																case "Room_1" : ib = i; break;
-																case "Room_2" : ib = i; break;
+													function updateIndexes() {
+														for (var i = 0; i < scene.children.length; ++i) {
+															switch (scene.children[i].name) {
+																case "head": ihead = i; break;
+																case "torso": itorso = i; break;
+																case "leftarm": ilarm = i; break;
+																case "rightarm": irarm = i; break;
+																case "leftleg": illeg = i; break;
+																case "rightleg": irleg = i; break;
+																case "hair": ihair = i; break;
+																case "Room_1": ib = i; break;
+																case "Room_2": ib = i; break;
 															}
 														}
 													}
 													//--------------------------------------------------------
 													// console.log(scene.children);
 
-													window.addEventListener( 'resize', onWindowResize, false );
+													window.addEventListener('resize', onWindowResize, false);
 
 													function onWindowResize() {
 
@@ -826,123 +812,123 @@ $.ajax({
 													// console.log(scene.children);
 													//-------------------------------ANIMATE---------------------------------
 													var animate = function () {
-														if(typechange){
+														if (typechange) {
 															clearcontrols();
 															populateControls();
-															typechange=false;
+															typechange = false;
 														}
-														
-														if(bchange){
+
+														if (bchange) {
 															updateIndexes();
-															if(rtmp != 2){
+															if (rtmp != 2) {
 																var temp = scene.getObjectByName(scene.children[ib].name);
 																scene.remove(temp);
 															}
 															var tname;
 															var i;
-															if(room == 0){
+															if (room == 0) {
 																tname = "Room_1";
 																i = 0;
 																burl = data.file_paths.rooms.room_1;
 															}
-															else if(room == 1){
+															else if (room == 1) {
 																tname = "Room_2";
 																i = 1;
 																burl = data.file_paths.rooms.room_2;
 															}
-															if(room != 2){																
-																loader.load( burl, (gltf) => add_room_to_scene(gltf , tname)
-																, undefined, function ( error ) { console.error( error );} );
+															if (room != 2) {
+																loader.load(burl, (gltf) => add_room_to_scene(gltf, tname)
+																	, undefined, function (error) { console.error(error); });
 															}
 															bchange = false;
 														}
 
-														if(headchange){
+														if (headchange) {
 															updateIndexes();
 															var temp = scene.getObjectByName(scene.children[ihead].name);
 															scene.remove(temp);
-															if(head != 1){
+															if (head != 1) {
 																updateIndexes();
-																if(ihair!=99){
+																if (ihair != 99) {
 																	var temp = scene.getObjectByName(scene.children[ihair].name);
 																	scene.remove(temp);
 																	hhtemp = null;
-																	ihair=99;
+																	ihair = 99;
 																}
-															}else if(head==1){
-																loader.load( '/model/chibi/chibi_hair.gltf', (gltf) => add_model_to_scene(gltf , "hair")
-																, undefined, function ( error ) { console.error( error );} );
+															} else if (head == 1) {
+																loader.load('/model/chibi/chibi_hair.gltf', (gltf) => add_model_to_scene(gltf, "hair")
+																	, undefined, function (error) { console.error(error); });
 															}
 
-															if(head >= data.file_paths.models.length){
+															if (head >= data.file_paths.models.length) {
 																hurl = head_models[head - data.file_paths.models.length].head_file.url;
-															}else hurl = data.file_paths.models[head].head.url;
-															loader.load( hurl, (gltf) => add_model_to_scene(gltf , "head")
-																, undefined, function ( error ) { console.error( error );} );
+															} else hurl = data.file_paths.models[head].head.url;
+															loader.load(hurl, (gltf) => add_model_to_scene(gltf, "head")
+																, undefined, function (error) { console.error(error); });
 															headchange = false;
 														}
 
-														if(torsochange){
+														if (torsochange) {
 															updateIndexes();
 															var temp = scene.getObjectByName(scene.children[itorso].name);
 															scene.remove(temp);
-															if(torso >= data.file_paths.models.length){
+															if (torso >= data.file_paths.models.length) {
 																hurl = body_models[torso - data.file_paths.models.length].body_file.url;
-															}else hurl = data.file_paths.models[torso].body.url;
-															loader.load( hurl, (gltf) => add_model_to_scene(gltf , "torso")
-															, undefined, function ( error ) { console.error( error );} );
+															} else hurl = data.file_paths.models[torso].body.url;
+															loader.load(hurl, (gltf) => add_model_to_scene(gltf, "torso")
+																, undefined, function (error) { console.error(error); });
 															torsochange = false;
 														}
 
-														if(larmchange){
+														if (larmchange) {
 															updateIndexes();
 															var temp = scene.getObjectByName(scene.children[ilarm].name);
 															scene.remove(temp);
-															
-															if(larm >= data.file_paths.models.length){
+
+															if (larm >= data.file_paths.models.length) {
 																hurl = l_arm_models[larm - data.file_paths.models.length].l_arm_file.url;
-															}else hurl = data.file_paths.models[larm].l_arm.url;
-															loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftarm")
-																, undefined, function ( error ) { console.error( error );} );
+															} else hurl = data.file_paths.models[larm].l_arm.url;
+															loader.load(hurl, (gltf) => add_model_to_scene(gltf, "leftarm")
+																, undefined, function (error) { console.error(error); });
 															larmchange = false;
 														}
 
-														if(rarmchange){
+														if (rarmchange) {
 															updateIndexes();
 															var temp1 = scene.getObjectByName(scene.children[irarm].name);
 															scene.remove(temp1);
-															
-															if(rarm >= data.file_paths.models.length){
+
+															if (rarm >= data.file_paths.models.length) {
 																hurl1 = r_arm_models[rarm - data.file_paths.models.length].r_arm_file.url;
-															}else hurl1 = data.file_paths.models[rarm].r_arm.url;
-															loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightarm")
-																, undefined, function ( error ) { console.error( error );} );
+															} else hurl1 = data.file_paths.models[rarm].r_arm.url;
+															loader.load(hurl1, (gltf) => add_model_to_scene(gltf, "rightarm")
+																, undefined, function (error) { console.error(error); });
 															rarmchange = false;
 														}
 
-														if(llegchange){
+														if (llegchange) {
 															updateIndexes();
 															var temp = scene.getObjectByName(scene.children[illeg].name);
 															scene.remove(temp);
 
-															if(lleg >= data.file_paths.models.length){
+															if (lleg >= data.file_paths.models.length) {
 																hurl = l_leg_models[lleg - data.file_paths.models.length].l_leg_file.url;
-															}else hurl = data.file_paths.models[lleg].l_leg.url;
-															loader.load( hurl, (gltf) => add_model_to_scene(gltf , "leftleg")
-																, undefined, function ( error ) { console.error( error );} );
+															} else hurl = data.file_paths.models[lleg].l_leg.url;
+															loader.load(hurl, (gltf) => add_model_to_scene(gltf, "leftleg")
+																, undefined, function (error) { console.error(error); });
 															llegchange = false;
 														}
 
-														if(rlegchange){
+														if (rlegchange) {
 															updateIndexes();
 															var temp1 = scene.getObjectByName(scene.children[irleg].name);
 															scene.remove(temp1);
 
-															if(rleg >= data.file_paths.models.length){
+															if (rleg >= data.file_paths.models.length) {
 																hurl1 = r_leg_models[rleg - data.file_paths.models.length].r_leg_file.url;
-															}else hurl1 = data.file_paths.models[rleg].r_leg.url;
-															loader.load( hurl1, (gltf) => add_model_to_scene(gltf , "rightleg")
-																, undefined, function ( error ) { console.error( error );} );
+															} else hurl1 = data.file_paths.models[rleg].r_leg.url;
+															loader.load(hurl1, (gltf) => add_model_to_scene(gltf, "rightleg")
+																, undefined, function (error) { console.error(error); });
 															rlegchange = false;
 														}
 														requestAnimationFrame(animate);
@@ -955,7 +941,7 @@ $.ajax({
 
 													animate();
 
-													function screensh(){
+													function screensh() {
 														controls.reset();
 														var w = window.open('', '');
 														w.document.title = "Screenshot";
@@ -974,28 +960,28 @@ $.ajax({
 														//console.log(img.src);
 													}
 
-													function clearcontrols(){
+													function clearcontrols() {
 														var hprsh = document.getElementById("headprsh");
 														var tprsh = document.getElementById("torsoprsh");
 														var laprsh = document.getElementById("larmprsh");
 														var raprsh = document.getElementById("rarmprsh");
 														var llprsh = document.getElementById("llegprsh");
 														var rlprsh = document.getElementById("rlegprsh");
-													
+
 														hprsh.innerHTML = "";
 														tprsh.innerHTML = "";
 														laprsh.innerHTML = "";
 														raprsh.innerHTML = "";
 														llprsh.innerHTML = "";
 														rlprsh.innerHTML = "";
-													
+
 														var hupsh = document.getElementById("headupsh");
 														var tupsh = document.getElementById("torsoupsh");
 														var laupsh = document.getElementById("larmupsh");
 														var raupsh = document.getElementById("rarmupsh");
 														var llupsh = document.getElementById("llegupsh");
 														var rlupsh = document.getElementById("rlegupsh");
-													
+
 														hupsh.innerHTML = "";
 														tupsh.innerHTML = "";
 														laupsh.innerHTML = "";
@@ -1004,16 +990,16 @@ $.ajax({
 														rlupsh.innerHTML = "";
 													}
 
-													function populateControls(){
+													function populateControls() {
 														var hprsh = document.getElementById("headprsh");
 														var tprsh = document.getElementById("torsoprsh");
 														var laprsh = document.getElementById("larmprsh");
 														var raprsh = document.getElementById("rarmprsh");
 														var llprsh = document.getElementById("llegprsh");
-														var rlprsh = document.getElementById("rlegprsh");								
-																																																						
-														for(var i=0;i<data.file_paths.models.length;++i){
-															if(data.file_paths.models[i].type==type){
+														var rlprsh = document.getElementById("rlegprsh");
+
+														for (var i = 0; i < data.file_paths.models.length; ++i) {
+															if (data.file_paths.models[i].type == type) {
 																var button = document.createElement('button');
 																//alert(data.file_paths.models.test);
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].head.img + '" />';
@@ -1022,22 +1008,22 @@ $.ajax({
 																button.id = tid;
 																button.type = "button";
 																button.value = i;
-																button.onclick = function(){															
-																	if(head!=this.value){
+																button.onclick = function () {
+																	if (head != this.value) {
 																		headposy = 0.0;
 																		headposx = 0.0;
 																		headposz = 0.0;
 																		headchange = true;
-																		head = this.value;																	
+																		head = this.value;
 																	}
-																	populateInfoCard(data.file_paths.models[head].head.title,data.file_paths.models[head].head.desc,data.file_paths.models[head].head.img);															
+																	populateInfoCard(data.file_paths.models[head].head.title, data.file_paths.models[head].head.desc, data.file_paths.models[head].head.img);
 																};
 																hprsh.appendChild(button);
 															}
 														}
-																																									
-														for(var i=0;i<data.file_paths.models.length;++i){
-															if(data.file_paths.models[i].type==type){
+
+														for (var i = 0; i < data.file_paths.models.length; ++i) {
+															if (data.file_paths.models[i].type == type) {
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].body.img + '" />';
 																button.className = 'btn';
@@ -1045,22 +1031,22 @@ $.ajax({
 																button.id = tid;
 																button.type = "button";
 																button.value = i;
-																button.onclick = function(){
-																	if(torso!=this.value){
+																button.onclick = function () {
+																	if (torso != this.value) {
 																		torsoposy = 0.0;
 																		torsoposx = 0.0;
 																		torsoposz = 0.0;
 																		torsochange = true;
-																		torso = this.value;																	
+																		torso = this.value;
 																	}
-																	populateInfoCard(data.file_paths.models[torso].body.title,data.file_paths.models[torso].body.desc,data.file_paths.models[torso].body.img);
+																	populateInfoCard(data.file_paths.models[torso].body.title, data.file_paths.models[torso].body.desc, data.file_paths.models[torso].body.img);
 																};
 																tprsh.appendChild(button);
 															}
 														}
-																								
-														for(var i=0;i<data.file_paths.models.length;++i){
-															if(data.file_paths.models[i].type==type){
+
+														for (var i = 0; i < data.file_paths.models.length; ++i) {
+															if (data.file_paths.models[i].type == type) {
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_arm.img + '" />';
 																button.className = 'btn';
@@ -1068,22 +1054,22 @@ $.ajax({
 																button.id = tid;
 																button.type = "button";
 																button.value = i;
-																button.onclick = function(){
-																	if(larm!=this.value){																		
+																button.onclick = function () {
+																	if (larm != this.value) {
 																		larmposy = 0.0;
 																		larmposx = 0.0;
 																		larmposz = 0.0;
 																		larmchange = true;
-																		larm = this.value;																	
+																		larm = this.value;
 																	}
-																	populateInfoCard(data.file_paths.models[larm].l_arm.title,data.file_paths.models[larm].l_arm.desc,data.file_paths.models[larm].l_arm.img);																
+																	populateInfoCard(data.file_paths.models[larm].l_arm.title, data.file_paths.models[larm].l_arm.desc, data.file_paths.models[larm].l_arm.img);
 																};
 																laprsh.appendChild(button);
 															}
 														}
 
-														for(var i=0;i<data.file_paths.models.length;++i){
-															if(data.file_paths.models[i].type==type){
+														for (var i = 0; i < data.file_paths.models.length; ++i) {
+															if (data.file_paths.models[i].type == type) {
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_arm.img + '" />';
 																button.className = 'btn';
@@ -1091,22 +1077,22 @@ $.ajax({
 																button.id = tid;
 																button.type = "button";
 																button.value = i;
-																button.onclick = function(){
-																	if(rarm!=this.value){
+																button.onclick = function () {
+																	if (rarm != this.value) {
 																		rarmposy = 0.0;
 																		rarmposx = 0.0;
 																		rarmposz = 0.0;
 																		rarmchange = true;
-																		rarm = this.value;																		
+																		rarm = this.value;
 																	}
-																	populateInfoCard(data.file_paths.models[rarm].r_arm.title,data.file_paths.models[rarm].r_arm.desc,data.file_paths.models[rarm].r_arm.img);															
+																	populateInfoCard(data.file_paths.models[rarm].r_arm.title, data.file_paths.models[rarm].r_arm.desc, data.file_paths.models[rarm].r_arm.img);
 																};
 																raprsh.appendChild(button);
 															}
 														}
 
-														for(var i=0;i<data.file_paths.models.length;++i){
-															if(data.file_paths.models[i].type==type){
+														for (var i = 0; i < data.file_paths.models.length; ++i) {
+															if (data.file_paths.models[i].type == type) {
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].l_leg.img + '" />';
 																button.className = 'btn';
@@ -1114,22 +1100,22 @@ $.ajax({
 																button.id = tid;
 																button.type = "button";
 																button.value = i;
-																button.onclick = function(){
-																	if(lleg!=this.value){
+																button.onclick = function () {
+																	if (lleg != this.value) {
 																		llegposy = 0.0;
 																		llegposx = 0.0;
 																		llegposz = 0.0;
 																		llegchange = true;
-																		lleg = this.value;																	
+																		lleg = this.value;
 																	}
-																	populateInfoCard(data.file_paths.models[lleg].l_leg.title,data.file_paths.models[lleg].l_leg.desc,data.file_paths.models[lleg].l_leg.img);														
+																	populateInfoCard(data.file_paths.models[lleg].l_leg.title, data.file_paths.models[lleg].l_leg.desc, data.file_paths.models[lleg].l_leg.img);
 																};
 																llprsh.appendChild(button);
 															}
 														}
 
-														for(var i=0;i<data.file_paths.models.length;++i){
-															if(data.file_paths.models[i].type==type){
+														for (var i = 0; i < data.file_paths.models.length; ++i) {
+															if (data.file_paths.models[i].type == type) {
 																var button = document.createElement('button');
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].r_leg.img + '" />';
 																button.className = 'btn';
@@ -1137,15 +1123,15 @@ $.ajax({
 																button.id = tid;
 																button.type = "button";
 																button.value = i;
-																button.onclick = function(){
-																	if(rleg!=this.value){
+																button.onclick = function () {
+																	if (rleg != this.value) {
 																		rlegposy = 0.0;
 																		rlegposx = 0.0;
 																		rlegposz = 0.0;
 																		rlegchange = true;
-																		rleg = this.value;																	
+																		rleg = this.value;
 																	}
-																	populateInfoCard(data.file_paths.models[rleg].r_leg.title,data.file_paths.models[rleg].r_leg.desc,data.file_paths.models[rleg].r_leg.img);															
+																	populateInfoCard(data.file_paths.models[rleg].r_leg.title, data.file_paths.models[rleg].r_leg.desc, data.file_paths.models[rleg].r_leg.img);
 																};
 																rlprsh.appendChild(button);
 															}
@@ -1157,45 +1143,45 @@ $.ajax({
 														var raupsh = document.getElementById("rarmupsh");
 														var llupsh = document.getElementById("llegupsh");
 														var rlupsh = document.getElementById("rlegupsh");
-														
-														for(var i=0;i<head_models.length;++i){
-															if(head_models[i].model_type == type){
+
+														for (var i = 0; i < head_models.length; ++i) {
+															if (head_models[i].model_type == type) {
 																var button = document.createElement('button');
 																var img = head_models[i].head_image.url;
-																if (img == null){
+																if (img == null) {
 																	img = "/images/Default_Upl.png";
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
-																button.onclick = function(){
-																	if(head!=this.value){
+																button.onclick = function () {
+																	if (head != this.value) {
 																		headposy = 0.0;
 																		headposx = 0.0;
 																		headposz = 0.0;
 																		headchange = true;
 																		head = this.value;
 																	}
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);														
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
 																};
 																hupsh.appendChild(button);
 															}
 														}
-																																									
-														for(var i=0;i<body_models.length;++i){
-															if(body_models[i].model_type == type){
+
+														for (var i = 0; i < body_models.length; ++i) {
+															if (body_models[i].model_type == type) {
 																var button = document.createElement('button');
 																var img = body_models[i].body_image.url;
-																if (img == null){
+																if (img == null) {
 																	img = "/images/Default_Upl.png";
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
-																button.onclick = function(){
-																	if(torso!=this.value){																		
+																button.onclick = function () {
+																	if (torso != this.value) {
 																		torsoposy = 0.0;
 																		torsoposx = 0.0;
 																		torsoposz = 0.0;
@@ -1207,114 +1193,114 @@ $.ajax({
 																tupsh.appendChild(button);
 															}
 														}
-																								
-														for(var i=0;i<l_arm_models.length;++i){
-															if(l_arm_models[i].model_type == type){
+
+														for (var i = 0; i < l_arm_models.length; ++i) {
+															if (l_arm_models[i].model_type == type) {
 																var button = document.createElement('button');
 																var img = l_arm_models[i].l_arm_image.url;
-																if (img == null){
+																if (img == null) {
 																	img = "/images/Default_Upl.png";
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
-																button.onclick = function(){
-																	if(larm!=this.value){																		
+																button.onclick = function () {
+																	if (larm != this.value) {
 																		larmposy = 0.0;
 																		larmposx = 0.0;
 																		larmposz = 0.0;
 																		larmchange = true;
 																		larm = this.value;
-																	}	
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);															
+																	}
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
 																};
 																laupsh.appendChild(button);
 															}
 														}
 
-														for(var i=0;i<r_arm_models.length;++i){
-															if(r_arm_models[i].model_type == type){
+														for (var i = 0; i < r_arm_models.length; ++i) {
+															if (r_arm_models[i].model_type == type) {
 																var button = document.createElement('button');
 																var img = r_arm_models[i].r_arm_image.url;
-																if (img == null){
+																if (img == null) {
 																	img = "/images/Default_Upl.png";
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
-																button.onclick = function(){
-																	if(rarm!=this.value){
+																button.onclick = function () {
+																	if (rarm != this.value) {
 																		rarmposy = 0.0;
 																		rarmposx = 0.0;
 																		rarmposz = 0.0;
 																		rarmchange = true;
 																		rarm = this.value;
-																	}	
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);															
+																	}
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
 																};
 																raupsh.appendChild(button);
 															}
 														}
 
-														for(var i=0;i<l_leg_models.length;++i){
-															if(l_leg_models[i].model_type == type){
+														for (var i = 0; i < l_leg_models.length; ++i) {
+															if (l_leg_models[i].model_type == type) {
 																var button = document.createElement('button');
 																var img = l_leg_models[i].l_leg_image.url;
-																if (img == null){
+																if (img == null) {
 																	img = "/images/Default_Upl.png";
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
-																button.onclick = function(){
-																	if(lleg!=this.value){
+																button.onclick = function () {
+																	if (lleg != this.value) {
 																		llegposy = 0.0;
 																		llegposx = 0.0;
 																		llegposz = 0.0;
 																		llegchange = true;
 																		lleg = this.value;
-																	}	
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);														
+																	}
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
 																};
 																llupsh.appendChild(button);
 															}
 														}
 
-														for(var i=0;i<r_leg_models.length;++i){
-															if(r_leg_models[i].model_type == type){
+														for (var i = 0; i < r_leg_models.length; ++i) {
+															if (r_leg_models[i].model_type == type) {
 																var button = document.createElement('button');
 																var img = r_leg_models[i].r_leg_image.url;
-																if (img == null){
+																if (img == null) {
 																	img = "/images/Default_Upl.png";
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
-																button.onclick = function(){
-																	if(rleg!=this.value){
+																button.onclick = function () {
+																	if (rleg != this.value) {
 																		rlegposy = 0.0;
 																		rlegposx = 0.0;
 																		rlegposz = 0.0;
 																		rlegchange = true;
 																		rleg = this.value;
-																	}	
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);															
+																	}
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
 																};
 																rlupsh.appendChild(button);
 															}
 														}
 													}
 
-													function populateFullModels(){
+													function populateFullModels() {
 														var fm = document.getElementById("fullmodels");
-														fm.innerHTML="";
-																																																						
-														for(var i=0;i<data.file_paths.models.length;++i){
-															if(data.file_paths.models[i].type==type){
+														fm.innerHTML = "";
+
+														for (var i = 0; i < data.file_paths.models.length; ++i) {
+															if (data.file_paths.models[i].type == type) {
 																var button = document.createElement('button');
 																//alert(data.file_paths.models.test);
 																button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.models[i].img + '" />';
@@ -1323,8 +1309,8 @@ $.ajax({
 																button.id = tid;
 																button.type = "button";
 																button.value = i;
-																button.onclick = function(){															
-																	if(head!=this.value){
+																button.onclick = function () {
+																	if (head != this.value) {
 																		headposy = 0.0;
 																		headposx = 0.0;
 																		headposz = 0.0;
@@ -1357,89 +1343,89 @@ $.ajax({
 
 																		headchange = true;
 																		torsochange = true;
-																		larmchange = true; 
-																		rarmchange = true; 
+																		larmchange = true;
+																		rarmchange = true;
 																		llegchange = true;
 																		rlegchange = true;
-																	}														
+																	}
 																};
 																fm.appendChild(button);
 															}
 														}
 													}
 
-													function populateInfoCard(title, desc, image){
+													function populateInfoCard(title, desc, image) {
 														$('#info-title').html(title);
 														$('#info-description').html(desc);
-														$('#info-image').html('<img src="'+image+'" alt="A113">');
+														$('#info-image').html('<img src="' + image + '" alt="A113">');
 													}
 
 													//---------------------------HTML CUSTOMIZE PLUSH-----------------------
-													$(document).ready(function(){
+													$(document).ready(function () {
 														populateFullModels();
 														$('#info-card').fadeToggle(0);
 														$('#info-btn').click(function () {
-															if($('#info-btn').text()=="Show Info"){
-																$('#info-btn').html('Hide Info');																
-															}else{
+															if ($('#info-btn').text() == "Show Info") {
+																$('#info-btn').html('Hide Info');
+															} else {
 																$('#info-btn').html('Show Info');
 															}
 															$('#info-card').fadeToggle(300);
 														});
 														$('#check-zoom').click(function () {
 															bzoom = !bzoom;
-															if(!bzoom){
+															if (!bzoom) {
 																zoomreset();
-															}else {
-																switch(menuitem){
-																	case "head" : zoomin(htemp.children[0], false); break;
-																	case "torso" : zoomin(ttemp.children[0], false); break;
-																	case "l-arms" : zoomin(latemp.children[0], false); break;
-																	case "r-arms" : zoomin(ratemp.children[0], false); break;
-																	case "l-legs" : zoomin(lltemp.children[0], false); break;
-																	case "r-legs" : zoomin(rltemp.children[0], false); break;
-																	case "type" : zoomreset(); break;
+															} else {
+																switch (menuitem) {
+																	case "head": zoomin(htemp.children[0], false); break;
+																	case "torso": zoomin(ttemp.children[0], false); break;
+																	case "l-arms": zoomin(latemp.children[0], false); break;
+																	case "r-arms": zoomin(ratemp.children[0], false); break;
+																	case "l-legs": zoomin(lltemp.children[0], false); break;
+																	case "r-legs": zoomin(rltemp.children[0], false); break;
+																	case "type": zoomreset(); break;
 																}
 															}
 														});
-														
-														$('.head-controls').click(function (){
+
+														$('.head-controls').click(function () {
 															zoomin(htemp.children[0], false);
 															menuitem = "head";
 														});
 
-														$('.torso-controls').click(function (){
+														$('.torso-controls').click(function () {
 															zoomin(ttemp.children[0], false);
 															menuitem = "torso";
 														});
 
-														$('.l-arms-controls').click(function (){
-															zoomin(latemp.children[0], false);	
+														$('.l-arms-controls').click(function () {
+															zoomin(latemp.children[0], false);
 															menuitem = "l-arms";
 														});
 
-														$('.r-arms-controls').click(function (){
+														$('.r-arms-controls').click(function () {
 															zoomin(ratemp.children[0], false);
-															menuitem = "r-arms";	
+															menuitem = "r-arms";
 														});
 
-														$('.l-legs-controls').click(function (){
+														$('.l-legs-controls').click(function () {
 															zoomin(lltemp.children[0], false);
-															menuitem = "l-legs";	
+															menuitem = "l-legs";
 														});
 
-														$('.r-legs-controls').click(function (){															
-															zoomin(rltemp.children[0], false);	
+														$('.r-legs-controls').click(function () {
+															zoomin(rltemp.children[0], false);
 															menuitem = "r-legs";
 														});
 
-														$('.type-controls').click(function (){															
+														$('.type-controls').click(function () {
 															zoomreset();
 															menuitem = "type";
 														});
 
 														$('#humanoid').click(function () {
-															if(type!=0){
+															if (type != 0) {
 																headposy = 0.0;
 																headposx = 0.0;
 																headposz = 0.0;
@@ -1459,8 +1445,8 @@ $.ajax({
 																rlegposx = 0.0;
 																rlegposz = 0.0;
 
-																type=0;
-																typechange=true;														
+																type = 0;
+																typechange = true;
 																$('#lach').html('Left Arm');
 																$('#rach').html('Right Arm');
 																$('#llch').html('Left Leg');
@@ -1476,17 +1462,17 @@ $.ajax({
 
 																headchange = true;
 																torsochange = true;
-																larmchange = true; 
-																rarmchange = true; 
+																larmchange = true;
+																rarmchange = true;
 																llegchange = true;
 																rlegchange = true;
 
 																populateFullModels();
 															}
 														});
-														
+
 														$('#animal').click(function () {
-															if(type!=1){
+															if (type != 1) {
 																headposy = 0.0;
 																headposx = 0.0;
 																headposz = 0.0;
@@ -1506,8 +1492,8 @@ $.ajax({
 																rlegposx = 0.0;
 																rlegposz = 0.0;
 
-																type=1;
-																typechange=true;
+																type = 1;
+																typechange = true;
 																$('#lach').html('Left Arm');
 																$('#rach').html('Right Arm');
 																$('#llch').html('Left Leg');
@@ -1523,17 +1509,17 @@ $.ajax({
 
 																headchange = true;
 																torsochange = true;
-																larmchange = true; 
-																rarmchange = true; 
+																larmchange = true;
+																rarmchange = true;
 																llegchange = true;
 																rlegchange = true;
 
 																populateFullModels();
 															}
 														});
-														
+
 														$('#fish').click(function () {
-															if(type!=2){
+															if (type != 2) {
 																headposy = 0.0;
 																headposx = 0.0;
 																headposz = 0.0;
@@ -1553,8 +1539,8 @@ $.ajax({
 																rlegposx = 0.0;
 																rlegposz = 0.0;
 
-																type=2;
-																typechange=true;
+																type = 2;
+																typechange = true;
 																$('#lach').html('Left Fin');
 																$('#rach').html('Right Fin');
 																$('#llch').html('Back Fin');
@@ -1570,8 +1556,8 @@ $.ajax({
 
 																headchange = true;
 																torsochange = true;
-																larmchange = true; 
-																rarmchange = true; 
+																larmchange = true;
+																rarmchange = true;
 																llegchange = true;
 																rlegchange = true;
 
@@ -1584,7 +1570,7 @@ $.ajax({
 														});
 
 														$('#rooml').click(function () {
-															if(room > 0){
+															if (room > 0) {
 																// alert("hello");
 																bchange = true;
 																rtmp = room;
@@ -1593,7 +1579,7 @@ $.ajax({
 														});
 														$('#roomr').click(function () {
 															var tmp = room;
-															if(tmp < 2){
+															if (tmp < 2) {
 																rtmp = room;
 																bchange = true;
 																tmp = +tmp + +1;
@@ -1620,50 +1606,50 @@ $.ajax({
 														var hslideru = document.getElementById("headup");
 														var hsliderl = document.getElementById("headleft");
 														var hsliderf = document.getElementById("headfront");
-														hslideru.oninput = function() {
+														hslideru.oninput = function () {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
 															var t = this.value;
 															t = -t;
 															t = -t;
 															htemp.children[0].position.setY(-t);
 															//console.log(t);
-															if(hhtemp!=null){
+															if (hhtemp != null) {
 																hhtemp.children[0].position.setY(-t);
 																hhtemp.children[1].position.setY(-t);
 																hhtemp.children[2].position.setY(-t);
 																hhtemp.children[3].position.setY(-t);
 															}
-															zoomin(htemp.children[0], true);	
+															zoomin(htemp.children[0], true);
 														}
-														hsliderl.oninput = function() {
+														hsliderl.oninput = function () {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
 															var t = this.value;
 															t = -t;
 															t = -t;
 															htemp.children[0].position.setX(t);
 															// console.log(t);
-															if(hhtemp!=null){
+															if (hhtemp != null) {
 																hhtemp.children[0].position.setX(t);
 																hhtemp.children[1].position.setX(t);
 																hhtemp.children[2].position.setX(t);
 																hhtemp.children[3].position.setX(t);
 															}
-															zoomin(htemp.children[0], true);	
+															zoomin(htemp.children[0], true);
 														}
-														hsliderf.oninput = function() {
+														hsliderf.oninput = function () {
 															//var temp = scene.getObjectByName(scene.children[ihead].name);
-															var t = this.value;	
+															var t = this.value;
 															t = -t;
-															t = -t;													
+															t = -t;
 															htemp.children[0].position.setZ(-t);
 															// console.log(t);
-															if(hhtemp!=null){
+															if (hhtemp != null) {
 																hhtemp.children[0].position.setZ(-t);
 																hhtemp.children[1].position.setZ(-t);
 																hhtemp.children[2].position.setZ(-t);
 																hhtemp.children[3].position.setZ(-t);
 															}
-															zoomin(htemp.children[0], true);	
+															zoomin(htemp.children[0], true);
 														}
 
 														// $('#larml').click(function () {
@@ -1705,7 +1691,7 @@ $.ajax({
 														var raslideru = document.getElementById("rarmup");
 														var rasliderl = document.getElementById("rarmleft");
 														var rasliderf = document.getElementById("rarmfront");
-														laslideru.oninput = function() {
+														laslideru.oninput = function () {
 															// var temp = scene.getObjectByName(scene.children[ilarm].name);
 															var t = this.value;
 															t = -t;
@@ -1714,7 +1700,7 @@ $.ajax({
 															// console.log(t);
 															zoomin(latemp.children[0], true);
 														}
-														lasliderl.oninput = function() {
+														lasliderl.oninput = function () {
 															// var latemp.children[0] = scene.getObjectByName(scene.children[ilarm].name);
 															var t = this.value;
 															t = -t;
@@ -1723,7 +1709,7 @@ $.ajax({
 															// console.log(t);
 															zoomin(latemp.children[0], true);
 														}
-														lasliderf.oninput = function() {
+														lasliderf.oninput = function () {
 															// var latemp.children[0] = scene.getObjectByName(scene.children[ilarm].name);
 															var t = this.value;
 															t = -t;
@@ -1732,7 +1718,7 @@ $.ajax({
 															// console.log(t);
 															zoomin(latemp.children[0], true);
 														}
-														raslideru.oninput = function() {
+														raslideru.oninput = function () {
 															// var temp = scene.getObjectByName(scene.children[irarm].name);
 															var t = this.value;
 															t = -t;
@@ -1741,7 +1727,7 @@ $.ajax({
 															// console.log(t);
 															zoomin(ratemp.children[0], true);
 														}
-														rasliderl.oninput = function() {
+														rasliderl.oninput = function () {
 															// var ratemp.children[0] = scene.getObjectByName(scene.children[irarm].name);
 															var t = this.value;
 															t = -t;
@@ -1750,7 +1736,7 @@ $.ajax({
 															// console.log(t);
 															zoomin(ratemp.children[0], true);
 														}
-														rasliderf.oninput = function() {
+														rasliderf.oninput = function () {
 															// var ratemp.children[0] = scene.getObjectByName(scene.children[irarm].name);
 															var t = this.value;
 															t = -t;
@@ -1779,7 +1765,7 @@ $.ajax({
 														var tslideru = document.getElementById("torsoup");
 														var tsliderl = document.getElementById("torsoleft");
 														var tsliderf = document.getElementById("torsofront");
-														tslideru.oninput = function() {
+														tslideru.oninput = function () {
 															// var temp = scene.getObjectByName(scene.children[itorso].name);
 															var t = this.value;
 															t = -t;
@@ -1788,7 +1774,7 @@ $.ajax({
 															//console.log(t);
 															zoomin(ttemp.children[0], true);
 														}
-														tsliderl.oninput = function() {
+														tsliderl.oninput = function () {
 															// var ttemp.children[0] = scene.getObjectByName(scene.children[itorso].name);
 															var t = this.value;
 															t = -t;
@@ -1797,7 +1783,7 @@ $.ajax({
 															// console.log(t);
 															zoomin(ttemp.children[0], true);
 														}
-														tsliderf.oninput = function() {
+														tsliderf.oninput = function () {
 															// var ttemp.children[0] = scene.getObjectByName(scene.children[itorso].name);
 															var t = this.value;
 															t = -t;
@@ -1846,7 +1832,7 @@ $.ajax({
 														var rlslideru = document.getElementById("rlegup");
 														var rlsliderl = document.getElementById("rlegleft");
 														var rlsliderf = document.getElementById("rlegfront");
-														llslideru.oninput = function() {
+														llslideru.oninput = function () {
 															// var temp = scene.getObjectByName(scene.children[illeg].name);
 															var t = this.value;
 															t = -t;
@@ -1855,7 +1841,7 @@ $.ajax({
 															// console.log(t);
 															zoomin(lltemp.children[0], true);
 														}
-														llsliderl.oninput = function() {
+														llsliderl.oninput = function () {
 															// var lltemp.children[0] = scene.getObjectByName(scene.children[illeg].name);
 															var t = this.value;
 															t = -t;
@@ -1864,7 +1850,7 @@ $.ajax({
 															// console.log(t);
 															zoomin(lltemp.children[0], true);
 														}
-														llsliderf.oninput = function() {
+														llsliderf.oninput = function () {
 															// var lltemp.children[0] = scene.getObjectByName(scene.children[illeg].name);
 															var t = this.value;
 															t = -t;
@@ -1873,7 +1859,7 @@ $.ajax({
 															// console.log(t);
 															zoomin(lltemp.children[0], true);
 														}
-														rlslideru.oninput = function() {
+														rlslideru.oninput = function () {
 															// var temp = scene.getObjectByName(scene.children[irleg].name);
 															var t = this.value;
 															t = -t;
@@ -1882,7 +1868,7 @@ $.ajax({
 															// console.log(t);
 															zoomin(rltemp.children[0], true);
 														}
-														rlsliderl.oninput = function() {
+														rlsliderl.oninput = function () {
 															// var rltemp.children[0] = scene.getObjectByName(scene.children[irleg].name);
 															var t = this.value;
 															t = -t;
@@ -1891,7 +1877,7 @@ $.ajax({
 															// console.log(t);
 															zoomin(rltemp.children[0], true);
 														}
-														rlsliderf.oninput = function() {
+														rlsliderf.oninput = function () {
 															// var rltemp.children[0] = scene.getObjectByName(scene.children[irleg].name);
 															var t = this.value;
 															t = -t;
@@ -1904,14 +1890,14 @@ $.ajax({
 													})
 													//----------------------------------------------------------------------------------------
 
-													function onTransitionEnd( event ) {
+													function onTransitionEnd(event) {
 
 														event.target.remove();
-														
+
 													}
 												});
 											}
-											
+
 										});
 									}
 								});
@@ -1923,10 +1909,10 @@ $.ajax({
 		});
 	}
 });
-var OrbitControls = function ( object, domElement ) {
+var OrbitControls = function (object, domElement) {
 
-	if ( domElement === undefined ) console.warn( 'THREE.OrbitControls: The second parameter "domElement" is now mandatory.' );
-	if ( domElement === document ) console.error( 'THREE.OrbitControls: "document" should not be used as the target "domElement". Please use "renderer.domElement" instead.' );
+	if (domElement === undefined) console.warn('THREE.OrbitControls: The second parameter "domElement" is now mandatory.');
+	if (domElement === document) console.error('THREE.OrbitControls: "document" should not be used as the target "domElement". Please use "renderer.domElement" instead.');
 
 	this.object = object;
 	this.domElement = domElement;
@@ -1963,7 +1949,7 @@ var OrbitControls = function ( object, domElement ) {
 	this.keyPanSpeed = 7.0;
 
 	this.autoRotate = false;
-	this.autoRotateSpeed = 2.0; 
+	this.autoRotateSpeed = 2.0;
 
 	this.enableKeys = true;
 
@@ -1991,20 +1977,20 @@ var OrbitControls = function ( object, domElement ) {
 
 	this.saveState = function () {
 
-		scope.target0.copy( scope.target );
-		scope.position0.copy( scope.object.position );
+		scope.target0.copy(scope.target);
+		scope.position0.copy(scope.object.position);
 		scope.zoom0 = scope.object.zoom;
 
 	};
 
 	this.reset = function () {
 
-		scope.target.copy( scope.target0 );
-		scope.object.position.copy( scope.position0 );
+		scope.target.copy(scope.target0);
+		scope.object.position.copy(scope.position0);
 		scope.object.zoom = scope.zoom0;
 
 		scope.object.updateProjectionMatrix();
-		scope.dispatchEvent( changeEvent );
+		scope.dispatchEvent(changeEvent);
 
 		scope.update();
 
@@ -2017,7 +2003,7 @@ var OrbitControls = function ( object, domElement ) {
 		var offset = new Vector3();
 
 		// so camera.up is the orbit axis
-		var quat = new Quaternion().setFromUnitVectors( object.up, new Vector3( 0, 1, 0 ) );
+		var quat = new Quaternion().setFromUnitVectors(object.up, new Vector3(0, 1, 0));
 		var quatInverse = quat.clone().inverse();
 
 		var lastPosition = new Vector3();
@@ -2027,21 +2013,21 @@ var OrbitControls = function ( object, domElement ) {
 
 			var position = scope.object.position;
 
-			offset.copy( position ).sub( scope.target );
+			offset.copy(position).sub(scope.target);
 
 			// rotate offset to "y-axis-is-up" space
-			offset.applyQuaternion( quat );
+			offset.applyQuaternion(quat);
 
 			// angle from z-axis around y-axis
-			spherical.setFromVector3( offset );
+			spherical.setFromVector3(offset);
 
-			if ( scope.autoRotate && state === STATE.NONE ) {
+			if (scope.autoRotate && state === STATE.NONE) {
 
-				rotateLeft( getAutoRotationAngle() );
+				rotateLeft(getAutoRotationAngle());
 
 			}
 
-			if ( scope.enableDamping ) {
+			if (scope.enableDamping) {
 
 				spherical.theta += sphericalDelta.theta * scope.dampingFactor;
 				spherical.phi += sphericalDelta.phi * scope.dampingFactor;
@@ -2054,10 +2040,10 @@ var OrbitControls = function ( object, domElement ) {
 			}
 
 			// restrict theta to be between desired limits
-			spherical.theta = Math.max( scope.minAzimuthAngle, Math.min( scope.maxAzimuthAngle, spherical.theta ) );
+			spherical.theta = Math.max(scope.minAzimuthAngle, Math.min(scope.maxAzimuthAngle, spherical.theta));
 
 			// restrict phi to be between desired limits
-			spherical.phi = Math.max( scope.minPolarAngle, Math.min( scope.maxPolarAngle, spherical.phi ) );
+			spherical.phi = Math.max(scope.minPolarAngle, Math.min(scope.maxPolarAngle, spherical.phi));
 
 			spherical.makeSafe();
 
@@ -2065,41 +2051,41 @@ var OrbitControls = function ( object, domElement ) {
 			spherical.radius *= scale;
 
 			// restrict radius to be between desired limits
-			spherical.radius = Math.max( scope.minDistance, Math.min( scope.maxDistance, spherical.radius ) );
+			spherical.radius = Math.max(scope.minDistance, Math.min(scope.maxDistance, spherical.radius));
 
 			// move target to panned location
 
-			if ( scope.enableDamping === true ) {
+			if (scope.enableDamping === true) {
 
-				scope.target.addScaledVector( panOffset, scope.dampingFactor );
+				scope.target.addScaledVector(panOffset, scope.dampingFactor);
 
 			} else {
 
-				scope.target.add( panOffset );
+				scope.target.add(panOffset);
 
 			}
 
-			offset.setFromSpherical( spherical );
+			offset.setFromSpherical(spherical);
 
 			// rotate offset back to "camera-up-vector-is-up" space
-			offset.applyQuaternion( quatInverse );
+			offset.applyQuaternion(quatInverse);
 
-			position.copy( scope.target ).add( offset );
+			position.copy(scope.target).add(offset);
 
-			scope.object.lookAt( scope.target );
+			scope.object.lookAt(scope.target);
 
-			if ( scope.enableDamping === true ) {
+			if (scope.enableDamping === true) {
 
-				sphericalDelta.theta *= ( 1 - scope.dampingFactor );
-				sphericalDelta.phi *= ( 1 - scope.dampingFactor );
+				sphericalDelta.theta *= (1 - scope.dampingFactor);
+				sphericalDelta.phi *= (1 - scope.dampingFactor);
 
-				panOffset.multiplyScalar( 1 - scope.dampingFactor );
+				panOffset.multiplyScalar(1 - scope.dampingFactor);
 
 			} else {
 
-				sphericalDelta.set( 0, 0, 0 );
+				sphericalDelta.set(0, 0, 0);
 
-				panOffset.set( 0, 0, 0 );
+				panOffset.set(0, 0, 0);
 
 			}
 
@@ -2109,14 +2095,14 @@ var OrbitControls = function ( object, domElement ) {
 			// min(camera displacement, camera rotation in radians)^2 > EPS
 			// using small-angle approximation cos(x/2) = 1 - x^2 / 8
 
-			if ( zoomChanged ||
-				lastPosition.distanceToSquared( scope.object.position ) > EPS ||
-				8 * ( 1 - lastQuaternion.dot( scope.object.quaternion ) ) > EPS ) {
+			if (zoomChanged ||
+				lastPosition.distanceToSquared(scope.object.position) > EPS ||
+				8 * (1 - lastQuaternion.dot(scope.object.quaternion)) > EPS) {
 
-				scope.dispatchEvent( changeEvent );
+				scope.dispatchEvent(changeEvent);
 
-				lastPosition.copy( scope.object.position );
-				lastQuaternion.copy( scope.object.quaternion );
+				lastPosition.copy(scope.object.position);
+				lastQuaternion.copy(scope.object.quaternion);
 				zoomChanged = false;
 
 				return true;
@@ -2131,18 +2117,18 @@ var OrbitControls = function ( object, domElement ) {
 
 	this.dispose = function () {
 
-		scope.domElement.removeEventListener( 'contextmenu', onContextMenu, false );
-		scope.domElement.removeEventListener( 'mousedown', onMouseDown, false );
-		scope.domElement.removeEventListener( 'wheel', onMouseWheel, false );
+		scope.domElement.removeEventListener('contextmenu', onContextMenu, false);
+		scope.domElement.removeEventListener('mousedown', onMouseDown, false);
+		scope.domElement.removeEventListener('wheel', onMouseWheel, false);
 
-		scope.domElement.removeEventListener( 'touchstart', onTouchStart, false );
-		scope.domElement.removeEventListener( 'touchend', onTouchEnd, false );
-		scope.domElement.removeEventListener( 'touchmove', onTouchMove, false );
+		scope.domElement.removeEventListener('touchstart', onTouchStart, false);
+		scope.domElement.removeEventListener('touchend', onTouchEnd, false);
+		scope.domElement.removeEventListener('touchmove', onTouchMove, false);
 
-		document.removeEventListener( 'mousemove', onMouseMove, false );
-		document.removeEventListener( 'mouseup', onMouseUp, false );
+		document.removeEventListener('mousemove', onMouseMove, false);
+		document.removeEventListener('mouseup', onMouseUp, false);
 
-		scope.domElement.removeEventListener( 'keydown', onKeyDown, false );
+		scope.domElement.removeEventListener('keydown', onKeyDown, false);
 
 		//scope.dispatchEvent( { type: 'dispose' } ); // should this be added here?
 
@@ -2201,17 +2187,17 @@ var OrbitControls = function ( object, domElement ) {
 
 	function getZoomScale() {
 
-		return Math.pow( 0.95, scope.zoomSpeed );
+		return Math.pow(0.95, scope.zoomSpeed);
 
 	}
 
-	function rotateLeft( angle ) {
+	function rotateLeft(angle) {
 
 		sphericalDelta.theta -= angle;
 
 	}
 
-	function rotateUp( angle ) {
+	function rotateUp(angle) {
 
 		sphericalDelta.phi -= angle;
 
@@ -2221,12 +2207,12 @@ var OrbitControls = function ( object, domElement ) {
 
 		var v = new Vector3();
 
-		return function panLeft( distance, objectMatrix ) {
+		return function panLeft(distance, objectMatrix) {
 
-			v.setFromMatrixColumn( objectMatrix, 0 ); // get X column of objectMatrix
-			v.multiplyScalar( - distance );
+			v.setFromMatrixColumn(objectMatrix, 0); // get X column of objectMatrix
+			v.multiplyScalar(- distance);
 
-			panOffset.add( v );
+			panOffset.add(v);
 
 		};
 
@@ -2236,22 +2222,22 @@ var OrbitControls = function ( object, domElement ) {
 
 		var v = new Vector3();
 
-		return function panUp( distance, objectMatrix ) {
+		return function panUp(distance, objectMatrix) {
 
-			if ( scope.screenSpacePanning === true ) {
+			if (scope.screenSpacePanning === true) {
 
-				v.setFromMatrixColumn( objectMatrix, 1 );
+				v.setFromMatrixColumn(objectMatrix, 1);
 
 			} else {
 
-				v.setFromMatrixColumn( objectMatrix, 0 );
-				v.crossVectors( scope.object.up, v );
+				v.setFromMatrixColumn(objectMatrix, 0);
+				v.crossVectors(scope.object.up, v);
 
 			}
 
-			v.multiplyScalar( distance );
+			v.multiplyScalar(distance);
 
-			panOffset.add( v );
+			panOffset.add(v);
 
 		};
 
@@ -2262,34 +2248,34 @@ var OrbitControls = function ( object, domElement ) {
 
 		var offset = new Vector3();
 
-		return function pan( deltaX, deltaY ) {
+		return function pan(deltaX, deltaY) {
 
 			var element = scope.domElement;
 
-			if ( scope.object.isPerspectiveCamera ) {
+			if (scope.object.isPerspectiveCamera) {
 
 				// perspective
 				var position = scope.object.position;
-				offset.copy( position ).sub( scope.target );
+				offset.copy(position).sub(scope.target);
 				var targetDistance = offset.length();
 
 				// half of the fov is center to top of screen
-				targetDistance *= Math.tan( ( scope.object.fov / 2 ) * Math.PI / 180.0 );
+				targetDistance *= Math.tan((scope.object.fov / 2) * Math.PI / 180.0);
 
 				// we use only clientHeight here so aspect ratio does not distort speed
-				panLeft( 2 * deltaX * targetDistance / element.clientHeight, scope.object.matrix );
-				panUp( 2 * deltaY * targetDistance / element.clientHeight, scope.object.matrix );
+				panLeft(2 * deltaX * targetDistance / element.clientHeight, scope.object.matrix);
+				panUp(2 * deltaY * targetDistance / element.clientHeight, scope.object.matrix);
 
-			} else if ( scope.object.isOrthographicCamera ) {
+			} else if (scope.object.isOrthographicCamera) {
 
 				// orthographic
-				panLeft( deltaX * ( scope.object.right - scope.object.left ) / scope.object.zoom / element.clientWidth, scope.object.matrix );
-				panUp( deltaY * ( scope.object.top - scope.object.bottom ) / scope.object.zoom / element.clientHeight, scope.object.matrix );
+				panLeft(deltaX * (scope.object.right - scope.object.left) / scope.object.zoom / element.clientWidth, scope.object.matrix);
+				panUp(deltaY * (scope.object.top - scope.object.bottom) / scope.object.zoom / element.clientHeight, scope.object.matrix);
 
 			} else {
 
 				// camera neither orthographic nor perspective
-				console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - pan disabled.' );
+				console.warn('WARNING: OrbitControls.js encountered an unknown camera type - pan disabled.');
 				scope.enablePan = false;
 
 			}
@@ -2298,42 +2284,42 @@ var OrbitControls = function ( object, domElement ) {
 
 	}();
 
-	function dollyOut( dollyScale ) {
+	function dollyOut(dollyScale) {
 
-		if ( scope.object.isPerspectiveCamera ) {
+		if (scope.object.isPerspectiveCamera) {
 
 			scale /= dollyScale;
 
-		} else if ( scope.object.isOrthographicCamera ) {
+		} else if (scope.object.isOrthographicCamera) {
 
-			scope.object.zoom = Math.max( scope.minZoom, Math.min( scope.maxZoom, scope.object.zoom * dollyScale ) );
+			scope.object.zoom = Math.max(scope.minZoom, Math.min(scope.maxZoom, scope.object.zoom * dollyScale));
 			scope.object.updateProjectionMatrix();
 			zoomChanged = true;
 
 		} else {
 
-			console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.' );
+			console.warn('WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.');
 			scope.enableZoom = false;
 
 		}
 
 	}
 
-	function dollyIn( dollyScale ) {
+	function dollyIn(dollyScale) {
 
-		if ( scope.object.isPerspectiveCamera ) {
+		if (scope.object.isPerspectiveCamera) {
 
 			scale *= dollyScale;
 
-		} else if ( scope.object.isOrthographicCamera ) {
+		} else if (scope.object.isOrthographicCamera) {
 
-			scope.object.zoom = Math.max( scope.minZoom, Math.min( scope.maxZoom, scope.object.zoom / dollyScale ) );
+			scope.object.zoom = Math.max(scope.minZoom, Math.min(scope.maxZoom, scope.object.zoom / dollyScale));
 			scope.object.updateProjectionMatrix();
 			zoomChanged = true;
 
 		} else {
 
-			console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.' );
+			console.warn('WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.');
 			scope.enableZoom = false;
 
 		}
@@ -2344,93 +2330,93 @@ var OrbitControls = function ( object, domElement ) {
 	// event callbacks - update the object state
 	//
 
-	function handleMouseDownRotate( event ) {
+	function handleMouseDownRotate(event) {
 
-		rotateStart.set( event.clientX, event.clientY );
-
-	}
-
-	function handleMouseDownDolly( event ) {
-
-		dollyStart.set( event.clientX, event.clientY );
+		rotateStart.set(event.clientX, event.clientY);
 
 	}
 
-	function handleMouseDownPan( event ) {
+	function handleMouseDownDolly(event) {
 
-		panStart.set( event.clientX, event.clientY );
+		dollyStart.set(event.clientX, event.clientY);
 
 	}
 
-	function handleMouseMoveRotate( event ) {
+	function handleMouseDownPan(event) {
 
-		rotateEnd.set( event.clientX, event.clientY );
+		panStart.set(event.clientX, event.clientY);
 
-		rotateDelta.subVectors( rotateEnd, rotateStart ).multiplyScalar( scope.rotateSpeed );
+	}
+
+	function handleMouseMoveRotate(event) {
+
+		rotateEnd.set(event.clientX, event.clientY);
+
+		rotateDelta.subVectors(rotateEnd, rotateStart).multiplyScalar(scope.rotateSpeed);
 
 		var element = scope.domElement;
 
-		rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientHeight ); // yes, height
+		rotateLeft(2 * Math.PI * rotateDelta.x / element.clientHeight); // yes, height
 
-		rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight );
+		rotateUp(2 * Math.PI * rotateDelta.y / element.clientHeight);
 
-		rotateStart.copy( rotateEnd );
+		rotateStart.copy(rotateEnd);
 
 		scope.update();
 
 	}
 
-	function handleMouseMoveDolly( event ) {
+	function handleMouseMoveDolly(event) {
 
-		dollyEnd.set( event.clientX, event.clientY );
+		dollyEnd.set(event.clientX, event.clientY);
 
-		dollyDelta.subVectors( dollyEnd, dollyStart );
+		dollyDelta.subVectors(dollyEnd, dollyStart);
 
-		if ( dollyDelta.y > 0 ) {
+		if (dollyDelta.y > 0) {
 
-			dollyOut( getZoomScale() );
+			dollyOut(getZoomScale());
 
-		} else if ( dollyDelta.y < 0 ) {
+		} else if (dollyDelta.y < 0) {
 
-			dollyIn( getZoomScale() );
+			dollyIn(getZoomScale());
 
 		}
 
-		dollyStart.copy( dollyEnd );
+		dollyStart.copy(dollyEnd);
 
 		scope.update();
 
 	}
 
-	function handleMouseMovePan( event ) {
+	function handleMouseMovePan(event) {
 
-		panEnd.set( event.clientX, event.clientY );
+		panEnd.set(event.clientX, event.clientY);
 
-		panDelta.subVectors( panEnd, panStart ).multiplyScalar( scope.panSpeed );
+		panDelta.subVectors(panEnd, panStart).multiplyScalar(scope.panSpeed);
 
-		pan( panDelta.x, panDelta.y );
+		pan(panDelta.x, panDelta.y);
 
-		panStart.copy( panEnd );
+		panStart.copy(panEnd);
 
 		scope.update();
 
 	}
 
-	function handleMouseUp( /*event*/ ) {
+	function handleMouseUp( /*event*/) {
 
 		// no-op
 
 	}
 
-	function handleMouseWheel( event ) {
+	function handleMouseWheel(event) {
 
-		if ( event.deltaY < 0 ) {
+		if (event.deltaY < 0) {
 
-			dollyIn( getZoomScale() );
+			dollyIn(getZoomScale());
 
-		} else if ( event.deltaY > 0 ) {
+		} else if (event.deltaY > 0) {
 
-			dollyOut( getZoomScale() );
+			dollyOut(getZoomScale());
 
 		}
 
@@ -2438,35 +2424,35 @@ var OrbitControls = function ( object, domElement ) {
 
 	}
 
-	function handleKeyDown( event ) {
+	function handleKeyDown(event) {
 
 		var needsUpdate = false;
 
-		switch ( event.keyCode ) {
+		switch (event.keyCode) {
 
 			case scope.keys.UP:
-				pan( 0, scope.keyPanSpeed );
+				pan(0, scope.keyPanSpeed);
 				needsUpdate = true;
 				break;
 
 			case scope.keys.BOTTOM:
-				pan( 0, - scope.keyPanSpeed );
+				pan(0, - scope.keyPanSpeed);
 				needsUpdate = true;
 				break;
 
 			case scope.keys.LEFT:
-				pan( scope.keyPanSpeed, 0 );
+				pan(scope.keyPanSpeed, 0);
 				needsUpdate = true;
 				break;
 
 			case scope.keys.RIGHT:
-				pan( - scope.keyPanSpeed, 0 );
+				pan(- scope.keyPanSpeed, 0);
 				needsUpdate = true;
 				break;
 
 		}
 
-		if ( needsUpdate ) {
+		if (needsUpdate) {
 
 			// prevent the browser from scrolling on cursor keys
 			event.preventDefault();
@@ -2478,151 +2464,151 @@ var OrbitControls = function ( object, domElement ) {
 
 	}
 
-	function handleTouchStartRotate( event ) {
+	function handleTouchStartRotate(event) {
 
-		if ( event.touches.length == 1 ) {
+		if (event.touches.length == 1) {
 
-			rotateStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+			rotateStart.set(event.touches[0].pageX, event.touches[0].pageY);
 
 		} else {
 
-			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
-			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
+			var x = 0.5 * (event.touches[0].pageX + event.touches[1].pageX);
+			var y = 0.5 * (event.touches[0].pageY + event.touches[1].pageY);
 
-			rotateStart.set( x, y );
+			rotateStart.set(x, y);
 
 		}
 
 	}
 
-	function handleTouchStartPan( event ) {
+	function handleTouchStartPan(event) {
 
-		if ( event.touches.length == 1 ) {
+		if (event.touches.length == 1) {
 
-			panStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+			panStart.set(event.touches[0].pageX, event.touches[0].pageY);
 
 		} else {
 
-			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
-			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
+			var x = 0.5 * (event.touches[0].pageX + event.touches[1].pageX);
+			var y = 0.5 * (event.touches[0].pageY + event.touches[1].pageY);
 
-			panStart.set( x, y );
+			panStart.set(x, y);
 
 		}
 
 	}
 
-	function handleTouchStartDolly( event ) {
+	function handleTouchStartDolly(event) {
 
-		var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
-		var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
+		var dx = event.touches[0].pageX - event.touches[1].pageX;
+		var dy = event.touches[0].pageY - event.touches[1].pageY;
 
-		var distance = Math.sqrt( dx * dx + dy * dy );
+		var distance = Math.sqrt(dx * dx + dy * dy);
 
-		dollyStart.set( 0, distance );
-
-	}
-
-	function handleTouchStartDollyPan( event ) {
-
-		if ( scope.enableZoom ) handleTouchStartDolly( event );
-
-		if ( scope.enablePan ) handleTouchStartPan( event );
+		dollyStart.set(0, distance);
 
 	}
 
-	function handleTouchStartDollyRotate( event ) {
+	function handleTouchStartDollyPan(event) {
 
-		if ( scope.enableZoom ) handleTouchStartDolly( event );
+		if (scope.enableZoom) handleTouchStartDolly(event);
 
-		if ( scope.enableRotate ) handleTouchStartRotate( event );
+		if (scope.enablePan) handleTouchStartPan(event);
 
 	}
 
-	function handleTouchMoveRotate( event ) {
+	function handleTouchStartDollyRotate(event) {
 
-		if ( event.touches.length == 1 ) {
+		if (scope.enableZoom) handleTouchStartDolly(event);
 
-			rotateEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+		if (scope.enableRotate) handleTouchStartRotate(event);
+
+	}
+
+	function handleTouchMoveRotate(event) {
+
+		if (event.touches.length == 1) {
+
+			rotateEnd.set(event.touches[0].pageX, event.touches[0].pageY);
 
 		} else {
 
-			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
-			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
+			var x = 0.5 * (event.touches[0].pageX + event.touches[1].pageX);
+			var y = 0.5 * (event.touches[0].pageY + event.touches[1].pageY);
 
-			rotateEnd.set( x, y );
+			rotateEnd.set(x, y);
 
 		}
 
-		rotateDelta.subVectors( rotateEnd, rotateStart ).multiplyScalar( scope.rotateSpeed );
+		rotateDelta.subVectors(rotateEnd, rotateStart).multiplyScalar(scope.rotateSpeed);
 
 		var element = scope.domElement;
 
-		rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientHeight ); // yes, height
+		rotateLeft(2 * Math.PI * rotateDelta.x / element.clientHeight); // yes, height
 
-		rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight );
+		rotateUp(2 * Math.PI * rotateDelta.y / element.clientHeight);
 
-		rotateStart.copy( rotateEnd );
+		rotateStart.copy(rotateEnd);
 
 	}
 
-	function handleTouchMovePan( event ) {
+	function handleTouchMovePan(event) {
 
-		if ( event.touches.length == 1 ) {
+		if (event.touches.length == 1) {
 
-			panEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+			panEnd.set(event.touches[0].pageX, event.touches[0].pageY);
 
 		} else {
 
-			var x = 0.5 * ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX );
-			var y = 0.5 * ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY );
+			var x = 0.5 * (event.touches[0].pageX + event.touches[1].pageX);
+			var y = 0.5 * (event.touches[0].pageY + event.touches[1].pageY);
 
-			panEnd.set( x, y );
+			panEnd.set(x, y);
 
 		}
 
-		panDelta.subVectors( panEnd, panStart ).multiplyScalar( scope.panSpeed );
+		panDelta.subVectors(panEnd, panStart).multiplyScalar(scope.panSpeed);
 
-		pan( panDelta.x, panDelta.y );
+		pan(panDelta.x, panDelta.y);
 
-		panStart.copy( panEnd );
-
-	}
-
-	function handleTouchMoveDolly( event ) {
-
-		var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
-		var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
-
-		var distance = Math.sqrt( dx * dx + dy * dy );
-
-		dollyEnd.set( 0, distance );
-
-		dollyDelta.set( 0, Math.pow( dollyEnd.y / dollyStart.y, scope.zoomSpeed ) );
-
-		dollyOut( dollyDelta.y );
-
-		dollyStart.copy( dollyEnd );
+		panStart.copy(panEnd);
 
 	}
 
-	function handleTouchMoveDollyPan( event ) {
+	function handleTouchMoveDolly(event) {
 
-		if ( scope.enableZoom ) handleTouchMoveDolly( event );
+		var dx = event.touches[0].pageX - event.touches[1].pageX;
+		var dy = event.touches[0].pageY - event.touches[1].pageY;
 
-		if ( scope.enablePan ) handleTouchMovePan( event );
+		var distance = Math.sqrt(dx * dx + dy * dy);
+
+		dollyEnd.set(0, distance);
+
+		dollyDelta.set(0, Math.pow(dollyEnd.y / dollyStart.y, scope.zoomSpeed));
+
+		dollyOut(dollyDelta.y);
+
+		dollyStart.copy(dollyEnd);
 
 	}
 
-	function handleTouchMoveDollyRotate( event ) {
+	function handleTouchMoveDollyPan(event) {
 
-		if ( scope.enableZoom ) handleTouchMoveDolly( event );
+		if (scope.enableZoom) handleTouchMoveDolly(event);
 
-		if ( scope.enableRotate ) handleTouchMoveRotate( event );
+		if (scope.enablePan) handleTouchMovePan(event);
 
 	}
 
-	function handleTouchEnd( /*event*/ ) {
+	function handleTouchMoveDollyRotate(event) {
+
+		if (scope.enableZoom) handleTouchMoveDolly(event);
+
+		if (scope.enableRotate) handleTouchMoveRotate(event);
+
+	}
+
+	function handleTouchEnd( /*event*/) {
 
 		// no-op
 
@@ -2632,9 +2618,9 @@ var OrbitControls = function ( object, domElement ) {
 	// event handlers - FSM: listen for events and reset state
 	//
 
-	function onMouseDown( event ) {
+	function onMouseDown(event) {
 
-		if ( scope.enabled === false ) return;
+		if (scope.enabled === false) return;
 
 		// Prevent the browser from scrolling.
 		event.preventDefault();
@@ -2646,7 +2632,7 @@ var OrbitControls = function ( object, domElement ) {
 
 		var mouseAction;
 
-		switch ( event.button ) {
+		switch (event.button) {
 
 			case 0:
 
@@ -2669,13 +2655,13 @@ var OrbitControls = function ( object, domElement ) {
 
 		}
 
-		switch ( mouseAction ) {
+		switch (mouseAction) {
 
 			case MOUSE.DOLLY:
 
-				if ( scope.enableZoom === false ) return;
+				if (scope.enableZoom === false) return;
 
-				handleMouseDownDolly( event );
+				handleMouseDownDolly(event);
 
 				state = STATE.DOLLY;
 
@@ -2683,19 +2669,19 @@ var OrbitControls = function ( object, domElement ) {
 
 			case MOUSE.ROTATE:
 
-				if ( event.ctrlKey || event.metaKey || event.shiftKey ) {
+				if (event.ctrlKey || event.metaKey || event.shiftKey) {
 
-					if ( scope.enablePan === false ) return;
+					if (scope.enablePan === false) return;
 
-					handleMouseDownPan( event );
+					handleMouseDownPan(event);
 
 					state = STATE.PAN;
 
 				} else {
 
-					if ( scope.enableRotate === false ) return;
+					if (scope.enableRotate === false) return;
 
-					handleMouseDownRotate( event );
+					handleMouseDownRotate(event);
 
 					state = STATE.ROTATE;
 
@@ -2705,19 +2691,19 @@ var OrbitControls = function ( object, domElement ) {
 
 			case MOUSE.PAN:
 
-				if ( event.ctrlKey || event.metaKey || event.shiftKey ) {
+				if (event.ctrlKey || event.metaKey || event.shiftKey) {
 
-					if ( scope.enableRotate === false ) return;
+					if (scope.enableRotate === false) return;
 
-					handleMouseDownRotate( event );
+					handleMouseDownRotate(event);
 
 					state = STATE.ROTATE;
 
 				} else {
 
-					if ( scope.enablePan === false ) return;
+					if (scope.enablePan === false) return;
 
-					handleMouseDownPan( event );
+					handleMouseDownPan(event);
 
 					state = STATE.PAN;
 
@@ -2731,46 +2717,46 @@ var OrbitControls = function ( object, domElement ) {
 
 		}
 
-		if ( state !== STATE.NONE ) {
+		if (state !== STATE.NONE) {
 
-			document.addEventListener( 'mousemove', onMouseMove, false );
-			document.addEventListener( 'mouseup', onMouseUp, false );
+			document.addEventListener('mousemove', onMouseMove, false);
+			document.addEventListener('mouseup', onMouseUp, false);
 
-			scope.dispatchEvent( startEvent );
+			scope.dispatchEvent(startEvent);
 
 		}
 
 	}
 
-	function onMouseMove( event ) {
+	function onMouseMove(event) {
 
-		if ( scope.enabled === false ) return;
+		if (scope.enabled === false) return;
 
 		event.preventDefault();
 
-		switch ( state ) {
+		switch (state) {
 
 			case STATE.ROTATE:
 
-				if ( scope.enableRotate === false ) return;
+				if (scope.enableRotate === false) return;
 
-				handleMouseMoveRotate( event );
+				handleMouseMoveRotate(event);
 
 				break;
 
 			case STATE.DOLLY:
 
-				if ( scope.enableZoom === false ) return;
+				if (scope.enableZoom === false) return;
 
-				handleMouseMoveDolly( event );
+				handleMouseMoveDolly(event);
 
 				break;
 
 			case STATE.PAN:
 
-				if ( scope.enablePan === false ) return;
+				if (scope.enablePan === false) return;
 
-				handleMouseMovePan( event );
+				handleMouseMovePan(event);
 
 				break;
 
@@ -2778,61 +2764,61 @@ var OrbitControls = function ( object, domElement ) {
 
 	}
 
-	function onMouseUp( event ) {
+	function onMouseUp(event) {
 
-		if ( scope.enabled === false ) return;
+		if (scope.enabled === false) return;
 
-		handleMouseUp( event );
+		handleMouseUp(event);
 
-		document.removeEventListener( 'mousemove', onMouseMove, false );
-		document.removeEventListener( 'mouseup', onMouseUp, false );
+		document.removeEventListener('mousemove', onMouseMove, false);
+		document.removeEventListener('mouseup', onMouseUp, false);
 
-		scope.dispatchEvent( endEvent );
+		scope.dispatchEvent(endEvent);
 
 		state = STATE.NONE;
 
 	}
 
-	function onMouseWheel( event ) {
+	function onMouseWheel(event) {
 
-		if ( scope.enabled === false || scope.enableZoom === false || ( state !== STATE.NONE && state !== STATE.ROTATE ) ) return;
+		if (scope.enabled === false || scope.enableZoom === false || (state !== STATE.NONE && state !== STATE.ROTATE)) return;
 
 		event.preventDefault();
 		event.stopPropagation();
 
-		scope.dispatchEvent( startEvent );
+		scope.dispatchEvent(startEvent);
 
-		handleMouseWheel( event );
+		handleMouseWheel(event);
 
-		scope.dispatchEvent( endEvent );
-
-	}
-
-	function onKeyDown( event ) {
-
-		if ( scope.enabled === false || scope.enableKeys === false || scope.enablePan === false ) return;
-
-		handleKeyDown( event );
+		scope.dispatchEvent(endEvent);
 
 	}
 
-	function onTouchStart( event ) {
+	function onKeyDown(event) {
 
-		if ( scope.enabled === false ) return;
+		if (scope.enabled === false || scope.enableKeys === false || scope.enablePan === false) return;
+
+		handleKeyDown(event);
+
+	}
+
+	function onTouchStart(event) {
+
+		if (scope.enabled === false) return;
 
 		event.preventDefault(); // prevent scrolling
 
-		switch ( event.touches.length ) {
+		switch (event.touches.length) {
 
 			case 1:
 
-				switch ( scope.touches.ONE ) {
+				switch (scope.touches.ONE) {
 
 					case TOUCH.ROTATE:
 
-						if ( scope.enableRotate === false ) return;
+						if (scope.enableRotate === false) return;
 
-						handleTouchStartRotate( event );
+						handleTouchStartRotate(event);
 
 						state = STATE.TOUCH_ROTATE;
 
@@ -2840,9 +2826,9 @@ var OrbitControls = function ( object, domElement ) {
 
 					case TOUCH.PAN:
 
-						if ( scope.enablePan === false ) return;
+						if (scope.enablePan === false) return;
 
-						handleTouchStartPan( event );
+						handleTouchStartPan(event);
 
 						state = STATE.TOUCH_PAN;
 
@@ -2858,13 +2844,13 @@ var OrbitControls = function ( object, domElement ) {
 
 			case 2:
 
-				switch ( scope.touches.TWO ) {
+				switch (scope.touches.TWO) {
 
 					case TOUCH.DOLLY_PAN:
 
-						if ( scope.enableZoom === false && scope.enablePan === false ) return;
+						if (scope.enableZoom === false && scope.enablePan === false) return;
 
-						handleTouchStartDollyPan( event );
+						handleTouchStartDollyPan(event);
 
 						state = STATE.TOUCH_DOLLY_PAN;
 
@@ -2872,9 +2858,9 @@ var OrbitControls = function ( object, domElement ) {
 
 					case TOUCH.DOLLY_ROTATE:
 
-						if ( scope.enableZoom === false && scope.enableRotate === false ) return;
+						if (scope.enableZoom === false && scope.enableRotate === false) return;
 
-						handleTouchStartDollyRotate( event );
+						handleTouchStartDollyRotate(event);
 
 						state = STATE.TOUCH_DOLLY_ROTATE;
 
@@ -2894,28 +2880,28 @@ var OrbitControls = function ( object, domElement ) {
 
 		}
 
-		if ( state !== STATE.NONE ) {
+		if (state !== STATE.NONE) {
 
-			scope.dispatchEvent( startEvent );
+			scope.dispatchEvent(startEvent);
 
 		}
 
 	}
 
-	function onTouchMove( event ) {
+	function onTouchMove(event) {
 
-		if ( scope.enabled === false ) return;
+		if (scope.enabled === false) return;
 
 		event.preventDefault(); // prevent scrolling
 		event.stopPropagation();
 
-		switch ( state ) {
+		switch (state) {
 
 			case STATE.TOUCH_ROTATE:
 
-				if ( scope.enableRotate === false ) return;
+				if (scope.enableRotate === false) return;
 
-				handleTouchMoveRotate( event );
+				handleTouchMoveRotate(event);
 
 				scope.update();
 
@@ -2923,9 +2909,9 @@ var OrbitControls = function ( object, domElement ) {
 
 			case STATE.TOUCH_PAN:
 
-				if ( scope.enablePan === false ) return;
+				if (scope.enablePan === false) return;
 
-				handleTouchMovePan( event );
+				handleTouchMovePan(event);
 
 				scope.update();
 
@@ -2933,9 +2919,9 @@ var OrbitControls = function ( object, domElement ) {
 
 			case STATE.TOUCH_DOLLY_PAN:
 
-				if ( scope.enableZoom === false && scope.enablePan === false ) return;
+				if (scope.enableZoom === false && scope.enablePan === false) return;
 
-				handleTouchMoveDollyPan( event );
+				handleTouchMoveDollyPan(event);
 
 				scope.update();
 
@@ -2943,9 +2929,9 @@ var OrbitControls = function ( object, domElement ) {
 
 			case STATE.TOUCH_DOLLY_ROTATE:
 
-				if ( scope.enableZoom === false && scope.enableRotate === false ) return;
+				if (scope.enableZoom === false && scope.enableRotate === false) return;
 
-				handleTouchMoveDollyRotate( event );
+				handleTouchMoveDollyRotate(event);
 
 				scope.update();
 
@@ -2959,21 +2945,22 @@ var OrbitControls = function ( object, domElement ) {
 
 	}
 
-	function onTouchEnd( event ) {
 
-		if ( scope.enabled === false ) return;
+	function onTouchEnd(event) {
 
-		handleTouchEnd( event );
+		if (scope.enabled === false) return;
 
-		scope.dispatchEvent( endEvent );
+		handleTouchEnd(event);
+
+		scope.dispatchEvent(endEvent);
 
 		state = STATE.NONE;
 
 	}
 
-	function onContextMenu( event ) {
+	function onContextMenu(event) {
 
-		if ( scope.enabled === false ) return;
+		if (scope.enabled === false) return;
 
 		event.preventDefault();
 
@@ -2981,20 +2968,20 @@ var OrbitControls = function ( object, domElement ) {
 
 	//
 
-	scope.domElement.addEventListener( 'contextmenu', onContextMenu, false );
+	scope.domElement.addEventListener('contextmenu', onContextMenu, false);
 
-	scope.domElement.addEventListener( 'mousedown', onMouseDown, false );
-	scope.domElement.addEventListener( 'wheel', onMouseWheel, false );
+	scope.domElement.addEventListener('mousedown', onMouseDown, false);
+	scope.domElement.addEventListener('wheel', onMouseWheel, false);
 
-	scope.domElement.addEventListener( 'touchstart', onTouchStart, false );
-	scope.domElement.addEventListener( 'touchend', onTouchEnd, false );
-	scope.domElement.addEventListener( 'touchmove', onTouchMove, false );
+	scope.domElement.addEventListener('touchstart', onTouchStart, false);
+	scope.domElement.addEventListener('touchend', onTouchEnd, false);
+	scope.domElement.addEventListener('touchmove', onTouchMove, false);
 
-	scope.domElement.addEventListener( 'keydown', onKeyDown, false );
+	scope.domElement.addEventListener('keydown', onKeyDown, false);
 
 	// make sure element can receive keys.
 
-	if ( scope.domElement.tabIndex === - 1 ) {
+	if (scope.domElement.tabIndex === - 1) {
 
 		scope.domElement.tabIndex = 0;
 
@@ -3006,7 +2993,7 @@ var OrbitControls = function ( object, domElement ) {
 
 };
 
-OrbitControls.prototype = Object.create( EventDispatcher.prototype );
+OrbitControls.prototype = Object.create(EventDispatcher.prototype);
 OrbitControls.prototype.constructor = OrbitControls;
 
 
@@ -3018,9 +3005,9 @@ OrbitControls.prototype.constructor = OrbitControls;
 //    Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish
 //    Pan - left mouse, or arrow keys / touch: one-finger move
 
-var MapControls = function ( object, domElement ) {
+var MapControls = function (object, domElement) {
 
-	OrbitControls.call( this, object, domElement );
+	OrbitControls.call(this, object, domElement);
 
 	this.mouseButtons.LEFT = MOUSE.PAN;
 	this.mouseButtons.RIGHT = MOUSE.ROTATE;
@@ -3030,7 +3017,7 @@ var MapControls = function ( object, domElement ) {
 
 };
 
-MapControls.prototype = Object.create( EventDispatcher.prototype );
+MapControls.prototype = Object.create(EventDispatcher.prototype);
 MapControls.prototype.constructor = MapControls;
 
 export { OrbitControls, MapControls };
