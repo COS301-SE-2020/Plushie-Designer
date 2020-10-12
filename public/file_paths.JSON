@@ -373,8 +373,15 @@
             }
         },
         "rooms":{
-            "room_1": "/background/Room/scene.gltf",   
-            "room_2": "/background/Room_2/scene.gltf"    
+            "length" : 2,
+            "0": {
+                "url": "/background/Room/scene.gltf",
+                "img": "/background/Room/Room1.png"
+            },   
+            "1": {
+                "url": "/background/Room_2/scene.gltf" ,
+                "img": "/background/Room_2/Room2.png"
+            }  
         }
     }
     

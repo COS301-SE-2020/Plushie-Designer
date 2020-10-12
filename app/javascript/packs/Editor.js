@@ -61,7 +61,7 @@ $.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
 											success:  function(r_leg_models){
-												readTextFile("/file_paths1.JSON", function(text){
+												readTextFile("/file_paths.JSON", function(text){
 													var data = JSON.parse(text);
 													// console.log(r_leg_models);
 													var headchange = false;
@@ -857,19 +857,15 @@ $.ajax({
 													{
 														gltf.scene.name = name;														
 														gltf.scene.rotateY(-Math.PI/4);
-														switch(name)
-														{
-															case "Room_1" : 
-																gltf.scene.position.setY(-24);
-																gltf.scene.position.setX(-4.5);
-																gltf.scene.scale.set(20,20,20);
-																break;
-															case "Room_2" : 
-																gltf.scene.position.setY(-3.5);
-																gltf.scene.position.setZ(36.5);
-																gltf.scene.position.setX(46.5);
-																gltf.scene.scale.set(2,2,2);
-																break;
+														if(room == 0){
+															gltf.scene.position.setY(-24);
+															gltf.scene.position.setX(-4.5);
+															gltf.scene.scale.set(20,20,20);
+														} else if(room == 1){
+															gltf.scene.position.setY(-3.5);
+															gltf.scene.position.setZ(36.5);
+															gltf.scene.position.setX(46.5);
+															gltf.scene.scale.set(2,2,2);
 														}
 
 														scene.add( gltf.scene );
@@ -934,8 +930,8 @@ $.ajax({
 														, undefined, function ( error ) { console.error( error );} );
 													//---------------------------------------------------------------------
 													//---------------------------------Background-------------------------------------
-													burl = data.file_paths.rooms.room_1;
-													loader.load( burl,  (gltf) => add_room_to_scene(gltf , "Room_1")
+													burl = data.file_paths.rooms[0].url;
+													loader.load( burl,  (gltf) => add_room_to_scene(gltf , "room")
 														, undefined, function ( error ) { console.error( error );} );
 													//--------------------------------------------------------------------------------
 													//---------------------------PLANE--------------------------------
@@ -984,8 +980,7 @@ $.ajax({
 																case "leftleg" : illeg = i; break;
 																case "rightleg" : irleg = i; break;
 																case "hair" : ihair = i; break;
-																case "Room_1" : ib = i; break;
-																case "Room_2" : ib = i; break;
+																case "room" : ib = i; break;
 															}
 														}
 													}
@@ -1106,22 +1101,9 @@ $.ajax({
 																var temp = scene.getObjectByName(scene.children[ib].name);
 																scene.remove(temp);
 															}
-															var tname;
-															var i;
-															if(room == 0){
-																tname = "Room_1";
-																i = 0;
-																burl = data.file_paths.rooms.room_1;
-															}
-															else if(room == 1){
-																tname = "Room_2";
-																i = 1;
-																burl = data.file_paths.rooms.room_2;
-															}
-															if(room != 2){
-																loader.load( burl, (gltf) => add_room_to_scene(gltf , tname)
-																, undefined, function ( error ) { console.error( error );} );
-															}
+															burl = data.file_paths.rooms[room].url;
+															loader.load( burl, (gltf) => add_room_to_scene(gltf , "room")
+															, undefined, function ( error ) { console.error( error );} );
 															bchange = false;
 														}
 
@@ -1702,6 +1684,29 @@ $.ajax({
 															}
 														}
 													}
+													
+													function populateRooms(){
+														var fm = document.getElementById("rooms");
+														fm.innerHTML="";
+																																																						
+														for(var i=0;i<data.file_paths.rooms.length;++i){
+															var button = document.createElement('button');
+															//alert(data.file_paths.rooms.test);
+															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.rooms[i].img + '" />';
+															button.className = 'btn';
+															var tid = "room" + i;
+															button.id = tid;
+															button.type = "button";
+															button.value = i;
+															button.onclick = function(){
+																if(room != this.value){
+																	room = this.value;	
+																	bchange = true;		
+																}									
+															};
+															fm.appendChild(button);
+														}
+													}
 
 													function populateInfoCard(title, desc, image){
 														if(image == null){
@@ -1714,6 +1719,7 @@ $.ajax({
 
 													$(document).ready(function(){
 														populateFullModels();
+														populateRooms();
 														$('#info-card').fadeToggle(0);
 														$('#info-btn').click(function () {
 															if($('#info-btn').text()=="Show Info"){
@@ -1970,22 +1976,22 @@ $.ajax({
 															screensh();
 														});
 
-														$('#rooml').click(function () {
-															if(room > 0){
-																bchange = true;
-																rtmp = room;
-																room -= 1;
-															}
-														});
-														$('#roomr').click(function () {
-															var tmp = room;
-															if(tmp < 2){
-																bchange = true;
-																rtmp = room;
-																tmp = +tmp + +1;
-																room = tmp;
-															}
-														});
+														// $('#rooml').click(function () {
+														// 	if(room > 0){
+														// 		bchange = true;
+														// 		rtmp = room;
+														// 		room -= 1;
+														// 	}
+														// });
+														// $('#roomr').click(function () {
+														// 	var tmp = room;
+														// 	if(tmp < 2){
+														// 		bchange = true;
+														// 		rtmp = room;
+														// 		tmp = +tmp + +1;
+														// 		room = tmp;
+														// 	}
+														// });
 
 														// $('#headl').click(function () {
 														// 	if($("#toy_head")[0].value > 0){
