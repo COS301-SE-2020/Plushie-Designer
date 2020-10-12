@@ -430,6 +430,7 @@ $.ajax({
 
 														function chooseBodyPart(obj)//TODO
 														{	
+															var added = false;
 															switch(obj.name)
 															{
 																case "hair" : currentSelection = hhtemp; break;
@@ -444,7 +445,9 @@ $.ajax({
 																	else
 																		populateInfoCard(head_models[0].title, head_models[0].desc, head_models[head-data.file_paths.models.length].head_image.url);
 
-																	currentSelection = htemp; 
+																	if(currentSelection == htemp){
+																		added = true;													
+																	} else currentSelection = htemp; 
 																	// zoomin(obj);
 																	break;
 																case ttemp.children[0].name : 
@@ -457,7 +460,10 @@ $.ajax({
 																		populateInfoCard(data.file_paths.models[torso].body.title,data.file_paths.models[torso].body.desc,data.file_paths.models[torso].body.img);
 																	else
 																		populateInfoCard(body_models[0].title, body_models[0].desc, body_models[body-data.file_paths.models.length].body_image.url);
-																	currentSelection = ttemp; 
+
+																	if(currentSelection == ttemp){
+																		added = true;													
+																	} else currentSelection = ttemp; 
 																	// zoomin(obj);
 																	break;
 																case lltemp.children[0].name :
@@ -470,7 +476,10 @@ $.ajax({
 																		populateInfoCard(data.file_paths.models[lleg].l_leg.title,data.file_paths.models[lleg].l_leg.desc,data.file_paths.models[lleg].l_leg.img);
 																	else
 																		populateInfoCard(l_leg_models[0].title, l_leg_models[0].desc, l_leg_models[lleg-data.file_paths.models.length].l_leg_image.url);
-																	currentSelection = lltemp; 
+
+																	if(currentSelection == lltemp){
+																		added = true;													
+																	} else currentSelection = lltemp; 
 																	// zoomin(obj);
 																	break;
 																case rltemp.children[0].name : 
@@ -483,7 +492,10 @@ $.ajax({
 																		populateInfoCard(data.file_paths.models[rleg].r_leg.title,data.file_paths.models[rleg].r_leg.desc,data.file_paths.models[rleg].r_leg.img);
 																	else
 																		populateInfoCard(r_leg_models[0].title, r_leg_models[0].desc, r_leg_models[rleg-data.file_paths.models.length].r_leg_image.url);
-																	currentSelection = rltemp; 
+
+																	if(currentSelection == rltemp){
+																		added = true;													
+																	} else currentSelection = rltemp; 
 																	// zoomin(obj);
 																	break;
 																case latemp.children[0].name : 
@@ -496,7 +508,10 @@ $.ajax({
 																		populateInfoCard(data.file_paths.models[larm].l_arm.title,data.file_paths.models[larm].l_arm.desc,data.file_paths.models[larm].l_arm.img);
 																	else
 																		populateInfoCard(l_arm_models[0].title, l_arm_models[0].desc, l_arm_models[larm-data.file_paths.models.length].l_arm_image.url);
-																	currentSelection = latemp; 
+
+																	if(currentSelection == latemp){
+																		added = true;													
+																	} else currentSelection = latemp; 
 																	// zoomin(obj);
 																	break;
 																case ratemp.children[0].name :
@@ -509,14 +524,22 @@ $.ajax({
 																		populateInfoCard(data.file_paths.models[rarm].r_arm.title,data.file_paths.models[rarm].r_arm.desc,data.file_paths.models[rarm].r_arm.img);
 																	else
 																		populateInfoCard(r_arm_models[0].title, r_arm_models[0].desc, r_arm_models[rarm-data.file_paths.models.length].r_arm_image.url);
-																	currentSelection = ratemp; 
+
+																	if(currentSelection == ratemp){
+																		added = true;													
+																	} else currentSelection = ratemp; 
 																	// zoomin(obj);
 																	break;
 																default : return;
 															}
-															var selectedObject = obj;
-															addSelectedObject( selectedObject );
-															outlinePass.selectedObjects = selectedObjects;															
+															if(!added){
+																var selectedObject = obj;
+																addSelectedObject( selectedObject );
+																outlinePass.selectedObjects = selectedObjects;
+															}else{
+																currentSelection = null; 
+																outlinePass.selectedObjects = [];
+															}														
 														}
 
 														function onMouseClick(event)

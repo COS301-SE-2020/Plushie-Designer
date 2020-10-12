@@ -1555,6 +1555,13 @@
  
  .payment-form {
   max-width: 55em;
+
+  #disclaimer{
+      position: absolute;
+      top: 3em;
+      color: var(--primary-colour);
+      font-size: smaller;
+  }
   .half-field {
     width: 40%;
     display: inline-block;
