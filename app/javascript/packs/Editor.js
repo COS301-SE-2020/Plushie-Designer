@@ -71,6 +71,7 @@ $.ajax({
 													var llegchange = false;
 													var rlegchange = false;
 													var bchange = false;
+													var texturepanel = false;
 
 													var type = 0;
 													var typechange = false;
@@ -433,7 +434,9 @@ $.ajax({
 																case "hair" : currentSelection = hhtemp; break;
 																case htemp.children[0].name : 
 																	if(menuitem != "head"){
-																		$('.head-controls').click();																		
+																		if(!texturepanel){
+																			$('.head-controls').click();
+																		} else zoomin(htemp.children[0], false);																	
 																	}
 																	if(head < data.file_paths.models.length-1)
 																		populateInfoCard(data.file_paths.models[head].head.title,data.file_paths.models[head].head.desc,data.file_paths.models[head].head.img);
@@ -445,7 +448,9 @@ $.ajax({
 																	break;
 																case ttemp.children[0].name : 
 																	if(menuitem != "torso"){
-																		$('.torso-controls').click();																		
+																		if(!texturepanel){
+																			$('.torso-controls').click();
+																		} else zoomin(ttemp.children[0], false);																																				
 																	}
 																	if(torso < data.file_paths.models.length-1)
 																		populateInfoCard(data.file_paths.models[torso].body.title,data.file_paths.models[torso].body.desc,data.file_paths.models[torso].body.img);
@@ -456,7 +461,9 @@ $.ajax({
 																	break;
 																case lltemp.children[0].name :
 																	if(menuitem != "l-legs"){
-																		$('.l-legs-controls').click();																		
+																		if(!texturepanel){
+																			$('.l-legs-controls').click();	
+																		} else zoomin(lltemp.children[0], false);																																			
 																	}
 																	if(lleg < data.file_paths.models.length-1)
 																		populateInfoCard(data.file_paths.models[lleg].l_leg.title,data.file_paths.models[lleg].l_leg.desc,data.file_paths.models[lleg].l_leg.img);
@@ -467,7 +474,9 @@ $.ajax({
 																	break;
 																case rltemp.children[0].name : 
 																	if(menuitem != "r-legs"){
-																		$('.r-legs-controls').click();																		
+																		if(!texturepanel){
+																			$('.r-legs-controls').click();	
+																		} else zoomin(rltemp.children[0], false);																																			
 																	}
 																	if(rleg < data.file_paths.models.length-1)
 																		populateInfoCard(data.file_paths.models[rleg].r_leg.title,data.file_paths.models[rleg].r_leg.desc,data.file_paths.models[rleg].r_leg.img);
@@ -478,7 +487,9 @@ $.ajax({
 																	break;
 																case latemp.children[0].name : 
 																	if(menuitem != "l-arms"){
-																		$('.l-arms-controls').click();																		
+																		if(!texturepanel){
+																			$('.l-arms-controls').click();
+																		} else zoomin(latemp.children[0], false);																																				
 																	}
 																	if(larm < data.file_paths.models.length-1)
 																		populateInfoCard(data.file_paths.models[larm].l_arm.title,data.file_paths.models[larm].l_arm.desc,data.file_paths.models[larm].l_arm.img);
@@ -489,7 +500,9 @@ $.ajax({
 																	break;
 																case ratemp.children[0].name :
 																	if(menuitem != "r-arms"){
-																		$('.r-arms-controls').click();																		
+																		if(!texturepanel){
+																			$('.r-arms-controls').click();	
+																		} else zoomin(ratemp.children[0], false);																																			
 																	}
 																	if(rarm < data.file_paths.models.length-1)
 																		populateInfoCard(data.file_paths.models[rarm].r_arm.title,data.file_paths.models[rarm].r_arm.desc,data.file_paths.models[rarm].r_arm.img);
@@ -565,7 +578,7 @@ $.ajax({
 																}
 																break;
 															case "head" :
-																htemp = gltf.scene;																													
+																htemp = gltf.scene;																																											
 																color = $("#toy_head_tex")[0].value;
 																if(headposy != 0.0){
 																	headposy = -headposy;
@@ -1630,36 +1643,52 @@ $.ajax({
 														$('.head-controls').click(function (){
 															zoomin(htemp.children[0], false);
 															menuitem = "head";
+															texturepanel = false;
 														});
 
 														$('.torso-controls').click(function (){
 															zoomin(ttemp.children[0], false);
 															menuitem = "torso";
+															texturepanel = false;
 														});
 
 														$('.l-arms-controls').click(function (){
 															zoomin(latemp.children[0], false);	
 															menuitem = "l-arms";
+															texturepanel = false;
 														});
 
 														$('.r-arms-controls').click(function (){
 															zoomin(ratemp.children[0], false);
-															menuitem = "r-arms";	
+															menuitem = "r-arms";
+															texturepanel = false;	
 														});
 
 														$('.l-legs-controls').click(function (){
 															zoomin(lltemp.children[0], false);
-															menuitem = "l-legs";	
+															menuitem = "l-legs";
+															texturepanel = false;	
 														});
 
 														$('.r-legs-controls').click(function (){															
 															zoomin(rltemp.children[0], false);	
 															menuitem = "r-legs";
+															texturepanel = false;
 														});
 
 														$('.type-controls').click(function (){															
 															zoomreset();
 															menuitem = "type";
+															texturepanel = false;
+														});
+														$('.textures').click(function (){
+															menuitem = "type";
+															texturepanel = true;
+														});
+														$('.rooms-controls').click(function (){
+															zoomreset();
+															menuitem = "type";
+															texturepanel = false;
 														});
 														$('#humanoid').click(function () {
 															if(type!=0){

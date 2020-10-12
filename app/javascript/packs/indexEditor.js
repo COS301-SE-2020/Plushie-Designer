@@ -70,6 +70,7 @@ $.ajax({
 													var llegchange = false;
 													var rlegchange = false;
 													var bchange = false;
+													var texturepanel = false;
 
 													var type = 0;
 													var typechange = false;
@@ -384,81 +385,94 @@ $.ajax({
 													}
 
 													function chooseBodyPart(obj)//TODO
-													{
-														switch (obj.name) {
-															case "hair": currentSelection = hhtemp; break;
-															case htemp.children[0].name:
-																if (menuitem != "head") {
-																	$('.head-controls').click();
+													{	
+														switch(obj.name)
+														{
+															case "hair" : currentSelection = hhtemp; break;
+															case htemp.children[0].name : 
+																if(menuitem != "head"){
+																	if(!texturepanel){
+																		$('.head-controls').click();
+																	} else zoomin(htemp.children[0], false);																	
 																}
-																if (head < data.file_paths.models.length - 1)
-																	populateInfoCard(data.file_paths.models[head].head.title, data.file_paths.models[head].head.desc, data.file_paths.models[head].head.img);
+																if(head < data.file_paths.models.length-1)
+																	populateInfoCard(data.file_paths.models[head].head.title,data.file_paths.models[head].head.desc,data.file_paths.models[head].head.img);
 																else
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", head_models[head - data.file_paths.models.length].head_image.url);
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", head_models[head-data.file_paths.models.length].head_image.url);
 
-																currentSelection = htemp;
+																currentSelection = htemp; 
 																// zoomin(obj);
 																break;
-															case ttemp.children[0].name:
-																if (menuitem != "torso") {
-																	$('.torso-controls').click();
+															case ttemp.children[0].name : 
+																if(menuitem != "torso"){
+																	if(!texturepanel){
+																		$('.torso-controls').click();
+																	} else zoomin(ttemp.children[0], false);																																				
 																}
-																if (torso < data.file_paths.models.length - 1)
-																	populateInfoCard(data.file_paths.models[torso].body.title, data.file_paths.models[torso].body.desc, data.file_paths.models[torso].body.img);
+																if(torso < data.file_paths.models.length-1)
+																	populateInfoCard(data.file_paths.models[torso].body.title,data.file_paths.models[torso].body.desc,data.file_paths.models[torso].body.img);
 																else
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", body_models[torso - data.file_paths.models.length].body_image.url);
-																currentSelection = ttemp;
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", body_models[torso-data.file_paths.models.length].body_image.url);
+																currentSelection = ttemp; 
 																// zoomin(obj);
 																break;
-															case lltemp.children[0].name:
-																if (menuitem != "l-legs") {
-																	$('.l-legs-controls').click();
+															case lltemp.children[0].name :
+																if(menuitem != "l-legs"){
+																	if(!texturepanel){
+																		$('.l-legs-controls').click();	
+																	} else zoomin(lltemp.children[0], false);																																			
 																}
-																if (lleg < data.file_paths.models.length - 1)
-																	populateInfoCard(data.file_paths.models[lleg].l_leg.title, data.file_paths.models[lleg].l_leg.desc, data.file_paths.models[lleg].l_leg.img);
+																if(lleg < data.file_paths.models.length-1)
+																	populateInfoCard(data.file_paths.models[lleg].l_leg.title,data.file_paths.models[lleg].l_leg.desc,data.file_paths.models[lleg].l_leg.img);
 																else
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", l_leg_models[lleg - data.file_paths.models.length].l_leg_image.url);
-																currentSelection = lltemp;
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", l_leg_models[lleg-data.file_paths.models.length].l_leg_image.url);
+																currentSelection = lltemp; 
 																// zoomin(obj);
 																break;
-															case rltemp.children[0].name:
-																if (menuitem != "r-legs") {
-																	$('.r-legs-controls').click();
+															case rltemp.children[0].name : 
+																if(menuitem != "r-legs"){
+																	if(!texturepanel){
+																		$('.r-legs-controls').click();	
+																	} else zoomin(rltemp.children[0], false);																																			
 																}
-																if (rleg < data.file_paths.models.length - 1)
-																	populateInfoCard(data.file_paths.models[rleg].r_leg.title, data.file_paths.models[rleg].r_leg.desc, data.file_paths.models[rleg].r_leg.img);
+																if(rleg < data.file_paths.models.length-1)
+																	populateInfoCard(data.file_paths.models[rleg].r_leg.title,data.file_paths.models[rleg].r_leg.desc,data.file_paths.models[rleg].r_leg.img);
 																else
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", r_leg_models[rleg - data.file_paths.models.length].r_leg_image.url);
-																currentSelection = rltemp;
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", r_leg_models[rleg-data.file_paths.models.length].r_leg_image.url);
+																currentSelection = rltemp; 
 																// zoomin(obj);
 																break;
-															case latemp.children[0].name:
-																if (menuitem != "l-arms") {
-																	$('.l-arms-controls').click();
+															case latemp.children[0].name : 
+																if(menuitem != "l-arms"){
+																	if(!texturepanel){
+																		$('.l-arms-controls').click();
+																	} else zoomin(latemp.children[0], false);																																				
 																}
-																if (larm < data.file_paths.models.length - 1)
-																	populateInfoCard(data.file_paths.models[larm].l_arm.title, data.file_paths.models[larm].l_arm.desc, data.file_paths.models[larm].l_arm.img);
+																if(larm < data.file_paths.models.length-1)
+																	populateInfoCard(data.file_paths.models[larm].l_arm.title,data.file_paths.models[larm].l_arm.desc,data.file_paths.models[larm].l_arm.img);
 																else
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", l_arm_models[larm - data.file_paths.models.length].l_arm_image.url);
-																currentSelection = latemp;
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", l_arm_models[larm-data.file_paths.models.length].l_arm_image.url);
+																currentSelection = latemp; 
 																// zoomin(obj);
 																break;
-															case ratemp.children[0].name:
-																if (menuitem != "r-arms") {
-																	$('.r-arms-controls').click();
+															case ratemp.children[0].name :
+																if(menuitem != "r-arms"){
+																	if(!texturepanel){
+																		$('.r-arms-controls').click();	
+																	} else zoomin(ratemp.children[0], false);																																			
 																}
-																if (rarm < data.file_paths.models.length - 1)
-																	populateInfoCard(data.file_paths.models[rarm].r_arm.title, data.file_paths.models[rarm].r_arm.desc, data.file_paths.models[rarm].r_arm.img);
+																if(rarm < data.file_paths.models.length-1)
+																	populateInfoCard(data.file_paths.models[rarm].r_arm.title,data.file_paths.models[rarm].r_arm.desc,data.file_paths.models[rarm].r_arm.img);
 																else
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", r_arm_models[rarm - data.file_paths.models.length].r_arm_image.url);
-																currentSelection = ratemp;
+																	populateInfoCard("Coming Soon", "No Information for uploaded models.", r_arm_models[rarm-data.file_paths.models.length].r_arm_image.url);
+																currentSelection = ratemp; 
 																// zoomin(obj);
 																break;
-															default: return;
+															default : return;
 														}
 														var selectedObject = obj;
-														addSelectedObject(selectedObject);
-														outlinePass.selectedObjects = selectedObjects;
+														addSelectedObject( selectedObject );
+														outlinePass.selectedObjects = selectedObjects;															
 													}
 
 													function onMouseClick(event) {
@@ -1423,7 +1437,15 @@ $.ajax({
 															zoomreset();
 															menuitem = "type";
 														});
-
+														$('.textures').click(function (){
+															menuitem = "type";
+															texturepanel = true;
+														});
+														$('.rooms-controls').click(function (){
+															zoomreset();
+															menuitem = "type";
+															texturepanel = false;
+														});
 														$('#humanoid').click(function () {
 															if (type != 0) {
 																headposy = 0.0;
