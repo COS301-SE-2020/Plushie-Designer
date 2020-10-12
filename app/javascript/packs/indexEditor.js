@@ -190,9 +190,10 @@ $.ajax({
 															color: 'E3A668',
 														},
 														{
-															texture: '/images/head.png',
-															size: [3, 3, 3],
-															shininess: 0
+															color: 'FC0303'
+															// texture: '/images/head.png',
+															// size: [3, 3, 3],
+															// shininess: 0
 														},
 														{
 															color: '438AAC'
@@ -512,25 +513,22 @@ $.ajax({
 																hhtemp = gltf.scene;
 																if (headposy != 0.0) {
 																	gltf.scene.children[0].position.setY(headposy);
-																	gltf.scene.children[1].position.setY(headposy);
-																	gltf.scene.children[2].position.setY(headposy);
-																	gltf.scene.children[3].position.setY(headposy);
 																}
 																if (headposx != 0.0) {
 																	gltf.scene.children[0].position.setX(headposx);
-																	gltf.scene.children[1].position.setX(headposx);
-																	gltf.scene.children[2].position.setX(headposx);
-																	gltf.scene.children[3].position.setX(headposx);
 																}
 																if (headposz != 0.0) {
 																	gltf.scene.children[0].position.setZ(headposz);
-																	gltf.scene.children[1].position.setZ(headposz);
-																	gltf.scene.children[2].position.setZ(headposz);
-																	gltf.scene.children[3].position.setZ(headposz);
 																}
 																break;
 															case "head":
 																htemp = gltf.scene;
+																if(menuitem == "head"){
+																	currentSelection = htemp; 
+																	var selectedObject = htemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;	
+																}	
 																if (headposy != 0.0) {
 																	gltf.scene.children[0].position.setY(headposy);
 																} else {
@@ -553,6 +551,12 @@ $.ajax({
 																break;
 															case "torso":
 																ttemp = gltf.scene;
+																if(menuitem == "torso"){
+																	currentSelection = ttemp; 
+																	var selectedObject = ttemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;	
+																}
 																if (torsoposy != 0.0) {
 																	gltf.scene.children[0].position.setY(torsoposy);
 																} else {
@@ -575,6 +579,12 @@ $.ajax({
 																break;
 															case "leftarm":
 																latemp = gltf.scene;
+																if(menuitem == "l-arms"){
+																	currentSelection = latemp; 
+																	var selectedObject = latemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;	
+																}
 																if (larmposy != 0.0) {
 																	gltf.scene.children[0].position.setY(larmposy);
 																} else {
@@ -597,6 +607,12 @@ $.ajax({
 																break;
 															case "rightarm":
 																ratemp = gltf.scene;
+																if(menuitem == "r-arms"){
+																	currentSelection = ratemp; 
+																	var selectedObject = ratemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;	
+																}
 																if (rarmposy != 0.0) {
 																	gltf.scene.children[0].position.setY(rarmposy);
 																} else {
@@ -619,6 +635,12 @@ $.ajax({
 																break;
 															case "leftleg":
 																lltemp = gltf.scene;
+																if(menuitem == "l-legs"){
+																	currentSelection = lltemp; 
+																	var selectedObject = lltemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;	
+																}
 																if (llegposy != 0.0) {
 																	gltf.scene.children[0].position.setY(llegposy);
 																} else {
@@ -643,6 +665,12 @@ $.ajax({
 																break;
 															case "rightleg":
 																rltemp = gltf.scene;
+																if(menuitem == "r-legs"){
+																	currentSelection = rltemp; 
+																	var selectedObject = rltemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;	
+																}
 																if (rlegposy != 0.0) {
 																	gltf.scene.children[0].position.setY(rlegposy);
 																} else {
@@ -1030,6 +1058,10 @@ $.ajax({
 																		headchange = true;
 																		head = this.value;
 																	}
+																	currentSelection = htemp; 
+																	var selectedObject = htemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard(data.file_paths.models[head].head.title, data.file_paths.models[head].head.desc, data.file_paths.models[head].head.img);
 																};
 																hprsh.appendChild(button);
@@ -1053,6 +1085,10 @@ $.ajax({
 																		torsochange = true;
 																		torso = this.value;
 																	}
+																	currentSelection = ttemp; 
+																	var selectedObject = ttemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard(data.file_paths.models[torso].body.title, data.file_paths.models[torso].body.desc, data.file_paths.models[torso].body.img);
 																};
 																tprsh.appendChild(button);
@@ -1076,6 +1112,10 @@ $.ajax({
 																		larmchange = true;
 																		larm = this.value;
 																	}
+																	currentSelection = latemp; 
+																	var selectedObject = latemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard(data.file_paths.models[larm].l_arm.title, data.file_paths.models[larm].l_arm.desc, data.file_paths.models[larm].l_arm.img);
 																};
 																laprsh.appendChild(button);
@@ -1099,6 +1139,10 @@ $.ajax({
 																		rarmchange = true;
 																		rarm = this.value;
 																	}
+																	currentSelection = ratemp; 
+																	var selectedObject = ratemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard(data.file_paths.models[rarm].r_arm.title, data.file_paths.models[rarm].r_arm.desc, data.file_paths.models[rarm].r_arm.img);
 																};
 																raprsh.appendChild(button);
@@ -1122,6 +1166,10 @@ $.ajax({
 																		llegchange = true;
 																		lleg = this.value;
 																	}
+																	currentSelection = lltemp; 
+																	var selectedObject = lltemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard(data.file_paths.models[lleg].l_leg.title, data.file_paths.models[lleg].l_leg.desc, data.file_paths.models[lleg].l_leg.img);
 																};
 																llprsh.appendChild(button);
@@ -1145,6 +1193,10 @@ $.ajax({
 																		rlegchange = true;
 																		rleg = this.value;
 																	}
+																	currentSelection = rltemp; 
+																	var selectedObject = rltemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard(data.file_paths.models[rleg].r_leg.title, data.file_paths.models[rleg].r_leg.desc, data.file_paths.models[rleg].r_leg.img);
 																};
 																rlprsh.appendChild(button);
@@ -1177,6 +1229,10 @@ $.ajax({
 																		headchange = true;
 																		head = this.value;
 																	}
+																	currentSelection = htemp; 
+																	var selectedObject = htemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
 																};
 																hupsh.appendChild(button);
@@ -1202,6 +1258,10 @@ $.ajax({
 																		torsochange = true;
 																		torso = this.value;
 																	}
+																	currentSelection = ttemp; 
+																	var selectedObject = ttemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
 																};
 																tupsh.appendChild(button);
@@ -1227,6 +1287,10 @@ $.ajax({
 																		larmchange = true;
 																		larm = this.value;
 																	}
+																	currentSelection = latemp; 
+																	var selectedObject = latemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
 																};
 																laupsh.appendChild(button);
@@ -1252,6 +1316,10 @@ $.ajax({
 																		rarmchange = true;
 																		rarm = this.value;
 																	}
+																	currentSelection = ratemp; 
+																	var selectedObject = ratemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
 																};
 																raupsh.appendChild(button);
@@ -1277,6 +1345,10 @@ $.ajax({
 																		llegchange = true;
 																		lleg = this.value;
 																	}
+																	currentSelection = lltemp; 
+																	var selectedObject = lltemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
 																};
 																llupsh.appendChild(button);
@@ -1302,6 +1374,10 @@ $.ajax({
 																		rlegchange = true;
 																		rleg = this.value;
 																	}
+																	currentSelection = rltemp; 
+																	var selectedObject = rltemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
 																};
 																rlupsh.appendChild(button);
@@ -1324,44 +1400,42 @@ $.ajax({
 																button.type = "button";
 																button.value = i;
 																button.onclick = function () {
-																	if (head != this.value) {
-																		headposy = 0.0;
-																		headposx = 0.0;
-																		headposz = 0.0;
-																		torsoposy = 0.0;
-																		torsoposx = 0.0;
-																		torsoposz = 0.0;
-																		larmposy = 0.0;
-																		larmposx = 0.0;
-																		larmposz = 0.0;
-																		rarmposy = 0.0;
-																		rarmposx = 0.0;
-																		rarmposz = 0.0;
-																		llegposy = 0.0;
-																		llegposx = 0.0;
-																		llegposz = 0.0;
-																		rlegposy = 0.0;
-																		rlegposx = 0.0;
-																		rlegposz = 0.0;
+																	headposy = 0.0;
+																	headposx = 0.0;
+																	headposz = 0.0;
+																	torsoposy = 0.0;
+																	torsoposx = 0.0;
+																	torsoposz = 0.0;
+																	larmposy = 0.0;
+																	larmposx = 0.0;
+																	larmposz = 0.0;
+																	rarmposy = 0.0;
+																	rarmposx = 0.0;
+																	rarmposz = 0.0;
+																	llegposy = 0.0;
+																	llegposx = 0.0;
+																	llegposz = 0.0;
+																	rlegposy = 0.0;
+																	rlegposx = 0.0;
+																	rlegposz = 0.0;
 
-																		// type=this.value;
-																		// typechange=true;
+																	// type=this.value;
+																	// typechange=true;
 
-																		hair = this.value;
-																		head = this.value;
-																		torso = this.value;
-																		larm = this.value;
-																		rarm = this.value;
-																		lleg = this.value;
-																		rleg = this.value;
+																	hair = this.value;
+																	head = this.value;
+																	torso = this.value;
+																	larm = this.value;
+																	rarm = this.value;
+																	lleg = this.value;
+																	rleg = this.value;
 
-																		headchange = true;
-																		torsochange = true;
-																		larmchange = true;
-																		rarmchange = true;
-																		llegchange = true;
-																		rlegchange = true;
-																	}
+																	headchange = true;
+																	torsochange = true;
+																	larmchange = true;
+																	rarmchange = true;
+																	llegchange = true;
+																	rlegchange = true;															
 																};
 																fm.appendChild(button);
 															}
@@ -1403,39 +1477,48 @@ $.ajax({
 															}
 														});
 
-														$('.head-controls').click(function () {
+														$('.head-controls').click(function (){
 															zoomin(htemp.children[0], false);
 															menuitem = "head";
+															texturepanel = false;
 														});
 
-														$('.torso-controls').click(function () {
+														$('.torso-controls').click(function (){
 															zoomin(ttemp.children[0], false);
 															menuitem = "torso";
+															texturepanel = false;
 														});
 
-														$('.l-arms-controls').click(function () {
-															zoomin(latemp.children[0], false);
+														$('.l-arms-controls').click(function (){
+															zoomin(latemp.children[0], false);	
 															menuitem = "l-arms";
+															texturepanel = false;
 														});
 
-														$('.r-arms-controls').click(function () {
+														$('.r-arms-controls').click(function (){
 															zoomin(ratemp.children[0], false);
 															menuitem = "r-arms";
+															texturepanel = false;	
 														});
 
-														$('.l-legs-controls').click(function () {
+														$('.l-legs-controls').click(function (){
 															zoomin(lltemp.children[0], false);
 															menuitem = "l-legs";
+															texturepanel = false;	
 														});
 
-														$('.r-legs-controls').click(function () {
-															zoomin(rltemp.children[0], false);
+														$('.r-legs-controls').click(function (){															
+															zoomin(rltemp.children[0], false);	
 															menuitem = "r-legs";
+															texturepanel = false;
 														});
 
-														$('.type-controls').click(function () {
+														$('.type-controls').click(function (){															
 															zoomreset();
 															menuitem = "type";
+															texturepanel = false;
+															currentSelection = null; 
+															outlinePass.selectedObjects = [];
 														});
 														$('.textures').click(function (){
 															menuitem = "type";
@@ -1445,6 +1528,8 @@ $.ajax({
 															zoomreset();
 															menuitem = "type";
 															texturepanel = false;
+															currentSelection = null; 
+															outlinePass.selectedObjects = [];
 														});
 														$('#humanoid').click(function () {
 															if (type != 0) {
