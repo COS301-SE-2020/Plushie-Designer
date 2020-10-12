@@ -1209,13 +1209,13 @@ $.ajax({
 														var img = new Image();
 														renderer.setSize(972, 500);
 														camera.aspect = 972 / 500;
-														camera.position.set(0, 0.32, 8.5);
+														camera.position.set(0, 1, 13);
 														camera.updateProjectionMatrix();
 														renderer.render(scene, camera);
 														img.src = renderer.domElement.toDataURL();
 														renderer.setSize(window.innerWidth, window.innerHeight);
 														camera.aspect = window.innerWidth / window.innerHeight;
-														camera.position.set(0, 1, 10);
+														camera.position.set(0, 1, 13);
 														camera.updateProjectionMatrix();
 														// w.document.body.appendChild(img);
 														$("#toy_image")[0].value = img.src;
@@ -1990,11 +1990,8 @@ $.ajax({
 															// console.log(t);
 															if(hhtemp!=null){
 																hhtemp.children[0].position.setY(-t);
-																hhtemp.children[1].position.setY(-t);
-																hhtemp.children[2].position.setY(-t);
-																hhtemp.children[3].position.setY(-t);
 															}
-															$("#toy_head_pos")[0].value = -t;	
+															$("#toy_head_pos")[0].value = htemp.children[0].position.y;	
 															zoomin(htemp.children[0], true);																								
 														}
 														hsliderl.oninput = function() {
@@ -2006,11 +2003,8 @@ $.ajax({
 															// console.log(t);
 															if(hhtemp!=null){
 																hhtemp.children[0].position.setX(t);
-																hhtemp.children[1].position.setX(t);
-																hhtemp.children[2].position.setX(t);
-																hhtemp.children[3].position.setX(t);
 															}
-															$("#toy_head_posx")[0].value = t;
+															$("#toy_head_posx")[0].value = htemp.children[0].position.x;	
 															zoomin(htemp.children[0], true);											
 														}
 														hsliderf.oninput = function() {
@@ -2022,11 +2016,8 @@ $.ajax({
 															// console.log(t);
 															if(hhtemp!=null){
 																hhtemp.children[0].position.setZ(-t);
-																hhtemp.children[1].position.setZ(-t);
-																hhtemp.children[2].position.setZ(-t);
-																hhtemp.children[3].position.setZ(-t);
 															}
-															$("#toy_head_posz")[0].value = -t;
+															$("#toy_head_posz")[0].value = htemp.children[0].position.z;	
 															zoomin(htemp.children[0], true);
 														}
 
@@ -2076,7 +2067,7 @@ $.ajax({
 															t = -t;
 															latemp.children[0].position.setY(-t);
 															// console.log(t);
-															$("#toy_larm_posy")[0].value = -t;
+															$("#toy_larm_posy")[0].value = latemp.children[0].position.y;	
 															zoomin(latemp.children[0], true);
 														}
 														lasliderl.oninput = function() {
@@ -2086,7 +2077,7 @@ $.ajax({
 															t = -t;
 															latemp.children[0].position.setX(t);
 															// console.log(t);
-															$("#toy_larm_posx")[0].value = t;
+															$("#toy_larm_posx")[0].value = latemp.children[0].position.x;	
 															zoomin(latemp.children[0], true);
 														}
 														lasliderf.oninput = function() {
@@ -2095,7 +2086,7 @@ $.ajax({
 															t = -t;
 															t = -t;
 															latemp.children[0].position.setZ(-t);
-															$("#toy_larm_posz")[0].value = -t;
+															$("#toy_larm_posz")[0].value = latemp.children[0].position.z;	
 															zoomin(latemp.children[0], true);
 															// console.log(t);
 														}
@@ -2106,7 +2097,7 @@ $.ajax({
 															t = -t;
 															ratemp.children[0].position.setY(-t);
 															// console.log(t);
-															$("#toy_rarm_posy")[0].value = -t;
+															$("#toy_rarm_posy")[0].value = ratemp.children[0].position.y;	
 															zoomin(ratemp.children[0], true);	
 														}
 														rasliderl.oninput = function() {
@@ -2116,7 +2107,7 @@ $.ajax({
 															t = -t;
 															ratemp.children[0].position.setX(t);
 															// console.log(t);
-															$("#toy_rarm_posx")[0].value = t;
+															$("#toy_rarm_posx")[0].value = ratemp.children[0].position.x;
 															zoomin(ratemp.children[0], true);
 														}
 														rasliderf.oninput = function() {
@@ -2125,7 +2116,7 @@ $.ajax({
 															t = -t;
 															t = -t;
 															ratemp.children[0].position.setZ(-t);
-															$("#toy_rarm_posz")[0].value = -t;
+															$("#toy_rarm_posz")[0].value = ratemp.children[0].position.z;
 															zoomin(ratemp.children[0], true);
 															// console.log(t);
 														}
@@ -2156,7 +2147,7 @@ $.ajax({
 															t = -t;
 															ttemp.children[0].position.setY(-t);
 															// console.log(t);
-															$("#toy_torso_posy")[0].value = -t;
+															$("#toy_torso_posy")[0].value = ttemp.children[0].position.y;
 															zoomin(ttemp.children[0], true);
 														}
 														tsliderl.oninput = function() {
@@ -2166,7 +2157,7 @@ $.ajax({
 															t = -t;
 															ttemp.children[0].position.setX(t);
 															// console.log(t);
-															$("#toy_torso_posx")[0].value = t;
+															$("#toy_torso_posx")[0].value = ttemp.children[0].position.x;
 															zoomin(ttemp.children[0], true);
 														}
 														tsliderf.oninput = function() {
@@ -2175,7 +2166,7 @@ $.ajax({
 															t = -t;
 															t = -t;
 															ttemp.children[0].position.setZ(-t);
-															$("#toy_torso_posz")[0].value = -t;
+															$("#toy_torso_posz")[0].value = ttemp.children[0].position.z;
 															zoomin(ttemp.children[0], true);
 															// console.log(t);
 														}
@@ -2226,7 +2217,7 @@ $.ajax({
 															t = -t;
 															lltemp.children[0].position.setY(-t);
 															// console.log(t);
-															$("#toy_lleg_posy")[0].value = -t;															
+															$("#toy_lleg_posy")[0].value = lltemp.children[0].position.y;															
 															zoomin(lltemp.children[0], true);
 														}
 														llsliderl.oninput = function() {
@@ -2236,7 +2227,7 @@ $.ajax({
 															t = -t;
 															lltemp.children[0].position.setX(t);
 															// console.log(t);
-															$("#toy_lleg_posx")[0].value = t;
+															$("#toy_lleg_posx")[0].value = lltemp.children[0].position.x;	
 															zoomin(lltemp.children[0], true);
 														}
 														llsliderf.oninput = function() {
@@ -2245,7 +2236,7 @@ $.ajax({
 															t = -t;
 															t = -t;
 															lltemp.children[0].position.setZ(-t);
-															$("#toy_lleg_posz")[0].value = -t;
+															$("#toy_lleg_posz")[0].value = lltemp.children[0].position.z;	
 															zoomin(lltemp.children[0], true);
 															// console.log(t);
 														}
@@ -2256,7 +2247,7 @@ $.ajax({
 															t = -t;
 															rltemp.children[0].position.setY(-t);
 															// console.log(t);
-															$("#toy_rleg_posy")[0].value = -t;
+															$("#toy_rleg_posy")[0].value = rltemp.children[0].position.y;	
 															zoomin(rltemp.children[0], true);
 														}
 														rlsliderl.oninput = function() {
@@ -2266,7 +2257,7 @@ $.ajax({
 															t = -t;
 															rltemp.children[0].position.setX(t);
 															// console.log(t);
-															$("#toy_rleg_posx")[0].value = t;
+															$("#toy_rleg_posx")[0].value = rltemp.children[0].position.x;	
 															zoomin(rltemp.children[0], true);
 														}
 														rlsliderf.oninput = function() {
@@ -2275,7 +2266,7 @@ $.ajax({
 															t = -t;
 															t = -t;
 															rltemp.children[0].position.setZ(-t);
-															$("#toy_rleg_posz")[0].value = -t;
+															$("#toy_rleg_posz")[0].value = rltemp.children[0].position.z;	
 															zoomin(rltemp.children[0], true);
 															// console.log(t);
 														}
