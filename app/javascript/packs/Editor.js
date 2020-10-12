@@ -36,7 +36,7 @@ $.ajax({
 	url: "/head_models",
 	dataType: "json",
 	success:  function(head_models){
-		console.log(head_models);
+		// console.log(head_models);
 		$.ajax({
 			url: "/body_models",
 			dataType: "json",
