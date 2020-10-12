@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_162512) do
+ActiveRecord::Schema.define(version: 2020_10_12_125354) do
 
   create_table "body_models", force: :cascade do |t|
     t.string "body_file"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_162512) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "body_image"
     t.integer "model_type"
+    t.string "title"
+    t.string "desc"
   end
 
   create_table "head_models", force: :cascade do |t|
@@ -28,6 +30,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_162512) do
     t.string "tp"
     t.string "head_image"
     t.integer "model_type"
+    t.string "title"
+    t.string "desc"
   end
 
   create_table "l_arm_models", force: :cascade do |t|
@@ -37,6 +41,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_162512) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "l_arm_image"
     t.integer "model_type"
+    t.string "title"
+    t.string "desc"
   end
 
   create_table "l_leg_models", force: :cascade do |t|
@@ -46,6 +52,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_162512) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "l_leg_image"
     t.integer "model_type"
+    t.string "title"
+    t.string "desc"
   end
 
   create_table "payment_informations", force: :cascade do |t|
@@ -74,6 +82,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_162512) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "r_arm_image"
     t.integer "model_type"
+    t.string "title"
+    t.string "desc"
   end
 
   create_table "r_leg_models", force: :cascade do |t|
@@ -83,6 +93,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_162512) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "r_leg_image"
     t.integer "model_type"
+    t.string "title"
+    t.string "desc"
   end
 
   create_table "ratings", force: :cascade do |t|

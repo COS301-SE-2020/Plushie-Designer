@@ -36,7 +36,7 @@ $.ajax({
 	url: "/head_models",
 	dataType: "json",
 	success:  function(head_models){
-		// console.log(head_models);
+		console.log(head_models);
 		$.ajax({
 			url: "/body_models",
 			dataType: "json",
@@ -442,7 +442,7 @@ $.ajax({
 																	if(head < data.file_paths.models.length-1)
 																		populateInfoCard(data.file_paths.models[head].head.title,data.file_paths.models[head].head.desc,data.file_paths.models[head].head.img);
 																	else
-																		populateInfoCard("Coming Soon", "No Information for uploaded models.", head_models[head-data.file_paths.models.length].head_image.url);
+																		populateInfoCard(head_models[0].title, head_models[0].desc, head_models[head-data.file_paths.models.length].head_image.url);
 
 																	currentSelection = htemp; 
 																	// zoomin(obj);
@@ -456,7 +456,7 @@ $.ajax({
 																	if(torso < data.file_paths.models.length-1)
 																		populateInfoCard(data.file_paths.models[torso].body.title,data.file_paths.models[torso].body.desc,data.file_paths.models[torso].body.img);
 																	else
-																		populateInfoCard("Coming Soon", "No Information for uploaded models.", body_models[torso-data.file_paths.models.length].body_image.url);
+																		populateInfoCard(body_models[0].title, body_models[0].desc, body_models[body-data.file_paths.models.length].body_image.url);
 																	currentSelection = ttemp; 
 																	// zoomin(obj);
 																	break;
@@ -469,7 +469,7 @@ $.ajax({
 																	if(lleg < data.file_paths.models.length-1)
 																		populateInfoCard(data.file_paths.models[lleg].l_leg.title,data.file_paths.models[lleg].l_leg.desc,data.file_paths.models[lleg].l_leg.img);
 																	else
-																		populateInfoCard("Coming Soon", "No Information for uploaded models.", l_leg_models[lleg-data.file_paths.models.length].l_leg_image.url);
+																		populateInfoCard(l_leg_models[0].title, l_leg_models[0].desc, l_leg_models[lleg-data.file_paths.models.length].l_leg_image.url);
 																	currentSelection = lltemp; 
 																	// zoomin(obj);
 																	break;
@@ -482,7 +482,7 @@ $.ajax({
 																	if(rleg < data.file_paths.models.length-1)
 																		populateInfoCard(data.file_paths.models[rleg].r_leg.title,data.file_paths.models[rleg].r_leg.desc,data.file_paths.models[rleg].r_leg.img);
 																	else
-																		populateInfoCard("Coming Soon", "No Information for uploaded models.", r_leg_models[rleg-data.file_paths.models.length].r_leg_image.url);
+																		populateInfoCard(r_leg_models[0].title, r_leg_models[0].desc, r_leg_models[rleg-data.file_paths.models.length].r_leg_image.url);
 																	currentSelection = rltemp; 
 																	// zoomin(obj);
 																	break;
@@ -495,7 +495,7 @@ $.ajax({
 																	if(larm < data.file_paths.models.length-1)
 																		populateInfoCard(data.file_paths.models[larm].l_arm.title,data.file_paths.models[larm].l_arm.desc,data.file_paths.models[larm].l_arm.img);
 																	else
-																		populateInfoCard("Coming Soon", "No Information for uploaded models.", l_arm_models[larm-data.file_paths.models.length].l_arm_image.url);
+																		populateInfoCard(l_arm_models[0].title, l_arm_models[0].desc, l_arm_models[larm-data.file_paths.models.length].l_arm_image.url);
 																	currentSelection = latemp; 
 																	// zoomin(obj);
 																	break;
@@ -508,7 +508,7 @@ $.ajax({
 																	if(rarm < data.file_paths.models.length-1)
 																		populateInfoCard(data.file_paths.models[rarm].r_arm.title,data.file_paths.models[rarm].r_arm.desc,data.file_paths.models[rarm].r_arm.img);
 																	else
-																		populateInfoCard("Coming Soon", "No Information for uploaded models.", r_arm_models[rarm-data.file_paths.models.length].r_arm_image.url);
+																		populateInfoCard(r_arm_models[0].title, r_arm_models[0].desc, r_arm_models[rarm-data.file_paths.models.length].r_arm_image.url);
 																	currentSelection = ratemp; 
 																	// zoomin(obj);
 																	break;
@@ -1459,7 +1459,7 @@ $.ajax({
 																	var selectedObject = htemp.children[0];
 																	addSelectedObject( selectedObject );
 																	outlinePass.selectedObjects = selectedObjects;
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);														
+																	populateInfoCard(head_models[0].title, head_models[0].desc, img);														
 																};
 																hupsh.appendChild(button);
 															}
@@ -1489,7 +1489,7 @@ $.ajax({
 																	var selectedObject = ttemp.children[0];
 																	addSelectedObject( selectedObject );
 																	outlinePass.selectedObjects = selectedObjects;
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
+																	populateInfoCard(body_models[0].title, body_models[0].desc, img);	
 																};
 																tupsh.appendChild(button);
 															}
@@ -1519,7 +1519,7 @@ $.ajax({
 																	var selectedObject = latemp.children[0];
 																	addSelectedObject( selectedObject );
 																	outlinePass.selectedObjects = selectedObjects;
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);															
+																	populateInfoCard(l_arm_models[0].title, l_arm_models[0].desc, img);															
 																};
 																laupsh.appendChild(button);
 															}
@@ -1549,7 +1549,7 @@ $.ajax({
 																	var selectedObject = ratemp.children[0];
 																	addSelectedObject( selectedObject );
 																	outlinePass.selectedObjects = selectedObjects;
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);															
+																	populateInfoCard(r_arm_models[0].title, r_arm_models[0].desc, img);																
 																};
 																raupsh.appendChild(button);
 															}
@@ -1579,7 +1579,7 @@ $.ajax({
 																	var selectedObject = lltemp.children[0];
 																	addSelectedObject( selectedObject );
 																	outlinePass.selectedObjects = selectedObjects;
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);														
+																	populateInfoCard(l_leg_models[0].title, l_leg_models[0].desc, img);															
 																};
 																llupsh.appendChild(button);
 															}
@@ -1609,7 +1609,7 @@ $.ajax({
 																	var selectedObject = rltemp.children[0];
 																	addSelectedObject( selectedObject );
 																	outlinePass.selectedObjects = selectedObjects;
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);															
+																	populateInfoCard(r_leg_models[0].title, r_leg_models[0].desc, img);																
 																};
 																rlupsh.appendChild(button);
 															}
@@ -1681,6 +1681,9 @@ $.ajax({
 													}
 
 													function populateInfoCard(title, desc, image){
+														if(image == null){
+															image = "/images/Default_Upl.png";
+														}
 														$('#info-title').html(title);
 														$('#info-description').html(desc);
 														$('#info-image').html('<img src="'+image+'" alt="A113">');
