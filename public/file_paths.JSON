@@ -1,0 +1,388 @@
+{
+    "file_paths":{
+        "models":{
+            "length":9,
+            "0":{
+                "type": 0,
+                "img": "/model/humanoid/minecraft/images/fullmodel.png",
+                "hair": "" ,
+                "head": {
+                    "title": "Steve Head",
+                    "desc": "This is the head of a humanoid.<br><br>This humanoid plushie head was inspired by the popular video game character 'Steve' from 'Minecraft'.",
+                    "img": "/model/humanoid/minecraft/images/steve_head.png",
+                    "url": "/model/humanoid/minecraft/steve_head1.gltf"
+                },
+                "body": {
+                    "title": "Steve Torso",
+                    "desc": "This is the torso of a humanoid.<br><br>This humanoid plushie torso was inspired by the popular video game character 'Steve' from 'Minecraft'.",
+                    "img": "/model/humanoid/minecraft/images/steve_body.png",
+                    "url": "/model/humanoid/minecraft/steve_body1.gltf"
+                },
+                "l_arm": {
+                    "title": "Steve Left Arm",
+                    "desc": "This is the left arm of a humanoid.<br><br>This humanoid plushie left arm was inspired by the popular video game character 'Steve' from 'Minecraft'.",
+                    "img": "/model/humanoid/minecraft/images/steve_l_arm.png",
+                    "url": "/model/humanoid/minecraft/steve_l_arm1.gltf"
+                },
+                "r_arm": {
+                    "title": "Steve Right Arm",
+                    "desc": "This is the right arm of a humanoid.<br><br>This humanoid plushie right arm was inspired by the popular video game character 'Steve' from 'Minecraft'.",
+                    "img": "/model/humanoid/minecraft/images/steve_r_arm.png",
+                    "url": "/model/humanoid/minecraft/steve_r_arm1.gltf"
+                },
+                "l_leg": {
+                    "title": "Steve Left Leg",
+                    "desc": "This is the left leg of a humanoid.<br><br>This humanoid plushie left leg was inspired by the popular video game character 'Steve' from 'Minecraft'.",
+                    "img": "/model/humanoid/minecraft/images/steve_l_leg.png",
+                    "url": "/model/humanoid/minecraft/steve_l_leg1.gltf"
+                },
+                "r_leg": {
+                    "title": "Steve Right Leg",
+                    "desc": "This is the right leg of a humanoid.<br><br>This humanoid plushie right leg was inspired by the popular video game character 'Steve' from 'Minecraft'.",
+                    "img": "/model/humanoid/minecraft/images/steve_r_leg.png",
+                    "url": "/model/humanoid/minecraft/steve_r_leg1.gltf"
+                }
+            },
+            "1":{
+                "type": 0,
+                "img": "/model/humanoid/chibi/images/fullmodel.png",
+                "hair":"/model/humanoid/chibi/chibi_hair.gltf",
+                "head": {
+                    "title": "Chibi Head",
+                    "desc": "This is the head of a humanoid in 'Chibi' style.<br><br>This humanoid plushie head was inspired by the 'Chibi' art style from japanese culture.",
+                    "img": "/model/humanoid/chibi/images/chibi_head.png",
+                    "url": "/model/humanoid/chibi/chibi_head.gltf"
+                },
+                "body": {
+                    "title": "Chibi Torso",
+                    "desc": "This is the torso of a humanoid in 'Chibi' style.<br><br>This humanoid plushie torso was inspired by the 'Chibi' art style from japanese culture.",
+                    "img": "/model/humanoid/chibi/images/chibi_body.png",
+                    "url": "/model/humanoid/chibi/chibi_body.gltf"
+                },
+                "l_arm": {
+                    "title": "Chibi Left Arm",
+                    "desc": "This is the left arm of a humanoid in 'Chibi' style.<br><br>This humanoid plushie left arm was inspired by the 'Chibi' art style from japanese culture.",
+                    "img": "/model/humanoid/chibi/images/chibi_l_arm.png",
+                    "url": "/model/humanoid/chibi/chibi_l_arm.gltf"
+                },
+                "r_arm": {
+                    "title": "Chibi Right Arm",
+                    "desc": "This is the right arm of a humanoid in 'Chibi' style.<br><br>This humanoid plushie right arm was inspired by the 'Chibi' art style from japanese culture.",
+                    "img": "/model/humanoid/chibi/images/chibi_r_arm.png",
+                    "url": "/model/humanoid/chibi/chibi_r_arm.gltf"
+                },
+                "l_leg": {
+                    "title": "Chibi Left Leg",
+                    "desc": "This is the left leg of a humanoid in 'Chibi' style.<br><br>This humanoid plushie left leg was inspired by the 'Chibi' art style from japanese culture.",
+                    "img": "/model/humanoid/chibi/images/chibi_l_leg.png",
+                    "url": "/model/humanoid/chibi/chibi_l_leg.gltf"
+                },
+                "r_leg": {
+                    "title": "Chibi Right Leg",
+                    "desc": "This is the right leg of a humanoid in 'Chibi' style.<br><br>This humanoid plushie right leg was inspired by the 'Chibi' art style from japanese culture.",
+                    "img": "/model/humanoid/chibi/images/chibi_r_leg.png",
+                    "url": "/model/humanoid/chibi/chibi_r_leg.gltf"
+                }
+            },
+            "2":{
+                "type": 0,
+                "img": "/model/humanoid/cthulu/images/fullmodel.png",
+                "hair":"",
+                "head": {
+                    "title": "Cthulhu Head",
+                    "desc": "This is the head of the fictional entity known as 'Cthulhu'.<br><br>This plushie head was inspired by the fictional entity 'Cthulhu' in Chibi style.",
+                    "img": "/model/humanoid/cthulu/images/head.png",
+                    "url": "/model/humanoid/cthulu/head.gltf"
+                },
+                "body": {
+                    "title": "Cthulhu Torso",
+                    "desc": "This is the torso of the fictional entity known as 'Cthulhu'.<br><br>This plushie torso was inspired by the fictional entity 'Cthulhu' in Chibi style.",
+                    "img": "/model/humanoid/cthulu/images/body.png",
+                    "url": "/model/humanoid/cthulu/body.gltf"
+                },
+                "l_arm": {
+                    "title": "Cthulhu Left Arm",
+                    "desc": "This is the left arm of the fictional entity known as 'Cthulhu'.<br><br>This plushie left arm was inspired by the fictional entity 'Cthulhu' in Chibi style.",
+                    "img": "/model/humanoid/cthulu/images/larm.png",
+                    "url": "/model/humanoid/cthulu/larm.gltf"
+                },
+                "r_arm": {
+                    "title": "Cthulhu Right Arm",
+                    "desc": "This is the right arm of the fictional entity known as 'Cthulhu'.<br><br>This plushie right arm was inspired by the fictional entity 'Cthulhu' in Chibi style.",
+                    "img": "/model/humanoid/cthulu/images/rarm.png",
+                    "url": "/model/humanoid/cthulu/rarm.gltf"
+                },
+                "l_leg": {
+                    "title": "Cthulhu Left Leg",
+                    "desc": "This is the left leg of the fictional entity known as 'Cthulhu'.<br><br>This plushie left leg was inspired by the fictional entity 'Cthulhu' in Chibi style.",
+                    "img": "/model/humanoid/cthulu/images/lleg.png",
+                    "url": "/model/humanoid/cthulu/lleg.gltf"
+                },
+                "r_leg": {
+                    "title": "Cthulhu Right Leg",
+                    "desc": "This is the right leg of the fictional entity known as 'Cthulhu'.<br><br>This plushie right leg was inspired by the fictional entity 'Cthulhu' in Chibi style.",
+                    "img": "/model/humanoid/cthulu/images/rleg.png",
+                    "url": "/model/humanoid/cthulu/rleg.gltf"
+                }
+            },
+            "3":{
+                "type": 1,
+                "img": "/model/animals/corgi/images/fullmodel.png",
+                "hair":"",
+                "head": {
+                    "title": "Corgi Head",
+                    "desc": "This is the head of a 'Pembroke Welsh Corgi' which is a dog breed.<br><br>This animal plushie head was inspired by the dog breed 'Pembroke Welsh Corgi'.",
+                    "img": "/model/animals/corgi/images/head.png",
+                    "url": "/model/animals/corgi/head3.gltf"
+                },
+                "body": {
+                    "title": "Corgi Torso",
+                    "desc": "This is the torso of a 'Pembroke Welsh Corgi' which is a dog breed.<br><br>This animal plushie torso was inspired by the dog breed 'Pembroke Welsh Corgi'.",
+                    "img": "/model/animals/corgi/images/body.png",
+                    "url": "/model/animals/corgi/body1.gltf"
+                },
+                "l_arm": {
+                    "title": "Corgi Front Left Leg",
+                    "desc": "This is the front left leg of a 'Pembroke Welsh Corgi' which is a dog breed.<br><br>This animal plushie front left leg was inspired by the dog breed 'Pembroke Welsh Corgi'.",
+                    "img": "/model/animals/corgi/images/flleg.png",
+                    "url": "/model/animals/corgi/flleg.gltf"
+                },
+                "r_arm": {
+                    "title": "Corgi Front Right Leg",
+                    "desc": "This is the front right leg of a 'Pembroke Welsh Corgi' which is a dog breed.<br><br>This animal plushie front right leg was inspired by the dog breed 'Pembroke Welsh Corgi'.",
+                    "img": "/model/animals/corgi/images/frleg.png",
+                    "url": "/model/animals/corgi/frleg.gltf"
+                },
+                "l_leg": {
+                    "title": "Corgi Back Left Leg",
+                    "desc": "This is the back left leg of a 'Pembroke Welsh Corgi' which is a dog breed.<br><br>This animal plushie back left leg was inspired by the dog breed 'Pembroke Welsh Corgi'.",
+                    "img": "/model/animals/corgi/images/blleg.png",
+                    "url": "/model/animals/corgi/blleg.gltf"
+                },
+                "r_leg": {
+                    "title": "Corgi Back Right leg",
+                    "desc": "This is the back right leg of a 'Pembroke Welsh Corgi' which is a dog breed.<br><br>This animal plushie back right leg was inspired by the dog breed 'Pembroke Welsh Corgi'.",
+                    "img": "/model/animals/corgi/images/brleg.png",
+                    "url": "/model/animals/corgi/brleg.gltf"
+                }
+            },
+            "4":{
+                "type": 1,
+                "img": "/model/animals/fox/images/fullmodel.png",
+                "hair":"",
+                "head": {
+                    "title": "Fox Head",
+                    "desc": "This is the head of a fox which is a small to medium-sized, omnivorous mammal belonging to several genera of the family Canidae.<br><br>This animal plushie head was suggested by one of the developers that loves foxes.",
+                    "img": "/model/animals/fox/images/head.png",
+                    "url": "/model/animals/fox/head.gltf"
+                },
+                "body": {
+                    "title": "Fox Torso",
+                    "desc": "This is the torso of a fox which is a small to medium-sized, omnivorous mammal belonging to several genera of the family Canidae.<br><br>This animal plushie torso was suggested by one of the developers that loves foxes.",
+                    "img": "/model/animals/fox/images/body.png",
+                    "url": "/model/animals/fox/body.gltf"
+                },
+                "l_arm": {
+                    "title": "Fox Front Left Leg",
+                    "desc": "This is the front left leg of a fox which is a small to medium-sized, omnivorous mammal belonging to several genera of the family Canidae.<br><br>This animal plushie front left leg was suggested by one of the developers that loves foxes.",
+                    "img": "/model/animals/fox/images/flleg.png",
+                    "url": "/model/animals/fox/flleg.gltf"
+                },
+                "r_arm": {
+                    "title": "Fox Front Right Leg",
+                    "desc": "This is the front right leg of a fox which is a small to medium-sized, omnivorous mammal belonging to several genera of the family Canidae.<br><br>This animal plushie front right leg was suggested by one of the developers that loves foxes.",
+                    "img": "/model/animals/fox/images/frleg.png",
+                    "url": "/model/animals/fox/frleg.gltf"
+                },
+                "l_leg": {
+                    "title": "Fox Back Left Leg",
+                    "desc": "This is the back left leg of a fox which is a small to medium-sized, omnivorous mammal belonging to several genera of the family Canidae.<br><br>This animal plushie back left leg was suggested by one of the developers that loves foxes.",
+                    "img": "/model/animals/fox/images/blleg.png",
+                    "url": "/model/animals/fox/blleg.gltf"
+                },
+                "r_leg": {
+                    "title": "Fox Back Right Leg",
+                    "desc": "This is the back right leg of a fox which is a small to medium-sized, omnivorous mammal belonging to several genera of the family Canidae.<br><br>This animal plushie back right leg was suggested by one of the developers that loves foxes.",
+                    "img": "/model/animals/fox/images/brleg.png",
+                    "url": "/model/animals/fox/brleg.gltf"
+                }
+            },
+            "5":{
+                "type": 1,
+                "img": "/model/animals/lama/images/fullmodel.png",
+                "hair":"",
+                "head": {
+                    "title": "Llama Head",
+                    "desc": "This is the head of a llama which is a domesticated South American camelid.<br><br>This animal plushie head was inspired by the song 'Pajama Llama' from the animated series 'The Emporer's New School'.",
+                    "img": "/model/animals/lama/images/head.png",
+                    "url": "/model/animals/lama/head.gltf"
+                },
+                "body": {
+                    "title": "Llama Torso",
+                    "desc": "This is the torso of a llama which is a domesticated South American camelid.<br><br>This animal plushie torso was inspired by the song 'Pajama Llama' from the animated series 'The Emporer's New School'.",
+                    "img": "/model/animals/lama/images/body.png",
+                    "url": "/model/animals/lama/body.gltf"
+                },
+                "l_arm": {
+                    "title": "Llama Front Left Leg",
+                    "desc": "This is the front left leg of a llama which is a domesticated South American camelid.<br><br>This animal plushie front left leg was inspired by the song 'Pajama Llama' from the animated series 'The Emporer's New School'.",
+                    "img": "/model/animals/lama/images/flleg.png",
+                    "url": "/model/animals/lama/flleg.gltf"
+                },
+                "r_arm": {
+                    "title": "Llama Front Right Leg",
+                    "desc": "This is the front right leg of a llama which is a domesticated South American camelid.<br><br>This animal plushie front right leg was inspired by the song 'Pajama Llama' from the animated series 'The Emporer's New School'.",
+                    "img": "/model/animals/lama/images/frleg.png",
+                    "url": "/model/animals/lama/frleg.gltf"
+                },
+                "l_leg": {
+                    "title": "Llama Back Left Leg",
+                    "desc": "This is the back left leg of a llama which is a domesticated South American camelid.<br><br>This animal plushie back left leg was inspired by the song 'Pajama Llama' from the animated series 'The Emporer's New School'.",
+                    "img": "/model/animals/lama/images/blleg.png",
+                    "url": "/model/animals/lama/blleg.gltf"
+                },
+                "r_leg": {
+                    "title": "Llama Back Right Leg",
+                    "desc": "This is the back right leg of a llama which is a domesticated South American camelid.<br><br>This animal plushie back right leg was inspired by the song 'Pajama Llama' from the animated series 'The Emporer's New School'.",
+                    "img": "/model/animals/lama/images/brleg.png",
+                    "url": "/model/animals/lama/brleg.gltf"
+                }
+            },
+            "6":{
+                "type": 2,
+                "img": "/model/fish/nemo/images/fullmodel.png",
+                "hair":"",
+                "head": {
+                    "title": "Nemo Head",
+                    "desc": "This is the head of a Clown Fish.<br><br>This fish plushie head was inspired by the popular Disney movie 'Nemo'.",
+                    "img": "/model/fish/nemo/images/head.png",
+                    "url": "/model/fish/nemo/head2.gltf"
+                },
+                "body": {
+                    "title": "Nemo Body",
+                    "desc": "This is the body of a Clown Fish.<br><br>This fish plushie body was inspired by the popular Disney movie 'Nemo'.",
+                    "img": "/model/fish/nemo/images/body.png",
+                    "url": "/model/fish/nemo/body2.gltf"
+                },
+                "l_arm": {
+                    "title": "Nemo Left Fin",
+                    "desc": "This is the left fin of a Clown Fish.<br><br>This fish plushie left fin was inspired by the popular Disney movie 'Nemo'.",
+                    "img": "/model/fish/nemo/images/lfin.png",
+                    "url": "/model/fish/nemo/lfin1.gltf"
+                },
+                "r_arm": {
+                    "title": "Nemo Right Fin",
+                    "desc": "This is the right fin of a Clown Fish.<br><br>This fish plushie right fin was inspired by the popular Disney movie 'Nemo'.",
+                    "img": "/model/fish/nemo/images/rfin.png",
+                    "url": "/model/fish/nemo/rfin1.gltf"
+                },
+                "l_leg": {
+                    "title": "Nemo Back Fin",
+                    "desc": "This is the back fin of a Clown Fish.<br><br>This fish plushie back fin was inspired by the popular Disney movie 'Nemo'.",
+                    "img": "/model/fish/nemo/images/bfin.png",
+                    "url": "/model/fish/nemo/bfin1.gltf"
+                },
+                "r_leg": {
+                    "title": "Nemo Tail Fin",
+                    "desc": "This is the tail fin of a Clown Fish.<br><br>This fish plushie tail fin was inspired by the popular Disney movie 'Nemo'.",
+                    "img": "/model/fish/nemo/images/tfin.png",
+                    "url": "/model/fish/nemo/tfin1.gltf"
+                }
+            },
+            "7":{
+                "type": 2,
+                "img": "/model/fish/manta/images/fullmodel.png",
+                "hair":"",
+                "head": {
+                    "title": "Manta Ray Head",
+                    "desc": "This is the head of a Manta Ray.<br><br>This fish plushie head was inspired by 'Ghostray' creatures from the video game 'Subnautica'.",
+                    "img": "/model/fish/manta/images/head.png",
+                    "url": "/model/fish/manta/head.gltf"
+                },
+                "body": {
+                    "title": "Manta Ray Body",
+                    "desc": "This is the body of a Manta Ray.<br><br>This fish plushie body was inspired by 'Ghostray' creatures from the video game 'Subnautica'.",
+                    "img": "/model/fish/manta/images/body.png",
+                    "url": "/model/fish/manta/body.gltf"
+                },
+                "l_arm": {
+                    "title": "Manta Ray Left Fin",
+                    "desc": "This is the left fin of a Manta Ray.<br><br>This fish plushie left fin was inspired by 'Ghostray' creatures from the video game 'Subnautica'.",
+                    "img": "/model/fish/manta/images/lfin.png",
+                    "url": "/model/fish/manta/lfin.gltf"
+                },
+                "r_arm": {
+                    "title": "Manta Ray Right Fin",
+                    "desc": "This is the right fin of a Manta Ray.<br><br>This fish plushie right fin was inspired by 'Ghostray' creatures from the video game 'Subnautica'.",
+                    "img": "/model/fish/manta/images/rfin.png",
+                    "url": "/model/fish/manta/rfin.gltf"
+                },
+                "l_leg": {
+                    "title": "Manta Ray Back Fin",
+                    "desc": "This is the back fin of a Manta Ray.<br><br>This fish plushie back fin was inspired by 'Ghostray' creatures from the video game 'Subnautica'.",
+                    "img": "/model/fish/manta/images/tfin.png",
+                    "url": "/model/fish/manta/tfin.gltf"
+                },
+                "r_leg": {
+                    "title": "Manta Ray Tail",
+                    "desc": "This is the tail of a Manta Ray.<br><br>This fish plushie tail was inspired by 'Ghostray' creatures from the video game 'Subnautica'.",
+                    "img": "/model/fish/manta/images/bfin.png",
+                    "url": "/model/fish/manta/bfin.gltf"
+                }
+            },
+            "8":{
+                "type": 2,
+                "img": "/model/fish/shark/images/fullmodel.png",
+                "hair":"",
+                "head": {
+                    "title": "Shark Head",
+                    "desc": "This is the head of a shark in Chibi style.<br><br>This fish plushie head was inspired by the shark fish species and the Chibi japanese style.",
+                    "img": "/model/fish/shark/images/head.png",
+                    "url": "/model/fish/shark/head.gltf"
+                },
+                "body": {
+                    "title": "Shark Body",
+                    "desc": "This is the body of a shark in Chibi style.<br><br>This fish plushie body was inspired by the shark fish species and the Chibi japanese style.",
+                    "img": "/model/fish/shark/images/body.png",
+                    "url": "/model/fish/shark/body.gltf"
+                },
+                "l_arm": {
+                    "title": "Shark Left Fin",
+                    "desc": "This is the left fin of a shark in Chibi style.<br><br>This fish plushie left fin was inspired by the shark fish species and the Chibi japanese style.",
+                    "img": "/model/fish/shark/images/lfin.png",
+                    "url": "/model/fish/shark/lfin.gltf"
+                },
+                "r_arm": {
+                    "title": "Shark Right Fin",
+                    "desc": "This is the right fin of a shark in Chibi style.<br><br>This fish plushie right fin was inspired by the shark fish species and the Chibi japanese style.",
+                    "img": "/model/fish/shark/images/rfin.png",
+                    "url": "/model/fish/shark/rfin.gltf"
+                },
+                "l_leg": {
+                    "title": "Shark Back Fin",
+                    "desc": "This is the back fin of a shark in Chibi style.<br><br>This fish plushie back fin was inspired by the shark fish species and the Chibi japanese style.",
+                    "img": "/model/fish/shark/images/bfin.png",
+                    "url": "/model/fish/shark/bfin.gltf"
+                },
+                "r_leg": {
+                    "title": "Shark Tail Fin",
+                    "desc": "This is the tail fin of a shark in Chibi style.<br><br>This fish plushie tail fin was inspired by the shark fish species and the Chibi japanese style.",
+                    "img": "/model/fish/shark/images/tfin.png",
+                    "url": "/model/fish/shark/tfin.gltf"
+                }
+            }
+        },
+        "rooms":{
+            "length" : 2,
+            "0": {
+                "url": "/background/Room/scene.gltf",
+                "img": "/background/Room/Room1.png"
+            },   
+            "1": {
+                "url": "/background/Room_2/scene.gltf" ,
+                "img": "/background/Room_2/Room2.png"
+            }  
+        }
+    }
+    
+}

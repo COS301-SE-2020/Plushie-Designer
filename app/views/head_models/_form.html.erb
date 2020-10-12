@@ -4,6 +4,8 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+    <%= f.input :title%>
+    <%= f.input :desc, label: "Description"%>
     <%= f.input :head_file, required: true, error: 'Head file is mandatory, please specify one'  %>
     <%= f.input :head_image%>
     <%= f.input :model_type, collection: [["Humanoid", 0], ["Land Animal", 1], ["Sea Creature", 2]], selected: "Humanoid"%>

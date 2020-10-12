@@ -715,7 +715,7 @@
      height: 80%;
      .index-page {
          position: absolute;
-         top: 7.5em;
+         top: 1em;
          background: rgba($color: #000000, $alpha: 0.5);
          border-radius: 0.5em;
          width: 100%;
@@ -1555,6 +1555,13 @@
  
  .payment-form {
   max-width: 55em;
+
+  #disclaimer{
+      position: absolute;
+      top: 3em;
+      color: var(--primary-colour);
+      font-size: smaller;
+  }
   .half-field {
     width: 40%;
     display: inline-block;

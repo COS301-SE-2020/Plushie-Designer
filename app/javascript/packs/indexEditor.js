@@ -60,7 +60,7 @@ $.ajax({
 											url: "/r_leg_models",
 											dataType: "json",
 											success: function (r_leg_models) {
-												readTextFile("/file_paths1.JSON", function (text) {
+												readTextFile("/file_paths.JSON", function (text) {
 													var data = JSON.parse(text);
 													// console.log(r_leg_models);
 													var headchange = false;
@@ -70,6 +70,7 @@ $.ajax({
 													var llegchange = false;
 													var rlegchange = false;
 													var bchange = false;
+													var texturepanel = false;
 
 													var type = 0;
 													var typechange = false;
@@ -189,9 +190,10 @@ $.ajax({
 															color: 'E3A668',
 														},
 														{
-															texture: '/images/head.png',
-															size: [3, 3, 3],
-															shininess: 0
+															color: 'FC0303'
+															// texture: '/images/head.png',
+															// size: [3, 3, 3],
+															// shininess: 0
 														},
 														{
 															color: '438AAC'
@@ -384,81 +386,117 @@ $.ajax({
 													}
 
 													function chooseBodyPart(obj)//TODO
-													{
-														switch (obj.name) {
-															case "hair": currentSelection = hhtemp; break;
-															case htemp.children[0].name:
-																if (menuitem != "head") {
-																	$('.head-controls').click();
+													{	
+														var added = false;
+														switch(obj.name)
+														{
+															case "hair" : currentSelection = hhtemp; break;
+															case htemp.children[0].name : 
+																if(menuitem != "head"){
+																	if(!texturepanel){
+																		$('.head-controls').click();
+																	} else zoomin(htemp.children[0], false);																	
 																}
-																if (head < data.file_paths.models.length - 1)
-																	populateInfoCard(data.file_paths.models[head].head.title, data.file_paths.models[head].head.desc, data.file_paths.models[head].head.img);
+																if(head < data.file_paths.models.length-1)
+																	populateInfoCard(data.file_paths.models[head].head.title,data.file_paths.models[head].head.desc,data.file_paths.models[head].head.img);
 																else
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", head_models[head - data.file_paths.models.length].head_image.url);
+																	populateInfoCard(head_models[0].title, head_models[0].desc, head_models[head-data.file_paths.models.length].head_image.url);
 
-																currentSelection = htemp;
+																if(currentSelection == htemp){
+																	added = true;													
+																} else currentSelection = htemp; 
 																// zoomin(obj);
 																break;
-															case ttemp.children[0].name:
-																if (menuitem != "torso") {
-																	$('.torso-controls').click();
+															case ttemp.children[0].name : 
+																if(menuitem != "torso"){
+																	if(!texturepanel){
+																		$('.torso-controls').click();
+																	} else zoomin(ttemp.children[0], false);																																				
 																}
-																if (torso < data.file_paths.models.length - 1)
-																	populateInfoCard(data.file_paths.models[torso].body.title, data.file_paths.models[torso].body.desc, data.file_paths.models[torso].body.img);
+																if(torso < data.file_paths.models.length-1)
+																	populateInfoCard(data.file_paths.models[torso].body.title,data.file_paths.models[torso].body.desc,data.file_paths.models[torso].body.img);
 																else
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", body_models[torso - data.file_paths.models.length].body_image.url);
-																currentSelection = ttemp;
+																	populateInfoCard(body_models[0].title, body_models[0].desc, body_models[body-data.file_paths.models.length].body_image.url);
+
+																if(currentSelection == ttemp){
+																	added = true;													
+																} else currentSelection = ttemp; 
 																// zoomin(obj);
 																break;
-															case lltemp.children[0].name:
-																if (menuitem != "l-legs") {
-																	$('.l-legs-controls').click();
+															case lltemp.children[0].name :
+																if(menuitem != "l-legs"){
+																	if(!texturepanel){
+																		$('.l-legs-controls').click();	
+																	} else zoomin(lltemp.children[0], false);																																			
 																}
-																if (lleg < data.file_paths.models.length - 1)
-																	populateInfoCard(data.file_paths.models[lleg].l_leg.title, data.file_paths.models[lleg].l_leg.desc, data.file_paths.models[lleg].l_leg.img);
+																if(lleg < data.file_paths.models.length-1)
+																	populateInfoCard(data.file_paths.models[lleg].l_leg.title,data.file_paths.models[lleg].l_leg.desc,data.file_paths.models[lleg].l_leg.img);
 																else
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", l_leg_models[lleg - data.file_paths.models.length].l_leg_image.url);
-																currentSelection = lltemp;
+																	populateInfoCard(l_leg_models[0].title, l_leg_models[0].desc, l_leg_models[lleg-data.file_paths.models.length].l_leg_image.url);
+
+																if(currentSelection == lltemp){
+																	added = true;													
+																} else currentSelection = lltemp; 
 																// zoomin(obj);
 																break;
-															case rltemp.children[0].name:
-																if (menuitem != "r-legs") {
-																	$('.r-legs-controls').click();
+															case rltemp.children[0].name : 
+																if(menuitem != "r-legs"){
+																	if(!texturepanel){
+																		$('.r-legs-controls').click();	
+																	} else zoomin(rltemp.children[0], false);																																			
 																}
-																if (rleg < data.file_paths.models.length - 1)
-																	populateInfoCard(data.file_paths.models[rleg].r_leg.title, data.file_paths.models[rleg].r_leg.desc, data.file_paths.models[rleg].r_leg.img);
+																if(rleg < data.file_paths.models.length-1)
+																	populateInfoCard(data.file_paths.models[rleg].r_leg.title,data.file_paths.models[rleg].r_leg.desc,data.file_paths.models[rleg].r_leg.img);
 																else
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", r_leg_models[rleg - data.file_paths.models.length].r_leg_image.url);
-																currentSelection = rltemp;
+																	populateInfoCard(r_leg_models[0].title, r_leg_models[0].desc, r_leg_models[rleg-data.file_paths.models.length].r_leg_image.url);
+
+																if(currentSelection == rltemp){
+																	added = true;													
+																} else currentSelection = rltemp; 
 																// zoomin(obj);
 																break;
-															case latemp.children[0].name:
-																if (menuitem != "l-arms") {
-																	$('.l-arms-controls').click();
+															case latemp.children[0].name : 
+																if(menuitem != "l-arms"){
+																	if(!texturepanel){
+																		$('.l-arms-controls').click();
+																	} else zoomin(latemp.children[0], false);																																				
 																}
-																if (larm < data.file_paths.models.length - 1)
-																	populateInfoCard(data.file_paths.models[larm].l_arm.title, data.file_paths.models[larm].l_arm.desc, data.file_paths.models[larm].l_arm.img);
+																if(larm < data.file_paths.models.length-1)
+																	populateInfoCard(data.file_paths.models[larm].l_arm.title,data.file_paths.models[larm].l_arm.desc,data.file_paths.models[larm].l_arm.img);
 																else
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", l_arm_models[larm - data.file_paths.models.length].l_arm_image.url);
-																currentSelection = latemp;
+																	populateInfoCard(l_arm_models[0].title, l_arm_models[0].desc, l_arm_models[larm-data.file_paths.models.length].l_arm_image.url);
+
+																if(currentSelection == latemp){
+																	added = true;													
+																} else currentSelection = latemp; 
 																// zoomin(obj);
 																break;
-															case ratemp.children[0].name:
-																if (menuitem != "r-arms") {
-																	$('.r-arms-controls').click();
+															case ratemp.children[0].name :
+																if(menuitem != "r-arms"){
+																	if(!texturepanel){
+																		$('.r-arms-controls').click();	
+																	} else zoomin(ratemp.children[0], false);																																			
 																}
-																if (rarm < data.file_paths.models.length - 1)
-																	populateInfoCard(data.file_paths.models[rarm].r_arm.title, data.file_paths.models[rarm].r_arm.desc, data.file_paths.models[rarm].r_arm.img);
+																if(rarm < data.file_paths.models.length-1)
+																	populateInfoCard(data.file_paths.models[rarm].r_arm.title,data.file_paths.models[rarm].r_arm.desc,data.file_paths.models[rarm].r_arm.img);
 																else
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", r_arm_models[rarm - data.file_paths.models.length].r_arm_image.url);
-																currentSelection = ratemp;
+																	populateInfoCard(r_arm_models[0].title, r_arm_models[0].desc, r_arm_models[rarm-data.file_paths.models.length].r_arm_image.url);
+
+																if(currentSelection == ratemp){
+																	added = true;													
+																} else currentSelection = ratemp; 
 																// zoomin(obj);
 																break;
-															default: return;
+															default : return;
 														}
-														var selectedObject = obj;
-														addSelectedObject(selectedObject);
-														outlinePass.selectedObjects = selectedObjects;
+														if(!added){
+															var selectedObject = obj;
+															addSelectedObject( selectedObject );
+															outlinePass.selectedObjects = selectedObjects;
+														}else{
+															currentSelection = null; 
+															outlinePass.selectedObjects = [];
+														}														
 													}
 
 													function onMouseClick(event) {
@@ -498,25 +536,22 @@ $.ajax({
 																hhtemp = gltf.scene;
 																if (headposy != 0.0) {
 																	gltf.scene.children[0].position.setY(headposy);
-																	// gltf.scene.children[1].position.setY(headposy);
-																	// gltf.scene.children[2].position.setY(headposy);
-																	// gltf.scene.children[3].position.setY(headposy);
 																}
 																if (headposx != 0.0) {
 																	gltf.scene.children[0].position.setX(headposx);
-																	// gltf.scene.children[1].position.setX(headposx);
-																	// gltf.scene.children[2].position.setX(headposx);
-																	// gltf.scene.children[3].position.setX(headposx);
 																}
 																if (headposz != 0.0) {
 																	gltf.scene.children[0].position.setZ(headposz);
-																	// gltf.scene.children[1].position.setZ(headposz);
-																	// gltf.scene.children[2].position.setZ(headposz);
-																	// gltf.scene.children[3].position.setZ(headposz);
 																}
 																break;
 															case "head":
 																htemp = gltf.scene;
+																if(menuitem == "head"){
+																	currentSelection = htemp; 
+																	var selectedObject = htemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;	
+																}	
 																if (headposy != 0.0) {
 																	gltf.scene.children[0].position.setY(headposy);
 																} else {
@@ -539,6 +574,12 @@ $.ajax({
 																break;
 															case "torso":
 																ttemp = gltf.scene;
+																if(menuitem == "torso"){
+																	currentSelection = ttemp; 
+																	var selectedObject = ttemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;	
+																}
 																if (torsoposy != 0.0) {
 																	gltf.scene.children[0].position.setY(torsoposy);
 																} else {
@@ -561,6 +602,12 @@ $.ajax({
 																break;
 															case "leftarm":
 																latemp = gltf.scene;
+																if(menuitem == "l-arms"){
+																	currentSelection = latemp; 
+																	var selectedObject = latemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;	
+																}
 																if (larmposy != 0.0) {
 																	gltf.scene.children[0].position.setY(larmposy);
 																} else {
@@ -583,6 +630,12 @@ $.ajax({
 																break;
 															case "rightarm":
 																ratemp = gltf.scene;
+																if(menuitem == "r-arms"){
+																	currentSelection = ratemp; 
+																	var selectedObject = ratemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;	
+																}
 																if (rarmposy != 0.0) {
 																	gltf.scene.children[0].position.setY(rarmposy);
 																} else {
@@ -605,6 +658,12 @@ $.ajax({
 																break;
 															case "leftleg":
 																lltemp = gltf.scene;
+																if(menuitem == "l-legs"){
+																	currentSelection = lltemp; 
+																	var selectedObject = lltemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;	
+																}
 																if (llegposy != 0.0) {
 																	gltf.scene.children[0].position.setY(llegposy);
 																} else {
@@ -629,6 +688,12 @@ $.ajax({
 																break;
 															case "rightleg":
 																rltemp = gltf.scene;
+																if(menuitem == "r-legs"){
+																	currentSelection = rltemp; 
+																	var selectedObject = rltemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;	
+																}
 																if (rlegposy != 0.0) {
 																	gltf.scene.children[0].position.setY(rlegposy);
 																} else {
@@ -667,30 +732,22 @@ $.ajax({
 													//---------------------------------------------------------------------------------
 
 													//----------------------------------ADD ROOM----------------------------------------
-													function add_room_to_scene(gltf, name) {
-														gltf.scene.name = name;
-														gltf.scene.rotateY(-Math.PI / 4);
-														// gltf.scene.children.forEach(obj => {
-														// 	obj.shininess = 0;
-														// 	obj.receiveShadow = true;
-														// 	obj.castShadow = true;
-														// });
-														switch (name) {
-															case "Room_1":
-																gltf.scene.position.setY(-24);
-																gltf.scene.position.setX(-4.5);
-																gltf.scene.scale.set(20, 20, 20);
-																break;
-															case "Room_2":
-																gltf.scene.position.setY(-3.5);
-																gltf.scene.position.setZ(36.5);
-																gltf.scene.position.setX(46.5);
-																gltf.scene.scale.set(2, 2, 2);
-																break;
+													function add_room_to_scene(gltf, name)
+													{
+														gltf.scene.name = name;														
+														gltf.scene.rotateY(-Math.PI/4);
+														if(room == 0){
+															gltf.scene.position.setY(-24);
+															gltf.scene.position.setX(-4.5);
+															gltf.scene.scale.set(20,20,20);
+														} else if(room == 1){
+															gltf.scene.position.setY(-3.5);
+															gltf.scene.position.setZ(36.5);
+															gltf.scene.position.setX(46.5);
+															gltf.scene.scale.set(2,2,2);
 														}
-														//------------------------------------------------------------------------
 
-														scene.add(gltf.scene);
+														scene.add( gltf.scene );
 														btemp = gltf.scene;
 													}
 													//---------------------------------------------------------------------------------
@@ -744,8 +801,8 @@ $.ajax({
 														, undefined, function (error) { console.error(error); });
 													//---------------------------------------------------------------------
 													//---------------------------------Background-------------------------------------
-													burl = data.file_paths.rooms.room_1;
-													loader.load(burl, (gltf) => add_room_to_scene(gltf, "Room_1")
+													burl = data.file_paths.rooms[0].url;
+													loader.load( burl,  (gltf) => add_room_to_scene(gltf , "room")
 														, undefined, function (error) { console.error(error); });
 													//--------------------------------------------------------------------------------
 													//---------------------------PLANE--------------------------------
@@ -783,18 +840,18 @@ $.ajax({
 													//----------------------------------------------------------------
 
 													//------------------------------INDEX UPDATER----------------------------
-													function updateIndexes() {
-														for (var i = 0; i < scene.children.length; ++i) {
-															switch (scene.children[i].name) {
-																case "head": ihead = i; break;
-																case "torso": itorso = i; break;
-																case "leftarm": ilarm = i; break;
-																case "rightarm": irarm = i; break;
-																case "leftleg": illeg = i; break;
-																case "rightleg": irleg = i; break;
-																case "hair": ihair = i; break;
-																case "Room_1": ib = i; break;
-																case "Room_2": ib = i; break;
+													function updateIndexes(){
+														for(var i=0;i< scene.children.length;++i){
+															switch(scene.children[i].name)
+															{
+																case "head" : ihead = i; break;
+																case "torso" : itorso = i; break;
+																case "leftarm" : ilarm = i; break;
+																case "rightarm" : irarm = i; break;
+																case "leftleg" : illeg = i; break;
+																case "rightleg" : irleg = i; break;
+																case "hair" : ihair = i; break;
+																case "room" : ib = i; break;
 															}
 														}
 													}
@@ -818,28 +875,15 @@ $.ajax({
 															typechange = false;
 														}
 
-														if (bchange) {
+														if(bchange){
 															updateIndexes();
-															if (rtmp != 2) {
+															if(rtmp != 2){
 																var temp = scene.getObjectByName(scene.children[ib].name);
 																scene.remove(temp);
 															}
-															var tname;
-															var i;
-															if (room == 0) {
-																tname = "Room_1";
-																i = 0;
-																burl = data.file_paths.rooms.room_1;
-															}
-															else if (room == 1) {
-																tname = "Room_2";
-																i = 1;
-																burl = data.file_paths.rooms.room_2;
-															}
-															if (room != 2) {
-																loader.load(burl, (gltf) => add_room_to_scene(gltf, tname)
-																	, undefined, function (error) { console.error(error); });
-															}
+															burl = data.file_paths.rooms[room].url;
+															loader.load( burl, (gltf) => add_room_to_scene(gltf , "room")
+															, undefined, function ( error ) { console.error( error );} );
 															bchange = false;
 														}
 
@@ -1016,6 +1060,10 @@ $.ajax({
 																		headchange = true;
 																		head = this.value;
 																	}
+																	currentSelection = htemp; 
+																	var selectedObject = htemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard(data.file_paths.models[head].head.title, data.file_paths.models[head].head.desc, data.file_paths.models[head].head.img);
 																};
 																hprsh.appendChild(button);
@@ -1039,6 +1087,10 @@ $.ajax({
 																		torsochange = true;
 																		torso = this.value;
 																	}
+																	currentSelection = ttemp; 
+																	var selectedObject = ttemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard(data.file_paths.models[torso].body.title, data.file_paths.models[torso].body.desc, data.file_paths.models[torso].body.img);
 																};
 																tprsh.appendChild(button);
@@ -1062,6 +1114,10 @@ $.ajax({
 																		larmchange = true;
 																		larm = this.value;
 																	}
+																	currentSelection = latemp; 
+																	var selectedObject = latemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard(data.file_paths.models[larm].l_arm.title, data.file_paths.models[larm].l_arm.desc, data.file_paths.models[larm].l_arm.img);
 																};
 																laprsh.appendChild(button);
@@ -1085,6 +1141,10 @@ $.ajax({
 																		rarmchange = true;
 																		rarm = this.value;
 																	}
+																	currentSelection = ratemp; 
+																	var selectedObject = ratemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard(data.file_paths.models[rarm].r_arm.title, data.file_paths.models[rarm].r_arm.desc, data.file_paths.models[rarm].r_arm.img);
 																};
 																raprsh.appendChild(button);
@@ -1108,6 +1168,10 @@ $.ajax({
 																		llegchange = true;
 																		lleg = this.value;
 																	}
+																	currentSelection = lltemp; 
+																	var selectedObject = lltemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard(data.file_paths.models[lleg].l_leg.title, data.file_paths.models[lleg].l_leg.desc, data.file_paths.models[lleg].l_leg.img);
 																};
 																llprsh.appendChild(button);
@@ -1131,6 +1195,10 @@ $.ajax({
 																		rlegchange = true;
 																		rleg = this.value;
 																	}
+																	currentSelection = rltemp; 
+																	var selectedObject = rltemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
 																	populateInfoCard(data.file_paths.models[rleg].r_leg.title, data.file_paths.models[rleg].r_leg.desc, data.file_paths.models[rleg].r_leg.img);
 																};
 																rlprsh.appendChild(button);
@@ -1144,151 +1212,175 @@ $.ajax({
 														var llupsh = document.getElementById("llegupsh");
 														var rlupsh = document.getElementById("rlegupsh");
 
-														for (var i = 0; i < head_models.length; ++i) {
-															if (head_models[i].model_type == type) {
+														for(var i=0;i<head_models.length;++i){
+															if(head_models[i].model_type == type){
 																var button = document.createElement('button');
 																var img = head_models[i].head_image.url;
-																if (img == null) {
+																if (img == null){
 																	img = "/images/Default_Upl.png";
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
-																button.onclick = function () {
-																	if (head != this.value) {
+																button.onclick = function(){
+																	if(head!=this.value){
 																		headposy = 0.0;
 																		headposx = 0.0;
 																		headposz = 0.0;
 																		headchange = true;
 																		head = this.value;
 																	}
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
+																	currentSelection = htemp; 
+																	var selectedObject = htemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
+																	populateInfoCard(head_models[0].title, head_models[0].desc, img);														
 																};
 																hupsh.appendChild(button);
 															}
 														}
-
-														for (var i = 0; i < body_models.length; ++i) {
-															if (body_models[i].model_type == type) {
+																																									
+														for(var i=0;i<body_models.length;++i){
+															if(body_models[i].model_type == type){
 																var button = document.createElement('button');
 																var img = body_models[i].body_image.url;
-																if (img == null) {
+																if (img == null){
 																	img = "/images/Default_Upl.png";
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
-																button.onclick = function () {
-																	if (torso != this.value) {
+																button.onclick = function(){
+																	if(torso!=this.value){																		
 																		torsoposy = 0.0;
 																		torsoposx = 0.0;
 																		torsoposz = 0.0;
 																		torsochange = true;
 																		torso = this.value;
 																	}
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
+																	currentSelection = ttemp; 
+																	var selectedObject = ttemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
+																	populateInfoCard(body_models[0].title, body_models[0].desc, img);	
 																};
 																tupsh.appendChild(button);
 															}
 														}
-
-														for (var i = 0; i < l_arm_models.length; ++i) {
-															if (l_arm_models[i].model_type == type) {
+																								
+														for(var i=0;i<l_arm_models.length;++i){
+															if(l_arm_models[i].model_type == type){
 																var button = document.createElement('button');
 																var img = l_arm_models[i].l_arm_image.url;
-																if (img == null) {
+																if (img == null){
 																	img = "/images/Default_Upl.png";
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
-																button.onclick = function () {
-																	if (larm != this.value) {
+																button.onclick = function(){
+																	if(larm!=this.value){																		
 																		larmposy = 0.0;
 																		larmposx = 0.0;
 																		larmposz = 0.0;
 																		larmchange = true;
 																		larm = this.value;
-																	}
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
+																	}	
+																	currentSelection = latemp; 
+																	var selectedObject = latemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
+																	populateInfoCard(l_arm_models[0].title, l_arm_models[0].desc, img);															
 																};
 																laupsh.appendChild(button);
 															}
 														}
 
-														for (var i = 0; i < r_arm_models.length; ++i) {
-															if (r_arm_models[i].model_type == type) {
+														for(var i=0;i<r_arm_models.length;++i){
+															if(r_arm_models[i].model_type == type){
 																var button = document.createElement('button');
 																var img = r_arm_models[i].r_arm_image.url;
-																if (img == null) {
+																if (img == null){
 																	img = "/images/Default_Upl.png";
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
-																button.onclick = function () {
-																	if (rarm != this.value) {
+																button.onclick = function(){
+																	if(rarm!=this.value){
 																		rarmposy = 0.0;
 																		rarmposx = 0.0;
 																		rarmposz = 0.0;
 																		rarmchange = true;
 																		rarm = this.value;
-																	}
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
+																	}	
+																	currentSelection = ratemp; 
+																	var selectedObject = ratemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
+																	populateInfoCard(r_arm_models[0].title, r_arm_models[0].desc, img);																
 																};
 																raupsh.appendChild(button);
 															}
 														}
 
-														for (var i = 0; i < l_leg_models.length; ++i) {
-															if (l_leg_models[i].model_type == type) {
+														for(var i=0;i<l_leg_models.length;++i){
+															if(l_leg_models[i].model_type == type){
 																var button = document.createElement('button');
 																var img = l_leg_models[i].l_leg_image.url;
-																if (img == null) {
+																if (img == null){
 																	img = "/images/Default_Upl.png";
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
-																button.onclick = function () {
-																	if (lleg != this.value) {
+																button.onclick = function(){
+																	if(lleg!=this.value){
 																		llegposy = 0.0;
 																		llegposx = 0.0;
 																		llegposz = 0.0;
 																		llegchange = true;
 																		lleg = this.value;
-																	}
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
+																	}	
+																	currentSelection = lltemp; 
+																	var selectedObject = lltemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
+																	populateInfoCard(l_leg_models[0].title, l_leg_models[0].desc, img);															
 																};
 																llupsh.appendChild(button);
 															}
 														}
 
-														for (var i = 0; i < r_leg_models.length; ++i) {
-															if (r_leg_models[i].model_type == type) {
+														for(var i=0;i<r_leg_models.length;++i){
+															if(r_leg_models[i].model_type == type){
 																var button = document.createElement('button');
 																var img = r_leg_models[i].r_leg_image.url;
-																if (img == null) {
+																if (img == null){
 																	img = "/images/Default_Upl.png";
 																}
 																button.innerHTML = '<img class="modimgbtn" src="' + img + '" />';
 																button.className = 'btn';
 																button.type = "button";
 																button.value = i + data.file_paths.models.length;
-																button.onclick = function () {
-																	if (rleg != this.value) {
+																button.onclick = function(){
+																	if(rleg!=this.value){
 																		rlegposy = 0.0;
 																		rlegposx = 0.0;
 																		rlegposz = 0.0;
 																		rlegchange = true;
 																		rleg = this.value;
-																	}
-																	populateInfoCard("Coming Soon", "No Information for uploaded models.", img);
+																	}	
+																	currentSelection = rltemp; 
+																	var selectedObject = rltemp.children[0];
+																	addSelectedObject( selectedObject );
+																	outlinePass.selectedObjects = selectedObjects;
+																	populateInfoCard(r_leg_models[0].title, r_leg_models[0].desc, img);																
 																};
 																rlupsh.appendChild(button);
 															}
@@ -1310,51 +1402,75 @@ $.ajax({
 																button.type = "button";
 																button.value = i;
 																button.onclick = function () {
-																	if (head != this.value) {
-																		headposy = 0.0;
-																		headposx = 0.0;
-																		headposz = 0.0;
-																		torsoposy = 0.0;
-																		torsoposx = 0.0;
-																		torsoposz = 0.0;
-																		larmposy = 0.0;
-																		larmposx = 0.0;
-																		larmposz = 0.0;
-																		rarmposy = 0.0;
-																		rarmposx = 0.0;
-																		rarmposz = 0.0;
-																		llegposy = 0.0;
-																		llegposx = 0.0;
-																		llegposz = 0.0;
-																		rlegposy = 0.0;
-																		rlegposx = 0.0;
-																		rlegposz = 0.0;
+																	headposy = 0.0;
+																	headposx = 0.0;
+																	headposz = 0.0;
+																	torsoposy = 0.0;
+																	torsoposx = 0.0;
+																	torsoposz = 0.0;
+																	larmposy = 0.0;
+																	larmposx = 0.0;
+																	larmposz = 0.0;
+																	rarmposy = 0.0;
+																	rarmposx = 0.0;
+																	rarmposz = 0.0;
+																	llegposy = 0.0;
+																	llegposx = 0.0;
+																	llegposz = 0.0;
+																	rlegposy = 0.0;
+																	rlegposx = 0.0;
+																	rlegposz = 0.0;
 
-																		// type=this.value;
-																		// typechange=true;
+																	// type=this.value;
+																	// typechange=true;
 
-																		hair = this.value;
-																		head = this.value;
-																		torso = this.value;
-																		larm = this.value;
-																		rarm = this.value;
-																		lleg = this.value;
-																		rleg = this.value;
+																	hair = this.value;
+																	head = this.value;
+																	torso = this.value;
+																	larm = this.value;
+																	rarm = this.value;
+																	lleg = this.value;
+																	rleg = this.value;
 
-																		headchange = true;
-																		torsochange = true;
-																		larmchange = true;
-																		rarmchange = true;
-																		llegchange = true;
-																		rlegchange = true;
-																	}
+																	headchange = true;
+																	torsochange = true;
+																	larmchange = true;
+																	rarmchange = true;
+																	llegchange = true;
+																	rlegchange = true;															
 																};
 																fm.appendChild(button);
 															}
 														}
 													}
 
+													function populateRooms(){
+														var fm = document.getElementById("rooms");
+														fm.innerHTML="";
+																																																						
+														for(var i=0;i<data.file_paths.rooms.length;++i){
+															var button = document.createElement('button');
+															//alert(data.file_paths.rooms.test);
+															button.innerHTML = '<img class="modimgbtn" src="' + data.file_paths.rooms[i].img + '" />';
+															button.className = 'btn';
+															var tid = "room" + i;
+															button.id = tid;
+															button.type = "button";
+															button.value = i;
+															button.onclick = function(){
+																if(room != this.value){
+																	room = this.value;	
+																	bchange = true;		
+																}									
+															};
+															fm.appendChild(button);
+														}
+													}
+
 													function populateInfoCard(title, desc, image) {
+														if(image == null){
+															image = "/images/Default_Upl.png";
+														}
 														$('#info-title').html(title);
 														$('#info-description').html(desc);
 														$('#info-image').html('<img src="' + image + '" alt="A113">');
@@ -1363,6 +1479,7 @@ $.ajax({
 													//---------------------------HTML CUSTOMIZE PLUSH-----------------------
 													$(document).ready(function () {
 														populateFullModels();
+														populateRooms();
 														$('#info-card').fadeToggle(0);
 														$('#info-btn').click(function () {
 															if ($('#info-btn').text() == "Show Info") {
@@ -1389,41 +1506,60 @@ $.ajax({
 															}
 														});
 
-														$('.head-controls').click(function () {
+														$('.head-controls').click(function (){
 															zoomin(htemp.children[0], false);
 															menuitem = "head";
+															texturepanel = false;
 														});
 
-														$('.torso-controls').click(function () {
+														$('.torso-controls').click(function (){
 															zoomin(ttemp.children[0], false);
 															menuitem = "torso";
+															texturepanel = false;
 														});
 
-														$('.l-arms-controls').click(function () {
-															zoomin(latemp.children[0], false);
+														$('.l-arms-controls').click(function (){
+															zoomin(latemp.children[0], false);	
 															menuitem = "l-arms";
+															texturepanel = false;
 														});
 
-														$('.r-arms-controls').click(function () {
+														$('.r-arms-controls').click(function (){
 															zoomin(ratemp.children[0], false);
 															menuitem = "r-arms";
+															texturepanel = false;	
 														});
 
-														$('.l-legs-controls').click(function () {
+														$('.l-legs-controls').click(function (){
 															zoomin(lltemp.children[0], false);
 															menuitem = "l-legs";
+															texturepanel = false;	
 														});
 
-														$('.r-legs-controls').click(function () {
-															zoomin(rltemp.children[0], false);
+														$('.r-legs-controls').click(function (){															
+															zoomin(rltemp.children[0], false);	
 															menuitem = "r-legs";
+															texturepanel = false;
 														});
 
-														$('.type-controls').click(function () {
+														$('.type-controls').click(function (){															
 															zoomreset();
 															menuitem = "type";
+															texturepanel = false;
+															currentSelection = null; 
+															outlinePass.selectedObjects = [];
 														});
-
+														$('.textures').click(function (){
+															menuitem = "type";
+															texturepanel = true;
+														});
+														$('.rooms-controls').click(function (){
+															zoomreset();
+															menuitem = "type";
+															texturepanel = false;
+															currentSelection = null; 
+															outlinePass.selectedObjects = [];
+														});
 														$('#humanoid').click(function () {
 															if (type != 0) {
 																headposy = 0.0;
@@ -1569,23 +1705,23 @@ $.ajax({
 															screensh();
 														});
 
-														$('#rooml').click(function () {
-															if (room > 0) {
-																// alert("hello");
-																bchange = true;
-																rtmp = room;
-																room -= 1;
-															}
-														});
-														$('#roomr').click(function () {
-															var tmp = room;
-															if (tmp < 2) {
-																rtmp = room;
-																bchange = true;
-																tmp = +tmp + +1;
-																room = tmp;
-															}
-														});
+														// $('#rooml').click(function () {
+														// 	if (room > 0) {
+														// 		// alert("hello");
+														// 		bchange = true;
+														// 		rtmp = room;
+														// 		room -= 1;
+														// 	}
+														// });
+														// $('#roomr').click(function () {
+														// 	var tmp = room;
+														// 	if (tmp < 2) {
+														// 		rtmp = room;
+														// 		bchange = true;
+														// 		tmp = +tmp + +1;
+														// 		room = tmp;
+														// 	}
+														// });
 
 														// $('#headl').click(function () {
 														// 	if(head > 0){
