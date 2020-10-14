@@ -8,6 +8,7 @@ Plushie-Designer is a website that allows users to create and share their plushi
 
 ## Links
 - Web Application(Website): https://plushiedesigner.herokuapp.com/
+- Short video on how system works: https://youtu.be/Rvm55944Fc0
 
 ### Recorded Demos
 - Fellowship of the Git-Demo1: https://drive.google.com/file/d/1JpnnY9vtae2aD1KbY4ggvWpKldu4WIaB/view?usp=sharing
